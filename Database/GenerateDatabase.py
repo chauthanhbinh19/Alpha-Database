@@ -1330,7 +1330,7 @@ def get_story(character):
         return random.choice(stories[character])
 #Generate database
 def create_cards_database():
-    cards_dir="Cards"
+    cards_dir="Card_Hero"
     card_list = []
     id=1
     card_name=""
@@ -1380,7 +1380,7 @@ def create_cards_database():
                                               speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
                         with open('test.txt', 'a') as file:
                             file.write(
-                                "insert into cards values ("
+                                "insert into card_heroes values ("
                                 + str(id) + ",'"
                                 + (name or '') + "','"
                                 + (path or '') + "','"
@@ -1439,7 +1439,7 @@ def create_cards_database():
                                               speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
                         with open('test.txt', 'a') as file:
                             file.write(
-                                "insert into cards values ("
+                                "insert into card_heroes values ("
                                 + str(id) + ",'"
                                 + (name or '') + "','"
                                 + (path or '') + "','"
@@ -1497,7 +1497,7 @@ def create_cards_database():
                                               speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
                         with open('test.txt', 'a') as file:
                             file.write(
-                                "insert into cards values ("
+                                "insert into card_heroes values ("
                                 + str(id) + ",'"
                                 + (name or '') + "','"
                                 + (path or '') + "','"
@@ -1555,7 +1555,7 @@ def create_cards_database():
                                               speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
                         with open('test.txt', 'a') as file:
                             file.write(
-                                "insert into cards values ("
+                                "insert into card_heroes values ("
                                 + str(id) + ",'"
                                 + (name or '') + "','"
                                 + (path or '') + "','"
@@ -1640,28 +1640,28 @@ def create_books_database():
                     id=id+1
 
 def create_captain_database():
-    cards_dir="Captain"
+    cards_dir="Card_Captain"
     id=1
-    health=20000000
-    physical_attack=5000000
-    physical_defense=5000000
-    magical_attack=5000000
-    magical_defense=5000000
-    chemical_attack=5000000
-    chemical_defense=5000000
-    atomic_attack=5000000
-    atomic_defense=5000000
-    mental_attack=5000000
-    mental_defense=5000000
-    speed=50000
-    critical_rate=0
-    critical_damage=1000000
-    armor_penetration=1500000
-    avoid=0
-    absorbs_damage=500000
-    regenerate_vitality=500000
-    accuracy=0
-    mana=100
+    health=20000000*2
+    physical_attack=5000000*2
+    physical_defense=5000000*2
+    magical_attack=5000000*2
+    magical_defense=5000000*2
+    chemical_attack=5000000*2
+    chemical_defense=5000000*2
+    atomic_attack=5000000*2
+    atomic_defense=5000000*2
+    mental_attack=5000000*2
+    mental_defense=5000000*2
+    speed=50000*2
+    critical_rate=0*2
+    critical_damage=1000000*2
+    armor_penetration=1500000*2
+    avoid=0*2
+    absorbs_damage=500000*2
+    regenerate_vitality=500000*2
+    accuracy=0*2
+    mana=100*2
     rare="LG"
     path=""
     for root, dirs, files in os.walk(cards_dir):
@@ -1682,7 +1682,232 @@ def create_captain_database():
                     # print(str(physical_attack))
                     with open('test.txt', 'a') as file:
                         file.write(
-                            "insert into captains values ("
+                            "insert into card_captains values ("
+                            + str(id) + ",'"
+                            + (name or '') + "','"
+                            + (path or '') + "','"
+                            + (rare or '') + "','"
+                            + (dir_name or '') + "',"
+                            + str(0) + ","
+                            + str(power or 0) + ","
+                            + str(health or 0) + ","
+                            + str(physical_attack or 0) + ","
+                            + str(physical_defense or 0) + ","
+                            + str(magical_attack or 0) + ","
+                            + str(magical_defense or 0) + ","
+                            + str(chemical_attack or 0) + ","
+                            + str(chemical_defense or 0) + ","
+                            + str(atomic_attack or 0) + ","
+                            + str(atomic_defense or 0) + ","
+                            + str(mental_attack or 0) + ","
+                            + str(mental_defense or 0) + ","
+                            + str(speed or 0) + ","
+                            + str(critical_damage or 0) + ","
+                            + str(critical_rate or 0) + ","
+                            + str(armor_penetration or 0) + ","
+                            + str(avoid or 0) + ","
+                            + str(absorbs_damage or 0) + ","
+                            + str(regenerate_vitality or 0) + ","
+                            + str(accuracy or 0) + ","
+                            + str(mana or 0) + ",'"
+                            + (story or '') + "');\n"
+                        )
+                    id=id+1
+
+def create_colonel_database():
+    cards_dir="Card_Colonel"
+    id=1
+    health=20000000*3
+    physical_attack=5000000*3
+    physical_defense=5000000*3
+    magical_attack=5000000*3
+    magical_defense=5000000*3
+    chemical_attack=5000000*3
+    chemical_defense=5000000*3
+    atomic_attack=5000000*3
+    atomic_defense=5000000*3
+    mental_attack=5000000*3
+    mental_defense=5000000*3
+    speed=50000*3
+    critical_rate=0*3
+    critical_damage=1000000*3
+    armor_penetration=1500000*3
+    avoid=0*3
+    absorbs_damage=500000*3
+    regenerate_vitality=500000*3
+    accuracy=0*3
+    mana=100*3
+    rare="LG"
+    path=""
+    for root, dirs, files in os.walk(cards_dir):
+        current_dir=os.path.basename(root)
+        current_name=current_dir
+        for dir_name in dirs:
+            current_dir =os.path.join(root,dir_name)
+            for file_name in os.listdir(current_dir):
+                if file_name.endswith(".jpg") or file_name.endswith("png"):
+                    name, extension=os.path.splitext(file_name)
+                    path=os.path.join(current_dir,file_name)
+                    path=path.replace("\\","/")
+                    name=name.replace("_"," ")
+                    story = get_story(dir_name)
+                    
+                    power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                    # print(str(physical_attack))
+                    with open('test.txt', 'a') as file:
+                        file.write(
+                            "insert into card_colonels values ("
+                            + str(id) + ",'"
+                            + (name or '') + "','"
+                            + (path or '') + "','"
+                            + (rare or '') + "','"
+                            + (dir_name or '') + "',"
+                            + str(0) + ","
+                            + str(power or 0) + ","
+                            + str(health or 0) + ","
+                            + str(physical_attack or 0) + ","
+                            + str(physical_defense or 0) + ","
+                            + str(magical_attack or 0) + ","
+                            + str(magical_defense or 0) + ","
+                            + str(chemical_attack or 0) + ","
+                            + str(chemical_defense or 0) + ","
+                            + str(atomic_attack or 0) + ","
+                            + str(atomic_defense or 0) + ","
+                            + str(mental_attack or 0) + ","
+                            + str(mental_defense or 0) + ","
+                            + str(speed or 0) + ","
+                            + str(critical_damage or 0) + ","
+                            + str(critical_rate or 0) + ","
+                            + str(armor_penetration or 0) + ","
+                            + str(avoid or 0) + ","
+                            + str(absorbs_damage or 0) + ","
+                            + str(regenerate_vitality or 0) + ","
+                            + str(accuracy or 0) + ","
+                            + str(mana or 0) + ",'"
+                            + (story or '') + "');\n"
+                        )
+                    id=id+1
+
+def create_general_database():
+    cards_dir="Card_General"
+    id=1
+    health=20000000*4
+    physical_attack=5000000*4
+    physical_defense=5000000*4
+    magical_attack=5000000*4
+    magical_defense=5000000*4
+    chemical_attack=5000000*4
+    chemical_defense=5000000*4
+    atomic_attack=5000000*4
+    atomic_defense=5000000*4
+    mental_attack=5000000*4
+    mental_defense=5000000*4
+    speed=50000*4
+    critical_rate=0*4
+    critical_damage=1000000*4
+    armor_penetration=1500000*4
+    avoid=0*4
+    absorbs_damage=500000*4
+    regenerate_vitality=500000*4
+    accuracy=0*4
+    mana=100*4
+    rare="LG"
+    path=""
+    for root, dirs, files in os.walk(cards_dir):
+        current_dir=os.path.basename(root)
+        current_name=current_dir
+        for dir_name in dirs:
+            current_dir =os.path.join(root,dir_name)
+            for file_name in os.listdir(current_dir):
+                if file_name.endswith(".jpg") or file_name.endswith("png"):
+                    name, extension=os.path.splitext(file_name)
+                    path=os.path.join(current_dir,file_name)
+                    path=path.replace("\\","/")
+                    name=name.replace("_"," ")
+                    story = get_story(dir_name)
+                    
+                    power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                    # print(str(physical_attack))
+                    with open('test.txt', 'a') as file:
+                        file.write(
+                            "insert into card_generals values ("
+                            + str(id) + ",'"
+                            + (name or '') + "','"
+                            + (path or '') + "','"
+                            + (rare or '') + "','"
+                            + (dir_name or '') + "',"
+                            + str(0) + ","
+                            + str(power or 0) + ","
+                            + str(health or 0) + ","
+                            + str(physical_attack or 0) + ","
+                            + str(physical_defense or 0) + ","
+                            + str(magical_attack or 0) + ","
+                            + str(magical_defense or 0) + ","
+                            + str(chemical_attack or 0) + ","
+                            + str(chemical_defense or 0) + ","
+                            + str(atomic_attack or 0) + ","
+                            + str(atomic_defense or 0) + ","
+                            + str(mental_attack or 0) + ","
+                            + str(mental_defense or 0) + ","
+                            + str(speed or 0) + ","
+                            + str(critical_damage or 0) + ","
+                            + str(critical_rate or 0) + ","
+                            + str(armor_penetration or 0) + ","
+                            + str(avoid or 0) + ","
+                            + str(absorbs_damage or 0) + ","
+                            + str(regenerate_vitality or 0) + ","
+                            + str(accuracy or 0) + ","
+                            + str(mana or 0) + ",'"
+                            + (story or '') + "');\n"
+                        )
+                    id=id+1
+
+def create_admiral_database():
+    cards_dir="Card_Admiral"
+    id=1
+    health=20000000*5
+    physical_attack=5000000*5
+    physical_defense=5000000*5
+    magical_attack=5000000*5
+    magical_defense=5000000*5
+    chemical_attack=5000000*5
+    chemical_defense=5000000*5
+    atomic_attack=5000000*5
+    atomic_defense=5000000*5
+    mental_attack=5000000*5
+    mental_defense=5000000*5
+    speed=50000*5
+    critical_rate=0*5
+    critical_damage=1000000*5
+    armor_penetration=1500000*5
+    avoid=0*5
+    absorbs_damage=500000*5
+    regenerate_vitality=500000*5
+    accuracy=0*5
+    mana=100*5
+    rare="LG"
+    path=""
+    for root, dirs, files in os.walk(cards_dir):
+        current_dir=os.path.basename(root)
+        current_name=current_dir
+        for dir_name in dirs:
+            current_dir =os.path.join(root,dir_name)
+            for file_name in os.listdir(current_dir):
+                if file_name.endswith(".jpg") or file_name.endswith("png"):
+                    name, extension=os.path.splitext(file_name)
+                    path=os.path.join(current_dir,file_name)
+                    path=path.replace("\\","/")
+                    name=name.replace("_"," ")
+                    story = get_story(dir_name)
+                    
+                    power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                    # print(str(physical_attack))
+                    with open('test.txt', 'a') as file:
+                        file.write(
+                            "insert into card_admirals values ("
                             + str(id) + ",'"
                             + (name or '') + "','"
                             + (path or '') + "','"
@@ -2242,7 +2467,7 @@ def create_titles_database():
                 id=id+1
 
 def create_monster_database():
-    cards_dir="Monster"
+    cards_dir="Card_Monster"
     card_list = []
     id=1
     card_name=""
@@ -2292,7 +2517,7 @@ def create_monster_database():
                 power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
                                               speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
                 with open('test.txt', 'a') as file:
-                    file.write("insert into monsters values (" + str(id) + ",'" + name + "','" + path + "','" + rare + "','" + "none" + "'," + str(0) + "," + str(power) + "," + str(health) + "," 
+                    file.write("insert into card_monsters values (" + str(id) + ",'" + name + "','" + path + "','" + rare + "','" + "none" + "'," + str(0) + "," + str(power) + "," + str(health) + "," 
                                 + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense) 
                                 + "," + str(atomic_attack) + "," + str(atomic_defense) + "," + str(mental_attack) + "," + str(mental_defense) + "," + str(speed) + "," + str(critical_damage) + "," + str(critical_rate) + "," + str(armor_penetration) 
                                 + "," + str(avoid) + "," + str(absorbs_damage) + "," + str(regenerate_vitality) + ","+ str(accuracy) + "," + str(mana) + ",'"+ str(story) +"');\n")
@@ -2856,7 +3081,7 @@ def create_collaboration_database():
                 id=id+1      
 
 def create_military_database():
-    cards_dir="Military"
+    cards_dir="Card_Military"
     card_list = []
     id=1
     card_name=""
@@ -2906,7 +3131,7 @@ def create_military_database():
                         power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
                                               speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
                         with open('test.txt', 'a') as file:
-                            file.write("insert into military values (" + str(id) + ",'" + name + "','" + path + "','" + rare + "','" + current_name + "'," + str(0) + "," + str(power) + "," + str(health) + "," 
+                            file.write("insert into card_military values (" + str(id) + ",'" + name + "','" + path + "','" + rare + "','" + current_name + "'," + str(0) + "," + str(power) + "," + str(health) + "," 
                               + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense) 
                               + "," + str(atomic_attack) + "," + str(atomic_defense) + "," + str(mental_attack) + "," + str(mental_defense) + "," + str(speed) + "," + str(critical_damage) + "," + str(critical_rate) + "," + str(armor_penetration) 
                               + "," + str(avoid) + "," + str(absorbs_damage) + "," + str(regenerate_vitality) + ","+ str(accuracy) + "," + str(mana) + ",'"+ str(story) +"');\n")
@@ -2950,7 +3175,7 @@ def create_military_database():
                         power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
                                               speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
                         with open('test.txt', 'a') as file:
-                            file.write("insert into military values (" + str(id) + ",'" + name + "','" + path + "','" + rare + "','" + current_name + "'," + str(0) + "," + str(power) + "," + str(health) + "," 
+                            file.write("insert into card_military values (" + str(id) + ",'" + name + "','" + path + "','" + rare + "','" + current_name + "'," + str(0) + "," + str(power) + "," + str(health) + "," 
                               + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense) 
                               + "," + str(atomic_attack) + "," + str(atomic_defense) + "," + str(mental_attack) + "," + str(mental_defense) + "," + str(speed) + "," + str(critical_damage) + "," + str(critical_rate) + "," + str(armor_penetration) 
                               + "," + str(avoid) + "," + str(absorbs_damage) + "," + str(regenerate_vitality) + ","+ str(accuracy) + "," + str(mana) + ",'"+ str(story) +"');\n")
@@ -2993,7 +3218,7 @@ def create_military_database():
                         power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
                                               speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
                         with open('test.txt', 'a') as file:
-                            file.write("insert into military values (" + str(id) + ",'" + name + "','" + path + "','" + rare + "','" + current_name + "'," + str(0) + "," + str(power) + "," + str(health) + "," 
+                            file.write("insert into card_military values (" + str(id) + ",'" + name + "','" + path + "','" + rare + "','" + current_name + "'," + str(0) + "," + str(power) + "," + str(health) + "," 
                               + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense) 
                               + "," + str(atomic_attack) + "," + str(atomic_defense) + "," + str(mental_attack) + "," + str(mental_defense) + "," + str(speed) + "," + str(critical_damage) + "," + str(critical_rate) + "," + str(armor_penetration) 
                               + "," + str(avoid) + "," + str(absorbs_damage) + "," + str(regenerate_vitality) + ","+ str(accuracy) + "," + str(mana) + ",'"+ str(story) +"');\n")
@@ -3036,14 +3261,14 @@ def create_military_database():
                         power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
                                               speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
                         with open('test.txt', 'a') as file:
-                            file.write("insert into military values (" + str(id) + ",'" + name + "','" + path + "','" + rare + "','" + current_name + "'," + str(0) + "," + str(power) + "," + str(health) + "," 
+                            file.write("insert into card_military values (" + str(id) + ",'" + name + "','" + path + "','" + rare + "','" + current_name + "'," + str(0) + "," + str(power) + "," + str(health) + "," 
                               + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense) 
                               + "," + str(atomic_attack) + "," + str(atomic_defense) + "," + str(mental_attack) + "," + str(mental_defense) + "," + str(speed) + "," + str(critical_damage) + "," + str(critical_rate) + "," + str(armor_penetration) 
                               + "," + str(avoid) + "," + str(absorbs_damage) + "," + str(regenerate_vitality) + ","+ str(accuracy) + "," + str(mana) + ",'"+ str(story) +"');\n")
                         id=id+1
 
 def create_spell_database():
-    cards_dir="Spell"
+    cards_dir="Card_Spell"
     card_list = []
     id=1
     card_name=""
@@ -3092,7 +3317,7 @@ def create_spell_database():
                         power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
                                               speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
                         with open('test.txt', 'a') as file:
-                            file.write("insert into spell values (" + str(id) + ",'" + name + "','" + path + "','" + rare + "','" + current_name + "'," + str(0) + "," + str(power) + "," + str(health) + "," 
+                            file.write("insert into card_spell values (" + str(id) + ",'" + name + "','" + path + "','" + rare + "','" + current_name + "'," + str(0) + "," + str(power) + "," + str(health) + "," 
                               + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense) 
                               + "," + str(atomic_attack) + "," + str(atomic_defense) + "," + str(mental_attack) + "," + str(mental_defense) + "," + str(speed) + "," + str(critical_damage) + "," + str(critical_rate) + "," + str(armor_penetration) 
                               + "," + str(avoid) + "," + str(absorbs_damage) + "," + str(regenerate_vitality) + ","+ str(accuracy) + "," + str(mana) + ",'');\n")
@@ -3143,7 +3368,7 @@ def create_spell_database():
                         power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
                                               speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
                         with open('test.txt', 'a') as file:
-                            file.write("insert into spell values (" + str(id) + ",'" + name + "','" + path + "','" + rare + "','" + current_name + "'," + str(0) + "," + str(power) + "," + str(health) + "," 
+                            file.write("insert into card_spell values (" + str(id) + ",'" + name + "','" + path + "','" + rare + "','" + current_name + "'," + str(0) + "," + str(power) + "," + str(health) + "," 
                               + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense) 
                               + "," + str(atomic_attack) + "," + str(atomic_defense) + "," + str(mental_attack) + "," + str(mental_defense) + "," + str(speed) + "," + str(critical_damage) + "," + str(critical_rate) + "," + str(armor_penetration) 
                               + "," + str(avoid) + "," + str(absorbs_damage) + "," + str(regenerate_vitality) + ","+ str(accuracy) + "," + str(mana) + ","+ description +");\n")
@@ -3355,7 +3580,7 @@ def create_magic_formation_circle_database():
 #Generate Trading
 
 def create_cards_trade():
-    cards_dir="Cards"
+    cards_dir="Card_Hero"
     id=1
     
     for root, dirs, files in os.walk(cards_dir):
@@ -3375,7 +3600,7 @@ def create_cards_trade():
                         name=name.replace("_"," ")
                         
                         with open('test.txt', 'a') as file:
-                            file.write("insert into card_trade values (" + str(id) + "," + str(1) + "," + str(200) + ");\n")
+                            file.write("insert into card_hero_trade values (" + str(id) + "," + str(1) + "," + str(200) + ");\n")
 
                         id=id+1
             if "SSR" in dir_name:
@@ -3385,7 +3610,7 @@ def create_cards_trade():
                         name, extension=os.path.splitext(file_name)
                         
                         with open('test.txt', 'a') as file:
-                            file.write("insert into card_trade values (" + str(id) + "," + str(5) + "," + str(500) + ");\n")
+                            file.write("insert into card_hero_trade values (" + str(id) + "," + str(5) + "," + str(500) + ");\n")
                         id=id+1
             if "UR" in dir_name:
                 current_dir =os.path.join(root,dir_name)
@@ -3394,7 +3619,7 @@ def create_cards_trade():
                         name,extension=os.path.splitext(file_name)
                         
                         with open('test.txt', 'a') as file:
-                            file.write("insert into card_trade values (" + str(id) + "," + str(9) + "," + str(1000) + ");\n")
+                            file.write("insert into card_hero_trade values (" + str(id) + "," + str(9) + "," + str(1000) + ");\n")
                         id=id+1
             if "LG" in dir_name:
                 current_dir =os.path.join(root,dir_name)
@@ -3403,7 +3628,7 @@ def create_cards_trade():
                         name, extension=os.path.splitext(file_name)
                         
                         with open('test.txt', 'a') as file:
-                            file.write("insert into card_trade values (" + str(id) + "," + str(13) + "," + str(2000) + ");\n")
+                            file.write("insert into card_hero_trade values (" + str(id) + "," + str(13) + "," + str(2000) + ");\n")
                         id=id+1
 
 def create_book_trade():
@@ -3427,7 +3652,7 @@ def create_book_trade():
                     id=id+1
 
 def create_captain_trade():
-    cards_dir="Captain"
+    cards_dir="Card_Captain"
     card_list = []
     id=1
     
@@ -3444,7 +3669,70 @@ def create_captain_trade():
                     name=name.replace("_"," ")
                     
                     with open('test.txt', 'a') as file:
-                        file.write("insert into captain_trade values (" + str(id) + "," + str(15) + "," + str(2000) + ");\n")
+                        file.write("insert into card_captain_trade values (" + str(id) + "," + str(15) + "," + str(2000) + ");\n")
+                    id=id+1
+
+def create_colonel_trade():
+    cards_dir="Card_Colonel"
+    card_list = []
+    id=1
+    
+    for root, dirs, files in os.walk(cards_dir):
+        current_dir=os.path.basename(root)
+        current_name=current_dir
+        for dir_name in dirs:
+            current_dir =os.path.join(root,dir_name)
+            for file_name in os.listdir(current_dir):
+                if file_name.endswith(".jpg") or file_name.endswith("png"):
+                    name, extension=os.path.splitext(file_name)
+                    path=os.path.join(current_dir,file_name)
+                    path=path.replace("\\","/")
+                    name=name.replace("_"," ")
+                    
+                    with open('test.txt', 'a') as file:
+                        file.write("insert into card_colonel_trade values (" + str(id) + "," + str(12) + "," + str(2000) + ");\n")
+                    id=id+1
+
+def create_general_trade():
+    cards_dir="Card_General"
+    card_list = []
+    id=1
+    
+    for root, dirs, files in os.walk(cards_dir):
+        current_dir=os.path.basename(root)
+        current_name=current_dir
+        for dir_name in dirs:
+            current_dir =os.path.join(root,dir_name)
+            for file_name in os.listdir(current_dir):
+                if file_name.endswith(".jpg") or file_name.endswith("png"):
+                    name, extension=os.path.splitext(file_name)
+                    path=os.path.join(current_dir,file_name)
+                    path=path.replace("\\","/")
+                    name=name.replace("_"," ")
+                    
+                    with open('test.txt', 'a') as file:
+                        file.write("insert into card_general_trade values (" + str(id) + "," + str(16) + "," + str(2000) + ");\n")
+                    id=id+1
+
+def create_admiral_trade():
+    cards_dir="Card_Admiral"
+    card_list = []
+    id=1
+    
+    for root, dirs, files in os.walk(cards_dir):
+        current_dir=os.path.basename(root)
+        current_name=current_dir
+        for dir_name in dirs:
+            current_dir =os.path.join(root,dir_name)
+            for file_name in os.listdir(current_dir):
+                if file_name.endswith(".jpg") or file_name.endswith("png"):
+                    name, extension=os.path.splitext(file_name)
+                    path=os.path.join(current_dir,file_name)
+                    path=path.replace("\\","/")
+                    name=name.replace("_"," ")
+                    
+                    with open('test.txt', 'a') as file:
+                        file.write("insert into card_admiral_trade values (" + str(id) + "," + str(17) + "," + str(2000) + ");\n")
                     id=id+1
 
 def create_skills_trade():
@@ -3713,7 +4001,7 @@ def create_collaboration_trade():
                 id=id+1     
 
 def create_monster_trade():
-    cards_dir="Monster"
+    cards_dir="Card_Monster"
     card_list = []
     id=1
     for root, dirs, files in os.walk(cards_dir):
@@ -3726,12 +4014,12 @@ def create_monster_trade():
                 name=name.replace("_"," ")
                 
                 with open('test.txt', 'a') as file:
-                    file.write("insert into monster_trade values (" + str(id) + "," + str(47) + "," + str(2000) + ");\n")
+                    file.write("insert into card_monster_trade values (" + str(id) + "," + str(47) + "," + str(2000) + ");\n")
 
                 id=id+1
 
 def create_military_trade():
-    cards_dir="Military"
+    cards_dir="Card_Military"
     id=1
     path=""
     for root, dirs, files in os.walk(cards_dir):
@@ -3750,7 +4038,7 @@ def create_military_trade():
                         path=path.replace("\\","/")
                         name=name.replace("_"," ")
                         with open('test.txt', 'a') as file:
-                            file.write("insert into military_trade values (" + str(id) + "," + str(4) + "," + str(50000) + ");\n")
+                            file.write("insert into card_military_trade values (" + str(id) + "," + str(4) + "," + str(50000) + ");\n")
                         id=id+1
             if "SSR" in dir_name:
                 current_dir =os.path.join(root,dir_name)
@@ -3761,7 +4049,7 @@ def create_military_trade():
                         path=path.replace("\\","/")
                         name=name.replace("_"," ")
                         with open('test.txt', 'a') as file:
-                            file.write("insert into military_trade values (" + str(id) + "," + str(8) + "," + str(500000) + ");\n")
+                            file.write("insert into card_military_trade values (" + str(id) + "," + str(8) + "," + str(500000) + ");\n")
                         id=id+1
             if "UR" in dir_name:
                 current_dir =os.path.join(root,dir_name)
@@ -3772,7 +4060,7 @@ def create_military_trade():
                         path=path.replace("\\","/")
                         name=name.replace("_"," ")
                         with open('test.txt', 'a') as file:
-                            file.write("insert into military_trade values (" + str(id) + "," + str(12) + "," + str(5000000) + ");\n")
+                            file.write("insert into card_military_trade values (" + str(id) + "," + str(12) + "," + str(5000000) + ");\n")
                         id=id+1
             if "LG" in dir_name:
                 current_dir =os.path.join(root,dir_name)
@@ -3783,11 +4071,11 @@ def create_military_trade():
                         path=path.replace("\\","/")
                         name=name.replace("_"," ")
                         with open('test.txt', 'a') as file:
-                            file.write("insert into military_trade values (" + str(id) + "," + str(16) + "," + str(50000000) + ");\n")
+                            file.write("insert into card_military_trade values (" + str(id) + "," + str(16) + "," + str(50000000) + ");\n")
                         id=id+1
 
 def create_spell_trade():
-    cards_dir="Spell"
+    cards_dir="Card_Spell"
     id=1
     path=""
     for root, dirs, files in os.walk(cards_dir):
@@ -3806,7 +4094,7 @@ def create_spell_trade():
                         path=path.replace("\\","/")
                         name=name.replace("_"," ")
                         with open('test.txt', 'a') as file:
-                            file.write("insert into spell_trade values (" + str(id) + "," + str(48) + "," + str(50000) + ");\n")
+                            file.write("insert into card_spell_trade values (" + str(id) + "," + str(48) + "," + str(50000) + ");\n")
                         id=id+1
             if "SSR" in dir_name:
                 current_dir =os.path.join(root,dir_name)
@@ -3817,7 +4105,7 @@ def create_spell_trade():
                         path=path.replace("\\","/")
                         name=name.replace("_"," ")
                         with open('test.txt', 'a') as file:
-                            file.write("insert into spell_trade values (" + str(id) + "," + str(48) + "," + str(500000) + ");\n")
+                            file.write("insert into card_spell_trade values (" + str(id) + "," + str(48) + "," + str(500000) + ");\n")
                         id=id+1
             if "UR" in dir_name:
                 current_dir =os.path.join(root,dir_name)
@@ -3828,7 +4116,7 @@ def create_spell_trade():
                         path=path.replace("\\","/")
                         name=name.replace("_"," ")
                         with open('test.txt', 'a') as file:
-                            file.write("insert into spell_trade values (" + str(id) + "," + str(48) + "," + str(5000000) + ");\n")
+                            file.write("insert into card_spell_trade values (" + str(id) + "," + str(48) + "," + str(5000000) + ");\n")
                         id=id+1
             if "LG" in dir_name:
                 current_dir =os.path.join(root,dir_name)
@@ -3839,7 +4127,7 @@ def create_spell_trade():
                         path=path.replace("\\","/")
                         name=name.replace("_"," ")
                         with open('test.txt', 'a') as file:
-                            file.write("insert into spell_trade values (" + str(id) + "," + str(48) + "," + str(50000000) + ");\n")
+                            file.write("insert into card_spell_trade values (" + str(id) + "," + str(48) + "," + str(50000000) + ");\n")
                         id=id+1
 
 def create_relics_trade():
@@ -4227,7 +4515,7 @@ def create_chest_equipment():
                             id += 1
                         
 def create_chest_card():
-    cards_dir="Cards"
+    cards_dir="Card_Hero"
     card_list = []
     id=1
     card_name=""
@@ -4244,749 +4532,749 @@ def create_chest_card():
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(283) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(284) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(283) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(284) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Avian" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(285) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(286) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(285) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(286) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Barbarian" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(287) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(288) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(287) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(288) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
-                elif "Cyttorak" in current_name:
+                elif "Cylloran" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(289) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(290) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(289) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(290) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Dreizen" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(291) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(292) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(291) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(292) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Etrigon" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(293) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(294) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(293) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(294) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Firimir" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(295) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(296) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(295) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(296) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Gennesis" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(297) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(298) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(297) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(298) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Hecarus" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(299) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(300) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(299) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(300) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Illonima" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(301) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(302) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(301) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(302) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Jaguar" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(303) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(304) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(303) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(304) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Kryptonian" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(305) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(306) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(305) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(306) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Lamania" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(307) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(308) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(307) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(308) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Marverick" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(309) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(310) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(309) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(310) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Nemesis" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(311) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(312) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(311) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(312) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Onyx" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(313) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(314) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(313) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(314) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Palladian" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(315) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(316) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(315) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(316) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Quasar" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(317) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(318) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(317) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(318) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Riverven" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(319) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(320) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(319) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(320) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Starroian" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(321) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(322) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(321) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(322) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Terac" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(323) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(324) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(323) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(324) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Urius" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(325) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(326) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(325) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(326) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Vril" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(327) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(328) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(327) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(328) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Wyvern" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(329) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(330) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(329) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(330) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
-                elif "Xenomorph" in current_name:
+                elif "Xanthera" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(331) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(331) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
-                elif "Yutogen" in current_name:
+                elif "Yornath" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(332) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(332) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Zerath" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(333) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(333) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1             
             if "SSR" in dir_name:
                 if "Adamas" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(283) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(284) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(283) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(284) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Avian" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(285) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(286) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(285) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(286) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Barbarian" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(287) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(288) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(287) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(288) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
-                elif "Cyttorak" in current_name:
+                elif "Cylloran" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(289) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(290) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(289) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(290) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Dreizen" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(291) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(292) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(291) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(292) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Etrigon" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(293) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(294) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(293) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(294) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Firimir" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(295) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(296) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(295) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(296) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Gennesis" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(297) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(298) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(297) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(298) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Hecarus" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(299) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(300) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(299) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(300) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Illonima" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(301) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(302) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(301) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(302) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Jaguar" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(303) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(304) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(303) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(304) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Kryptonian" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(305) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(306) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(305) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(306) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Lamania" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(307) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(308) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(307) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(308) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Marverick" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(309) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(310) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(309) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(310) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Nemesis" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(311) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(312) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(311) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(312) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Onyx" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(313) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(314) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(313) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(314) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Palladian" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(315) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(316) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(315) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(316) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Quasar" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(317) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(318) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(317) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(318) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Riverven" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(319) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(320) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(319) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(320) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Starroian" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(321) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(322) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(321) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(322) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Terac" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(323) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(324) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(323) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(324) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Urius" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(325) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(326) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(325) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(326) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Vril" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(327) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(328) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(327) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(328) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Wyvern" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(329) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(330) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(329) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(330) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
-                elif "Xenomorph" in current_name:
+                elif "Xanthera" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(331) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(331) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
-                elif "Yutogen" in current_name:
+                elif "Yornath" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(332) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(332) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Zerath" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(333) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
+                            file.write("insert into chest_card_hero values (" + str(333) + "," + str(id) + "," + str(1) + ");\n")
+                        id=id+1             
             if "UR" in dir_name:
                 if "Adamas" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(283) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(284) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(283) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(284) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Avian" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(285) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(286) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(285) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(286) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Barbarian" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(287) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(288) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(287) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(288) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
-                elif "Cyttorak" in current_name:
+                elif "Cylloran" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(289) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(290) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(289) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(290) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Dreizen" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(291) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(292) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(291) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(292) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Etrigon" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(293) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(294) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(293) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(294) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Firimir" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(295) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(296) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(295) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(296) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Gennesis" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(297) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(298) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(297) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(298) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Hecarus" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(299) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(300) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(299) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(300) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Illonima" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(301) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(302) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(301) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(302) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Jaguar" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(303) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(304) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(303) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(304) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Kryptonian" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(305) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(306) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(305) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(306) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Lamania" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(307) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(308) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(307) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(308) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Marverick" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(309) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(310) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(309) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(310) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Nemesis" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(311) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(312) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(311) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(312) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Onyx" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(313) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(314) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(313) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(314) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Palladian" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(315) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(316) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(315) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(316) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Quasar" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(317) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(318) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(317) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(318) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Riverven" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(319) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(320) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(319) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(320) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Starroian" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(321) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(322) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(321) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(322) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Terac" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(323) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(324) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(323) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(324) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Urius" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(325) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(326) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(325) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(326) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Vril" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(327) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(328) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(327) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(328) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Wyvern" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(329) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(330) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(329) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(330) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
-                elif "Xenomorph" in current_name:
+                elif "Xanthera" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(331) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(331) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
-                elif "Yutogen" in current_name:
+                elif "Yornath" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(332) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(332) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Zerath" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(333) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
+                            file.write("insert into chest_card_hero values (" + str(333) + "," + str(id) + "," + str(1) + ");\n")
+                        id=id+1             
             if "LG" in dir_name:
                 if "Adamas" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(283) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(284) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(283) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(284) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Avian" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(285) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(286) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(285) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(286) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Barbarian" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(287) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(288) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(287) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(288) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
-                elif "Cyttorak" in current_name:
+                elif "Cylloran" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(289) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(290) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(289) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(290) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Dreizen" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(291) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(292) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(291) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(292) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Etrigon" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(293) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(294) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(293) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(294) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Firimir" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(295) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(296) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(295) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(296) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Gennesis" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(297) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(298) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(297) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(298) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Hecarus" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(299) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(300) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(299) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(300) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Illonima" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(301) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(302) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(301) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(302) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Jaguar" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(303) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(304) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(303) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(304) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Kryptonian" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(305) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(306) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(305) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(306) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Lamania" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(307) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(308) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(307) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(308) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Marverick" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(309) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(310) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(309) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(310) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Nemesis" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(311) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(312) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(311) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(312) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Onyx" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(313) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(314) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(313) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(314) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Palladian" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(315) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(316) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(315) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(316) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Quasar" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(317) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(318) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(317) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(318) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Riverven" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(319) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(320) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(319) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(320) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Starroian" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(321) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(322) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(321) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(322) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Terac" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(323) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(324) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(323) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(324) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Urius" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(325) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(326) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(325) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(326) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Vril" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(327) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(328) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(327) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(328) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Wyvern" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(329) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card values (" + str(330) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(329) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(330) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
-                elif "Xenomorph" in current_name:
+                elif "Xanthera" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(331) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(331) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
-                elif "Yutogen" in current_name:
+                elif "Yornath" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(332) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_hero values (" + str(332) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
                 elif "Zerath" in current_name:
                     current_dir =os.path.join(root,dir_name)
                     for file_name in os.listdir(current_dir):
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_card values (" + str(333) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
+                            file.write("insert into chest_card_hero values (" + str(333) + "," + str(id) + "," + str(1) + ");\n")
+                        id=id+1             
 
 def create_chest_book():
     cards_dir="Book"
@@ -5124,7 +5412,7 @@ def create_chest_book():
                     id=id+1
 
 def create_chest_captain():
-    cards_dir="Captain"
+    cards_dir="Card_Captain"
     card_list = []
     id=1
     card_name=""
@@ -5137,37 +5425,146 @@ def create_chest_captain():
         for dir_name in dirs:
             # print(current_name)  
             current_name = os.path.join(root, dir_name)          
-            if "Dark_Army" in current_name:
+            if "Aetherians" in current_name:
                 current_dir =os.path.join(root,dir_name)
                 for file_name in os.listdir(current_dir):
                     with open('test.txt', 'a') as file:
-                        file.write("insert into chest_captain values (" + str(166) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_captain values (" + str(167) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_captain values (" + str(168) + "," + str(id) + "," + str(1) + ");\n")
+                        file.write("insert into chest_card_captain values (" + str(166) + "," + str(id) + "," + str(1) + ");\n")
                     id=id+1
-            elif "Light_Army" in current_name:
+            elif "Galatic" in current_name:
                 current_dir =os.path.join(root,dir_name)
                 for file_name in os.listdir(current_dir):
                     with open('test.txt', 'a') as file:
-                        file.write("insert into chest_captain values (" + str(169) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_captain values (" + str(170) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_captain values (" + str(171) + "," + str(id) + "," + str(1) + ");\n")
+                        file.write("insert into chest_card_captain values (" + str(167) + "," + str(id) + "," + str(1) + ");\n")
                     id=id+1
-            elif "Void_Monster_Army" in current_name:
+            elif "Heratic" in current_name:
                 current_dir =os.path.join(root,dir_name)
                 for file_name in os.listdir(current_dir):
                     with open('test.txt', 'a') as file:
-                        file.write("insert into chest_captain values (" + str(172) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_captain values (" + str(173) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_captain values (" + str(174) + "," + str(id) + "," + str(1) + ");\n")
+                        file.write("insert into chest_card_captain values (" + str(168) + "," + str(id) + "," + str(1) + ");\n")
                     id=id+1
-            elif "Void_Spell_Army" in current_name:
+            elif "Knean" in current_name:
                 current_dir =os.path.join(root,dir_name)
                 for file_name in os.listdir(current_dir):
                     with open('test.txt', 'a') as file:
-                        file.write("insert into chest_captain values (" + str(175) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_captain values (" + str(176) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_captain values (" + str(177) + "," + str(id) + "," + str(1) + ");\n")
+                        file.write("insert into chest_card_captain values (" + str(169) + "," + str(id) + "," + str(1) + ");\n")
+                    id=id+1
+
+def create_chest_colonel():
+    cards_dir="Card_Colonel"
+    card_list = []
+    id=1
+    card_name=""
+    path=""
+    for root, dirs, files in os.walk(cards_dir):
+        current_dir=os.path.basename(root)
+        current_name=current_dir
+        
+        # print(current_name)
+        for dir_name in dirs:
+            # print(current_name)  
+            current_name = os.path.join(root, dir_name)          
+            if "Auroxian" in current_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    with open('test.txt', 'a') as file:
+                        file.write("insert into chest_card_colonel values (" + str(170) + "," + str(id) + "," + str(1) + ");\n")
+                    id=id+1
+            elif "Gryphari" in current_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    with open('test.txt', 'a') as file:
+                        file.write("insert into chest_card_colonel values (" + str(171) + "," + str(id) + "," + str(1) + ");\n")
+                    id=id+1
+            elif "Krynn" in current_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    with open('test.txt', 'a') as file:
+                        file.write("insert into chest_card_colonel values (" + str(172) + "," + str(id) + "," + str(1) + ");\n")
+                    id=id+1
+            elif "Velkryn" in current_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    with open('test.txt', 'a') as file:
+                        file.write("insert into chest_card_colonel values (" + str(173) + "," + str(id) + "," + str(1) + ");\n")
+                    id=id+1
+
+def create_chest_general():
+    cards_dir="Card_General"
+    card_list = []
+    id=1
+    card_name=""
+    path=""
+    for root, dirs, files in os.walk(cards_dir):
+        current_dir=os.path.basename(root)
+        current_name=current_dir
+        
+        # print(current_name)
+        for dir_name in dirs:
+            # print(current_name)  
+            current_name = os.path.join(root, dir_name)          
+            if "Drakari" in current_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    with open('test.txt', 'a') as file:
+                        file.write("insert into chest_card_general values (" + str(174) + "," + str(id) + "," + str(1) + ");\n")
+                    id=id+1
+            elif "Kalimar" in current_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    with open('test.txt', 'a') as file:
+                        file.write("insert into chest_card_general values (" + str(175) + "," + str(id) + "," + str(1) + ");\n")
+                    id=id+1
+            elif "Lunari" in current_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    with open('test.txt', 'a') as file:
+                        file.write("insert into chest_card_general values (" + str(176) + "," + str(id) + "," + str(1) + ");\n")
+                    id=id+1
+            elif "Thryxx" in current_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    with open('test.txt', 'a') as file:
+                        file.write("insert into chest_card_general values (" + str(177) + "," + str(id) + "," + str(1) + ");\n")
+                    id=id+1
+
+def create_chest_admiral():
+    cards_dir="Card_Admiral"
+    card_list = []
+    id=1
+    card_name=""
+    path=""
+    for root, dirs, files in os.walk(cards_dir):
+        current_dir=os.path.basename(root)
+        current_name=current_dir
+        
+        # print(current_name)
+        for dir_name in dirs:
+            # print(current_name)  
+            current_name = os.path.join(root, dir_name)          
+            if "Aethrion" in current_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    with open('test.txt', 'a') as file:
+                        file.write("insert into chest_card_admiral values (" + str(178) + "," + str(id) + "," + str(1) + ");\n")
+                    id=id+1
+            elif "Mekanids" in current_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    with open('test.txt', 'a') as file:
+                        file.write("insert into chest_card_admiral values (" + str(179) + "," + str(id) + "," + str(1) + ");\n")
+                    id=id+1
+            elif "Sylphari" in current_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    with open('test.txt', 'a') as file:
+                        file.write("insert into chest_card_admiral values (" + str(180) + "," + str(id) + "," + str(1) + ");\n")
+                    id=id+1
+            elif "Varkari" in current_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    with open('test.txt', 'a') as file:
+                        file.write("insert into chest_card_admiral values (" + str(181) + "," + str(id) + "," + str(1) + ");\n")
                     id=id+1
 
 def create_chest_border():
@@ -5186,9 +5583,7 @@ def create_chest_border():
                 name=name.replace("_"," ")
             
                 with open('test.txt', 'a') as file:
-                    file.write("insert into chest_border values (" + str(178) + "," + str(id) + "," + str(1) + ");\n")
-                    file.write("insert into chest_border values (" + str(179) + "," + str(id) + "," + str(1) + ");\n")
-                    file.write("insert into chest_border values (" + str(180) + "," + str(id) + "," + str(1) + ");\n")
+                    file.write("insert into chest_border values (" + str(182) + "," + str(id) + "," + str(1) + ");\n")
                 id=id+1
 
 def create_chest_collaboration():
@@ -5207,8 +5602,6 @@ def create_chest_collaboration():
                 name=name.replace("_"," ")
             
                 with open('test.txt', 'a') as file:
-                    file.write("insert into chest_collaboration values (" + str(181) + "," + str(id) + "," + str(1) + ");\n")
-                    file.write("insert into chest_collaboration values (" + str(182) + "," + str(id) + "," + str(1) + ");\n")
                     file.write("insert into chest_collaboration values (" + str(183) + "," + str(id) + "," + str(1) + ");\n")
                 id=id+1
 
@@ -5255,7 +5648,7 @@ def create_chest_medal():
                 id=id+1
 
 def create_chest_monster():
-    cards_dir="Monster"
+    cards_dir="Card_Monster"
     card_list = []
     id=1
     card_name=""
@@ -5270,9 +5663,9 @@ def create_chest_monster():
                 name=name.replace("_"," ")
 
                 with open('test.txt', 'a') as file:
-                    file.write("insert into chest_monster values (" + str(190) + "," + str(id) + "," + str(1) + ");\n")
-                    file.write("insert into chest_monster values (" + str(191) + "," + str(id) + "," + str(1) + ");\n")
-                    file.write("insert into chest_monster values (" + str(192) + "," + str(id) + "," + str(1) + ");\n")
+                    file.write("insert into chest_card_monster values (" + str(190) + "," + str(id) + "," + str(1) + ");\n")
+                    file.write("insert into chest_card_monster values (" + str(191) + "," + str(id) + "," + str(1) + ");\n")
+                    file.write("insert into chest_card_monster values (" + str(192) + "," + str(id) + "," + str(1) + ");\n")
                 id=id+1
 
 def create_chest_pet():
@@ -5570,7 +5963,7 @@ def create_chest_collaboration_equipment():
                     id=id+1
 
 def create_chest_military():
-    cards_dir="Military"
+    cards_dir="Card_Military"
     id=1
     path=""
     for root, dirs, files in os.walk(cards_dir):
@@ -5589,7 +5982,7 @@ def create_chest_military():
                         path=path.replace("\\","/")
                         name=name.replace("_"," ")
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_military values (" + str(401) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_military values (" + str(401) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
             if "SSR" in dir_name:
                 current_dir =os.path.join(root,dir_name)
@@ -5600,7 +5993,7 @@ def create_chest_military():
                         path=path.replace("\\","/")
                         name=name.replace("_"," ")
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_military values (" + str(401) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_military values (" + str(401) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
             if "UR" in dir_name:
                 current_dir =os.path.join(root,dir_name)
@@ -5611,7 +6004,7 @@ def create_chest_military():
                         path=path.replace("\\","/")
                         name=name.replace("_"," ")
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_military values (" + str(401) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_military values (" + str(401) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
             if "LG" in dir_name:
                 current_dir =os.path.join(root,dir_name)
@@ -5622,11 +6015,11 @@ def create_chest_military():
                         path=path.replace("\\","/")
                         name=name.replace("_"," ")
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_military values (" + str(401) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_military values (" + str(401) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
 
 def create_chest_spell():
-    cards_dir="Spell"
+    cards_dir="Card_Spell"
     id=1
     path=""
     for root, dirs, files in os.walk(cards_dir):
@@ -5645,7 +6038,7 @@ def create_chest_spell():
                         path=path.replace("\\","/")
                         name=name.replace("_"," ")
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_spell values (" + str(383) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_spell values (" + str(383) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
             if "SSR" in dir_name:
                 current_dir =os.path.join(root,dir_name)
@@ -5656,7 +6049,7 @@ def create_chest_spell():
                         path=path.replace("\\","/")
                         name=name.replace("_"," ")
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_spell values (" + str(383) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_spell values (" + str(383) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
             if "UR" in dir_name:
                 current_dir =os.path.join(root,dir_name)
@@ -5667,7 +6060,7 @@ def create_chest_spell():
                         path=path.replace("\\","/")
                         name=name.replace("_"," ")
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_spell values (" + str(383) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_spell values (" + str(383) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
             if "LG" in dir_name:
                 current_dir =os.path.join(root,dir_name)
@@ -5678,7 +6071,7 @@ def create_chest_spell():
                         path=path.replace("\\","/")
                         name=name.replace("_"," ")
                         with open('test.txt', 'a') as file:
-                            file.write("insert into chest_spell values (" + str(383) + "," + str(id) + "," + str(1) + ");\n")
+                            file.write("insert into chest_card_spell values (" + str(383) + "," + str(id) + "," + str(1) + ");\n")
                         id=id+1
 
 def create_chest_relics():
@@ -5828,6 +6221,9 @@ def create_chest_magic_formation_circle():
                     id=id+1
 
 create_captain_database()
+create_colonel_database()
+create_general_database()
+create_admiral_database()
 create_cards_database()
 create_skills_database()
 create_collaboration_equipments_database()
@@ -5854,6 +6250,9 @@ create_magic_formation_circle_database()
 create_cards_trade()
 create_book_trade()
 create_captain_trade()
+create_colonel_trade()
+create_general_trade()
+create_admiral_trade()
 create_skills_trade()
 create_collaboration_equipments_trade()
 create_pets_trade()
@@ -5874,6 +6273,9 @@ create_magic_formation_circle_trade()
 create_chest_equipment()
 create_chest_card()
 create_chest_captain()
+create_chest_colonel()
+create_chest_general()
+create_chest_admiral()
 create_chest_border()
 create_chest_collaboration()
 create_chest_currency()
