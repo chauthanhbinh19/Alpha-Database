@@ -1379,10 +1379,37 @@ def create_cards_database():
                         power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
                                               speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
                         with open('test.txt', 'a') as file:
-                            file.write("insert into cards values (" + str(id) + ",'" + name + "','" + path + "','" + rare + "','" + current_name + "'," + str(0) + "," + str(power) + "," + str(health) + "," 
-                                + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense) 
-                                + "," + str(atomic_attack) + "," + str(atomic_defense) + "," + str(mental_attack) + "," + str(mental_defense) + "," + str(speed) + "," + str(critical_damage) + "," + str(critical_rate) + "," + str(armor_penetration) 
-                                + "," + str(avoid) + "," + str(absorbs_damage) + "," + str(regenerate_vitality) + "," + str(accuracy) + "," + str(mana) + ",'"+ story +"');\n")
+                            file.write(
+                                "insert into cards values ("
+                                + str(id) + ",'"
+                                + (name or '') + "','"
+                                + (path or '') + "','"
+                                + (rare or '') + "','"
+                                + (current_name or '') + "',"
+                                + str(0) + ","
+                                + str(power or 0) + ","
+                                + str(health or 0) + ","
+                                + str(physical_attack or 0) + ","
+                                + str(physical_defense or 0) + ","
+                                + str(magical_attack or 0) + ","
+                                + str(magical_defense or 0) + ","
+                                + str(chemical_attack or 0) + ","
+                                + str(chemical_defense or 0) + ","
+                                + str(atomic_attack or 0) + ","
+                                + str(atomic_defense or 0) + ","
+                                + str(mental_attack or 0) + ","
+                                + str(mental_defense or 0) + ","
+                                + str(speed or 0) + ","
+                                + str(critical_damage or 0) + ","
+                                + str(critical_rate or 0) + ","
+                                + str(armor_penetration or 0) + ","
+                                + str(avoid or 0) + ","
+                                + str(absorbs_damage or 0) + ","
+                                + str(regenerate_vitality or 0) + ","
+                                + str(accuracy or 0) + ","
+                                + str(mana or 0) + ",'"
+                                + (story or '') + "');\n"
+                            )
 
                         id=id+1
             if "SSR" in dir_name:
@@ -1411,10 +1438,37 @@ def create_cards_database():
                         power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
                                               speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
                         with open('test.txt', 'a') as file:
-                            file.write("insert into cards values (" + str(id) + ",'" + name + "','" + path + "','" + rare + "','" + current_name + "'," + str(0) + "," + str(power) + "," + str(health) + "," 
-                                + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense) 
-                                + "," + str(atomic_attack) + "," + str(atomic_defense) + "," + str(mental_attack) + "," + str(mental_defense) + "," + str(speed) + "," + str(critical_damage) + "," + str(critical_rate) + "," + str(armor_penetration) 
-                                + "," + str(avoid) + "," + str(absorbs_damage) + "," + str(regenerate_vitality) + "," + str(accuracy) + "," + str(mana) + ",'"+ story +"');\n")
+                            file.write(
+                                "insert into cards values ("
+                                + str(id) + ",'"
+                                + (name or '') + "','"
+                                + (path or '') + "','"
+                                + (rare or '') + "','"
+                                + (current_name or '') + "',"
+                                + str(0) + ","
+                                + str(power or 0) + ","
+                                + str(health or 0) + ","
+                                + str(physical_attack or 0) + ","
+                                + str(physical_defense or 0) + ","
+                                + str(magical_attack or 0) + ","
+                                + str(magical_defense or 0) + ","
+                                + str(chemical_attack or 0) + ","
+                                + str(chemical_defense or 0) + ","
+                                + str(atomic_attack or 0) + ","
+                                + str(atomic_defense or 0) + ","
+                                + str(mental_attack or 0) + ","
+                                + str(mental_defense or 0) + ","
+                                + str(speed or 0) + ","
+                                + str(critical_damage or 0) + ","
+                                + str(critical_rate or 0) + ","
+                                + str(armor_penetration or 0) + ","
+                                + str(avoid or 0) + ","
+                                + str(absorbs_damage or 0) + ","
+                                + str(regenerate_vitality or 0) + ","
+                                + str(accuracy or 0) + ","
+                                + str(mana or 0) + ",'"
+                                + (story or '') + "');\n"
+                            )
                         id=id+1
             if "UR" in dir_name:
                 current_dir =os.path.join(root,dir_name)
@@ -1442,10 +1496,37 @@ def create_cards_database():
                         power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
                                               speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
                         with open('test.txt', 'a') as file:
-                            file.write("insert into cards values (" + str(id) + ",'" + name + "','" + path + "','" + rare + "','" + current_name + "'," + str(0) + "," + str(power) + "," + str(health) + "," 
-                                + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense) 
-                                + "," + str(atomic_attack) + "," + str(atomic_defense) + "," + str(mental_attack) + "," + str(mental_defense) + "," + str(speed) + "," + str(critical_damage) + "," + str(critical_rate) + "," + str(armor_penetration) 
-                                + "," + str(avoid) + "," + str(absorbs_damage) + "," + str(regenerate_vitality) + "," + str(accuracy) + "," + str(mana) + ",'"+ story +"');\n")
+                            file.write(
+                                "insert into cards values ("
+                                + str(id) + ",'"
+                                + (name or '') + "','"
+                                + (path or '') + "','"
+                                + (rare or '') + "','"
+                                + (current_name or '') + "',"
+                                + str(0) + ","
+                                + str(power or 0) + ","
+                                + str(health or 0) + ","
+                                + str(physical_attack or 0) + ","
+                                + str(physical_defense or 0) + ","
+                                + str(magical_attack or 0) + ","
+                                + str(magical_defense or 0) + ","
+                                + str(chemical_attack or 0) + ","
+                                + str(chemical_defense or 0) + ","
+                                + str(atomic_attack or 0) + ","
+                                + str(atomic_defense or 0) + ","
+                                + str(mental_attack or 0) + ","
+                                + str(mental_defense or 0) + ","
+                                + str(speed or 0) + ","
+                                + str(critical_damage or 0) + ","
+                                + str(critical_rate or 0) + ","
+                                + str(armor_penetration or 0) + ","
+                                + str(avoid or 0) + ","
+                                + str(absorbs_damage or 0) + ","
+                                + str(regenerate_vitality or 0) + ","
+                                + str(accuracy or 0) + ","
+                                + str(mana or 0) + ",'"
+                                + (story or '') + "');\n"
+                            )
                         id=id+1
             if "LG" in dir_name:
                 current_dir =os.path.join(root,dir_name)
@@ -1473,10 +1554,38 @@ def create_cards_database():
                         power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
                                               speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
                         with open('test.txt', 'a') as file:
-                            file.write("insert into cards values (" + str(id) + ",'" + name + "','" + path + "','" + rare + "','" + current_name + "'," + str(0) + "," + str(power) + "," + str(health) + "," 
-                                + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense) 
-                                + "," + str(atomic_attack) + "," + str(atomic_defense) + "," + str(mental_attack) + "," + str(mental_defense) + "," + str(speed) + "," + str(critical_damage) + "," + str(critical_rate) + "," + str(armor_penetration) 
-                                + "," + str(avoid) + "," + str(absorbs_damage) + "," + str(regenerate_vitality) + "," + str(accuracy) + "," + str(mana) + ",'"+ story +"');\n")
+                            file.write(
+                                "insert into cards values ("
+                                + str(id) + ",'"
+                                + (name or '') + "','"
+                                + (path or '') + "','"
+                                + (rare or '') + "','"
+                                + (current_name or '') + "',"
+                                + str(0) + ","
+                                + str(power or 0) + ","
+                                + str(health or 0) + ","
+                                + str(physical_attack or 0) + ","
+                                + str(physical_defense or 0) + ","
+                                + str(magical_attack or 0) + ","
+                                + str(magical_defense or 0) + ","
+                                + str(chemical_attack or 0) + ","
+                                + str(chemical_defense or 0) + ","
+                                + str(atomic_attack or 0) + ","
+                                + str(atomic_defense or 0) + ","
+                                + str(mental_attack or 0) + ","
+                                + str(mental_defense or 0) + ","
+                                + str(speed or 0) + ","
+                                + str(critical_damage or 0) + ","
+                                + str(critical_rate or 0) + ","
+                                + str(armor_penetration or 0) + ","
+                                + str(avoid or 0) + ","
+                                + str(absorbs_damage or 0) + ","
+                                + str(regenerate_vitality or 0) + ","
+                                + str(accuracy or 0) + ","
+                                + str(mana or 0) + ",'"
+                                + (story or '') + "');\n"
+                            )
+
                         id=id+1
 
 def create_books_database():
