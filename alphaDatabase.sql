@@ -1970,7 +1970,8 @@ create table card_heroes_gallery(
     card_hero_id int,
     
     status varchar(100),
-    star int,
+    currenct_star int,
+    temp_star int,
     power double,
     health double,
     physical_attack double,
@@ -2015,7 +2016,8 @@ create table books_gallery(
     book_id int,
     
     status varchar(100),
-    star int,
+    currenct_star int,
+    temp_star int,
     power double,
     health double,
     physical_attack double,
@@ -2060,7 +2062,8 @@ create table card_monsters_gallery(
     card_monster_id int,
     
     status varchar(100),
-    star int,
+    currenct_star int,
+    temp_star int,
     power double,
     health double,
     physical_attack double,
@@ -2108,7 +2111,8 @@ create table card_captains_gallery(
     card_captain_id int,
     
     status varchar(100),
-    star int,
+    currenct_star int,
+    temp_star int,
     power double,
     health double,
     physical_attack double,
@@ -2153,7 +2157,8 @@ create table card_colonels_gallery(
     card_colonel_id int,
     
     status varchar(100),
-    star int,
+    currenct_star int,
+    temp_star int,
     power double,
     health double,
     physical_attack double,
@@ -2198,7 +2203,8 @@ create table card_generals_gallery(
     card_general_id int,
     
     status varchar(100),
-    star int,
+    currenct_star int,
+    temp_star int,
     power double,
     health double,
     physical_attack double,
@@ -2243,7 +2249,8 @@ create table card_admirals_gallery(
     card_admiral_id int,
     
     status varchar(100),
-    star int,
+    currenct_star int,
+    temp_star int,
     power double,
     health double,
     physical_attack double,
@@ -2288,7 +2295,8 @@ create table collaboration_equipments_gallery(
     collaboration_equipment_id int,
     
     status varchar(100),
-    star int,
+    currenct_star int,
+    temp_star int,
     power double,
     health double,
     physical_attack double,
@@ -2333,7 +2341,8 @@ create table equipments_gallery(
     equipment_id int,
     
 	status varchar(100),
-    star int,
+    currenct_star int,
+    temp_star int,
     power double,
     health double,
     physical_attack double,
@@ -2378,7 +2387,8 @@ create table pets_gallery(
     pet_id int,
     
     status varchar(100),
-    star int,
+    currenct_star int,
+    temp_star int,
     power double,
     health double,
     physical_attack double,
@@ -2423,7 +2433,8 @@ create table card_military_gallery(
     card_military_id int,
     
     status varchar(100),
-    star int,
+    currenct_star int,
+    temp_star int,
     power double,
     health double,
     physical_attack double,
@@ -2468,7 +2479,8 @@ create table card_spell_gallery(
     card_spell_id int,
     
     status varchar(100),
-    star int,
+    currenct_star int,
+    temp_star int,
     power double,
     health double,
     physical_attack double,
@@ -2513,7 +2525,8 @@ create table skills_gallery(
     skill_id int,
     
     status varchar(100),
-    star int,
+    currenct_star int,
+    temp_star int,
     power double,
     health double,
     physical_attack double,
@@ -2558,7 +2571,8 @@ create table medals_gallery(
     medal_id int,
     
     status varchar(100),
-    star int,
+    currenct_star int,
+    temp_star int,
     power double,
     health double,
     physical_attack double,
@@ -2603,7 +2617,8 @@ create table titles_gallery(
     title_id int,
     
     status varchar(100),
-    star int,
+    currenct_star int,
+    temp_star int,
     power double,
     health double,
     physical_attack double,
@@ -2648,7 +2663,8 @@ create table symbols_gallery(
     symbol_id int,
     
     status varchar(100),
-    star int,
+    currenct_star int,
+    temp_star int,
     power double,
     health double,
     physical_attack double,
@@ -2693,7 +2709,8 @@ create table collaborations_gallery(
     collaboration_id int,
     
     status varchar(100),
-    star int,
+    currenct_star int,
+    temp_star int,
     power double,
     health double,
     physical_attack double,
@@ -2738,7 +2755,8 @@ create table relics_gallery(
     relic_id int,
     
     status varchar(100),
-    star int,
+    currenct_star int,
+    temp_star int,
     power double,
     health double,
     physical_attack double,
@@ -2783,7 +2801,8 @@ create table magic_formation_circle_gallery(
     mfc_id int,
     
     status varchar(100),
-    star int,
+    currenct_star int,
+    temp_star int,
     power double,
     health double,
     physical_attack double,
