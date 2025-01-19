@@ -3403,6 +3403,40 @@ create table fact_card_military(
     -- FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
+create table fact_card_spell(
+    user_id int,
+    user_card_spell_id int,
+    team_id int default null,
+    position varchar(250),
+    role varchar(250),
+    
+    all_power double,
+    all_percent_health double,
+    all_percent_physical_attack double,
+    all_percent_physical_defense double,
+    all_percent_magical_attack double,
+    all_percent_magical_defense double,
+    all_percent_chemical_attack double,
+    all_percent_chemical_defense double,
+    all_percent_atomic_attack double,
+    all_percent_atomic_defense double,
+    all_percent_mental_attack double,
+    all_percent_mental_defense double,
+    all_percent_speed double,
+    all_percent_critical_damage double,
+    all_percent_critical_rate double,
+    all_percent_armor_penetration double,
+    all_percent_avoid double,
+    all_percent_absorbs_damage double,
+    all_percent_regenerate_vitality double,
+    all_percent_accuracy double,
+    all_percent_mana float,
+    
+    PRIMARY KEY(user_id,user_card_spell_id),
+    FOREIGN KEY (user_id, team_id) REFERENCES teams(user_id, team_id),
+    FOREIGN KEY (user_id, user_card_spell_id) REFERENCES user_card_spell(user_id, card_spell_id)
+);
+
 /*--Equipment wearing--------------------------------------------------------------------------*/
 
 create table card_heroes_equipment(
