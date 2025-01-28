@@ -1346,12 +1346,12 @@ create table user_card_admirals_rank(
 create table user_collaboration_equipments(
     user_id int,
     collaboration_equipment_id int,
-    sequence int,
     level int,
     experiment int,
     star int,
     
     block boolean,
+	quantity int,
     power double,
     health double,
     physical_attack double,
@@ -1374,7 +1374,7 @@ create table user_collaboration_equipments(
     accuracy double,
     mana float,
     
-    PRIMARY KEY(user_id,collaboration_equipment_id,sequence),
+    PRIMARY KEY(user_id,collaboration_equipment_id),
     FOREIGN KEY (collaboration_equipment_id) REFERENCES collaboration_equipments(id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
@@ -1382,7 +1382,6 @@ create table user_collaboration_equipments(
 create table user_collaboration_equipments_rank(
     user_id int,
     user_collaboration_equipment_id int,
-    sequence int,
     rank_id int,
     rank_type varchar(255),
     power double,
@@ -1419,7 +1418,7 @@ create table user_collaboration_equipments_rank(
     percent_all_mental_attack double,
     percent_all_mental_defense double,
     
-    PRIMARY KEY(user_id,user_collaboration_equipment_id,sequence, rank_id),
+    PRIMARY KEY(user_id,user_collaboration_equipment_id, rank_id),
     FOREIGN KEY (user_collaboration_equipment_id) REFERENCES user_collaboration_equipments(collaboration_equipment_id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
@@ -3074,6 +3073,47 @@ create table teams(
     team_id int,
 	
     PRIMARY KEY(user_id,team_id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+create table user_stats(
+    user_id int,
+    
+    all_power double,
+    all_health double,
+    all_physical_attack double,
+    all_physical_defense double,
+    all_magical_attack double,
+    all_magical_defense double,
+    all_chemical_attack double,
+    all_chemical_defense double,
+    all_atomic_attack double,
+    all_atomic_defense double,
+    all_mental_attack double,
+    all_mental_defense double,
+    all_speed double,
+    all_critical_damage double,
+    all_critical_rate double,
+    all_armor_penetration double,
+    all_avoid double,
+    all_absorbs_damage double,
+    all_regenerate_vitality double,
+    all_accuracy double,
+    all_mana float,
+    
+    percent_all_health double,
+    percent_all_physical_attack double,
+    percent_all_physical_defense double,
+    percent_all_magical_attack double,
+    percent_all_magical_defense double,
+    percent_all_chemical_attack double,
+    percent_all_chemical_defense double,
+    percent_all_atomic_attack double,
+    percent_all_atomic_defense double,
+    percent_all_mental_attack double,
+    percent_all_mental_defense double,
+    
+    PRIMARY KEY(user_id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 

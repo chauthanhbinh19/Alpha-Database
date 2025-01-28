@@ -4,25 +4,26 @@ import random
 import math
 
 def calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
-                    speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality):
-    weight_health = 1
-    weight_physical_attack = 1.5
-    weight_physical_defense = 1.2
-    weight_magical_attack = 1.5
-    weight_magical_defense = 1.2
-    weight_chemical_attack = 1.5
-    weight_chemical_defense = 1.2
-    weight_atomic_attack = 1.5
-    weight_atomic_defense = 1.2
-    weight_mental_attack = 1.5
-    weight_mental_defense = 1.2
-    weight_speed = 1.5
-    weight_critical_rate = 1.2
-    weight_critical_damage = 1.5
-    weight_armor_penetration = 1.2
-    weight_avoid = 1.2
-    weight_absorbs_damage = 1.2
-    weight_regenerate_vitality = 1.2
+                    speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality, accuracy):
+    weight_health = 0.5
+    weight_physical_attack = 0.5
+    weight_physical_defense = 0.5
+    weight_magical_attack = 0.5
+    weight_magical_defense = 0.5
+    weight_chemical_attack = 0.5
+    weight_chemical_defense = 0.5
+    weight_atomic_attack = 0.5
+    weight_atomic_defense = 0.5
+    weight_mental_attack = 0.5
+    weight_mental_defense = 0.5
+    weight_speed = 0.5
+    weight_critical_rate = 0.5
+    weight_critical_damage = 0.5
+    weight_armor_penetration = 0.5
+    weight_avoid = 0.5
+    weight_absorbs_damage = 0.5
+    weight_regenerate_vitality = 0.5
+    weight_accuracy = 0.5
 
     power=(
         health*weight_health+
@@ -42,7 +43,8 @@ def calculate_power(health,physical_attack,physical_defense,magical_attack,magic
         armor_penetration*weight_armor_penetration+
         avoid*weight_avoid+
         absorbs_damage*weight_absorbs_damage+
-        regenerate_vitality*weight_regenerate_vitality
+        regenerate_vitality*weight_regenerate_vitality+
+        accuracy*weight_accuracy
     )
     return power
 def get_story(character):
@@ -1581,7 +1583,7 @@ def create_cards_database():
                         story = get_story(current_name)
                         
                         power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
-                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality, accuracy)
                         with open('test.txt', 'a') as file:
                             file.write(
                                 "insert into card_heroes values ("
@@ -1640,7 +1642,7 @@ def create_cards_database():
                         name=name.replace("_"," ")
                         story = get_story(current_name)
                         power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
-                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality, accuracy)
                         with open('test.txt', 'a') as file:
                             file.write(
                                 "insert into card_heroes values ("
@@ -1698,7 +1700,7 @@ def create_cards_database():
                         name=name.replace("_"," ")
                         story = get_story(current_name)
                         power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
-                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality, accuracy)
                         with open('test.txt', 'a') as file:
                             file.write(
                                 "insert into card_heroes values ("
@@ -1756,7 +1758,7 @@ def create_cards_database():
                         name=name.replace("_"," ")
                         story = get_story(current_name)
                         power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
-                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality, accuracy)
                         with open('test.txt', 'a') as file:
                             file.write(
                                 "insert into card_heroes values ("
@@ -1835,7 +1837,7 @@ def create_books_database():
                     story = get_story(dir_name)
                 
                     power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
-                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality, accuracy)
                     with open('test.txt', 'a') as file:
                         file.write("insert into books values (" + str(id) + ",'" + name + "','" + path + "','" + rare + "','" + dir_name + "'," + str(0) + "," + str(power) + "," + str(health) + "," 
                                 + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense) 
@@ -1882,7 +1884,7 @@ def create_captain_database():
                     story = get_story(dir_name)
                     
                     power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
-                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality, accuracy)
                     # print(str(physical_attack))
                     with open('test.txt', 'a') as file:
                         file.write(
@@ -1957,7 +1959,7 @@ def create_colonel_database():
                     story = get_story(dir_name)
                     
                     power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
-                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality, accuracy)
                     # print(str(physical_attack))
                     with open('test.txt', 'a') as file:
                         file.write(
@@ -2032,7 +2034,7 @@ def create_general_database():
                     story = get_story(dir_name)
                     
                     power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
-                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality, accuracy)
                     # print(str(physical_attack))
                     with open('test.txt', 'a') as file:
                         file.write(
@@ -2107,7 +2109,7 @@ def create_admiral_database():
                     story = get_story(dir_name)
                     
                     power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
-                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality, accuracy)
                     # print(str(physical_attack))
                     with open('test.txt', 'a') as file:
                         file.write(
@@ -2185,7 +2187,7 @@ def create_skills_database():
                     name=name.replace("_"," ")
                     
                     power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
-                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality, accuracy)
                     with open('test.txt', 'a') as file:
                         file.write("insert into skills values (" + str(id) + ",'" + name + "','" + path + "','" + rare + "','" + dir_name + "',"  + str(power) + "," + str(health) + "," 
                                 + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense) 
@@ -2241,7 +2243,7 @@ def create_collaboration_equipments_database():
                         story=get_story("CollborationEquipment")
                         name=name.encode('latin1', 'ignore').decode('latin1')
                         power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
-                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality, accuracy)
                         with open('test.txt', 'a') as file:
                             file.write("insert into collaboration_equipments values (" + str(id) + ",'" + name + "','" + path + "','" + rare + "','" + current_name + "'," + str(0) + "," + str(power) + "," + str(health) + "," 
                                 + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense) 
@@ -2274,7 +2276,7 @@ def create_collaboration_equipments_database():
                         name=name.replace("_"," ")
                         story=get_story("CollborationEquipment")
                         power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
-                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality, accuracy)
                         with open('test.txt', 'a') as file:
                             file.write("insert into collaboration_equipments values (" + str(id) + ",'" + name + "','" + path + "','" + rare + "','" + current_name + "'," + str(0) + "," + str(power) + "," + str(health) + "," 
                                 + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense) 
@@ -2306,7 +2308,7 @@ def create_collaboration_equipments_database():
                         name=name.replace("_"," ")
                         story=get_story("CollborationEquipment")
                         power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
-                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality, accuracy)
                         with open('test.txt', 'a') as file:
                             file.write("insert into collaboration_equipments values (" + str(id) + ",'" + name + "','" + path + "','" + rare + "','" + current_name + "'," + str(0) + "," + str(power) + "," + str(health) + "," 
                                 + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense) 
@@ -2338,7 +2340,7 @@ def create_collaboration_equipments_database():
                         name=name.replace("_"," ")
                         story=get_story("CollborationEquipment")
                         power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
-                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality, accuracy)
                         with open('test.txt', 'a') as file:
                             file.write("insert into collaboration_equipments values (" + str(id) + ",'" + name + "','" + path + "','" + rare + "','" + current_name + "'," + str(0) + "," + str(power) + "," + str(health) + "," 
                                 + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense) 
@@ -2369,7 +2371,7 @@ def create_collaboration_equipments_database():
                         name=name.replace("_"," ")
                         story=get_story("CollborationEquipment")
                         power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
-                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality, accuracy)
                         with open('test.txt', 'a') as file:
                             file.write("insert into collaboration_equipments values (" + str(id) + ",'" + name + "','" + path + "','" + rare + "','" + current_name + "'," + str(0) + "," + str(power) + "," + str(health) + "," 
                                 + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense) 
@@ -2420,7 +2422,7 @@ def create_pets_database():
                     story=get_story(dir_name)
                     
                     power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
-                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality, accuracy)
                     with open('test.txt', 'a') as file:
                         file.write("insert into pets values (" + str(id) + ",'" + name + "','" + path + "','" + rare + "','" + dir_name + "'," + str(0) + "," + str(power) + "," + str(health) + "," 
                                 + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense) 
@@ -2485,7 +2487,7 @@ def create_symbols_database():
                     story=get_story(dir_name)
                     
                     power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
-                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality, accuracy)
                     with open('test.txt', 'a') as file:
                         file.write("insert into symbols values (" + str(id) + ",'" + name + "','" + path + "','"+dir_name+"'," + str(power) + "," + str(health) + "," 
                                 + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense) 
@@ -2544,7 +2546,7 @@ def create_medals_database():
                 story=get_story("Medal")
                 
                 power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
-                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality, accuracy)
                 with open('test.txt', 'a') as file:
                     file.write("insert into medals values (" + str(id) + ",'" + name + "','" + path + "'," + str(power) + "," + str(health) + "," 
                                 + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense) 
@@ -2603,7 +2605,7 @@ def create_achievements_database():
                 story=get_story("Achievement")
                 
                 power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
-                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality, accuracy)
                 with open('test.txt', 'a') as file:
                     file.write("insert into achievements values (" + str(id) + ",'" + name + "','" + path + "'," + str(power) + "," + str(health) + "," 
                                 + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense) 
@@ -2661,7 +2663,7 @@ def create_titles_database():
                 story=get_story("Title")
 
                 power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
-                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality, accuracy)
                 with open('test.txt', 'a') as file:
                     file.write("insert into titles values (" + str(id) + ",'" + name + "','" + path + "'," + str(power) + "," + str(health) + "," 
                                 + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense) 
@@ -2719,7 +2721,7 @@ def create_monster_database():
                 story=get_story("Monster")
 
                 power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
-                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality, accuracy)
                 with open('test.txt', 'a') as file:
                     file.write("insert into card_monsters values (" + str(id) + ",'" + name + "','" + path + "','" + rare + "','" + "none" + "'," + str(0) + "," + str(power) + "," + str(health) + "," 
                                 + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense) 
@@ -2776,7 +2778,7 @@ def create_borders_database():
                 story=get_story("Border")
             
                 power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
-                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality, accuracy)
                 with open('test.txt', 'a') as file:
                     file.write("insert into borders values (" + str(id) + ",'" + name + "','" + path + "'," + str(power) + "," + str(health) + "," 
                                 + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense) 
@@ -2971,7 +2973,7 @@ def create_equipments_database():
                                 if var not in selected_variables:
                                     variables[var] = 0
                             power = calculate_power(health, physical_attack, physical_defense, magical_attack, magical_defense, chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                                                    speed, critical_rate, critical_damage, armor_penetration, avoid, absorbs_damage, regenerate_vitality)
+                                                    speed, critical_rate, critical_damage, armor_penetration, avoid, absorbs_damage, regenerate_vitality, accuracy)
                             with open('test.txt', 'a') as file:
                                 file.write("insert into equipments values (" + str(id) + ",'" + name + "','" + path + "','" + dir_name + "','" + current_name + "','"+set1_folder_name +"'," + str(0) + "," + str(power) + "," + str(health) +
                                     "," + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense)
@@ -3011,7 +3013,7 @@ def create_equipments_database():
                                 if var not in selected_variables:
                                     variables[var] = 0
                             power = calculate_power(health, physical_attack, physical_defense, magical_attack, magical_defense, chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                                                    speed, critical_rate, critical_damage, armor_penetration, avoid, absorbs_damage, regenerate_vitality)
+                                                    speed, critical_rate, critical_damage, armor_penetration, avoid, absorbs_damage, regenerate_vitality, accuracy)
                             with open('test.txt', 'a') as file:
                                 file.write("insert into equipments values (" + str(id) + ",'" + name + "','" + path + "','" + dir_name + "','" + current_name + "','"+set1_folder_name +"'," + str(0) + "," + str(power) + "," + str(health) +
                                     "," + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense)
@@ -3051,7 +3053,7 @@ def create_equipments_database():
                                 if var not in selected_variables:
                                     variables[var] = 0
                             power = calculate_power(health, physical_attack, physical_defense, magical_attack, magical_defense, chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                                                    speed, critical_rate, critical_damage, armor_penetration, avoid, absorbs_damage, regenerate_vitality)
+                                                    speed, critical_rate, critical_damage, armor_penetration, avoid, absorbs_damage, regenerate_vitality, accuracy)
                             with open('test.txt', 'a') as file:
                                 file.write("insert into equipments values (" + str(id) + ",'" + name + "','" + path + "','" + dir_name + "','" + current_name + "','"+set1_folder_name +"'," + str(0) + "," + str(power) + "," + str(health) +
                                     "," + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense)
@@ -3176,7 +3178,7 @@ def create_equipments_database():
                                     mental_attack=90000000
                                     mental_defense=50000000
                             power = calculate_power(health, physical_attack, physical_defense, magical_attack, magical_defense, chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                                                    speed, critical_rate, critical_damage, armor_penetration, avoid, absorbs_damage, regenerate_vitality)
+                                                    speed, critical_rate, critical_damage, armor_penetration, avoid, absorbs_damage, regenerate_vitality, accuracy)
                             with open('test.txt', 'a') as file:
                                 file.write("insert into equipments values (" + str(id) + ",'" + name + "','" + path + "','" + dir_name + "','" + current_name + "','"+set1_folder_name +"'," + str(0) + "," + str(power) + "," + str(health) +
                                     "," + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense)
@@ -3216,7 +3218,7 @@ def create_equipments_database():
                                 if var not in selected_variables:
                                     variables[var] = 0
                             power = calculate_power(health, physical_attack, physical_defense, magical_attack, magical_defense, chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                                                    speed, critical_rate, critical_damage, armor_penetration, avoid, absorbs_damage, regenerate_vitality)
+                                                    speed, critical_rate, critical_damage, armor_penetration, avoid, absorbs_damage, regenerate_vitality, accuracy)
                             with open('test.txt', 'a') as file:
                                 file.write("insert into equipments values (" + str(id) + ",'" + name + "','" + path + "','" + dir_name + "','" + current_name + "','"+set1_folder_name +"'," + str(0) + "," + str(power) + "," + str(health) +
                                     "," + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense)
@@ -3275,7 +3277,7 @@ def create_collaboration_database():
                 story=get_story("Collaboration")
             
                 power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
-                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality, accuracy)
                 with open('test.txt', 'a') as file:
                     file.write("insert into collaborations values (" + str(id) + ",'" + name + "','" + path + "'," + str(power) + "," + str(health) + "," 
                               + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense) 
@@ -3333,7 +3335,7 @@ def create_military_database():
                         story=get_story("Military")
                         
                         power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
-                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality, accuracy)
                         with open('test.txt', 'a') as file:
                             file.write("insert into card_military values (" + str(id) + ",'" + name + "','" + path + "','" + rare + "','" + current_name + "'," + str(0) + "," + str(power) + "," + str(health) + "," 
                               + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense) 
@@ -3377,7 +3379,7 @@ def create_military_database():
                         name=name.replace("_"," ")
                         story=get_story("Military")
                         power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
-                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality, accuracy)
                         with open('test.txt', 'a') as file:
                             file.write("insert into card_military values (" + str(id) + ",'" + name + "','" + path + "','" + rare + "','" + current_name + "'," + str(0) + "," + str(power) + "," + str(health) + "," 
                               + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense) 
@@ -3420,7 +3422,7 @@ def create_military_database():
                         name=name.replace("_"," ")
                         story=get_story("Military")
                         power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
-                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality, accuracy)
                         with open('test.txt', 'a') as file:
                             file.write("insert into card_military values (" + str(id) + ",'" + name + "','" + path + "','" + rare + "','" + current_name + "'," + str(0) + "," + str(power) + "," + str(health) + "," 
                               + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense) 
@@ -3463,7 +3465,7 @@ def create_military_database():
                         name=name.replace("_"," ")
                         story=get_story("Military")
                         power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
-                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality, accuracy)
                         with open('test.txt', 'a') as file:
                             file.write("insert into card_military values (" + str(id) + ",'" + name + "','" + path + "','" + rare + "','" + current_name + "'," + str(0) + "," + str(power) + "," + str(health) + "," 
                               + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense) 
@@ -3519,7 +3521,7 @@ def create_spell_database():
                         name=name.replace("_"," ")
                         
                         power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
-                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality, accuracy)
                         with open('test.txt', 'a') as file:
                             file.write("insert into card_spell values (" + str(id) + ",'" + name + "','" + path + "','" + rare + "','" + current_name + "'," + str(0) + "," + str(power) + "," + str(health) + "," 
                               + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense) 
@@ -3570,7 +3572,7 @@ def create_spell_database():
                         else:
                             description="''"
                         power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
-                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality, accuracy)
                         with open('test.txt', 'a') as file:
                             file.write("insert into card_spell values (" + str(id) + ",'" + name + "','" + path + "','" + rare + "','" + current_name + "'," + str(0) + "," + str(power) + "," + str(health) + "," 
                               + str(physical_attack) + "," + str(physical_defense) + "," + str(magical_attack) + "," + str(magical_defense) + "," + str(chemical_attack) + "," + str(chemical_defense) 
@@ -3632,7 +3634,7 @@ def create_relics_database():
                     story=get_story("Relics")
                     
                     power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
-                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality,accuracy)
                     with open('test.txt', 'a') as file:
                         file.write(
                             "insert into relics values ("
@@ -3735,7 +3737,7 @@ def create_magic_formation_circle_database():
                     story=get_story("Magic_Formation_Circle")
                     
                     power=calculate_power(health,physical_attack,physical_defense,magical_attack,magical_defense,chemical_attack,chemical_defense,atomic_attack,atomic_defense,mental_attack,mental_defense,
-                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality)
+                                              speed,critical_rate,critical_damage,armor_penetration,avoid,absorbs_damage,regenerate_vitality, accuracy)
                     with open('test.txt', 'a') as file:
                         file.write(
                             "insert into magic_formation_circle values ("
