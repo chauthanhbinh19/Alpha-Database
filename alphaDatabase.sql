@@ -821,8 +821,8 @@ create table user_card_heroes(
 create table user_card_heroes_rank(
     user_id int,
     user_card_hero_id int,
-    rank_id int,
     rank_type varchar(255),
+    rank_level int,
     
     power double,
     health double,
@@ -858,7 +858,7 @@ create table user_card_heroes_rank(
     percent_all_mental_attack double,
     percent_all_mental_defense double,
     
-    PRIMARY KEY(user_id,user_card_hero_id, rank_id),
+    PRIMARY KEY(user_id,user_card_hero_id, rank_type),
     -- FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (user_id, user_card_hero_id) REFERENCES user_card_heroes(user_id, card_hero_id)
 );
@@ -902,8 +902,8 @@ create table user_books(
 create table user_books_rank(
     user_id int,
     user_book_id int,
-    rank_id int,
     rank_type varchar(255),
+    rank_level int,
     power double,
 	health double,
     physical_attack double,
@@ -938,7 +938,7 @@ create table user_books_rank(
     percent_all_mental_attack double,
     percent_all_mental_defense double,
     
-    PRIMARY KEY(user_id,user_book_id,rank_id),
+    PRIMARY KEY(user_id,user_book_id,rank_type),
     FOREIGN KEY (user_book_id) REFERENCES user_books(book_id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
@@ -982,8 +982,8 @@ create table user_card_monsters(
 create table user_card_monsters_rank(
     user_id int,
     user_card_monster_id int,
-    rank_id int,
     rank_type varchar(255),
+    rank_level int,
     power double,
 	health double,
     physical_attack double,
@@ -1018,7 +1018,7 @@ create table user_card_monsters_rank(
     percent_all_mental_attack double,
     percent_all_mental_defense double,
     
-    PRIMARY KEY(user_id,user_card_monster_id,rank_id),
+    PRIMARY KEY(user_id,user_card_monster_id,rank_type),
     FOREIGN KEY (user_card_monster_id) REFERENCES user_card_monsters(card_monster_id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
@@ -1062,8 +1062,8 @@ create table user_card_captains(
 create table user_card_captains_rank(
     user_id int,
     user_card_captain_id int,
-    rank_id int,
     rank_type varchar(255),
+    rank_level int,
     power double,
 	health double,
     physical_attack double,
@@ -1098,7 +1098,7 @@ create table user_card_captains_rank(
     percent_all_mental_attack double,
     percent_all_mental_defense double,
     
-    PRIMARY KEY(user_id,user_card_captain_id,rank_id),
+    PRIMARY KEY(user_id,user_card_captain_id,rank_type),
     FOREIGN KEY (user_card_captain_id) REFERENCES user_card_captains(card_captain_id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
@@ -1142,8 +1142,8 @@ create table user_card_colonels(
 create table user_card_colonels_rank(
     user_id int,
     user_card_colonel_id int,
-    rank_id int,
     rank_type varchar(255),
+    rank_level int,
     power double,
 	health double,
     physical_attack double,
@@ -1178,7 +1178,7 @@ create table user_card_colonels_rank(
     percent_all_mental_attack double,
     percent_all_mental_defense double,
     
-    PRIMARY KEY(user_id,user_card_colonel_id,rank_id),
+    PRIMARY KEY(user_id,user_card_colonel_id,rank_type),
     FOREIGN KEY (user_card_colonel_id) REFERENCES user_card_colonels(card_colonel_id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
@@ -1222,8 +1222,8 @@ create table user_card_generals(
 create table user_card_generals_rank(
     user_id int,
     user_card_general_id int,
-    rank_id int,
     rank_type varchar(255),
+    rank_level int,
     power double,
 	health double,
     physical_attack double,
@@ -1258,7 +1258,7 @@ create table user_card_generals_rank(
     percent_all_mental_attack double,
     percent_all_mental_defense double,
     
-    PRIMARY KEY(user_id,user_card_general_id,rank_id),
+    PRIMARY KEY(user_id,user_card_general_id,rank_type),
     FOREIGN KEY (user_card_general_id) REFERENCES user_card_generals(card_general_id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
@@ -1302,8 +1302,8 @@ create table user_card_admirals(
 create table user_card_admirals_rank(
     user_id int,
     user_card_admiral_id int,
-    rank_id int,
     rank_type varchar(255),
+    rank_level int,
     power double,
 	health double,
     physical_attack double,
@@ -1338,7 +1338,7 @@ create table user_card_admirals_rank(
     percent_all_mental_attack double,
     percent_all_mental_defense double,
     
-    PRIMARY KEY(user_id,user_card_admiral_id,rank_id),
+    PRIMARY KEY(user_id,user_card_admiral_id,rank_type),
     FOREIGN KEY (user_card_admiral_id) REFERENCES user_card_admirals(card_admiral_id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
@@ -1382,8 +1382,8 @@ create table user_collaboration_equipments(
 create table user_collaboration_equipments_rank(
     user_id int,
     user_collaboration_equipment_id int,
-    rank_id int,
     rank_type varchar(255),
+    rank_level int,
     power double,
 	health double,
     physical_attack double,
@@ -1418,7 +1418,7 @@ create table user_collaboration_equipments_rank(
     percent_all_mental_attack double,
     percent_all_mental_defense double,
     
-    PRIMARY KEY(user_id,user_collaboration_equipment_id, rank_id),
+    PRIMARY KEY(user_id,user_collaboration_equipment_id, rank_type),
     FOREIGN KEY (user_collaboration_equipment_id) REFERENCES user_collaboration_equipments(collaboration_equipment_id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
@@ -1476,8 +1476,8 @@ create table user_equipments_rank(
     user_id int,
     user_equipment_id int,
     sequence int,
-    rank_id int,
     rank_type varchar(255),
+    rank_level int,
     power double,
 	health double,
     physical_attack double,
@@ -1512,7 +1512,7 @@ create table user_equipments_rank(
     percent_all_mental_attack double,
     percent_all_mental_defense double,
     
-    PRIMARY KEY(user_id,user_equipment_id, sequence, rank_id),
+    PRIMARY KEY(user_id,user_equipment_id, sequence, rank_type),
     FOREIGN KEY (user_equipment_id) REFERENCES user_equipments(equipment_id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
@@ -1555,9 +1555,8 @@ create table user_pets(
 create table user_pets_rank(
     user_id int,
     user_pet_id int,
-    sequence int,
-    rank_id int,
     rank_type varchar(255),
+    rank_level int,
     power double,
 	health double,
     physical_attack double,
@@ -1592,7 +1591,7 @@ create table user_pets_rank(
     percent_all_mental_attack double,
     percent_all_mental_defense double,
     
-    PRIMARY KEY(user_id,user_pet_id,sequence, rank_id),
+    PRIMARY KEY(user_id,user_pet_id, rank_type),
     FOREIGN KEY (user_pet_id) REFERENCES user_pets(pet_id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
@@ -1636,8 +1635,8 @@ create table user_card_military(
 create table user_card_military_rank(
     user_id int,
     user_card_military_id int,
-    rank_id int,
     rank_type varchar(255),
+    rank_level int,
     power double,
 	health double,
     physical_attack double,
@@ -1672,7 +1671,7 @@ create table user_card_military_rank(
     percent_all_mental_attack double,
     percent_all_mental_defense double,
     
-    PRIMARY KEY(user_id,user_card_military_id, rank_id),
+    PRIMARY KEY(user_id,user_card_military_id, rank_type),
     FOREIGN KEY (user_card_military_id) REFERENCES user_card_military(card_military_id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
@@ -1716,8 +1715,8 @@ create table user_card_spell(
 create table user_card_spell_rank(
     user_id int,
     user_card_spell_id int,
-    rank_id int,
     rank_type varchar(255),
+    rank_level int,
     power double,
 	health double,
     physical_attack double,
@@ -1752,7 +1751,7 @@ create table user_card_spell_rank(
     percent_all_mental_attack double,
     percent_all_mental_defense double,
     
-    PRIMARY KEY(user_id,user_card_spell_id, rank_id),
+    PRIMARY KEY(user_id,user_card_spell_id, rank_type),
     FOREIGN KEY (user_card_spell_id) REFERENCES user_card_spell(card_spell_id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
@@ -3487,7 +3486,7 @@ create table card_heroes_equipment(
     position int,
 
     PRIMARY KEY(user_id,card_hero_id,equipment_id,sequence),
-    FOREIGN KEY (equipment_id) REFERENCES user_equipments(equipment_id),
+    FOREIGN KEY (user_id, equipment_id, sequence) REFERENCES user_equipments(user_id, equipment_id, sequence),
     -- FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (user_id, card_hero_id) REFERENCES user_card_heroes(user_id,card_hero_id)
 );
@@ -3500,7 +3499,7 @@ create table card_captains_equipment(
     position int,
 
     PRIMARY KEY(user_id,card_captain_id, equipment_id),
-    FOREIGN KEY (equipment_id) REFERENCES user_equipments(equipment_id),
+    FOREIGN KEY (user_id, equipment_id, sequence) REFERENCES user_equipments(user_id, equipment_id, sequence),
     -- FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (user_id, card_captain_id) REFERENCES user_card_captains(user_id,card_captain_id)
 );
@@ -3513,7 +3512,7 @@ create table card_colonels_equipment(
     position int,
 
     PRIMARY KEY(user_id,card_colonel_id, equipment_id),
-    FOREIGN KEY (equipment_id) REFERENCES user_equipments(equipment_id),
+    FOREIGN KEY (user_id, equipment_id, sequence) REFERENCES user_equipments(user_id, equipment_id, sequence),
     -- FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (user_id, card_colonel_id) REFERENCES user_card_colonels(user_id,card_colonel_id)
 );
@@ -3526,7 +3525,7 @@ create table card_generals_equipment(
     position int,
 
     PRIMARY KEY(user_id,card_general_id, equipment_id),
-    FOREIGN KEY (equipment_id) REFERENCES user_equipments(equipment_id),
+    FOREIGN KEY (user_id, equipment_id, sequence) REFERENCES user_equipments(user_id, equipment_id, sequence),
     -- FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (user_id, card_general_id) REFERENCES user_card_generals(user_id,card_general_id)
 );
@@ -3539,12 +3538,12 @@ create table card_admirals_equipment(
     position int,
 
     PRIMARY KEY(user_id,card_admiral_id, equipment_id),
-    FOREIGN KEY (equipment_id) REFERENCES user_equipments(equipment_id),
+    FOREIGN KEY (user_id, equipment_id, sequence) REFERENCES user_equipments(user_id, equipment_id, sequence),
     -- FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (user_id, card_admiral_id) REFERENCES user_card_admirals(user_id,card_admiral_id)
 );
 
-create table book_equipment(
+create table books_equipment(
     user_id int,
     book_id int,
     equipment_id int,
@@ -3552,12 +3551,12 @@ create table book_equipment(
     position int,
 
     PRIMARY KEY(user_id,book_id,equipment_id),
-    FOREIGN KEY (equipment_id) REFERENCES user_equipments(equipment_id),
+    FOREIGN KEY (user_id, equipment_id, sequence) REFERENCES user_equipments(user_id, equipment_id, sequence),
     -- FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (user_id, book_id) REFERENCES user_books(user_id ,book_id)
 );
 
-create table pet_equipment(
+create table pets_equipment(
     user_id int,
     pet_id int,
     equipment_id int,
@@ -3565,7 +3564,7 @@ create table pet_equipment(
     position int,
 
     PRIMARY KEY(user_id,pet_id,equipment_id),
-    FOREIGN KEY (equipment_id) REFERENCES user_equipments(equipment_id),
+    FOREIGN KEY (user_id, equipment_id, sequence) REFERENCES user_equipments(user_id, equipment_id, sequence),
     -- FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (user_id, pet_id) REFERENCES user_pets(user_id, pet_id)
 );
@@ -3578,7 +3577,7 @@ create table card_monsters_equipment(
     position int,
 
     PRIMARY KEY(user_id,card_monster_id,equipment_id),
-    FOREIGN KEY (equipment_id) REFERENCES user_equipments(equipment_id),
+    FOREIGN KEY (user_id, equipment_id, sequence) REFERENCES user_equipments(user_id, equipment_id, sequence),
     -- FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (user_id, card_monster_id) REFERENCES user_card_monsters(user_id,card_monster_id)
 );
@@ -3591,153 +3590,35 @@ create table card_military_equipment(
     position int,
 
     PRIMARY KEY(user_id,card_military_id,equipment_id),
-    FOREIGN KEY (equipment_id) REFERENCES user_equipments(equipment_id),
+    FOREIGN KEY (user_id, equipment_id, sequence) REFERENCES user_equipments(user_id, equipment_id, sequence),
     -- FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (user_id ,card_military_id) REFERENCES user_card_military(user_id,card_military_id)
 );
 
-create table card_heroes_equipment_details(
+create table card_spell_equipment(
     user_id int,
-    card_hero_id int,
+    card_spell_id int,
     equipment_id int,
     sequence int,
-    extra_equipment_id int,
-    extra_sequence int,
     position int,
-    
-    PRIMARY KEY(user_id,card_hero_id,equipment_id,extra_equipment_id),
-    FOREIGN KEY (extra_equipment_id) REFERENCES user_equipments(equipment_id),
+
+    PRIMARY KEY(user_id, card_spell_id, equipment_id),
+    FOREIGN KEY (user_id, equipment_id, sequence) REFERENCES user_equipments(user_id, equipment_id, sequence),
     -- FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (equipment_id) REFERENCES card_heroes_equipment(equipment_id),
-    FOREIGN KEY (user_id,card_hero_id) REFERENCES user_card_heroes(user_id, card_hero_id)
+    FOREIGN KEY (user_id ,card_spell_id) REFERENCES user_card_spell(user_id, card_spell_id)
 );
 
-create table card_captains_equipment_details(
+create table equipment_details(
     user_id int,
-    card_captain_id int,
     equipment_id int,
     sequence int,
     extra_equipment_id int,
     extra_sequence int,
     position int,
     
-    PRIMARY KEY(user_id,card_captain_id,equipment_id,extra_equipment_id),
-    FOREIGN KEY (extra_equipment_id) REFERENCES user_equipments(equipment_id),
-    -- FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (equipment_id) REFERENCES card_captains_equipment(equipment_id),
-    FOREIGN KEY (user_id, card_captain_id) REFERENCES user_card_captains(user_id, card_captain_id)
-);
-
-create table card_colonels_equipment_details(
-    user_id int,
-    card_colonel_id int,
-    equipment_id int,
-    sequence int,
-    extra_equipment_id int,
-    extra_sequence int,
-    position int,
-    
-    PRIMARY KEY(user_id,card_colonel_id,equipment_id,extra_equipment_id),
-    FOREIGN KEY (extra_equipment_id) REFERENCES user_equipments(equipment_id),
-    -- FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (equipment_id) REFERENCES card_colonels_equipment(equipment_id),
-    FOREIGN KEY (user_id, card_colonel_id) REFERENCES user_card_colonels(user_id, card_colonel_id)
-);
-
-create table card_generals_equipment_details(
-    user_id int,
-    card_general_id int,
-    equipment_id int,
-    sequence int,
-    extra_equipment_id int,
-    extra_sequence int,
-    position int,
-    
-    PRIMARY KEY(user_id,card_general_id,equipment_id,extra_equipment_id),
-    FOREIGN KEY (extra_equipment_id) REFERENCES user_equipments(equipment_id),
-    -- FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (equipment_id) REFERENCES card_generals_equipment(equipment_id),
-    FOREIGN KEY (user_id, card_general_id) REFERENCES user_card_generals(user_id, card_general_id)
-);
-
-create table card_admirals_equipment_details(
-    user_id int,
-    card_admiral_id int,
-    equipment_id int,
-    sequence int,
-    extra_equipment_id int,
-    extra_sequence int,
-    position int,
-    
-    PRIMARY KEY(user_id,card_admiral_id,equipment_id,extra_equipment_id),
-    FOREIGN KEY (extra_equipment_id) REFERENCES user_equipments(equipment_id),
-    -- FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (equipment_id) REFERENCES card_admirals_equipment(equipment_id),
-    FOREIGN KEY (user_id, card_admiral_id) REFERENCES user_card_admirals(user_id, card_admiral_id)
-);
-
-create table book_equipment_details(
-    user_id int,
-    book_id int,
-    equipment_id int,
-    sequence int,
-    extra_equipment_id int,
-    extra_sequence int,
-    position int,
-    
-    PRIMARY KEY(user_id,book_id,equipment_id,extra_equipment_id),
-    FOREIGN KEY (extra_equipment_id) REFERENCES user_equipments(equipment_id),
-    -- FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (equipment_id) REFERENCES book_equipment(equipment_id),
-    FOREIGN KEY (user_id, book_id) REFERENCES user_books(user_id, book_id)
-);
-
-create table pet_equipment_details(
-    user_id int,
-    pet_id int,
-    equipment_id int,
-    sequence int,
-    extra_equipment_id int,
-    extra_sequence int,
-    position int,
-    
-    PRIMARY KEY(user_id,pet_id,equipment_id,extra_equipment_id),
-    FOREIGN KEY (extra_equipment_id) REFERENCES user_equipments(equipment_id),
-    -- FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (equipment_id) REFERENCES pet_equipment(equipment_id),
-    FOREIGN KEY (user_id ,pet_id) REFERENCES user_pets(user_id, pet_id)
-);
-
-create table card_monsters_equipment_details(
-    user_id int,
-    card_monster_id int,
-    equipment_id int,
-    sequence int,
-    extra_equipment_id int,
-    extra_sequence int,
-    position int,
-    
-    PRIMARY KEY(user_id,card_monster_id,equipment_id,extra_equipment_id),
-    FOREIGN KEY (extra_equipment_id) REFERENCES user_equipments(equipment_id),
-    -- FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (equipment_id) REFERENCES card_monsters_equipment(equipment_id),
-    FOREIGN KEY (user_id, card_monster_id) REFERENCES user_card_monsters(user_id, card_monster_id)
-);
-
-create table card_military_equipment_details(
-    user_id int,
-    card_military_id int,
-    equipment_id int,
-    sequence int,
-    extra_equipment_id int,
-    extra_sequence int,
-    position int,
-    
-    PRIMARY KEY(user_id,card_military_id,equipment_id,extra_equipment_id),
-    FOREIGN KEY (extra_equipment_id) REFERENCES user_equipments(equipment_id),
-    -- FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (equipment_id) REFERENCES card_military_equipment(equipment_id),
-    FOREIGN KEY (user_id, card_military_id) REFERENCES user_card_military(user_id, card_military_id)
+    PRIMARY KEY(user_id, equipment_id, sequence, extra_equipment_id, extra_sequence),
+    FOREIGN KEY (user_id, extra_equipment_id, extra_sequence) REFERENCES user_equipments(user_id, equipment_id, sequence),
+    FOREIGN KEY (user_id, equipment_id, sequence) REFERENCES user_equipments(user_id, equipment_id, sequence)
 );
 
 create table card_heroes_skills(
