@@ -5516,3 +5516,40 @@ CREATE TABLE features (
     description TEXT NULL,
     PRIMARY KEY (feature_name, required_level)
 );
+
+CREATE TABLE effects (
+    id INT PRIMARY KEY,
+    name varchar(255),
+
+    -- Loại hiệu ứng
+    effect_type ENUM('damage', 'shield', 'buff', 'debuff', 'heal', 
+                     'stun', 'silence', 'disarm', 'root', 'slow',
+                     'energy_drain', 'invincible', 'revive', 
+                     'taunt', 'berserk', 'swap') NOT NULL,
+
+    -- Điều kiện kích hoạt
+--     trigger_condition ENUM('on_hit', 'on_start', 'on_kill', 'passive',
+--                            'on_take_damage', 'on_critical_hit', 'on_evade', 'on_block', 
+--                            'on_shield_break', 'on_low_health', 'on_mana_full', 'on_combo', 'on_heal', 
+--                            'on_enemy_death', 'on_ally_death', 'on_time_interval') NOT NULL,
+
+    -- Đối tượng ảnh hưởng
+--     target ENUM('self', 'enemy', 'enemy_team', 'ally', 'ally_team', 'area',
+--                 'nearest_enemy', 'farthest_enemy', 'highest_health_enemy', 'lowest_health_enemy',
+--                 'highest_attack_enemy', 'lowest_attack_enemy', 'random_enemy', 'random_ally', 'all') NOT NULL,
+
+    -- Giá trị hiệu ứng (sát thương, giáp, hồi máu...)
+    value FLOAT NOT NULL,
+
+    -- Loại giá trị (số tuyệt đối hoặc %)
+    value_type ENUM('absolute', 'percentage') NOT NULL DEFAULT 'absolute',
+
+    -- Hệ số tăng trưởng khi nâng cấp kỹ năng
+    scaling_factor FLOAT DEFAULT 1.0,
+
+    -- Loại sát thương hoặc phòng thủ (chỉ áp dụng nếu effect_type là 'damage' hoặc 'shield')
+    element_type ENUM('physical', 'magical', 'chemical', 'atomic', 'mental') DEFAULT NULL,
+
+    -- Thời gian hiệu ứng tồn tại (nếu có)
+    duration FLOAT DEFAULT NULL
+);
