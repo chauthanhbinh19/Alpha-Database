@@ -1539,6 +1539,54 @@ def get_story(character):
         "Some circles are designed to be temporary, only active for a short period before fading away. Others are permanent, etched into the very stone of ancient ruins or temples, where they continue to channel magic long after their creators have passed away.",
         "The most advanced Magic Formation Circles can tap into the very fabric of reality, allowing the practitioner to alter the laws of nature, bend time, or open gateways to other dimensions. These circles are incredibly dangerous and can easily overwhelm the user if not carefully controlled."
         ],
+        "Talisman": [
+        "The Soul-Binding Talisman is a rare artifact crafted from silver-infused bone and inscribed with blood runes. It allows the user to tether a fragment of their soul to a chosen object or being, creating a powerful spiritual link. These talismans are used by necromancers and spirit walkers to control summoned entities or anchor themselves across realms.",
+        "Often made of light paper and marked with sky-blue ink, this talisman binds the chaotic wind element into a stable force. Once affixed to a surface, it can summon or suppress storms within a limited radius. Sailors and aerial mages often carry these talismans for safe passage through turbulent skies.",
+        "Forged from ancestral relics, this talisman is passed down through generations. It awakens dormant powers tied to one\\'s bloodline, unlocking sealed abilities or forgotten memories. It glows when near descendants of the same lineage, resonating with the pulse of their shared spirit.",
+        "Crafted with shards of enchanted glass and woven threads of moonlight, this talisman cloaks the user in a false identity. It reflects illusions so perfectly that even divination spells struggle to pierce its veil. Assassins and spies prize it for evading detection in magical realms.",
+        "Etched with ancient flame-eating runes and soaked in phoenix ash, this talisman neutralizes any fire magic within a five-meter radius. It is often embedded into armor or carried by elemental hunters venturing into volcanoes or fire demon domains.",
+        "This talisman, formed from star-metal and inked with constellations, opens temporary pathways into the astral plane. It must be activated under specific celestial alignments and consumes a portion of the user\\’s spiritual energy to stabilize the rift.",
+        "Hung in sacred halls or memorial altars, this talisman captures the last whispers of the dead. When burned during a ritual, it allows the user to hear fleeting messages from lingering souls. Its use is forbidden in many kingdoms due to its potential to summon vengeful spirits.",
+        "Fashioned from silver, obsidian, and sun-dried herbs, this talisman can absorb low-level curses and redirect them to the earth. Each use causes the talisman to crack, and once shattered, it can no longer be repaired. It is a treasured charm among wandering monks and curse healers.",
+        "Made from a genuine dragon tooth and wrapped in celestial silk, this talisman grants the user a surge of draconic might—enhancing strength, speed, and elemental resistance. However, prolonged use risks invoking the dragon\\’s wrath, whose essence still sleeps within the fang.",
+        "Sealed in a hexagonal crystal and guarded by runes of entropy, this talisman can freeze a moment in time for a few heartbeats. It is used sparingly, often to dodge fatal blows or pause time for a single crucial decision. However, time always takes its price—aging the user years for every use."
+        ],
+        "Puppet": [  
+            "The Soul-Weaving Puppet is crafted from rare wood and spiritual silk, imbued with threads of soul essence. It serves as both a guardian and extension of the user\\’s will. Only those who can harmonize their mind with the puppet can control it with perfect precision.",
+            "Hidden deep in a forgotten shrine, the Crimson-Eyed Puppet awakens only in blood rituals. Its eyes glow with cursed light, and it moves without string or command. Ancient records say it was once a vessel for a wrathful war spirit that still lingers within.",
+            "The Marionette of the Hollow Grove is built from bark and hollow bones. It\\’s used by forest druids to patrol sacred groves. At night, it dances silently through the woods, its steps warding off evil spirits. It is said to be sentient, responding only to forest-born chants.",
+            "Forged from obsidian and black thread, the Assassin\\'s Puppet blends into the shadows. Controlled through blood-linked talismans, it can bypass magical wards and strike unseen. Only the most disciplined shadow arts practitioners dare bind their blood to one.",
+            "The Clockwork Puppet is powered by an arcane gear core, turning with ancient runes instead of springs. Created by a long-lost civilization, it executes commands embedded within magical inscriptions. Its movements are precise, mechanical—and oddly lifelike.",
+            "Bound by chains of qi and sealed talismans, the Demon Puppet holds the soul of a banished oni. It cannot act unless unleashed through a forbidden chant. When released, it becomes a raging beast, bound only by the strength of the user\\’s spirit.",
+            "The Mirror Puppet is made entirely of polished reflective surfaces. It does not fight, but instead mimics the movements of the enemy, disorienting and confusing them. It\\’s often used by illusionists and mentalists in arcane duels.",
+            "Crafted by monks in silent mountains, the Prayer Puppet recites sacred mantras when activated. It can purify cursed grounds or suppress malevolent entities. Its eyes remain closed, and when they open, it is said a divine spirit speaks through it.",
+            "The Flame-Forged Puppet was created in the heart of a volcanic forge, its body wrapped in rune-marked bronze. It withstands extreme heat and channels fire qi through its limbs, turning its strikes into blazing arcs of destruction.",
+            "Woven from threads of night and stitched under a new moon, the Dream Puppet walks the dreams of others. It is used by soul mages to guide or manipulate the subconscious of a target, often without them ever realizing the intrusion."
+        ],
+        "Alchemy": [  
+            "The Path of True Alchemy begins not with fire, but with understanding. Practitioners must attune to the fundamental laws of transformation—matter, spirit, and intent. Without this harmony, even the purest ingredients will resist fusion.",
+            "The Philosopher\\'s Crucible is a legendary cauldron said to transmute any substance into its ideal form. Hidden in a realm between realms, it responds not to hands, but to the alchemist\\'s clarity of thought and sacrifice of ego.",
+            "Golden Mist Elixirs are crafted under a moonless sky using dew gathered from spirit blossoms. When consumed, they enhance perception of spiritual veins in the body, allowing cultivators to better guide their internal energy flow.",
+            "Blood-Fused Alchemy is a forbidden branch that uses the essence of living beings to enhance pills and talismans. The resulting products are powerful, but often tainted—granting strength at the cost of sanity or soul erosion.",
+            "The Alchemical Furnace of the Sky Pavilion burns without fuel. It draws fire from ley lines deep within the earth, allowing the creation of sky-grade elixirs. Only those with a balanced yin-yang core can safely ignite it.",
+            "The Soul-Distilling Technique involves separating impurities not from material, but from spirit. When used in pill-making, it refines the user\\’s intent into the medicine itself—creating pills that resonate with their destiny.",
+            "Rainmetal Transmutation is a rare alchemical art where falling rain is transformed into elemental crystals midair. Practiced only during heavenly storms, this technique allows the alchemist to capture pure, untouched elemental energy.",
+            "The Seven Rings of Purity are a method of refining pills through sound. As each tone resonates with a layer of the concoction, the impurities are rhythmically shattered, leaving behind a core of nearly divine purity.",
+            "Shadow Alchemy manipulates void-element materials, forging items that exist partially outside reality. These pills or tools can phase through walls or distort time slightly, but carry heavy risks of spatial collapse if mishandled.",
+            "The Eternal Ink Formula is used to scribe alchemical arrays that never fade. It requires stardust, beast marrow, and a single drop of phoenix tear. When drawn correctly, the array binds itself to the laws of the universe—unchangeable and immortal."
+        ],
+        "Forge": [
+            "The Eternal Forge lies at the heart of a volcanic crater, burning with undying celestial flame. Only weapons forged here can withstand the pressure of divine energy. The fire tests not only the material, but the will of the forgemaster.",
+            "Spirit-Forging is an ancient technique where the blacksmith melds their own soul with the weapon. This creates a living artifact that evolves with its wielder, but any flaw in conviction will curse both smith and blade.",
+            "The Soundless Hammer is wielded only by monks of the Silent Anvil Sect. Each strike produces no noise, but echoes through the spiritual plane—shaping not the metal, but the weapon\\’s destiny.",
+            "Lunarsteel, a metal that falls from the sky once every century, can only be forged under moonlight. Its radiant glow resists heat, requiring the forgemaster to channel qi through each strike instead of fire.",
+            "Blood-Tempering is a forbidden forging ritual where the weapon is cooled using the blood of a powerful beast or cultivator. The weapon retains the essence of its sacrifice, granting immense power—but a will of its own.",
+            "Heaven\\'s Pulse Forge is said to be built atop a leyline nexus. Each breath the forge takes pulls in elemental energies, infusing weapons with unpredictable but potent natural forces. Only experienced masters dare use it.",
+            "The Thousand-Layered Blade technique involves folding spiritual metal a thousand times while chanting a binding mantra. With each fold, a sliver of intent is sealed within, giving rise to blades that choose their owner.",
+            "Ghostfire Forging is used for ethereal weapons that can harm spirits or pass through solid matter. The forge burns soulflame—drawn from wandering phantoms—which must be tamed mid-process lest they possess the metal.",
+            "Echosteel is a rare alloy that records the emotions of its forging process. Weapons made from it amplify the forgemaster\\'s state of mind—joy becomes healing, rage becomes destruction, fear becomes corruption.",
+            "The Final Ember Technique is a last-resort forging method where the forgemaster sacrifices their cultivation to ignite the weapon\\’s core. The item born from this method contains a fragment of the smith\\’s soul and burns eternally."
+        ],
         "VVVVV":[
             "",
             "",
@@ -3224,6 +3272,7 @@ def create_symbols_database():
                             + str(id) + ",'"
                             + (name or '') + "','"
                             + (path or '') + "','"
+                            + "'MR','"  # Hằng số 'MR'
                             + (dir_name or '') + "',"
                             + str(power or 0) + ","
                             + str(health or 0) + ","
@@ -3348,6 +3397,7 @@ def create_medals_database():
                             + str(id) + ",'"
                             + (name or '') + "','"
                             + (path or '') + "',"
+                            + "'MR',"  # Hằng số 'MR'
                             + str(power or 0) + ","
                             + str(health or 0) + ","
                             + str(physical_attack or 0) + ","
@@ -3471,6 +3521,7 @@ def create_achievements_database():
                             + str(id) + ",'"
                             + (name or '') + "','"
                             + (path or '') + "',"
+                            + "'MR',"  # Hằng số 'MR'
                             + str(power or 0) + ","
                             + str(health or 0) + ","
                             + str(physical_attack or 0) + ","
@@ -3593,6 +3644,7 @@ def create_titles_database():
                             + str(id) + ",'"
                             + (name or '') + "','"
                             + (path or '') + "',"
+                            + "'MR',"  # Hằng số 'MR'
                             + str(power or 0) + ","
                             + str(health or 0) + ","
                             + str(physical_attack or 0) + ","
@@ -3829,6 +3881,7 @@ def create_borders_database():
                             + str(id) + ",'"
                             + (name or '') + "','"
                             + (path or '') + "',"
+                            + "'MR',"  # Hằng số 'MR'
                             + str(power or 0) + ","
                             + str(health or 0) + ","
                             + str(physical_attack or 0) + ","
@@ -3951,6 +4004,7 @@ def create_avatars_database():
                             + str(id) + ",'"
                             + (name or '') + "','"
                             + (path or '') + "',"
+                            + "'MR',"  # Hằng số 'MR'
                             + str(power or 0) + ","
                             + str(health or 0) + ","
                             + str(physical_attack or 0) + ","
@@ -4811,6 +4865,7 @@ def create_collaboration_database():
                             + str(id) + ",'"
                             + (name or '') + "','"
                             + (path or '') + "',"
+                            + "'MR',"  # Hằng số 'MR'
                             + str(power or 0) + ","
                             + str(health or 0) + ","
                             + str(physical_attack or 0) + ","
@@ -5715,6 +5770,672 @@ def create_magic_formation_circle_database():
                         )
 
                     id=id+1
+
+def create_talisman_database():
+    cards_dir="Talisman"
+    card_list = []
+    id=1
+    card_name=""
+    health=30000000
+    physical_attack=3500000
+    physical_defense=3500000
+    magical_attack=3500000
+    magical_defense=3500000
+    chemical_attack=3500000
+    chemical_defense=3500000
+    atomic_attack=3500000
+    atomic_defense=3500000
+    mental_attack=3500000
+    mental_defense=3500000
+    per_health=10
+    per_physical_attack=10
+    per_physical_defense=10
+    per_magical_attack=10
+    per_magical_defense=10
+    per_chemical_attack=10
+    per_chemical_defense=10
+    per_atomic_attack=10
+    per_atomic_defense=10
+    per_mental_attack=10
+    per_mental_defense=10
+    speed = 3500000
+    critical_damage_rate = 10
+    critical_rate = 10
+    penetration_rate = 10
+    evasion_rate = 10
+    damage_absorption_rate = 10
+    vitality_regeneration_rate = 10
+    accuracy_rate = 10
+    lifesteal_rate = 10
+    shield_strength = 3500000
+    tenacity = 10
+    resistance_rate = 10
+    combo_rate = 10
+    reflection_rate = 10
+    mana = 100
+    mana_regeneration_rate = 10
+    damage_to_different_faction_rate = 20
+    resistance_to_different_faction_rate = 20
+    damage_to_same_faction_rate = 20
+    resistance_to_same_faction_rate = 20
+    rare="LG"
+    price=10000000
+    price_unit="Ancient_Rune_Crystal_Dark"
+    path=""
+    for root, dirs, files in os.walk(cards_dir):
+        current_dir=os.path.basename(root)
+        current_name=current_dir
+        for dir_name in dirs:
+            current_dir =os.path.join(root,dir_name)
+            dir_name = os.path.basename(current_dir)
+            for file_name in os.listdir(current_dir):
+                if file_name.endswith(".jpg") or file_name.endswith("png"):
+                    name, extension=os.path.splitext(file_name)
+            
+                    path=os.path.join(current_dir,file_name)
+                    path=path.replace("\\","/")
+                    name=name.replace("_"," ")
+                    story=get_story("Talisman")
+                    
+                    power = calculate_power(
+                        health, physical_attack, physical_defense, magical_attack, magical_defense,
+                        chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
+                        speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
+                        damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
+                        shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
+                        mana, mana_regeneration_rate, 
+                        damage_to_different_faction_rate, resistance_to_different_faction_rate, 
+                        damage_to_same_faction_rate, resistance_to_same_faction_rate
+                    )
+                    with open('test.txt', 'a') as file:
+                        file.write(
+                            "insert into talisman values ("
+                            + str(id) + ",'"
+                            + (name or '') + "','"
+                            + (path or '') + "',"
+                            + "'MR','"  # Hằng số 'MR'
+                            + (dir_name or '') + "',"
+                            + str(0) + ","
+                            + str(power or 0) + ","
+                            + str(health or 0) + ","
+                            + str(physical_attack or 0) + ","
+                            + str(physical_defense or 0) + ","
+                            + str(magical_attack or 0) + ","
+                            + str(magical_defense or 0) + ","
+                            + str(chemical_attack or 0) + ","
+                            + str(chemical_defense or 0) + ","
+                            + str(atomic_attack or 0) + ","
+                            + str(atomic_defense or 0) + ","
+                            + str(mental_attack or 0) + ","
+                            + str(mental_defense or 0) + ","
+                            + str(speed or 0) + ","
+                            + str(critical_damage_rate or 0) + ","
+                            + str(critical_rate or 0) + ","
+                            + str(penetration_rate or 0) + ","
+                            + str(evasion_rate or 0) + ","
+                            + str(damage_absorption_rate or 0) + ","
+                            + str(vitality_regeneration_rate or 0) + ","
+                            + str(accuracy_rate or 0) + ","
+                            + str(lifesteal_rate or 0) + ","
+                            + str(shield_strength or 0) + ","
+                            + str(tenacity or 0) + ","
+                            + str(resistance_rate or 0) + ","
+                            + str(combo_rate or 0) + ","
+                            + str(reflection_rate or 0) + ","
+                            + str(mana or 0) + ","
+                            + str(mana_regeneration_rate or 0) + ","
+                            + str(damage_to_different_faction_rate or 0) + ","
+                            + str(resistance_to_different_faction_rate or 0) + ","
+                            + str(damage_to_same_faction_rate or 0) + ","
+                            + str(resistance_to_same_faction_rate or 0) + ","
+                            + str(per_health or 0) + ","
+                            + str(per_physical_attack or 0) + ","
+                            + str(per_physical_defense or 0) + ","
+                            + str(per_magical_attack or 0) + ","
+                            + str(per_magical_defense or 0) + ","
+                            + str(per_chemical_attack or 0) + ","
+                            + str(per_chemical_defense or 0) + ","
+                            + str(per_atomic_attack or 0) + ","
+                            + str(per_atomic_defense or 0) + ","
+                            + str(per_mental_attack or 0) + ","
+                            + str(per_mental_defense or 0) + ",'"
+                            + (story or '') + "');\n"
+                        )
+
+                    id=id+1
+
+def create_puppet_database():
+    cards_dir="Puppet"
+    card_list = []
+    id=1
+    card_name=""
+    health=30000000
+    physical_attack=3500000
+    physical_defense=3500000
+    magical_attack=3500000
+    magical_defense=3500000
+    chemical_attack=3500000
+    chemical_defense=3500000
+    atomic_attack=3500000
+    atomic_defense=3500000
+    mental_attack=3500000
+    mental_defense=3500000
+    per_health=10
+    per_physical_attack=10
+    per_physical_defense=10
+    per_magical_attack=10
+    per_magical_defense=10
+    per_chemical_attack=10
+    per_chemical_defense=10
+    per_atomic_attack=10
+    per_atomic_defense=10
+    per_mental_attack=10
+    per_mental_defense=10
+    speed = 3500000
+    critical_damage_rate = 10
+    critical_rate = 10
+    penetration_rate = 10
+    evasion_rate = 10
+    damage_absorption_rate = 10
+    vitality_regeneration_rate = 10
+    accuracy_rate = 10
+    lifesteal_rate = 10
+    shield_strength = 3500000
+    tenacity = 10
+    resistance_rate = 10
+    combo_rate = 10
+    reflection_rate = 10
+    mana = 100
+    mana_regeneration_rate = 10
+    damage_to_different_faction_rate = 20
+    resistance_to_different_faction_rate = 20
+    damage_to_same_faction_rate = 20
+    resistance_to_same_faction_rate = 20
+    rare="LG"
+    price=10000000
+    price_unit="Ancient_Rune_Crystal_Dark"
+    path=""
+    for root, dirs, files in os.walk(cards_dir):
+        current_dir=os.path.basename(root)
+        current_name=current_dir
+        for dir_name in dirs:
+            current_dir =os.path.join(root,dir_name)
+            dir_name = os.path.basename(current_dir)
+            for file_name in os.listdir(current_dir):
+                if file_name.endswith(".jpg") or file_name.endswith("png"):
+                    name, extension=os.path.splitext(file_name)
+            
+                    path=os.path.join(current_dir,file_name)
+                    path=path.replace("\\","/")
+                    name=name.replace("_"," ")
+                    story=get_story("Puppet")
+                    
+                    power = calculate_power(
+                        health, physical_attack, physical_defense, magical_attack, magical_defense,
+                        chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
+                        speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
+                        damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
+                        shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
+                        mana, mana_regeneration_rate, 
+                        damage_to_different_faction_rate, resistance_to_different_faction_rate, 
+                        damage_to_same_faction_rate, resistance_to_same_faction_rate
+                    )
+                    with open('test.txt', 'a') as file:
+                        file.write(
+                            "insert into puppet values ("
+                            + str(id) + ",'"
+                            + (name or '') + "','"
+                            + (path or '') + "',"
+                            + "'MR','"  # Hằng số 'MR'
+                            + (dir_name or '') + "',"
+                            + str(0) + ","
+                            + str(power or 0) + ","
+                            + str(health or 0) + ","
+                            + str(physical_attack or 0) + ","
+                            + str(physical_defense or 0) + ","
+                            + str(magical_attack or 0) + ","
+                            + str(magical_defense or 0) + ","
+                            + str(chemical_attack or 0) + ","
+                            + str(chemical_defense or 0) + ","
+                            + str(atomic_attack or 0) + ","
+                            + str(atomic_defense or 0) + ","
+                            + str(mental_attack or 0) + ","
+                            + str(mental_defense or 0) + ","
+                            + str(speed or 0) + ","
+                            + str(critical_damage_rate or 0) + ","
+                            + str(critical_rate or 0) + ","
+                            + str(penetration_rate or 0) + ","
+                            + str(evasion_rate or 0) + ","
+                            + str(damage_absorption_rate or 0) + ","
+                            + str(vitality_regeneration_rate or 0) + ","
+                            + str(accuracy_rate or 0) + ","
+                            + str(lifesteal_rate or 0) + ","
+                            + str(shield_strength or 0) + ","
+                            + str(tenacity or 0) + ","
+                            + str(resistance_rate or 0) + ","
+                            + str(combo_rate or 0) + ","
+                            + str(reflection_rate or 0) + ","
+                            + str(mana or 0) + ","
+                            + str(mana_regeneration_rate or 0) + ","
+                            + str(damage_to_different_faction_rate or 0) + ","
+                            + str(resistance_to_different_faction_rate or 0) + ","
+                            + str(damage_to_same_faction_rate or 0) + ","
+                            + str(resistance_to_same_faction_rate or 0) + ","
+                            + str(per_health or 0) + ","
+                            + str(per_physical_attack or 0) + ","
+                            + str(per_physical_defense or 0) + ","
+                            + str(per_magical_attack or 0) + ","
+                            + str(per_magical_defense or 0) + ","
+                            + str(per_chemical_attack or 0) + ","
+                            + str(per_chemical_defense or 0) + ","
+                            + str(per_atomic_attack or 0) + ","
+                            + str(per_atomic_defense or 0) + ","
+                            + str(per_mental_attack or 0) + ","
+                            + str(per_mental_defense or 0) + ",'"
+                            + (story or '') + "');\n"
+                        )
+
+                    id=id+1
+
+def create_alchemy_database():
+    cards_dir="Alchemy"
+    card_list = []
+    id=1
+    card_name=""
+    health=30000000
+    physical_attack=3500000
+    physical_defense=3500000
+    magical_attack=3500000
+    magical_defense=3500000
+    chemical_attack=3500000
+    chemical_defense=3500000
+    atomic_attack=3500000
+    atomic_defense=3500000
+    mental_attack=3500000
+    mental_defense=3500000
+    per_health=10
+    per_physical_attack=10
+    per_physical_defense=10
+    per_magical_attack=10
+    per_magical_defense=10
+    per_chemical_attack=10
+    per_chemical_defense=10
+    per_atomic_attack=10
+    per_atomic_defense=10
+    per_mental_attack=10
+    per_mental_defense=10
+    speed = 3500000
+    critical_damage_rate = 10
+    critical_rate = 10
+    penetration_rate = 10
+    evasion_rate = 10
+    damage_absorption_rate = 10
+    vitality_regeneration_rate = 10
+    accuracy_rate = 10
+    lifesteal_rate = 10
+    shield_strength = 3500000
+    tenacity = 10
+    resistance_rate = 10
+    combo_rate = 10
+    reflection_rate = 10
+    mana = 100
+    mana_regeneration_rate = 10
+    damage_to_different_faction_rate = 20
+    resistance_to_different_faction_rate = 20
+    damage_to_same_faction_rate = 20
+    resistance_to_same_faction_rate = 20
+    rare="LG"
+    price=10000000
+    price_unit="Ancient_Rune_Crystal_Dark"
+    path=""
+    for root, dirs, files in os.walk(cards_dir):
+        current_dir=os.path.basename(root)
+        current_name=current_dir
+        for dir_name in dirs:
+            current_dir =os.path.join(root,dir_name)
+            dir_name = os.path.basename(current_dir)
+            for file_name in os.listdir(current_dir):
+                if file_name.endswith(".jpg") or file_name.endswith("png"):
+                    name, extension=os.path.splitext(file_name)
+            
+                    path=os.path.join(current_dir,file_name)
+                    path=path.replace("\\","/")
+                    name=name.replace("_"," ")
+                    story=get_story("Alchemy")
+                    
+                    power = calculate_power(
+                        health, physical_attack, physical_defense, magical_attack, magical_defense,
+                        chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
+                        speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
+                        damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
+                        shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
+                        mana, mana_regeneration_rate, 
+                        damage_to_different_faction_rate, resistance_to_different_faction_rate, 
+                        damage_to_same_faction_rate, resistance_to_same_faction_rate
+                    )
+                    with open('test.txt', 'a') as file:
+                        file.write(
+                            "insert into alchemy values ("
+                            + str(id) + ",'"
+                            + (name or '') + "','"
+                            + (path or '') + "',"
+                            + "'MR','"  # Hằng số 'MR'
+                            + (dir_name or '') + "',"
+                            + str(0) + ","
+                            + str(power or 0) + ","
+                            + str(health or 0) + ","
+                            + str(physical_attack or 0) + ","
+                            + str(physical_defense or 0) + ","
+                            + str(magical_attack or 0) + ","
+                            + str(magical_defense or 0) + ","
+                            + str(chemical_attack or 0) + ","
+                            + str(chemical_defense or 0) + ","
+                            + str(atomic_attack or 0) + ","
+                            + str(atomic_defense or 0) + ","
+                            + str(mental_attack or 0) + ","
+                            + str(mental_defense or 0) + ","
+                            + str(speed or 0) + ","
+                            + str(critical_damage_rate or 0) + ","
+                            + str(critical_rate or 0) + ","
+                            + str(penetration_rate or 0) + ","
+                            + str(evasion_rate or 0) + ","
+                            + str(damage_absorption_rate or 0) + ","
+                            + str(vitality_regeneration_rate or 0) + ","
+                            + str(accuracy_rate or 0) + ","
+                            + str(lifesteal_rate or 0) + ","
+                            + str(shield_strength or 0) + ","
+                            + str(tenacity or 0) + ","
+                            + str(resistance_rate or 0) + ","
+                            + str(combo_rate or 0) + ","
+                            + str(reflection_rate or 0) + ","
+                            + str(mana or 0) + ","
+                            + str(mana_regeneration_rate or 0) + ","
+                            + str(damage_to_different_faction_rate or 0) + ","
+                            + str(resistance_to_different_faction_rate or 0) + ","
+                            + str(damage_to_same_faction_rate or 0) + ","
+                            + str(resistance_to_same_faction_rate or 0) + ","
+                            + str(per_health or 0) + ","
+                            + str(per_physical_attack or 0) + ","
+                            + str(per_physical_defense or 0) + ","
+                            + str(per_magical_attack or 0) + ","
+                            + str(per_magical_defense or 0) + ","
+                            + str(per_chemical_attack or 0) + ","
+                            + str(per_chemical_defense or 0) + ","
+                            + str(per_atomic_attack or 0) + ","
+                            + str(per_atomic_defense or 0) + ","
+                            + str(per_mental_attack or 0) + ","
+                            + str(per_mental_defense or 0) + ",'"
+                            + (story or '') + "');\n"
+                        )
+
+                    id=id+1
+
+def create_forge_database():
+    cards_dir="Forge"
+    card_list = []
+    id=1
+    card_name=""
+    health=30000000
+    physical_attack=3500000
+    physical_defense=3500000
+    magical_attack=3500000
+    magical_defense=3500000
+    chemical_attack=3500000
+    chemical_defense=3500000
+    atomic_attack=3500000
+    atomic_defense=3500000
+    mental_attack=3500000
+    mental_defense=3500000
+    per_health=10
+    per_physical_attack=10
+    per_physical_defense=10
+    per_magical_attack=10
+    per_magical_defense=10
+    per_chemical_attack=10
+    per_chemical_defense=10
+    per_atomic_attack=10
+    per_atomic_defense=10
+    per_mental_attack=10
+    per_mental_defense=10
+    speed = 3500000
+    critical_damage_rate = 10
+    critical_rate = 10
+    penetration_rate = 10
+    evasion_rate = 10
+    damage_absorption_rate = 10
+    vitality_regeneration_rate = 10
+    accuracy_rate = 10
+    lifesteal_rate = 10
+    shield_strength = 3500000
+    tenacity = 10
+    resistance_rate = 10
+    combo_rate = 10
+    reflection_rate = 10
+    mana = 100
+    mana_regeneration_rate = 10
+    damage_to_different_faction_rate = 20
+    resistance_to_different_faction_rate = 20
+    damage_to_same_faction_rate = 20
+    resistance_to_same_faction_rate = 20
+    rare="LG"
+    price=10000000
+    price_unit="Ancient_Rune_Crystal_Dark"
+    path=""
+    for root, dirs, files in os.walk(cards_dir):
+        current_dir=os.path.basename(root)
+        current_name=current_dir
+        for dir_name in dirs:
+            current_dir =os.path.join(root,dir_name)
+            dir_name = os.path.basename(current_dir)
+            for file_name in os.listdir(current_dir):
+                if file_name.endswith(".jpg") or file_name.endswith("png"):
+                    name, extension=os.path.splitext(file_name)
+            
+                    path=os.path.join(current_dir,file_name)
+                    path=path.replace("\\","/")
+                    name=name.replace("_"," ")
+                    story=get_story("Forge")
+                    
+                    power = calculate_power(
+                        health, physical_attack, physical_defense, magical_attack, magical_defense,
+                        chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
+                        speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
+                        damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
+                        shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
+                        mana, mana_regeneration_rate, 
+                        damage_to_different_faction_rate, resistance_to_different_faction_rate, 
+                        damage_to_same_faction_rate, resistance_to_same_faction_rate
+                    )
+                    with open('test.txt', 'a') as file:
+                        file.write(
+                            "insert into forge values ("
+                            + str(id) + ",'"
+                            + (name or '') + "','"
+                            + (path or '') + "',"
+                            + "'MR','"  # Hằng số 'MR'
+                            + (dir_name or '') + "',"
+                            + str(0) + ","
+                            + str(power or 0) + ","
+                            + str(health or 0) + ","
+                            + str(physical_attack or 0) + ","
+                            + str(physical_defense or 0) + ","
+                            + str(magical_attack or 0) + ","
+                            + str(magical_defense or 0) + ","
+                            + str(chemical_attack or 0) + ","
+                            + str(chemical_defense or 0) + ","
+                            + str(atomic_attack or 0) + ","
+                            + str(atomic_defense or 0) + ","
+                            + str(mental_attack or 0) + ","
+                            + str(mental_defense or 0) + ","
+                            + str(speed or 0) + ","
+                            + str(critical_damage_rate or 0) + ","
+                            + str(critical_rate or 0) + ","
+                            + str(penetration_rate or 0) + ","
+                            + str(evasion_rate or 0) + ","
+                            + str(damage_absorption_rate or 0) + ","
+                            + str(vitality_regeneration_rate or 0) + ","
+                            + str(accuracy_rate or 0) + ","
+                            + str(lifesteal_rate or 0) + ","
+                            + str(shield_strength or 0) + ","
+                            + str(tenacity or 0) + ","
+                            + str(resistance_rate or 0) + ","
+                            + str(combo_rate or 0) + ","
+                            + str(reflection_rate or 0) + ","
+                            + str(mana or 0) + ","
+                            + str(mana_regeneration_rate or 0) + ","
+                            + str(damage_to_different_faction_rate or 0) + ","
+                            + str(resistance_to_different_faction_rate or 0) + ","
+                            + str(damage_to_same_faction_rate or 0) + ","
+                            + str(resistance_to_same_faction_rate or 0) + ","
+                            + str(per_health or 0) + ","
+                            + str(per_physical_attack or 0) + ","
+                            + str(per_physical_defense or 0) + ","
+                            + str(per_magical_attack or 0) + ","
+                            + str(per_magical_defense or 0) + ","
+                            + str(per_chemical_attack or 0) + ","
+                            + str(per_chemical_defense or 0) + ","
+                            + str(per_atomic_attack or 0) + ","
+                            + str(per_atomic_defense or 0) + ","
+                            + str(per_mental_attack or 0) + ","
+                            + str(per_mental_defense or 0) + ",'"
+                            + (story or '') + "');\n"
+                        )
+
+                    id=id+1
+
+def create_card_life_database():
+    cards_dir="Card_Life"
+    card_list = []
+    id=1
+    card_name=""
+    health=30000000
+    physical_attack=3500000
+    physical_defense=3500000
+    magical_attack=3500000
+    magical_defense=3500000
+    chemical_attack=3500000
+    chemical_defense=3500000
+    atomic_attack=3500000
+    atomic_defense=3500000
+    mental_attack=3500000
+    mental_defense=3500000
+    per_health=10
+    per_physical_attack=10
+    per_physical_defense=10
+    per_magical_attack=10
+    per_magical_defense=10
+    per_chemical_attack=10
+    per_chemical_defense=10
+    per_atomic_attack=10
+    per_atomic_defense=10
+    per_mental_attack=10
+    per_mental_defense=10
+    speed = 3500000
+    critical_damage_rate = 10
+    critical_rate = 10
+    penetration_rate = 10
+    evasion_rate = 10
+    damage_absorption_rate = 10
+    vitality_regeneration_rate = 10
+    accuracy_rate = 10
+    lifesteal_rate = 10
+    shield_strength = 3500000
+    tenacity = 10
+    resistance_rate = 10
+    combo_rate = 10
+    reflection_rate = 10
+    mana = 100
+    mana_regeneration_rate = 10
+    damage_to_different_faction_rate = 20
+    resistance_to_different_faction_rate = 20
+    damage_to_same_faction_rate = 20
+    resistance_to_same_faction_rate = 20
+    rare="LG"
+    price=10000000
+    price_unit="Ancient_Rune_Crystal_Dark"
+    path=""
+    for root, dirs, files in os.walk(cards_dir):
+        current_dir=os.path.basename(root)
+        current_name=current_dir
+        for dir_name in dirs:
+            current_dir =os.path.join(root,dir_name)
+            dir_name = os.path.basename(current_dir)
+            for file_name in os.listdir(current_dir):
+                if file_name.endswith(".jpg") or file_name.endswith("png"):
+                    name, extension=os.path.splitext(file_name)
+            
+                    path=os.path.join(current_dir,file_name)
+                    path=path.replace("\\","/")
+                    name=name.replace("_"," ")
+                    # story=get_story("Card_Life")
+                    story = ""
+                    
+                    power = calculate_power(
+                        health, physical_attack, physical_defense, magical_attack, magical_defense,
+                        chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
+                        speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
+                        damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
+                        shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
+                        mana, mana_regeneration_rate, 
+                        damage_to_different_faction_rate, resistance_to_different_faction_rate, 
+                        damage_to_same_faction_rate, resistance_to_same_faction_rate
+                    )
+                    with open('test.txt', 'a') as file:
+                        file.write(
+                            "insert into card_life values ("
+                            + str(id) + ",'"
+                            + (name or '') + "','"
+                            + (path or '') + "',"
+                            + "'MR','"  # Hằng số 'MR'
+                            + (dir_name or '') + "',"
+                            + str(0) + ","
+                            + str(power or 0) + ","
+                            + str(health or 0) + ","
+                            + str(physical_attack or 0) + ","
+                            + str(physical_defense or 0) + ","
+                            + str(magical_attack or 0) + ","
+                            + str(magical_defense or 0) + ","
+                            + str(chemical_attack or 0) + ","
+                            + str(chemical_defense or 0) + ","
+                            + str(atomic_attack or 0) + ","
+                            + str(atomic_defense or 0) + ","
+                            + str(mental_attack or 0) + ","
+                            + str(mental_defense or 0) + ","
+                            + str(speed or 0) + ","
+                            + str(critical_damage_rate or 0) + ","
+                            + str(critical_rate or 0) + ","
+                            + str(penetration_rate or 0) + ","
+                            + str(evasion_rate or 0) + ","
+                            + str(damage_absorption_rate or 0) + ","
+                            + str(vitality_regeneration_rate or 0) + ","
+                            + str(accuracy_rate or 0) + ","
+                            + str(lifesteal_rate or 0) + ","
+                            + str(shield_strength or 0) + ","
+                            + str(tenacity or 0) + ","
+                            + str(resistance_rate or 0) + ","
+                            + str(combo_rate or 0) + ","
+                            + str(reflection_rate or 0) + ","
+                            + str(mana or 0) + ","
+                            + str(mana_regeneration_rate or 0) + ","
+                            + str(damage_to_different_faction_rate or 0) + ","
+                            + str(resistance_to_different_faction_rate or 0) + ","
+                            + str(damage_to_same_faction_rate or 0) + ","
+                            + str(resistance_to_same_faction_rate or 0) + ","
+                            + str(per_health or 0) + ","
+                            + str(per_physical_attack or 0) + ","
+                            + str(per_physical_defense or 0) + ","
+                            + str(per_magical_attack or 0) + ","
+                            + str(per_magical_defense or 0) + ","
+                            + str(per_chemical_attack or 0) + ","
+                            + str(per_chemical_defense or 0) + ","
+                            + str(per_atomic_attack or 0) + ","
+                            + str(per_atomic_defense or 0) + ","
+                            + str(per_mental_attack or 0) + ","
+                            + str(per_mental_defense or 0) + ",'"
+                            + (story or '') + "');\n"
+                        )
+
+                    id=id+1
 #Generate Trading
 
 def create_cards_trade():
@@ -6331,6 +7052,120 @@ def create_magic_formation_circle_trade():
 
                     id=id+1
 
+def create_talisman_trade():
+    cards_dir="Talisman"
+    card_list = []
+    id=1
+    for root, dirs, files in os.walk(cards_dir):
+        current_dir=os.path.basename(root)
+        current_name=current_dir
+        for dir_name in dirs:
+            current_dir =os.path.join(root,dir_name)
+            dir_name = os.path.basename(current_dir)
+            for file_name in os.listdir(current_dir):
+                if file_name.endswith(".jpg") or file_name.endswith("png"):
+                    name, extension=os.path.splitext(file_name)
+            
+                    path=os.path.join(current_dir,file_name)
+                    path=path.replace("\\","/")
+                    name=name.replace("_"," ")
+                    
+                    with open('test.txt', 'a') as file:
+                        file.write("insert into talisman_trade values (" + str(id) + "," + str(18) + "," + str(2000) + ");\n")
+
+                    id=id+1
+                
+def create_puppet_trade():
+    cards_dir="Puppet"
+    card_list = []
+    id=1
+    for root, dirs, files in os.walk(cards_dir):
+        current_dir=os.path.basename(root)
+        current_name=current_dir
+        for dir_name in dirs:
+            current_dir =os.path.join(root,dir_name)
+            dir_name = os.path.basename(current_dir)
+            for file_name in os.listdir(current_dir):
+                if file_name.endswith(".jpg") or file_name.endswith("png"):
+                    name, extension=os.path.splitext(file_name)
+            
+                    path=os.path.join(current_dir,file_name)
+                    path=path.replace("\\","/")
+                    name=name.replace("_"," ")
+                    
+                    with open('test.txt', 'a') as file:
+                        file.write("insert into puppet_trade values (" + str(id) + "," + str(18) + "," + str(2000) + ");\n")
+
+                    id=id+1
+
+def create_alchemy_trade():
+    cards_dir="Alchemy"
+    card_list = []
+    id=1
+    for root, dirs, files in os.walk(cards_dir):
+        current_dir=os.path.basename(root)
+        current_name=current_dir
+        for dir_name in dirs:
+            current_dir =os.path.join(root,dir_name)
+            dir_name = os.path.basename(current_dir)
+            for file_name in os.listdir(current_dir):
+                if file_name.endswith(".jpg") or file_name.endswith("png"):
+                    name, extension=os.path.splitext(file_name)
+            
+                    path=os.path.join(current_dir,file_name)
+                    path=path.replace("\\","/")
+                    name=name.replace("_"," ")
+                    
+                    with open('test.txt', 'a') as file:
+                        file.write("insert into alchemy_trade values (" + str(id) + "," + str(18) + "," + str(2000) + ");\n")
+
+                    id=id+1
+
+def create_forge_trade():
+    cards_dir="Forge"
+    card_list = []
+    id=1
+    for root, dirs, files in os.walk(cards_dir):
+        current_dir=os.path.basename(root)
+        current_name=current_dir
+        for dir_name in dirs:
+            current_dir =os.path.join(root,dir_name)
+            dir_name = os.path.basename(current_dir)
+            for file_name in os.listdir(current_dir):
+                if file_name.endswith(".jpg") or file_name.endswith("png"):
+                    name, extension=os.path.splitext(file_name)
+            
+                    path=os.path.join(current_dir,file_name)
+                    path=path.replace("\\","/")
+                    name=name.replace("_"," ")
+                    
+                    with open('test.txt', 'a') as file:
+                        file.write("insert into forge_trade values (" + str(id) + "," + str(18) + "," + str(2000) + ");\n")
+
+                    id=id+1
+
+def create_card_life_trade():
+    cards_dir="Card_Life"
+    card_list = []
+    id=1
+    for root, dirs, files in os.walk(cards_dir):
+        current_dir=os.path.basename(root)
+        current_name=current_dir
+        for dir_name in dirs:
+            current_dir =os.path.join(root,dir_name)
+            dir_name = os.path.basename(current_dir)
+            for file_name in os.listdir(current_dir):
+                if file_name.endswith(".jpg") or file_name.endswith("png"):
+                    name, extension=os.path.splitext(file_name)
+            
+                    path=os.path.join(current_dir,file_name)
+                    path=path.replace("\\","/")
+                    name=name.replace("_"," ")
+                    
+                    with open('test.txt', 'a') as file:
+                        file.write("insert into card_life_trade values (" + str(id) + "," + str(18) + "," + str(2000) + ");\n")
+
+                    id=id+1
 #Generate chest
 
 def create_chest_equipment():
@@ -7991,7 +8826,6 @@ def create_chest_title():
             
                 with open('test.txt', 'a') as file:
                     file.write("insert into chest_title values (" + str(233) + "," + str(id) + "," + str(1) + ");\n")
-                    file.write("insert into chest_title values (" + str(234) + "," + str(id) + "," + str(1) + ");\n")
                 id=id+1
 
 def create_chest_collaboration_equipment():
@@ -8373,25 +9207,162 @@ def create_chest_magic_formation_circle():
                 for file_name in os.listdir(current_dir):
                     with open('test.txt', 'a') as file:
                         file.write("insert into chest_magic_formation_circle values (" + str(217) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_magic_formation_circle values (" + str(218) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_magic_formation_circle values (" + str(219) + "," + str(id) + "," + str(1) + ");\n")
                     id=id+1
             elif "Defence" in current_name:
                 current_dir =os.path.join(root,dir_name)
                 for file_name in os.listdir(current_dir):
                     with open('test.txt', 'a') as file:
-                        file.write("insert into chest_magic_formation_circle values (" + str(220) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_magic_formation_circle values (" + str(221) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_magic_formation_circle values (" + str(222) + "," + str(id) + "," + str(1) + ");\n")
+                        file.write("insert into chest_magic_formation_circle values (" + str(218) + "," + str(id) + "," + str(1) + ");\n")
                     id=id+1
             elif "Support" in current_name:
                 current_dir =os.path.join(root,dir_name)
                 for file_name in os.listdir(current_dir):
                     with open('test.txt', 'a') as file:
-                        file.write("insert into chest_magic_formation_circle values (" + str(223) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_magic_formation_circle values (" + str(224) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_magic_formation_circle values (" + str(225) + "," + str(id) + "," + str(1) + ");\n")
+                        file.write("insert into chest_magic_formation_circle values (" + str(219) + "," + str(id) + "," + str(1) + ");\n")
                     id=id+1
+
+def create_chest_talisman():
+    cards_dir="Talisman"
+    card_list = []
+    id=1
+    card_name=""
+    path=""
+    for root, dirs, files in os.walk(cards_dir):
+        current_dir=os.path.basename(root)
+        current_name=current_dir
+        for dir_name in dirs:
+            # print(current_name)  
+            current_name = os.path.join(root, dir_name)          
+            if "Attack" in current_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    with open('test.txt', 'a') as file:
+                        file.write("insert into chest_talisman values (" + str(220) + "," + str(id) + "," + str(1) + ");\n")
+                    id=id+1
+            elif "Defence" in current_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    with open('test.txt', 'a') as file:
+                        file.write("insert into chest_talisman values (" + str(221) + "," + str(id) + "," + str(1) + ");\n")
+                    id=id+1
+            elif "Support" in current_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    with open('test.txt', 'a') as file:
+                        file.write("insert into chest_talisman values (" + str(222) + "," + str(id) + "," + str(1) + ");\n")
+                    id=id+1
+
+def create_chest_puppet():
+    cards_dir="Puppet"
+    card_list = []
+    id=1
+    card_name=""
+    path=""
+    for root, dirs, files in os.walk(cards_dir):
+        current_dir=os.path.basename(root)
+        current_name=current_dir
+        for dir_name in dirs:
+            # print(current_name)  
+            current_name = os.path.join(root, dir_name)          
+            if "Attack" in current_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    with open('test.txt', 'a') as file:
+                        file.write("insert into chest_puppet values (" + str(223) + "," + str(id) + "," + str(1) + ");\n")
+                    id=id+1
+            elif "Defence" in current_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    with open('test.txt', 'a') as file:
+                        file.write("insert into chest_puppet values (" + str(224) + "," + str(id) + "," + str(1) + ");\n")
+                    id=id+1
+            elif "Support" in current_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    with open('test.txt', 'a') as file:
+                        file.write("insert into chest_puppet values (" + str(225) + "," + str(id) + "," + str(1) + ");\n")
+                    id=id+1
+
+def create_chest_alchemy():
+    cards_dir="Alchemy"
+    card_list = []
+    id=1
+    card_name=""
+    path=""
+    for root, dirs, files in os.walk(cards_dir):
+        current_dir=os.path.basename(root)
+        current_name=current_dir
+        for dir_name in dirs:
+            # print(current_name)  
+            current_name = os.path.join(root, dir_name)          
+            if "Attack" in current_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    with open('test.txt', 'a') as file:
+                        file.write("insert into chest_alchemy values (" + str(226) + "," + str(id) + "," + str(1) + ");\n")
+                    id=id+1
+            elif "Defence" in current_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    with open('test.txt', 'a') as file:
+                        file.write("insert into chest_alchemy values (" + str(227) + "," + str(id) + "," + str(1) + ");\n")
+                    id=id+1
+            elif "Support" in current_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    with open('test.txt', 'a') as file:
+                        file.write("insert into chest_alchemy values (" + str(228) + "," + str(id) + "," + str(1) + ");\n")
+                    id=id+1
+
+def create_chest_forge():
+    cards_dir="Forge"
+    card_list = []
+    id=1
+    card_name=""
+    path=""
+    for root, dirs, files in os.walk(cards_dir):
+        current_dir=os.path.basename(root)
+        current_name=current_dir
+        for dir_name in dirs:
+            # print(current_name)  
+            current_name = os.path.join(root, dir_name)          
+            if "Attack" in current_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    with open('test.txt', 'a') as file:
+                        file.write("insert into chest_forge values (" + str(229) + "," + str(id) + "," + str(1) + ");\n")
+                    id=id+1
+            elif "Defence" in current_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    with open('test.txt', 'a') as file:
+                        file.write("insert into chest_forge values (" + str(230) + "," + str(id) + "," + str(1) + ");\n")
+                    id=id+1
+            elif "Support" in current_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    with open('test.txt', 'a') as file:
+                        file.write("insert into chest_forge values (" + str(231) + "," + str(id) + "," + str(1) + ");\n")
+                    id=id+1
+
+def create_chest_card_life():
+    cards_dir="Forge"
+    card_list = []
+    id=1
+    card_name=""
+    path=""
+    for root, dirs, files in os.walk(cards_dir):
+        current_dir=os.path.basename(root)
+        current_name=current_dir
+        for dir_name in dirs:
+            # print(current_name)  
+            current_name = os.path.join(root, dir_name)          
+            current_dir =os.path.join(root,dir_name)
+            for file_name in os.listdir(current_dir):
+                with open('test.txt', 'a') as file:
+                    file.write("insert into chest_card_life values (" + str(234) + "," + str(id) + "," + str(1) + ");\n")
+                id=id+1
+                
 
 create_captain_database()
 create_colonel_database()
@@ -8417,7 +9388,11 @@ create_spell_database()
 create_books_database()
 create_relics_database()
 create_magic_formation_circle_database()
-
+create_talisman_database()
+create_puppet_database()
+create_alchemy_database()
+create_forge_database()
+create_card_life_database()
 
 #Chest book error
 
@@ -8444,6 +9419,11 @@ create_military_trade()
 create_spell_trade()
 create_relics_trade()
 create_magic_formation_circle_trade()
+create_talisman_trade()
+create_puppet_trade()
+create_alchemy_trade()
+create_forge_trade()
+create_card_life_trade()
 
 create_chest_equipment()
 create_chest_card()
@@ -8465,4 +9445,9 @@ create_chest_military()
 create_chest_spell()
 create_chest_relics()
 create_chest_magic_formation_circle()
+create_chest_talisman()
+create_chest_puppet()
+create_chest_alchemy()
+create_chest_forge()
+create_chest_card_life()
 create_chest_book()

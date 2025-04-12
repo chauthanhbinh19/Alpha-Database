@@ -426,6 +426,7 @@ create table achievements(
 	id int primary key,
     name varchar(255),
     image varchar(255),
+    rare varchar(100),
     power double,
     health double,
     physical_attack double,
@@ -478,6 +479,7 @@ create table medals(
 	id int primary key,
     name varchar(255),
     image varchar(255),
+    rare varchar(100),
     power double,
     health double,
     physical_attack double,
@@ -613,6 +615,7 @@ create table symbols(
 	id int primary key,
     name varchar(255),
     image varchar(255),
+    rare varchar(100),
     type varchar(100),
     power double,
     health double,
@@ -666,6 +669,7 @@ create table titles(
 	id int primary key,
     name varchar(255),
     image varchar(255),
+    rare varchar(100),
     power double,
     health double,
     physical_attack double,
@@ -718,6 +722,7 @@ create table borders(
 	id int primary key,
     name varchar(255),
     image varchar(255),
+    rare varchar(100),
     power double,
     health double,
     physical_attack double,
@@ -770,6 +775,7 @@ create table avatars(
 	id int primary key,
     name varchar(255),
     image varchar(255),
+    rare varchar(100),
     power double,
     health double,
     physical_attack double,
@@ -822,6 +828,7 @@ create table collaborations (
 	id int primary key,
     name varchar(255),
     image varchar(255),
+    rare varchar(100),
     power double,
     health double,
     physical_attack double,
@@ -1225,6 +1232,60 @@ create table alchemy(
 );
 
 create table forge(
+	id int primary key,
+    name varchar(255),
+    image varchar(255),
+    rare varchar(100),
+    type varchar(100),
+    star int,
+    power double,
+    health double,
+    physical_attack double,
+    physical_defense double,
+    magical_attack double,
+    magical_defense double,
+    chemical_attack double,
+    chemical_defense double,
+    atomic_attack double,
+    atomic_defense double,
+    mental_attack double,
+    mental_defense double,
+    speed double,
+    critical_damage_rate double,
+    critical_rate double,
+    penetration_rate double,
+    evasion_rate double,
+    damage_absorption_rate double,
+    vitality_regeneration_rate double,
+    accuracy_rate double,
+    lifesteal_rate double,
+    shield_strength double,
+    tenacity double,
+    resistance_rate double,
+    combo_rate double, 
+    reflection_rate double,  
+    mana float,
+    mana_regeneration_rate double,
+    damage_to_different_faction_rate double, 
+    resistance_to_different_faction_rate double,
+    damage_to_same_faction_rate double,
+    resistance_to_same_faction_rate double ,
+    
+    percent_all_health double,
+    percent_all_physical_attack double,
+    percent_all_physical_defense double,
+    percent_all_magical_attack double,
+    percent_all_magical_defense double,
+    percent_all_chemical_attack double,
+    percent_all_chemical_defense double,
+    percent_all_atomic_attack double,
+    percent_all_atomic_defense double,
+    percent_all_mental_attack double,
+    percent_all_mental_defense double,
+    description TEXT
+);
+
+create table card_life(
 	id int primary key,
     name varchar(255),
     image varchar(255),
@@ -3144,6 +3205,53 @@ create table user_forge(
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
+create table user_card_life(
+    user_id int,
+	card_life_id int,
+    level int,
+    experiment int,
+    star int,
+    
+    block boolean,
+	quantity int,
+    power double,
+    health double,
+    physical_attack double,
+    physical_defense double,
+    magical_attack double,
+    magical_defense double,
+    chemical_attack double,
+    chemical_defense double,
+    atomic_attack double,
+    atomic_defense double,
+    mental_attack double,
+    mental_defense double,
+    speed double,
+    critical_damage_rate double,
+    critical_rate double,
+    penetration_rate double,
+    evasion_rate double,
+    damage_absorption_rate double,
+    vitality_regeneration_rate double,
+    accuracy_rate double,
+    lifesteal_rate double,
+    shield_strength double,
+    tenacity double,
+    resistance_rate double,
+    combo_rate double, 
+    reflection_rate double,  
+    mana float,
+    mana_regeneration_rate double,
+    damage_to_different_faction_rate double, 
+    resistance_to_different_faction_rate double,
+    damage_to_same_faction_rate double,
+    resistance_to_same_faction_rate double ,
+
+    PRIMARY KEY(user_id, card_life_id),
+    FOREIGN KEY (card_life_id) REFERENCES card_life(id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
 create table card_heroes_gallery(
     user_id int,
     card_hero_id int,
@@ -4569,6 +4677,63 @@ create table forge_gallery(
     FOREIGN KEY (forge_id) REFERENCES forge(id)
 );
 
+create table card_life_gallery(
+    user_id int,
+    card_life_id int,
+    
+    status varchar(100),
+    current_star int,
+    temp_star int,
+    power double,
+    health double,
+    physical_attack double,
+    physical_defense double,
+    magical_attack double,
+    magical_defense double,
+    chemical_attack double,
+    chemical_defense double,
+    atomic_attack double,
+    atomic_defense double,
+    mental_attack double,
+    mental_defense double,
+    speed double,
+    critical_damage_rate double,
+    critical_rate double,
+    penetration_rate double,
+    evasion_rate double,
+    damage_absorption_rate double,
+    vitality_regeneration_rate double,
+    accuracy_rate double,
+    lifesteal_rate double,
+    shield_strength double,
+    tenacity double,
+    resistance_rate double,
+    combo_rate double, 
+    reflection_rate double,  
+    mana float,
+    mana_regeneration_rate double,
+    damage_to_different_faction_rate double, 
+    resistance_to_different_faction_rate double,
+    damage_to_same_faction_rate double,
+    resistance_to_same_faction_rate double ,
+    
+    percent_all_health double,
+    percent_all_physical_attack double,
+    percent_all_physical_defense double,
+    percent_all_magical_attack double,
+    percent_all_magical_defense double,
+    percent_all_chemical_attack double,
+    percent_all_chemical_defense double,
+    percent_all_atomic_attack double,
+    percent_all_atomic_defense double,
+    percent_all_mental_attack double,
+    percent_all_mental_defense double,
+    
+    PRIMARY KEY(user_id,card_life_id),
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (card_life_id) REFERENCES card_life(id)
+);
+
 create table user_currency(
     user_id int,
     currency_id int,
@@ -5860,6 +6025,17 @@ create table forge_trade(
     FOREIGN KEY (forge_id) REFERENCES forge(id),
     FOREIGN KEY (currency_id) REFERENCES currency(id)
 );
+
+create table card_life_trade(
+    card_life_id int,
+    currency_id int,
+    price double,
+    
+    PRIMARY KEY(card_life_id, currency_id),
+    FOREIGN KEY (card_life_id) REFERENCES card_life(id),
+    FOREIGN KEY (currency_id) REFERENCES currency(id)
+);
+
 /*--Chest--------------------------------------------------------------------------------------*/
 
 create table chest_equipment(
@@ -6129,6 +6305,16 @@ create table chest_forge(
     
     PRIMARY KEY(forge_id, item_id),
     FOREIGN KEY (forge_id) REFERENCES forge(id),
+    FOREIGN KEY (item_id) REFERENCES items(id)
+);
+
+create table chest_card_life(
+    item_id int,
+    card_life_id int,
+    quantity int,
+    
+    PRIMARY KEY(card_life_id, item_id),
+    FOREIGN KEY (card_life_id) REFERENCES card_life(id),
     FOREIGN KEY (item_id) REFERENCES items(id)
 );
 
