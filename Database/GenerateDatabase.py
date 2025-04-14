@@ -30,24 +30,24 @@ def calculate_power(
     ) * weight + shield_strength * weight
 
     # Điều chỉnh các chỉ số `rate` theo tổng attack, defense, và health
-    adjusted_critical_rate = (critical_rate / 100) * total_attack  
-    adjusted_critical_damage = (critical_damage_rate / 100) * total_attack  
-    adjusted_penetration = (penetration_rate / 100) * total_attack  
-    adjusted_evasion = (evasion_rate / 100) * total_defense  
-    adjusted_absorption = (damage_absorption_rate / 100) * (total_defense + health * 0.5)  
-    adjusted_regeneration = (vitality_regeneration_rate / 100) * health  
-    adjusted_accuracy = (accuracy_rate / 100) * total_attack  
-    adjusted_lifesteal = (lifesteal_rate / 100) * total_attack  
-    adjusted_tenacity = (tenacity / 100) * total_defense  
-    adjusted_resistance = (resistance_rate / 100) * (total_defense + health * 0.5)  
-    adjusted_combo = (combo_rate / 100) * total_attack  
-    adjusted_reflection = (reflection_rate / 100) * (total_defense + health * 0.5)  
+    adjusted_critical_rate = (critical_rate / 100) * total_attack /100 
+    adjusted_critical_damage = (critical_damage_rate / 100) * total_attack /100
+    adjusted_penetration = (penetration_rate / 100) * total_attack /100
+    adjusted_evasion = (evasion_rate / 100) * total_defense /100
+    adjusted_absorption = (damage_absorption_rate / 100) * (total_defense + health * 0.5) /100
+    adjusted_regeneration = (vitality_regeneration_rate / 100) * health /100
+    adjusted_accuracy = (accuracy_rate / 100) * total_attack /100
+    adjusted_lifesteal = (lifesteal_rate / 100) * total_attack /100
+    adjusted_tenacity = (tenacity / 100) * total_defense /100
+    adjusted_resistance = (resistance_rate / 100) * (total_defense + health * 0.5) /100 
+    adjusted_combo = (combo_rate / 100) * total_attack /100
+    adjusted_reflection = (reflection_rate / 100) * (total_defense + health * 0.5) /100
 
     # Điều chỉnh thuộc tính về faction (chủng tộc)
-    adjusted_damage_to_different_faction = (damage_to_different_faction_rate / 100) * total_attack  
-    adjusted_resistance_to_different_faction = (resistance_to_different_faction_rate / 100) * total_defense  
-    adjusted_damage_to_same_faction = (damage_to_same_faction_rate / 100) * total_attack  
-    adjusted_resistance_to_same_faction = (resistance_to_same_faction_rate / 100) * total_defense  
+    adjusted_damage_to_different_faction = (damage_to_different_faction_rate / 100) * total_attack /100
+    adjusted_resistance_to_different_faction = (resistance_to_different_faction_rate / 100) * total_defense /100
+    adjusted_damage_to_same_faction = (damage_to_same_faction_rate / 100) * total_attack /100
+    adjusted_resistance_to_same_faction = (resistance_to_same_faction_rate / 100) * total_defense /100
 
     # Điều chỉnh mana và hồi mana
     adjusted_mana = mana * 0.5  
@@ -1678,7 +1678,8 @@ def create_cards_database():
                                 + str(id) + ",'"
                                 + (name or '') + "','"
                                 + (path or '') + "','"
-                                + (rare or '') + "','"
+                                + (rare or '') + "',"
+                                + str(2) + ",'"
                                 + (current_name or '') + "',"
                                 + str(0) + ","  # Giá trị placeholder
                                 + str(power or 0) + ","
@@ -1757,7 +1758,8 @@ def create_cards_database():
                                 + str(id) + ",'"
                                 + (name or '') + "','"
                                 + (path or '') + "','"
-                                + (rare or '') + "','"
+                                + (rare or '') + "',"
+                                + str(5) + ",'"
                                 + (current_name or '') + "',"
                                 + str(0) + ","  # Giá trị placeholder
                                 + str(power or 0) + ","
@@ -1835,7 +1837,8 @@ def create_cards_database():
                                 + str(id) + ",'"
                                 + (name or '') + "','"
                                 + (path or '') + "','"
-                                + (rare or '') + "','"
+                                + (rare or '') + "',"
+                                + str(10) + ",'"
                                 + (current_name or '') + "',"
                                 + str(0) + ","  # Giá trị placeholder
                                 + str(power or 0) + ","
@@ -1913,7 +1916,8 @@ def create_cards_database():
                                 + str(id) + ",'"
                                 + (name or '') + "','"
                                 + (path or '') + "','"
-                                + (rare or '') + "','"
+                                + (rare or '') + "',"
+                                + str(15) + ",'"
                                 + (current_name or '') + "',"
                                 + str(0) + ","  # Giá trị placeholder
                                 + str(power or 0) + ","
@@ -2023,7 +2027,8 @@ def create_books_database():
                             + str(id) + ",'"
                             + (name or '') + "','"
                             + (path or '') + "','"
-                            + (rare or '') + "','"
+                            + (rare or '') + "',"
+                            + str(15) + ",'"
                             + (dir_name or '') + "',"
                             + str(0) + ","
                             + str(power or 0) + ","
@@ -2129,7 +2134,8 @@ def create_captain_database():
                             + str(id) + ",'"
                             + (name or '') + "','"
                             + (path or '') + "','"
-                            + (rare or '') + "','"
+                            + (rare or '') + "',"
+                            + str(15) + ",'"
                             + (dir_name or '') + "',"
                             + str(0) + ","
                             + str(power or 0) + ","
@@ -2235,7 +2241,8 @@ def create_colonel_database():
                             + str(id) + ",'"
                             + (name or '') + "','"
                             + (path or '') + "','"
-                            + (rare or '') + "','"
+                            + (rare or '') + "',"
+                            + str(15) + ",'"
                             + (dir_name or '') + "',"
                             + str(0) + ","
                             + str(power or 0) + ","
@@ -2340,7 +2347,8 @@ def create_general_database():
                             + str(id) + ",'"
                             + (name or '') + "','"
                             + (path or '') + "','"
-                            + (rare or '') + "','"
+                            + (rare or '') + "',"
+                            + str(15) + ",'"
                             + (dir_name or '') + "',"
                             + str(0) + ","
                             + str(power or 0) + ","
@@ -2445,7 +2453,8 @@ def create_admiral_database():
                             + str(id) + ",'"
                             + (name or '') + "','"
                             + (path or '') + "','"
-                            + (rare or '') + "','"
+                            + (rare or '') + "',"
+                            + str(15) + ",'"
                             + (dir_name or '') + "',"
                             + str(0) + ","
                             + str(power or 0) + ","
@@ -2552,7 +2561,8 @@ def create_skills_database():
                             + str(id) + ",'"
                             + (name or '') + "','"
                             + (path or '') + "','"
-                            + (rare or '') + "','"
+                            + (rare or '') + "',"
+                            + str(15) + ",'"
                             + (dir_name or '') + "',"
                             + str(power or 0) + ","
                             + str(health or 0) + ","
@@ -2675,7 +2685,8 @@ def create_collaboration_equipments_database():
                             + str(id) + ",'"
                             + (name or '') + "','"
                             + (path or '') + "','"
-                            + (rare or '') + "','"
+                            + (rare or '') + "',"
+                            + str(2) + ",'"
                             + (current_name or '') + "',"
                             + str(0) + ","
                             + str(power or 0) + ","
@@ -2765,7 +2776,8 @@ def create_collaboration_equipments_database():
                             + str(id) + ",'"
                             + (name or '') + "','"
                             + (path or '') + "','"
-                            + (rare or '') + "','"
+                            + (rare or '') + "',"
+                            + str(5) + ",'"
                             + (current_name or '') + "',"
                             + str(0) + ","
                             + str(power or 0) + ","
@@ -2854,7 +2866,8 @@ def create_collaboration_equipments_database():
                             + str(id) + ",'"
                             + (name or '') + "','"
                             + (path or '') + "','"
-                            + (rare or '') + "','"
+                            + (rare or '') + "',"
+                            + str(10) + ",'"
                             + (dir_name or '') + "',"
                             + str(0) + ","
                             + str(power or 0) + ","
@@ -2943,7 +2956,8 @@ def create_collaboration_equipments_database():
                             + str(id) + ",'"
                             + (name or '') + "','"
                             + (path or '') + "','"
-                            + (rare or '') + "','"
+                            + (rare or '') + "',"
+                            + str(15) + ",'"
                             + (dir_name or '') + "',"
                             + str(0) + ","
                             + str(power or 0) + ","
@@ -3031,7 +3045,8 @@ def create_collaboration_equipments_database():
                             + str(id) + ",'"
                             + (name or '') + "','"
                             + (path or '') + "','"
-                            + (rare or '') + "','"
+                            + (rare or '') + "',"
+                            + str(20) + ",'"
                             + (dir_name or '') + "',"
                             + str(0) + ","
                             + str(power or 0) + ","
@@ -3150,7 +3165,8 @@ def create_pets_database():
                             + str(id) + ",'"
                             + (name or '') + "','"
                             + (path or '') + "','"
-                            + (rare or '') + "','"
+                            + (rare or '') + "',"
+                            + str(15) + ",'"
                             + (dir_name or '') + "',"
                             + str(0) + ","
                             + str(power or 0) + ","
@@ -3271,8 +3287,9 @@ def create_symbols_database():
                             "insert into symbols values ("
                             + str(id) + ",'"
                             + (name or '') + "','"
-                            + (path or '') + "','"
-                            + "'MR','"  # Hằng số 'MR'
+                            + (path or '') + "',"
+                            + "'MR',"  # Hằng số 'MR'
+                            + str(20) + ",'"
                             + (dir_name or '') + "',"
                             + str(power or 0) + ","
                             + str(health or 0) + ","
@@ -3398,6 +3415,7 @@ def create_medals_database():
                             + (name or '') + "','"
                             + (path or '') + "',"
                             + "'MR',"  # Hằng số 'MR'
+                            + str(20) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
                             + str(physical_attack or 0) + ","
@@ -3522,6 +3540,7 @@ def create_achievements_database():
                             + (name or '') + "','"
                             + (path or '') + "',"
                             + "'MR',"  # Hằng số 'MR'
+                            + str(20) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
                             + str(physical_attack or 0) + ","
@@ -3645,6 +3664,7 @@ def create_titles_database():
                             + (name or '') + "','"
                             + (path or '') + "',"
                             + "'MR',"  # Hằng số 'MR'
+                            + str(20) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
                             + str(physical_attack or 0) + ","
@@ -3767,7 +3787,8 @@ def create_monster_database():
                             + str(id) + ",'"
                             + (name or '') + "','"
                             + (path or '') + "','"
-                            + (rare or '') + "','"
+                            + (rare or '') + "',"
+                            + str(15) + ",'"
                             + ('none') + "',"
                             + str(0) + ","
                             + str(power or 0) + ","
@@ -3882,6 +3903,7 @@ def create_borders_database():
                             + (name or '') + "','"
                             + (path or '') + "',"
                             + "'MR',"  # Hằng số 'MR'
+                            + str(20) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
                             + str(physical_attack or 0) + ","
@@ -4005,6 +4027,7 @@ def create_avatars_database():
                             + (name or '') + "','"
                             + (path or '') + "',"
                             + "'MR',"  # Hằng số 'MR'
+                            + str(20) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
                             + str(physical_attack or 0) + ","
@@ -4264,7 +4287,8 @@ def create_equipments_database():
                                     + str(id) + ",'"
                                     + name + "','"
                                     + path + "','"
-                                    + dir_name + "','"
+                                    + dir_name + "',"
+                                    + str(2) + ",'"
                                     + current_name + "','"
                                     + set1_folder_name + "',"
                                     + str(0) + ","
@@ -4362,7 +4386,8 @@ def create_equipments_database():
                                     + str(id) + ",'"
                                     + name + "','"
                                     + path + "','"
-                                    + dir_name + "','"
+                                    + dir_name + "',"
+                                    + str(5) + ",'"
                                     + current_name + "','"
                                     + set1_folder_name + "',"
                                     + str(0) + ","
@@ -4459,7 +4484,8 @@ def create_equipments_database():
                                     + str(id) + ",'"
                                     + name + "','"
                                     + path + "','"
-                                    + dir_name + "','"
+                                    + dir_name + "',"
+                                    + str(10) + ",'"
                                     + current_name + "','"
                                     + set1_folder_name + "',"
                                     + str(0) + ","
@@ -4641,7 +4667,8 @@ def create_equipments_database():
                                     + str(id) + ",'"
                                     + name + "','"
                                     + path + "','"
-                                    + dir_name + "','"
+                                    + dir_name + "',"
+                                    + str(15) + ",'"
                                     + current_name + "','"
                                     + set1_folder_name + "',"
                                     + str(0) + ","
@@ -4738,7 +4765,8 @@ def create_equipments_database():
                                     + str(id) + ",'"
                                     + name + "','"
                                     + path + "','"
-                                    + dir_name + "','"
+                                    + dir_name + "',"
+                                    + str(20) + ",'"
                                     + current_name + "','"
                                     + set1_folder_name + "',"
                                     + str(0) + ","
@@ -4866,6 +4894,7 @@ def create_collaboration_database():
                             + (name or '') + "','"
                             + (path or '') + "',"
                             + "'MR',"  # Hằng số 'MR'
+                            + str(20) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
                             + str(physical_attack or 0) + ","
@@ -5000,7 +5029,8 @@ def create_military_database():
                                 + str(id) + ",'"
                                 + (name or '') + "','"
                                 + (path or '') + "','"
-                                + (rare or '') + "','"
+                                + (rare or '') + "',"
+                                + str(2) + ",'"
                                 + (current_name or '') + "',"
                                 + str(0) + ","  # Giá trị placeholder
                                 + str(power or 0) + ","
@@ -5091,7 +5121,8 @@ def create_military_database():
                                 + str(id) + ",'"
                                 + (name or '') + "','"
                                 + (path or '') + "','"
-                                + (rare or '') + "','"
+                                + (rare or '') + "',"
+                                + str(5) + ",'"
                                 + (current_name or '') + "',"
                                 + str(0) + ","  # Giá trị placeholder
                                 + str(power or 0) + ","
@@ -5181,7 +5212,8 @@ def create_military_database():
                                 + str(id) + ",'"
                                 + (name or '') + "','"
                                 + (path or '') + "','"
-                                + (rare or '') + "','"
+                                + (rare or '') + "',"
+                                + str(10) + ",'"
                                 + (current_name or '') + "',"
                                 + str(0) + ","  # Giá trị placeholder
                                 + str(power or 0) + ","
@@ -5271,7 +5303,8 @@ def create_military_database():
                                 + str(id) + ",'"
                                 + (name or '') + "','"
                                 + (path or '') + "','"
-                                + (rare or '') + "','"
+                                + (rare or '') + "',"
+                                + str(15) + ",'"
                                 + (current_name or '') + "',"
                                 + str(0) + ","  # Giá trị placeholder
                                 + str(power or 0) + ","
@@ -5383,7 +5416,8 @@ def create_spell_database():
                                 + str(id) + ",'"
                                 + (name or '') + "','"
                                 + (path or '') + "','"
-                                + (rare or '') + "','"
+                                + (rare or '') + "',"
+                                + str(2) + ",'"
                                 + (current_name or '') + "',"
                                 + str(0) + ","
                                 + str(power or 0) + ","
@@ -5468,7 +5502,8 @@ def create_spell_database():
                                 + str(id) + ",'"
                                 + (name or '') + "','"
                                 + (path or '') + "','"
-                                + (rare or '') + "','"
+                                + (rare or '') + "',"
+                                + str(15) + ",'"
                                 + (current_name or '') + "',"
                                 + str(0) + ","
                                 + str(power or 0) + ","
@@ -5587,7 +5622,8 @@ def create_relics_database():
                             + str(id) + ",'"
                             + (name or '') + "','"
                             + (path or '') + "',"
-                            + "'MR','"  # Hằng số 'MR'
+                            + "'MR',"  # Hằng số 'MR'
+                            + str(20) + ",'"
                             + (dir_name or '') + "',"
                             + str(0) + ","
                             + str(power or 0) + ","
@@ -5720,7 +5756,8 @@ def create_magic_formation_circle_database():
                             + str(id) + ",'"
                             + (name or '') + "','"
                             + (path or '') + "',"
-                            + "'MR','"  # Hằng số 'MR'
+                            + "'MR',"  # Hằng số 'MR'
+                            + str(20) + ",'"
                             + (dir_name or '') + "',"
                             + str(0) + ","
                             + str(power or 0) + ","
@@ -5853,7 +5890,8 @@ def create_talisman_database():
                             + str(id) + ",'"
                             + (name or '') + "','"
                             + (path or '') + "',"
-                            + "'MR','"  # Hằng số 'MR'
+                            + "'MR',"  # Hằng số 'MR'
+                            + str(20) + ",'"
                             + (dir_name or '') + "',"
                             + str(0) + ","
                             + str(power or 0) + ","
@@ -5986,7 +6024,8 @@ def create_puppet_database():
                             + str(id) + ",'"
                             + (name or '') + "','"
                             + (path or '') + "',"
-                            + "'MR','"  # Hằng số 'MR'
+                            + "'MR',"  # Hằng số 'MR'
+                            + str(20) + ",'"
                             + (dir_name or '') + "',"
                             + str(0) + ","
                             + str(power or 0) + ","
@@ -6119,7 +6158,8 @@ def create_alchemy_database():
                             + str(id) + ",'"
                             + (name or '') + "','"
                             + (path or '') + "',"
-                            + "'MR','"  # Hằng số 'MR'
+                            + "'MR',"  # Hằng số 'MR'
+                            + str(20) + ",'"
                             + (dir_name or '') + "',"
                             + str(0) + ","
                             + str(power or 0) + ","
@@ -6252,7 +6292,8 @@ def create_forge_database():
                             + str(id) + ",'"
                             + (name or '') + "','"
                             + (path or '') + "',"
-                            + "'MR','"  # Hằng số 'MR'
+                            + "'MR',"  # Hằng số 'MR'
+                            + str(20) + ",'"
                             + (dir_name or '') + "',"
                             + str(0) + ","
                             + str(power or 0) + ","
@@ -6386,7 +6427,8 @@ def create_card_life_database():
                             + str(id) + ",'"
                             + (name or '') + "','"
                             + (path or '') + "',"
-                            + "'MR','"  # Hằng số 'MR'
+                            + "'MR',"  # Hằng số 'MR'
+                            + str(20) + ",'"
                             + (dir_name or '') + "',"
                             + str(0) + ","
                             + str(power or 0) + ","
@@ -9363,6 +9405,1021 @@ def create_chest_card_life():
                     file.write("insert into chest_card_life values (" + str(234) + "," + str(id) + "," + str(1) + ");\n")
                 id=id+1
                 
+#Generate synery
+def create_cards_synery():
+    cards_dir="Card_Hero"
+    card_list = []
+    id=1
+    card_name=""
+    health=1000000
+    physical_attack=100000
+    physical_defense=100000
+    magical_attack=100000
+    magical_defense=100000
+    chemical_attack=100000
+    chemical_defense=100000
+    atomic_attack=100000
+    atomic_defense=100000
+    mental_attack=100000
+    mental_defense=100000
+    speed = 100000
+    critical_damage_rate = 0
+    critical_rate = 0
+    penetration_rate = 0
+    evasion_rate = 0
+    damage_absorption_rate = 0
+    vitality_regeneration_rate = 0
+    accuracy_rate = 0
+    lifesteal_rate = 0
+    shield_strength = 100000
+    tenacity = 0
+    resistance_rate = 0
+    combo_rate = 0
+    reflection_rate = 0
+    mana = 100
+    mana_regeneration_rate = 0
+    damage_to_different_faction_rate = 0
+    resistance_to_different_faction_rate = 0
+    damage_to_same_faction_rate = 0
+    resistance_to_same_faction_rate = 0
+    rare="SR"
+    clan=""
+    price=100000
+    price_unit="Chasmic_Blue_Crystalyte"
+    path=""
+    for root, dirs, files in os.walk(cards_dir):
+        current_dir=os.path.basename(root)
+        current_name=""
+        if current_dir not in ["LG", "UR", "SSR", "SR"]:
+            current_name=current_dir
+            # print(current_name)
+        for dir_name in dirs:
+            if "SR" in dir_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    if file_name.endswith(".jpg") or file_name.endswith("png"):
+                        name, extension=os.path.splitext(file_name)
+                        path=os.path.join(current_dir,file_name)
+                        path=path.replace("\\","/")
+                        name=name.replace("_"," ")
+
+                        card_life_id_1 = random.randint(1, 406)
+                        card_life_id_2 = random.randint(407, 573)
+                        card_life_id_3 = random.randint(574, 978)
+                        card_life_id_4 = random.randint(979, 1853)
+                        with open('synery.txt', 'a') as file:
+                            file.write(
+                                "insert into card_heroes_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_1) + ")"
+                            )
+                            file.write(
+                                "insert into card_heroes_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_2) + ")"
+                            )
+                            file.write(
+                                "insert into card_heroes_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_3) + ")"
+                            )
+                            file.write(
+                                "insert into card_heroes_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_4) + ")"
+                            )
+
+                        id=id+1
+            if "SSR" in dir_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    if file_name.endswith(".jpg") or file_name.endswith("png"):
+                        name, extension=os.path.splitext(file_name)
+                        health=2000000
+                        physical_attack=200000
+                        physical_defense=200000
+                        magical_attack=200000
+                        magical_defense=200000
+                        chemical_attack=200000
+                        chemical_defense=200000
+                        atomic_attack=200000
+                        atomic_defense=200000
+                        mental_attack=200000
+                        mental_defense=200000
+                        mana=200
+                        rare="SSR"
+                        price=500000
+                        path=os.path.join(current_dir,file_name)
+                        path=path.replace("\\","/")
+                        name=name.replace("_"," ")
+                        
+                        card_life_id_1 = random.randint(1, 406)
+                        card_life_id_2 = random.randint(407, 573)
+                        card_life_id_3 = random.randint(574, 978)
+                        card_life_id_4 = random.randint(979, 1853)
+                        with open('synery.txt', 'a') as file:
+                            file.write(
+                                "insert into card_heroes_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_1) + ")"
+                            )
+                            file.write(
+                                "insert into card_heroes_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_2) + ")"
+                            )
+                            file.write(
+                                "insert into card_heroes_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_3) + ")"
+                            )
+                            file.write(
+                                "insert into card_heroes_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_4) + ")"
+                            )
+                        id=id+1
+            if "UR" in dir_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    if file_name.endswith(".jpg") or file_name.endswith("png"):
+                        name,extension=os.path.splitext(file_name)
+                        health=5000000
+                        physical_attack=500000
+                        physical_defense=500000
+                        magical_attack=500000
+                        magical_defense=500000
+                        chemical_attack=500000
+                        chemical_defense=500000
+                        atomic_attack=500000
+                        atomic_defense=500000
+                        mental_attack=500000
+                        mental_defense=500000
+                        mana=500
+                        rare="UR"
+                        price=1000000
+                        path=os.path.join(current_dir,file_name)
+                        path=path.replace("\\","/")
+                        name=name.replace("_"," ")
+
+                        card_life_id_1 = random.randint(1, 406)
+                        card_life_id_2 = random.randint(407, 573)
+                        card_life_id_3 = random.randint(574, 978)
+                        card_life_id_4 = random.randint(979, 1853)
+                        with open('synery.txt', 'a') as file:
+                            file.write(
+                                "insert into card_heroes_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_1) + ")"
+                            )
+                            file.write(
+                                "insert into card_heroes_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_2) + ")"
+                            )
+                            file.write(
+                                "insert into card_heroes_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_3) + ")"
+                            )
+                            file.write(
+                                "insert into card_heroes_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_4) + ")"
+                            )
+                        id=id+1
+            if "LG" in dir_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    if file_name.endswith(".jpg") or file_name.endswith("png"):
+                        name, extension=os.path.splitext(file_name)
+                        health=10000000
+                        physical_attack=1000000
+                        physical_defense=1000000
+                        magical_attack=1000000
+                        magical_defense=1000000
+                        chemical_attack=1000000
+                        chemical_defense=1000000
+                        atomic_attack=1000000
+                        atomic_defense=1000000
+                        mental_attack=1000000
+                        mental_defense=1000000
+                        mana=1000
+                        rare="LG"
+                        price=5000000
+                        path=os.path.join(current_dir,file_name)
+                        path=path.replace("\\","/")
+                        name=name.replace("_"," ")
+                        card_life_id_1 = random.randint(1, 406)
+                        card_life_id_2 = random.randint(407, 573)
+                        card_life_id_3 = random.randint(574, 978)
+                        card_life_id_4 = random.randint(979, 1853)
+                        with open('synery.txt', 'a') as file:
+                            file.write(
+                                "insert into card_heroes_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_1) + ")"
+                            )
+                            file.write(
+                                "insert into card_heroes_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_2) + ")"
+                            )
+                            file.write(
+                                "insert into card_heroes_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_3) + ")"
+                            )
+                            file.write(
+                                "insert into card_heroes_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_4) + ")"
+                            )
+
+                        id=id+1
+
+def create_captain_synery():
+    cards_dir="Card_Captain"
+    id=1
+    health=20000000*2
+    physical_attack=5000000*2
+    physical_defense=5000000*2
+    magical_attack=5000000*2
+    magical_defense=5000000*2
+    chemical_attack=5000000*2
+    chemical_defense=5000000*2
+    atomic_attack=5000000*2
+    atomic_defense=5000000*2
+    mental_attack=5000000*2
+    mental_defense=5000000*2
+    speed = 5000000*2
+    critical_damage_rate = 20
+    critical_rate = 20
+    penetration_rate = 20
+    evasion_rate = 20
+    damage_absorption_rate = 20
+    vitality_regeneration_rate = 20
+    accuracy_rate = 20
+    lifesteal_rate = 20
+    shield_strength = 5000000*2
+    tenacity = 20
+    resistance_rate = 20
+    combo_rate = 20
+    reflection_rate = 20
+    mana = 100
+    mana_regeneration_rate = 20
+    damage_to_different_faction_rate = 20
+    resistance_to_different_faction_rate = 20
+    damage_to_same_faction_rate = 20
+    resistance_to_same_faction_rate = 20
+    rare="LG"
+    path=""
+    for root, dirs, files in os.walk(cards_dir):
+        current_dir=os.path.basename(root)
+        current_name=current_dir
+        for dir_name in dirs:
+            current_dir =os.path.join(root,dir_name)
+            for file_name in os.listdir(current_dir):
+                if file_name.endswith(".jpg") or file_name.endswith("png"):
+                    name, extension=os.path.splitext(file_name)
+                    path=os.path.join(current_dir,file_name)
+                    path=path.replace("\\","/")
+                    name=name.replace("_"," ")
+                    card_life_id_1 = random.randint(1, 406)
+                    card_life_id_2 = random.randint(407, 573)
+                    card_life_id_3 = random.randint(574, 978)
+                    card_life_id_4 = random.randint(979, 1853)
+                    with open('synery.txt', 'a') as file:
+                        file.write(
+                            "insert into card_captains_synery values ("
+                            + str(id) + ","
+                            + str(card_life_id_1) + ")"
+                        )
+                        file.write(
+                            "insert into card_captains_synery values ("
+                            + str(id) + ","
+                            + str(card_life_id_2) + ")"
+                        )
+                        file.write(
+                            "insert into card_captains_synery values ("
+                            + str(id) + ","
+                            + str(card_life_id_3) + ")"
+                        )
+                        file.write(
+                            "insert into card_captains_synery values ("
+                            + str(id) + ","
+                            + str(card_life_id_4) + ")"
+                        )
+                    id=id+1
+
+def create_colonel_synery():
+    cards_dir="Card_Colonel"
+    id=1
+    health=20000000*3
+    physical_attack=5000000*3
+    physical_defense=5000000*3
+    magical_attack=5000000*3
+    magical_defense=5000000*3
+    chemical_attack=5000000*3
+    chemical_defense=5000000*3
+    atomic_attack=5000000*3
+    atomic_defense=5000000*3
+    mental_attack=5000000*3
+    mental_defense=5000000*3
+    speed = 5000000*3
+    critical_damage_rate = 30
+    critical_rate = 30
+    penetration_rate = 30
+    evasion_rate = 30
+    damage_absorption_rate = 30
+    vitality_regeneration_rate = 30
+    accuracy_rate = 30
+    lifesteal_rate = 30
+    shield_strength = 5000000*3
+    tenacity = 30
+    resistance_rate = 30
+    combo_rate = 30
+    reflection_rate = 30
+    mana = 100
+    mana_regeneration_rate = 30
+    damage_to_different_faction_rate = 30
+    resistance_to_different_faction_rate = 30
+    damage_to_same_faction_rate = 30
+    resistance_to_same_faction_rate = 30
+    rare="LG"
+    path=""
+    for root, dirs, files in os.walk(cards_dir):
+        current_dir=os.path.basename(root)
+        current_name=current_dir
+        for dir_name in dirs:
+            current_dir =os.path.join(root,dir_name)
+            for file_name in os.listdir(current_dir):
+                if file_name.endswith(".jpg") or file_name.endswith("png"):
+                    name, extension=os.path.splitext(file_name)
+                    path=os.path.join(current_dir,file_name)
+                    path=path.replace("\\","/")
+                    name=name.replace("_"," ")
+                    card_life_id_1 = random.randint(1, 406)
+                    card_life_id_2 = random.randint(407, 573)
+                    card_life_id_3 = random.randint(574, 978)
+                    card_life_id_4 = random.randint(979, 1853)
+                    with open('synery.txt', 'a') as file:
+                        file.write(
+                            "insert into card_colonels_synery values ("
+                            + str(id) + ","
+                            + str(card_life_id_1) + ")"
+                        )
+                        file.write(
+                            "insert into card_colonels_synery values ("
+                            + str(id) + ","
+                            + str(card_life_id_2) + ")"
+                        )
+                        file.write(
+                            "insert into card_colonels_synery values ("
+                            + str(id) + ","
+                            + str(card_life_id_3) + ")"
+                        )
+                        file.write(
+                            "insert into card_colonels_synery values ("
+                            + str(id) + ","
+                            + str(card_life_id_4) + ")"
+                        )
+                    id=id+1
+
+def create_general_synery():
+    cards_dir="Card_General"
+    id=1
+    health=20000000*4
+    physical_attack=5000000*4
+    physical_defense=5000000*4
+    magical_attack=5000000*4
+    magical_defense=5000000*4
+    chemical_attack=5000000*4
+    chemical_defense=5000000*4
+    atomic_attack=5000000*4
+    atomic_defense=5000000*4
+    mental_attack=5000000*4
+    mental_defense=5000000*4
+    speed = 5000000*4
+    critical_damage_rate = 40
+    critical_rate = 40
+    penetration_rate = 40
+    evasion_rate = 40
+    damage_absorption_rate = 40
+    vitality_regeneration_rate = 40
+    accuracy_rate = 40
+    lifesteal_rate = 40
+    shield_strength = 5000000*4
+    tenacity = 40
+    resistance_rate = 40
+    combo_rate = 40
+    reflection_rate = 40
+    mana = 100
+    mana_regeneration_rate = 40
+    damage_to_different_faction_rate = 40
+    resistance_to_different_faction_rate = 40
+    damage_to_same_faction_rate = 40
+    resistance_to_same_faction_rate = 40
+    rare="LG"
+    path=""
+    for root, dirs, files in os.walk(cards_dir):
+        current_dir=os.path.basename(root)
+        current_name=current_dir
+        for dir_name in dirs:
+            current_dir =os.path.join(root,dir_name)
+            for file_name in os.listdir(current_dir):
+                if file_name.endswith(".jpg") or file_name.endswith("png"):
+                    name, extension=os.path.splitext(file_name)
+                    path=os.path.join(current_dir,file_name)
+                    path=path.replace("\\","/")
+                    name=name.replace("_"," ")
+                    card_life_id_1 = random.randint(1, 406)
+                    card_life_id_2 = random.randint(407, 573)
+                    card_life_id_3 = random.randint(574, 978)
+                    card_life_id_4 = random.randint(979, 1853)
+                    with open('synery.txt', 'a') as file:
+                        file.write(
+                            "insert into card_generals_synery values ("
+                            + str(id) + ","
+                            + str(card_life_id_1) + ")"
+                        )
+                        file.write(
+                            "insert into card_generals_synery values ("
+                            + str(id) + ","
+                            + str(card_life_id_2) + ")"
+                        )
+                        file.write(
+                            "insert into card_generals_synery values ("
+                            + str(id) + ","
+                            + str(card_life_id_3) + ")"
+                        )
+                        file.write(
+                            "insert into card_generals_synery values ("
+                            + str(id) + ","
+                            + str(card_life_id_4) + ")"
+                        )
+                    id=id+1
+
+def create_admiral_synery():
+    cards_dir="Card_Admiral"
+    id=1
+    health=20000000*5
+    physical_attack=5000000*5
+    physical_defense=5000000*5
+    magical_attack=5000000*5
+    magical_defense=5000000*5
+    chemical_attack=5000000*5
+    chemical_defense=5000000*5
+    atomic_attack=5000000*5
+    atomic_defense=5000000*5
+    mental_attack=5000000*5
+    mental_defense=5000000*5
+    speed = 5000000*5
+    critical_damage_rate = 50
+    critical_rate = 50
+    penetration_rate = 50
+    evasion_rate = 50
+    damage_absorption_rate = 50
+    vitality_regeneration_rate = 50
+    accuracy_rate = 50
+    lifesteal_rate = 50
+    shield_strength = 5000000*5
+    tenacity = 50
+    resistance_rate = 50
+    combo_rate = 50
+    reflection_rate = 50
+    mana = 100
+    mana_regeneration_rate = 50
+    damage_to_different_faction_rate = 50
+    resistance_to_different_faction_rate = 50
+    damage_to_same_faction_rate = 50
+    resistance_to_same_faction_rate = 50
+    rare="LG"
+    path=""
+    for root, dirs, files in os.walk(cards_dir):
+        current_dir=os.path.basename(root)
+        current_name=current_dir
+        for dir_name in dirs:
+            current_dir =os.path.join(root,dir_name)
+            for file_name in os.listdir(current_dir):
+                if file_name.endswith(".jpg") or file_name.endswith("png"):
+                    name, extension=os.path.splitext(file_name)
+                    path=os.path.join(current_dir,file_name)
+                    path=path.replace("\\","/")
+                    name=name.replace("_"," ")
+                    card_life_id_1 = random.randint(1, 406)
+                    card_life_id_2 = random.randint(407, 573)
+                    card_life_id_3 = random.randint(574, 978)
+                    card_life_id_4 = random.randint(979, 1853)
+                    with open('synery.txt', 'a') as file:
+                        file.write(
+                            "insert into card_admirals_synery values ("
+                            + str(id) + ","
+                            + str(card_life_id_1) + ")"
+                        )
+                        file.write(
+                            "insert into card_admirals_synery values ("
+                            + str(id) + ","
+                            + str(card_life_id_2) + ")"
+                        )
+                        file.write(
+                            "insert into card_admirals_synery values ("
+                            + str(id) + ","
+                            + str(card_life_id_3) + ")"
+                        )
+                        file.write(
+                            "insert into card_admirals_synery values ("
+                            + str(id) + ","
+                            + str(card_life_id_4) + ")"
+                        )
+                    id=id+1
+
+def create_monster_synery():
+    cards_dir="Card_Monster"
+    card_list = []
+    id=1
+    card_name=""
+    health=100000000
+    physical_attack=30000000
+    physical_defense=20000000
+    magical_attack=30000000
+    magical_defense=20000000
+    chemical_attack=30000000
+    chemical_defense=20000000
+    atomic_attack=30000000
+    atomic_defense=20000000
+    mental_attack=30000000
+    mental_defense=20000000
+    per_health=10
+    per_physical_attack=10
+    per_physical_defense=10
+    per_magical_attack=10
+    per_magical_defense=10
+    per_chemical_attack=10
+    per_chemical_defense=10
+    per_atomic_attack=10
+    per_atomic_defense=10
+    per_mental_attack=10
+    per_mental_defense=10
+    speed = 30000000
+    critical_damage_rate = 20
+    critical_rate = 20
+    penetration_rate = 20
+    evasion_rate = 20
+    damage_absorption_rate = 20
+    vitality_regeneration_rate = 20
+    accuracy_rate = 20
+    lifesteal_rate = 20
+    shield_strength = 30000000
+    tenacity = 20
+    resistance_rate = 20
+    combo_rate = 20
+    reflection_rate = 20
+    mana = 100
+    mana_regeneration_rate = 20
+    damage_to_different_faction_rate = 20
+    resistance_to_different_faction_rate = 20
+    damage_to_same_faction_rate = 20
+    resistance_to_same_faction_rate = 20
+    rare="LG"
+    path=""
+    for root, dirs, files in os.walk(cards_dir):
+        current_dir=os.path.basename(root)
+        for file_name in os.listdir(current_dir):
+            if file_name.endswith(".jpg") or file_name.endswith("png"):
+                name, extension=os.path.splitext(file_name)
+                path=os.path.join(current_dir,file_name)
+                path=path.replace("\\","/")
+                name=name.replace("_"," ")
+                card_life_id_1 = random.randint(1, 406)
+                card_life_id_2 = random.randint(407, 573)
+                card_life_id_3 = random.randint(574, 978)
+                card_life_id_4 = random.randint(979, 1853)
+                with open('synery.txt', 'a') as file:
+                    file.write(
+                        "insert into card_monsters_synery values ("
+                        + str(id) + ","
+                        + str(card_life_id_1) + ")"
+                    )
+                    file.write(
+                        "insert into card_monsters_synery values ("
+                        + str(id) + ","
+                        + str(card_life_id_2) + ")"
+                    )
+                    file.write(
+                        "insert into card_monsters_synery values ("
+                        + str(id) + ","
+                        + str(card_life_id_3) + ")"
+                    )
+                    file.write(
+                        "insert into card_monsters_synery values ("
+                        + str(id) + ","
+                        + str(card_life_id_4) + ")"
+                    )
+                id=id+1
+
+def create_military_synery():
+    cards_dir="Card_Military"
+    card_list = []
+    id=1
+    card_name=""
+    health=1000000
+    physical_attack=100000
+    physical_defense=100000
+    magical_attack=100000
+    magical_defense=100000
+    chemical_attack=100000
+    chemical_defense=100000
+    atomic_attack=100000
+    atomic_defense=100000
+    mental_attack=100000
+    mental_defense=100000
+    speed = 100000
+    critical_damage_rate = 0
+    critical_rate = 0
+    penetration_rate = 0
+    evasion_rate = 0
+    damage_absorption_rate = 0
+    vitality_regeneration_rate = 0
+    accuracy_rate = 0
+    lifesteal_rate = 0
+    shield_strength = 100000
+    tenacity = 0
+    resistance_rate = 0
+    combo_rate = 0
+    reflection_rate = 0
+    mana = 100
+    mana_regeneration_rate = 0
+    damage_to_different_faction_rate = 0
+    resistance_to_different_faction_rate = 0
+    damage_to_same_faction_rate = 0
+    resistance_to_same_faction_rate = 0
+    rare="SR"
+    clan=""
+    price=100000
+    price_unit="Chasmic_Blue_Crystalyte"
+    path=""
+    for root, dirs, files in os.walk(cards_dir):
+        current_dir=os.path.basename(root)
+        current_name=""
+        if current_dir not in ["LG", "UR", "SSR", "SR"]:
+            current_name=current_dir
+            # print(current_name)
+        for dir_name in dirs:
+            if "SR" in dir_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    if file_name.endswith(".jpg") or file_name.endswith("png"):
+                        name, extension=os.path.splitext(file_name)
+                        path=os.path.join(current_dir,file_name)
+                        path=path.replace("\\","/")
+                        name=name.replace("_"," ")
+                        story = get_story(current_name)
+                        if "Evolved" in name:
+                            health=health*2
+                            physical_attack=physical_attack*2
+                            physical_defense=physical_defense*2
+                            magical_attack=magical_attack*2
+                            magical_defense=magical_defense*2
+                            chemical_attack=chemical_attack*2
+                            chemical_defense=chemical_defense*2
+                            atomic_attack=atomic_attack*2
+                            atomic_defense=atomic_defense*2
+                            mental_attack=mental_attack*2
+                            mental_defense=mental_defense*2 
+                        
+                        card_life_id_1 = random.randint(1, 406)
+                        card_life_id_2 = random.randint(407, 573)
+                        card_life_id_3 = random.randint(574, 978)
+                        card_life_id_4 = random.randint(979, 1853)
+                        with open('synery.txt', 'a') as file:
+                            file.write(
+                                "insert into card_military_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_1) + ")"
+                            )
+                            file.write(
+                                "insert into card_military_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_2) + ")"
+                            )
+                            file.write(
+                                "insert into card_military_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_3) + ")"
+                            )
+                            file.write(
+                                "insert into card_military_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_4) + ")"
+                            )
+
+                        id=id+1
+            if "SSR" in dir_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    if file_name.endswith(".jpg") or file_name.endswith("png"):
+                        name, extension=os.path.splitext(file_name)
+                        health=2000000
+                        physical_attack=200000
+                        physical_defense=200000
+                        magical_attack=200000
+                        magical_defense=200000
+                        chemical_attack=200000
+                        chemical_defense=200000
+                        atomic_attack=200000
+                        atomic_defense=200000
+                        mental_attack=200000
+                        mental_defense=200000
+                        mana=200
+                        rare="SSR"
+                        price=500000
+                        path=os.path.join(current_dir,file_name)
+                        path=path.replace("\\","/")
+                        name=name.replace("_"," ")
+                        story = get_story(current_name)
+                        if "Evolved" in name:
+                            health=health*2
+                            physical_attack=physical_attack*2
+                            physical_defense=physical_defense*2
+                            magical_attack=magical_attack*2
+                            magical_defense=magical_defense*2
+                            chemical_attack=chemical_attack*2
+                            chemical_defense=chemical_defense*2
+                            atomic_attack=atomic_attack*2
+                            atomic_defense=atomic_defense*2
+                            mental_attack=mental_attack*2
+                            mental_defense=mental_defense*2 
+                        card_life_id_1 = random.randint(1, 406)
+                        card_life_id_2 = random.randint(407, 573)
+                        card_life_id_3 = random.randint(574, 978)
+                        card_life_id_4 = random.randint(979, 1853)
+                        with open('synery.txt', 'a') as file:
+                            file.write(
+                                "insert into card_military_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_1) + ")"
+                            )
+                            file.write(
+                                "insert into card_military_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_2) + ")"
+                            )
+                            file.write(
+                                "insert into card_military_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_3) + ")"
+                            )
+                            file.write(
+                                "insert into card_military_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_4) + ")"
+                            )
+                        id=id+1
+            if "UR" in dir_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    if file_name.endswith(".jpg") or file_name.endswith("png"):
+                        name,extension=os.path.splitext(file_name)
+                        health=5000000
+                        physical_attack=500000
+                        physical_defense=500000
+                        magical_attack=500000
+                        magical_defense=500000
+                        chemical_attack=500000
+                        chemical_defense=500000
+                        atomic_attack=500000
+                        atomic_defense=500000
+                        mental_attack=500000
+                        mental_defense=500000
+                        mana=500
+                        rare="UR"
+                        price=1000000
+                        path=os.path.join(current_dir,file_name)
+                        path=path.replace("\\","/")
+                        name=name.replace("_"," ")
+                        story = get_story(current_name)
+                        if "Evolved" in name:
+                            health=health*2
+                            physical_attack=physical_attack*2
+                            physical_defense=physical_defense*2
+                            magical_attack=magical_attack*2
+                            magical_defense=magical_defense*2
+                            chemical_attack=chemical_attack*2
+                            chemical_defense=chemical_defense*2
+                            atomic_attack=atomic_attack*2
+                            atomic_defense=atomic_defense*2
+                            mental_attack=mental_attack*2
+                            mental_defense=mental_defense*2 
+                        card_life_id_1 = random.randint(1, 406)
+                        card_life_id_2 = random.randint(407, 573)
+                        card_life_id_3 = random.randint(574, 978)
+                        card_life_id_4 = random.randint(979, 1853)
+                        with open('synery.txt', 'a') as file:
+                            file.write(
+                                "insert into card_military_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_1) + ")"
+                            )
+                            file.write(
+                                "insert into card_military_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_2) + ")"
+                            )
+                            file.write(
+                                "insert into card_military_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_3) + ")"
+                            )
+                            file.write(
+                                "insert into card_military_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_4) + ")"
+                            )
+                        id=id+1
+            if "LG" in dir_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    if file_name.endswith(".jpg") or file_name.endswith("png"):
+                        name, extension=os.path.splitext(file_name)
+                        health=10000000
+                        physical_attack=1000000
+                        physical_defense=1000000
+                        magical_attack=1000000
+                        magical_defense=1000000
+                        chemical_attack=1000000
+                        chemical_defense=1000000
+                        atomic_attack=1000000
+                        atomic_defense=1000000
+                        mental_attack=1000000
+                        mental_defense=1000000
+                        mana=1000
+                        rare="LG"
+                        price=5000000
+                        path=os.path.join(current_dir,file_name)
+                        path=path.replace("\\","/")
+                        name=name.replace("_"," ")
+                        story = get_story(current_name)
+                        if "Evolved" in name:
+                            health=health*2
+                            physical_attack=physical_attack*2
+                            physical_defense=physical_defense*2
+                            magical_attack=magical_attack*2
+                            magical_defense=magical_defense*2
+                            chemical_attack=chemical_attack*2
+                            chemical_defense=chemical_defense*2
+                            atomic_attack=atomic_attack*2
+                            atomic_defense=atomic_defense*2
+                            mental_attack=mental_attack*2
+                            mental_defense=mental_defense*2 
+                        card_life_id_1 = random.randint(1, 406)
+                        card_life_id_2 = random.randint(407, 573)
+                        card_life_id_3 = random.randint(574, 978)
+                        card_life_id_4 = random.randint(979, 1853)
+                        with open('synery.txt', 'a') as file:
+                            file.write(
+                                "insert into card_military_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_1) + ")"
+                            )
+                            file.write(
+                                "insert into card_military_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_2) + ")"
+                            )
+                            file.write(
+                                "insert into card_military_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_3) + ")"
+                            )
+                            file.write(
+                                "insert into card_military_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_4) + ")"
+                            )
+
+                        id=id+1
+
+def create_spell_synery():
+    cards_dir="Card_Spell"
+    card_list = []
+    id=1
+    card_name=""
+    health=10000000
+    physical_attack=1000000
+    physical_defense=1000000
+    magical_attack=1000000
+    magical_defense=1000000
+    chemical_attack=1000000
+    chemical_defense=1000000
+    atomic_attack=1000000
+    atomic_defense=1000000
+    mental_attack=1000000
+    mental_defense=1000000
+    speed = 1000000
+    critical_damage_rate = 10
+    critical_rate = 10
+    penetration_rate = 10
+    evasion_rate = 10
+    damage_absorption_rate = 10
+    vitality_regeneration_rate = 10
+    accuracy_rate = 10
+    lifesteal_rate = 10
+    shield_strength = 1000000
+    tenacity = 10
+    resistance_rate = 10
+    combo_rate = 10
+    reflection_rate = 10
+    mana = 100
+    mana_regeneration_rate = 10
+    damage_to_different_faction_rate = 20
+    resistance_to_different_faction_rate = 20
+    damage_to_same_faction_rate = 20
+    resistance_to_same_faction_rate = 20
+    rare="SR"
+    path=""
+    for root, dirs, files in os.walk(cards_dir):
+        current_dir=os.path.basename(root)
+        current_name=""
+        if current_dir not in ["LG", "UR", "SSR", "SR"]:
+            current_name=current_dir
+            # print(current_name)
+        for dir_name in dirs:
+            possible_values = [1.1, 1.2, 1.3, 1.4, 1.5]
+            NumberRandom=random.choice(possible_values)
+            if "SR" in dir_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    if file_name.endswith(".jpg") or file_name.endswith("png"):
+                        name, extension=os.path.splitext(file_name)
+                        path=os.path.join(current_dir,file_name)
+                        path=path.replace("\\","/")
+                        name=name.replace("_"," ")
+                        
+                        card_life_id_1 = random.randint(1, 406)
+                        card_life_id_2 = random.randint(407, 573)
+                        card_life_id_3 = random.randint(574, 978)
+                        card_life_id_4 = random.randint(979, 1853)
+                        with open('synery.txt', 'a') as file:
+                            file.write(
+                                "insert into card_spell_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_1) + ")"
+                            )
+                            file.write(
+                                "insert into card_spell_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_2) + ")"
+                            )
+                            file.write(
+                                "insert into card_spell_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_3) + ")"
+                            )
+                            file.write(
+                                "insert into card_spell_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_4) + ")"
+                            )
+
+                        id=id+1
+            if "LG" in dir_name:
+                current_dir =os.path.join(root,dir_name)
+                for file_name in os.listdir(current_dir):
+                    if file_name.endswith(".jpg") or file_name.endswith("png"):
+                        name, extension=os.path.splitext(file_name)
+                        mana=1000
+                        rare="LG"
+                        path=os.path.join(current_dir,file_name)
+                        path=path.replace("\\","/")
+                        name=name.replace("_"," ")
+                        description=""
+                        card_life_id_1 = random.randint(1, 406)
+                        card_life_id_2 = random.randint(407, 573)
+                        card_life_id_3 = random.randint(574, 978)
+                        card_life_id_4 = random.randint(979, 1853)
+                        with open('synery.txt', 'a') as file:
+                            file.write(
+                                "insert into card_spell_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_1) + ")"
+                            )
+                            file.write(
+                                "insert into card_spell_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_2) + ")"
+                            )
+                            file.write(
+                                "insert into card_spell_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_3) + ")"
+                            )
+                            file.write(
+                                "insert into card_spell_synery values ("
+                                + str(id) + ","
+                                + str(card_life_id_4) + ")"
+                            )
+                        id=id+1
 
 create_captain_database()
 create_colonel_database()
