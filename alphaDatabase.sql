@@ -6459,6 +6459,70 @@ CREATE TABLE features (
     description TEXT NULL,
     PRIMARY KEY (feature_name, required_level)
 );
+use alpha;
+CREATE TABLE arena_mode (
+    id int PRIMARY KEY,
+    mode varchar(255) UNIQUE
+);
+
+CREATE TABLE arena (
+    id int PRIMARY KEY,
+    mode_id int not null,
+    start_time DATETIME,
+    end_time DATETIME,
+    FOREIGN KEY (mode_id) REFERENCES arena_mode(id)
+);
+
+CREATE TABLE arena_participant (
+    arena_id INT not null,
+    user_id INT not null,
+    rank_point INT not null,
+
+    PRIMARY KEY (arena_id, user_id),
+    FOREIGN KEY (arena_id) REFERENCES arena(id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE arena_team(
+	arena_id INT not null,
+    user_id INT not null,
+    team_id INT not null,
+    PRIMARY KEY (arena_id, user_id, team_id),
+    FOREIGN KEY (arena_id, user_id) REFERENCES arena_participant(arena_id, user_id),
+    FOREIGN KEY (user_id, team_id) REFERENCES teams(user_id, team_id)
+);
+
+CREATE TABLE tower_mode (
+    id int PRIMARY KEY,
+    mode varchar(255) UNIQUE
+);
+
+CREATE TABLE tower_floor (
+    mode_id INT,
+    floor_number INT, -- tầng số mấy trong mode
+    PRIMARY KEY (mode_id, floor_number),
+    FOREIGN KEY (mode_id) REFERENCES tower_mode(id)
+);
+
+CREATE TABLE tower_floor_enemy (
+    mode_id INT,
+    floor_number INT,
+    enemy_id INT,     -- id của quái (tham chiếu đến bảng `enemy`)
+
+	PRIMARY KEY (mode_id, floor_number, enemy_id),
+    FOREIGN KEY (mode_id, floor_number) REFERENCES tower_floor(mode_id, floor_number),
+    FOREIGN KEY (enemy_id) REFERENCES card_heroes(id) -- bạn cần bảng enemy riêng
+);
+
+CREATE TABLE tower_rewards (
+    mode_id int NOT NULL,
+    floor_number INT NOT NULL,
+    item_id INT NOT NULL,
+    quantity INT DEFAULT 1,    
+    PRIMARY KEY (mode_id, floor_number, item_id),     
+    FOREIGN KEY (mode_id, floor_number) REFERENCES tower_floor(mode_id, floor_number),          
+    FOREIGN KEY (item_id) REFERENCES items(id)
+);
 
 CREATE TABLE card_heroes_synery(
     card_hero_id int NOT NULL,

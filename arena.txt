@@ -1,0 +1,17 @@
+INSERT INTO arena_mode (id, mode) VALUES
+(1, 'Arena 1vs1'),
+(2, 'Arena 3vs3'),
+(3, 'Arena 5vs5'),
+(4, 'Arena 7vs7'),
+(5, 'Arena 9vs9'),
+(6, 'Arena 11vs11'),
+(7, 'Arena 13vs13'),
+(8, 'Arena 15vs15'),
+(9, 'Arena 17vs17'),
+(10, 'Arena 19vs19'),
+(11, 'Chronoverse Arena'),
+(12, 'Xenoverse Arena'),
+(13, 'Omniverse Arena'),
+(14, 'Aetherion Arena'),
+(15, 'Astralis Arena'),
+(16, 'Thalorix Arena');
