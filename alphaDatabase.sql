@@ -4876,6 +4876,60 @@ create table user_stats(
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
+create table anime_stats(
+    user_id int NOT NULL,
+    rank_type varchar(255) NOT NULL,
+    rank_level int NOT NULL,
+    
+    power DOUBLE NOT NULL,
+    health DOUBLE NOT NULL,
+    physical_attack DOUBLE NOT NULL,
+    physical_defense DOUBLE NOT NULL,
+    magical_attack DOUBLE NOT NULL,
+    magical_defense DOUBLE NOT NULL,
+    chemical_attack DOUBLE NOT NULL,
+    chemical_defense DOUBLE NOT NULL,
+    atomic_attack DOUBLE NOT NULL,
+    atomic_defense DOUBLE NOT NULL,
+    mental_attack DOUBLE NOT NULL,
+    mental_defense DOUBLE NOT NULL,
+    speed DOUBLE NOT NULL,
+    critical_damage_rate DOUBLE NOT NULL,
+    critical_rate DOUBLE NOT NULL,
+    penetration_rate DOUBLE NOT NULL,
+    evasion_rate DOUBLE NOT NULL,
+    damage_absorption_rate DOUBLE NOT NULL,
+    vitality_regeneration_rate DOUBLE NOT NULL,
+    accuracy_rate DOUBLE NOT NULL,
+    lifesteal_rate DOUBLE NOT NULL,
+    shield_strength DOUBLE NOT NULL,
+    tenacity DOUBLE NOT NULL,
+    resistance_rate DOUBLE NOT NULL,
+    combo_rate DOUBLE NOT NULL, 
+    reflection_rate DOUBLE NOT NULL,  
+    mana float NOT NULL,
+    mana_regeneration_rate DOUBLE NOT NULL,
+    damage_to_different_faction_rate DOUBLE NOT NULL, 
+    resistance_to_different_faction_rate DOUBLE NOT NULL,
+    damage_to_same_faction_rate DOUBLE NOT NULL,
+    resistance_to_same_faction_rate DOUBLE NOT NULL ,
+
+	percent_all_health DOUBLE NOT NULL,
+    percent_all_physical_attack DOUBLE NOT NULL,
+    percent_all_physical_defense DOUBLE NOT NULL,
+    percent_all_magical_attack DOUBLE NOT NULL,
+    percent_all_magical_defense DOUBLE NOT NULL,
+    percent_all_chemical_attack DOUBLE NOT NULL,
+    percent_all_chemical_defense DOUBLE NOT NULL,
+    percent_all_atomic_attack DOUBLE NOT NULL,
+    percent_all_atomic_defense DOUBLE NOT NULL,
+    percent_all_mental_attack DOUBLE NOT NULL,
+    percent_all_mental_defense DOUBLE NOT NULL,
+    
+    PRIMARY KEY(user_id, rank_type),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
 /*--Fact----------------------------------------------------------------------*/
 
 create table fact_card_captains(
@@ -6678,37 +6732,64 @@ CREATE TABLE user_card_spell_synery (
 
 CREATE TABLE effects (
     id INT PRIMARY KEY,
-    name varchar(255),
-
-    -- Loại hiệu ứng
-    effect_type ENUM('damage', 'shield', 'buff', 'debuff', 'heal', 
-                     'stun', 'silence', 'disarm', 'root', 'slow',
-                     'energy_drain', 'invincible', 'revive', 
-                     'taunt', 'berserk', 'swap') NOT NULL,
-
-    -- Điều kiện kích hoạt
---     trigger_condition ENUM('on_hit', 'on_start', 'on_kill', 'passive',
---                            'on_take_damage', 'on_critical_hit', 'on_evade', 'on_block', 
---                            'on_shield_break', 'on_low_health', 'on_mana_full', 'on_combo', 'on_heal', 
---                            'on_enemy_death', 'on_ally_death', 'on_time_interval') NOT NULL,
-
-    -- Đối tượng ảnh hưởng
---     target ENUM('self', 'enemy', 'enemy_team', 'ally', 'ally_team', 'area',
---                 'nearest_enemy', 'farthest_enemy', 'highest_health_enemy', 'lowest_health_enemy',
---                 'highest_attack_enemy', 'lowest_attack_enemy', 'random_enemy', 'random_ally', 'all') NOT NULL,
-
-    -- Giá trị hiệu ứng (sát thương, giáp, hồi máu...)
-    value float NOT NULL,
-
-    -- Loại giá trị (số tuyệt đối hoặc %)
-    value_type ENUM('absolute', 'percentage') NOT NULL DEFAULT 'absolute',
-
-    -- Hệ số tăng trưởng khi nâng cấp kỹ năng
-    scaling_factor float NOT NULL DEFAULT 1.0,
-
-    -- Loại sát thương hoặc phòng thủ (chỉ áp dụng nếu effect_type là 'damage' hoặc 'shield')
-    element_type ENUM('physical', 'magical', 'chemical', 'atomic', 'mental') DEFAULT NULL,
-
-    -- Thời gian hiệu ứng tồn tại (nếu có)
-    duration float DEFAULT NULL
+    name VARCHAR(50) NOT NULL,
+    effect_type ENUM('damage', 'shield', 'buff', 'debuff', 'heal', 'special', 'support') NOT NULL,
+    value INT,                        -- % hoặc số tuyệt đối
+    value_type VARCHAR(20),          -- 'percentage' hoặc 'flat'
+    scaling_factor float not null default 1.0,        -- optional (physical, magical, ...)
+    duration INT                   -- số lượt hiệu lực
 );
+
+CREATE TABLE talents (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    image VARCHAR(255),
+    description TEXT
+);
+
+CREATE TABLE talent_effects (
+    talent_id INT NOT NULL,
+    effect_id INT NOT NULL,
+    element_type ENUM('physical', 'magical', 'chemical', 'atomic', 'mental', 'none') DEFAULT 'none',
+    value double,
+    PRIMARY KEY (talent_id, effect_id, element_type),
+    FOREIGN KEY (talent_id) REFERENCES talents(id) ON DELETE CASCADE,
+    FOREIGN KEY (effect_id) REFERENCES effects(id) ON DELETE CASCADE
+);
+
+-- CREATE TABLE effects (
+--     id INT PRIMARY KEY,
+--     name varchar(255),
+
+--     -- Loại hiệu ứng
+--     effect_type ENUM('damage', 'shield', 'buff', 'debuff', 'heal', 
+--                      'stun', 'silence', 'disarm', 'root', 'slow',
+--                      'energy_drain', 'invincible', 'revive', 
+--                      'taunt', 'berserk', 'swap') NOT NULL,
+
+--     -- Điều kiện kích hoạt
+-- --     trigger_condition ENUM('on_hit', 'on_start', 'on_kill', 'passive',
+-- --                            'on_take_damage', 'on_critical_hit', 'on_evade', 'on_block', 
+-- --                            'on_shield_break', 'on_low_health', 'on_mana_full', 'on_combo', 'on_heal', 
+-- --                            'on_enemy_death', 'on_ally_death', 'on_time_interval') NOT NULL,
+
+--     -- Đối tượng ảnh hưởng
+-- --     target ENUM('self', 'enemy', 'enemy_team', 'ally', 'ally_team', 'area',
+-- --                 'nearest_enemy', 'farthest_enemy', 'highest_health_enemy', 'lowest_health_enemy',
+-- --                 'highest_attack_enemy', 'lowest_attack_enemy', 'random_enemy', 'random_ally', 'all') NOT NULL,
+
+--     -- Giá trị hiệu ứng (sát thương, giáp, hồi máu...)
+--     value float NOT NULL,
+
+--     -- Loại giá trị (số tuyệt đối hoặc %)
+--     value_type ENUM('absolute', 'percentage') NOT NULL DEFAULT 'absolute',
+
+--     -- Hệ số tăng trưởng khi nâng cấp kỹ năng
+--     scaling_factor float NOT NULL DEFAULT 1.0,
+
+--     -- Loại sát thương hoặc phòng thủ (chỉ áp dụng nếu effect_type là 'damage' hoặc 'shield')
+--     element_type ENUM('physical', 'magical', 'chemical', 'atomic', 'mental') DEFAULT NULL,
+
+--     -- Thời gian hiệu ứng tồn tại (nếu có)
+--     duration float DEFAULT NULL
+-- );

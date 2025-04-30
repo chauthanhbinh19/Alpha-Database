@@ -424,5 +424,542 @@ INSERT INTO features (feature_name, required_level, type, description) VALUES
 ('Gun IX', 900, 'Gun', 'No wall shields them, no cover hides them. One shot, one silence.'),
 ('Gun X', 1000, 'Gun', 'You are the last sound in their world—a gunshot carried by wind.');
 
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Haki I', 100, 'One Piece', 'A faint pressure stirs within you—the first hint of unseen strength.'),
+('Haki II', 200, 'One Piece', 'Your will sharpens. Weak minds tremble as you pass.'),
+('Haki III', 300, 'One Piece', 'Invisible armor coats your strikes. Blows land harder, deeper.'),
+('Haki IV', 400, 'One Piece', 'You feel the currents of battle. Foes telegraph their every move.'),
+('Haki V', 500, 'One Piece', 'A glance becomes a threat. A step becomes dominance.'),
+('Haki VI', 600, 'One Piece', 'Your spirit roars. Haki lashes out, bending the fight to your will.'),
+('Haki VII', 700, 'One Piece', 'Masters recognize you. Pretenders collapse under your gaze.'),
+('Haki VIII', 800, 'One Piece', 'Distance fades. Your haki touches even those who dare not approach.'),
+('Haki IX', 900, 'One Piece', 'You strike with certainty. Walls, weapons, and wills—none endure.'),
+('Haki X', 1000, 'One Piece', 'Your haki is absolute. The world itself flinches when you raise your hand.');
 
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Devil Fruit I', 100, 'One Piece', 'The taste is cursed, but the first spark of power crackles in your veins.'),
+('Devil Fruit II', 200, 'One Piece', 'Your body rebels, then reshapes. Strength foreign yet familiar awakens.'),
+('Devil Fruit III', 300, 'One Piece', 'Instinct fuses with chaos. You bend the unnatural to your will.'),
+('Devil Fruit IV', 400, 'One Piece', 'Abilities bloom like storm clouds—wild, destructive, beautiful.'),
+('Devil Fruit V', 500, 'One Piece', 'Mastery sharpens. The impossible feels as natural as breath.'),
+('Devil Fruit VI', 600, 'One Piece', 'Enemies tremble. They see not you, but the monstrous force you command.'),
+('Devil Fruit VII', 700, 'One Piece', 'Legends murmur of your deeds. They fear the name, not just the fruit.'),
+('Devil Fruit VIII', 800, 'One Piece', 'Reality yields. Even nature twists, unwilling to deny your power.'),
+('Devil Fruit IX', 900, 'One Piece', 'Each move reshapes fate. You are no longer a user—you are the storm.'),
+('Devil Fruit X', 1000, 'One Piece', 'You embody myth. Devil and god in one breath, untouchable, unstoppable.');
 
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Six Paths I', 100, 'Naruto', 'The first ember of sage truth flickers within. A whisper of limitless power.'),
+('Six Paths II', 200, 'Naruto', 'Your chakra thickens. Light dances across your skin, unseen by mortal eyes.'),
+('Six Paths III', 300, 'Naruto', 'Gravity itself bends to your steps. Nature pulses in time with your breath.'),
+('Six Paths IV', 400, 'Naruto', 'The world’s wounds reveal themselves. With a touch, you command restoration or ruin.'),
+('Six Paths V', 500, 'Naruto', 'Wisdom of countless eras seeps into your soul. Your gaze pierces fate.'),
+('Six Paths VI', 600, 'Naruto', 'Truth-Seeking Orbs hover at your call. Life and death blur beneath your fingertips.'),
+('Six Paths VII', 700, 'Naruto', 'You tread paths untouchable. Gods look down—and recognize a kindred force.'),
+('Six Paths VIII', 800, 'Naruto', 'The stars themselves stir. Your will echoes beyond heaven and earth.'),
+('Six Paths IX', 900, 'Naruto', 'Power does not flow through you—you are the source. Destiny kneels.'),
+('Six Paths X', 1000, 'Naruto', 'You ascend beyond sage and shinobi alike. You are creation’s final whisper.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Kekkei Genkai I', 100, 'Naruto', 'A dormant bloodline stirs. A forgotten power awakens within.'),
+('Kekkei Genkai II', 200, 'Naruto', 'Your chakra reshapes. Hidden elements intertwine, forming something rare.'),
+('Kekkei Genkai III', 300, 'Naruto', 'Nature itself seems malleable at your fingertips. A new sense is born.'),
+('Kekkei Genkai IV', 400, 'Naruto', 'Elements fuse. Your attacks carry unpredictable force and precision.'),
+('Kekkei Genkai V', 500, 'Naruto', 'Your bloodline asserts its dominance. Your enemies falter before the unknown.'),
+('Kekkei Genkai VI', 600, 'Naruto', 'Ice, wood, lava — the impossible answers to your call.'),
+('Kekkei Genkai VII', 700, 'Naruto', 'Your presence warps battles. One move, and the world shifts.'),
+('Kekkei Genkai VIII', 800, 'Naruto', 'Generations of dormant strength explode into your hands.'),
+('Kekkei Genkai IX', 900, 'Naruto', 'Nature’s laws tremble. You weave the elements like threads of fate.'),
+('Kekkei Genkai X', 1000, 'Naruto', 'You are a living legend. A god among those bound by ordinary chakra.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Sage Mode I', 100, 'Naruto', 'The world’s energy brushes against you. Nature hums under your skin.'),
+('Sage Mode II', 200, 'Naruto', 'Your senses sharpen. Every breath carries the voice of nature.'),
+('Sage Mode III', 300, 'Naruto', 'You channel nature’s vitality, blending it with your own chakra.'),
+('Sage Mode IV', 400, 'Naruto', 'Strength and perception bloom beyond mortal limits.'),
+('Sage Mode V', 500, 'Naruto', 'Your body and mind move in perfect sync with the natural world.'),
+('Sage Mode VI', 600, 'Naruto', 'Even mountains and storms seem to slow before your will.'),
+('Sage Mode VII', 700, 'Naruto', 'The energy of the earth and sky fuses into your every strike.'),
+('Sage Mode VIII', 800, 'Naruto', 'You stand beyond shinobi, a force of nature itself.'),
+('Sage Mode IX', 900, 'Naruto', 'Nature’s fury bends to your spirit, swift and unstoppable.'),
+('Sage Mode X', 1000, 'Naruto', 'You embody the balance of existence: creation, destruction, and renewal.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Eight Gates I', 100, 'Naruto', 'The Gate of Opening unlocks. Physical limits begin to crumble.'),
+('Eight Gates II', 200, 'Naruto', 'The Gate of Healing bursts open. Pain becomes strength.'),
+('Eight Gates III', 300, 'Naruto', 'The Gate of Life shines. Energy surges uncontrollably.'),
+('Eight Gates IV', 400, 'Naruto', 'The Gate of Pain cracks reality with each step you take.'),
+('Eight Gates V', 500, 'Naruto', 'The Gate of Limit shatters. Power flows without end.'),
+('Eight Gates VI', 600, 'Naruto', 'The Gate of View opens. Speed and perception merge.'),
+('Eight Gates VII', 700, 'Naruto', 'The Gate of Wonder ignites. Every motion is a weapon.'),
+('Eight Gates VIII', 800, 'Naruto', 'The Gate of Death roars. Life burns brighter than the sun.'),
+('Eight Gates IX', 900, 'Naruto', 'You surpass death itself. Strength ripples like a crimson storm.'),
+('Eight Gates X', 1000, 'Naruto', 'You are a legend written in blood and glory. One final roar against eternity.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Kaio-ken I', 100, 'Dragon Ball', 'You tap into Kaio-ken. Strength and speed multiply dangerously.'),
+('Kaio-ken II', 200, 'Dragon Ball', 'Your aura burns red. Every move shatters the ground.'),
+('Kaio-ken III', 300, 'Dragon Ball', 'The strain grows, but so does your might.'),
+('Kaio-ken IV', 400, 'Dragon Ball', 'You push your limits. Flesh and spirit blaze together.'),
+('Kaio-ken V', 500, 'Dragon Ball', 'Muscles tear, bones strain, but power surges unstoppable.'),
+('Kaio-ken VI', 600, 'Dragon Ball', 'Reality distorts under your steps. The enemy cannot react.'),
+('Kaio-ken VII', 700, 'Dragon Ball', 'Your body glows like a dying star. Pure power.'),
+('Kaio-ken VIII', 800, 'Dragon Ball', 'Pain and power become one. You roar beyond reason.'),
+('Kaio-ken IX', 900, 'Dragon Ball', 'Every heartbeat cracks the sky. Kaio-ken unleashed.'),
+('Kaio-ken X', 1000, 'Dragon Ball', 'You become a comet of destruction, blazing through the cosmos.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Super Saiyan I', 100, 'Dragon Ball', 'Rage ignites your blood. Hair flashes gold. Power explodes.'),
+('Super Saiyan II', 200, 'Dragon Ball', 'Lightning crackles around you. Your force multiplies.'),
+('Super Saiyan III', 300, 'Dragon Ball', 'You ascend further. Hair lengthens. Roars split the heavens.'),
+('Super Saiyan IV', 400, 'Dragon Ball', 'A primal force returns. Power fuses with instinct.'),
+('Super Saiyan V', 500, 'Dragon Ball', 'You stand as a golden titan, unshakable and relentless.'),
+('Super Saiyan VI', 600, 'Dragon Ball', 'Strength becomes pure pressure. Enemies crumble under your gaze.'),
+('Super Saiyan VII', 700, 'Dragon Ball', 'Every blow ripples with cosmic force.'),
+('Super Saiyan VIII', 800, 'Dragon Ball', 'You move faster than light itself, fists glowing with fury.'),
+('Super Saiyan IX', 900, 'Dragon Ball', 'Power crowns you, a living supernova.'),
+('Super Saiyan X', 1000, 'Dragon Ball', 'You are a myth reborn. A fury no universe can contain.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Ultra Instinct I', 100, 'Dragon Ball', 'Your body flinches before thought. Instinct whispers.'),
+('Ultra Instinct II', 200, 'Dragon Ball', 'Your movements blur, guided by the universe itself.'),
+('Ultra Instinct III', 300, 'Dragon Ball', 'Attacks miss you like shadows fleeing light.'),
+('Ultra Instinct IV', 400, 'Dragon Ball', 'Your heart quiets. Your body dances beyond sight.'),
+('Ultra Instinct V', 500, 'Dragon Ball', 'Every step humbles even gods.'),
+('Ultra Instinct VI', 600, 'Dragon Ball', 'You drift beyond mortality. Battle becomes art.'),
+('Ultra Instinct VII', 700, 'Dragon Ball', 'Foes strike air. You strike inevitability.'),
+('Ultra Instinct VIII', 800, 'Dragon Ball', 'The cosmos bends to your stillness.'),
+('Ultra Instinct IX', 900, 'Dragon Ball', 'You move at the edge of existence itself.'),
+('Ultra Instinct X', 1000, 'Dragon Ball', 'You are untouchable. You are inevitable. You are Ultra Instinct.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Ultra Ego I', 100, 'Dragon Ball', 'You embrace the thrill of battle. Every wound fuels your pride.'),
+('Ultra Ego II', 200, 'Dragon Ball', 'Pain sharpens you. Your aura darkens with primal fury.'),
+('Ultra Ego III', 300, 'Dragon Ball', 'Every strike you suffer feeds your growing might.'),
+('Ultra Ego IV', 400, 'Dragon Ball', 'You abandon defense. Only overwhelming offense matters.'),
+('Ultra Ego V', 500, 'Dragon Ball', 'Battle becomes pure instinct. The deeper the wound, the stronger you rise.'),
+('Ultra Ego VI', 600, 'Dragon Ball', 'Your spirit ignites with destructive energy, radiating chaos.'),
+('Ultra Ego VII', 700, 'Dragon Ball', 'You break your own limits with savage glee.'),
+('Ultra Ego VIII', 800, 'Dragon Ball', 'Fear fades. Doubt dies. You fight beyond reason, fueled by destruction.'),
+('Ultra Ego IX', 900, 'Dragon Ball', 'Your enemies tremble as you grow more monstrous with every blow.'),
+('Ultra Ego X', 1000, 'Dragon Ball', 'You are destruction incarnate. An unstoppable god of carnage.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Dragon Slayer Magic I', 100, 'Fairy Tail', 'You awaken the primal power of dragons within your soul.'),
+('Dragon Slayer Magic II', 200, 'Fairy Tail', 'Your senses sharpen. Your breath can tear through mountains.'),
+('Dragon Slayer Magic III', 300, 'Fairy Tail', 'You consume elements to strengthen yourself in battle.'),
+('Dragon Slayer Magic IV', 400, 'Fairy Tail', 'Your strikes carry the wrath of ancient dragons.'),
+('Dragon Slayer Magic V', 500, 'Fairy Tail', 'You roar with the force of a storm, shattering defenses.'),
+('Dragon Slayer Magic VI', 600, 'Fairy Tail', 'Your body hardens like a dragon’s scale, impervious to harm.'),
+('Dragon Slayer Magic VII', 700, 'Fairy Tail', 'You channel the fury of a dragon king, overwhelming your foes.'),
+('Dragon Slayer Magic VIII', 800, 'Fairy Tail', 'You tear through earth and sky with your dragonborn rage.'),
+('Dragon Slayer Magic IX', 900, 'Fairy Tail', 'The spirit of ancient dragons flows through every attack.'),
+('Dragon Slayer Magic X', 1000, 'Fairy Tail', 'You become a force of nature—a living embodiment of dragons.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Celestial Spirit Magic I', 100, 'Fairy Tail', 'You forge a contract with your first Celestial Spirit.'),
+('Celestial Spirit Magic II', 200, 'Fairy Tail', 'Your bond with spirits grows stronger, unlocking new powers.'),
+('Celestial Spirit Magic III', 300, 'Fairy Tail', 'You summon multiple spirits with ease and grace.'),
+('Celestial Spirit Magic IV', 400, 'Fairy Tail', 'Your spirits fight fiercely, empowered by your faith.'),
+('Celestial Spirit Magic V', 500, 'Fairy Tail', 'You open gates to more powerful spirits in the Celestial World.'),
+('Celestial Spirit Magic VI', 600, 'Fairy Tail', 'You synchronize with your spirits, enhancing your own strength.'),
+('Celestial Spirit Magic VII', 700, 'Fairy Tail', 'You unleash combination attacks between you and your spirits.'),
+('Celestial Spirit Magic VIII', 800, 'Fairy Tail', 'The Celestial King acknowledges your devotion.'),
+('Celestial Spirit Magic IX', 900, 'Fairy Tail', 'You break the limits, summoning ancient spirits long forgotten.'),
+('Celestial Spirit Magic X', 1000, 'Fairy Tail', 'You command the very forces of the stars themselves.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Requip Magic I', 100, 'Fairy Tail', 'You master the basic art of summoning armor and weapons.'),
+('Requip Magic II', 200, 'Fairy Tail', 'You swap equipment mid-battle, adapting to any situation.'),
+('Requip Magic III', 300, 'Fairy Tail', 'You summon legendary armors imbued with magic.'),
+('Requip Magic IV', 400, 'Fairy Tail', 'Your speed in requipping overwhelms your enemies.'),
+('Requip Magic V', 500, 'Fairy Tail', 'You combine armor and weapon effects into devastating combos.'),
+('Requip Magic VI', 600, 'Fairy Tail', 'You wield specialized sets for offense, defense, and speed.'),
+('Requip Magic VII', 700, 'Fairy Tail', 'Your armor shields against curses and elemental attacks.'),
+('Requip Magic VIII', 800, 'Fairy Tail', 'You don mythical armors once worn by heroes of old.'),
+('Requip Magic IX', 900, 'Fairy Tail', 'Each requip shifts the tide of battle in your favor.'),
+('Requip Magic X', 1000, 'Fairy Tail', 'You wield the ultimate arsenal, becoming an unstoppable warrior.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Death Magic I', 100, 'Fairy Tail', 'You touch the edge of forbidden power: the magic of death.'),
+('Death Magic II', 200, 'Fairy Tail', 'You drain the life force from weak enemies with a whisper.'),
+('Death Magic III', 300, 'Fairy Tail', 'Your aura brings fear and decay to the battlefield.'),
+('Death Magic IV', 400, 'Fairy Tail', 'You command shadows to devour the vitality of your foes.'),
+('Death Magic V', 500, 'Fairy Tail', 'Your presence alone weakens the hearts of the living.'),
+('Death Magic VI', 600, 'Fairy Tail', 'You summon cursed beings from the void to fight for you.'),
+('Death Magic VII', 700, 'Fairy Tail', 'You rewrite fate, deciding who lives and who dies.'),
+('Death Magic VIII', 800, 'Fairy Tail', 'You unleash waves of dark magic, annihilating anything in their path.'),
+('Death Magic IX', 900, 'Fairy Tail', 'You become a vessel of absolute destruction, feared by gods and mortals alike.'),
+('Death Magic X', 1000, 'Fairy Tail', 'You embody the end itself. Life crumbles in your wake.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Dual Wielding I', 100, 'Sword Art Online', 'You train your body to lift two swords at once.'),
+('Dual Wielding II', 200, 'Sword Art Online', 'Your strikes with dual blades grow faster and sharper.'),
+('Dual Wielding III', 300, 'Sword Art Online', 'You launch synchronized slashes that overwhelm your foes.'),
+('Dual Wielding IV', 400, 'Sword Art Online', 'Your two blades move as if guided by one mind.'),
+('Dual Wielding V', 500, 'Sword Art Online', 'You chain combos with devastating speed and precision.'),
+('Dual Wielding VI', 600, 'Sword Art Online', 'You block and counterattack simultaneously with both blades.'),
+('Dual Wielding VII', 700, 'Sword Art Online', 'Your twin swords dance in a blur of unstoppable momentum.'),
+('Dual Wielding VIII', 800, 'Sword Art Online', 'Each attack carves through defense like paper.'),
+('Dual Wielding IX', 900, 'Sword Art Online', 'You unlock the true art of dual wielding—striking from all angles.'),
+('Dual Wielding X', 1000, 'Sword Art Online', 'You are the storm—two blades, one soul, endless fury.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Sword Skill Mastery I', 100, 'Sword Art Online', 'You learn the basics of sword techniques and timing.'),
+('Sword Skill Mastery II', 200, 'Sword Art Online', 'Your strikes land cleaner and your posture steadies.'),
+('Sword Skill Mastery III', 300, 'Sword Art Online', 'You unleash basic sword skills with enhanced power.'),
+('Sword Skill Mastery IV', 400, 'Sword Art Online', 'You chain multiple skills into deadly combos.'),
+('Sword Skill Mastery V', 500, 'Sword Art Online', 'Your every swing is honed by instinct and focus.'),
+('Sword Skill Mastery VI', 600, 'Sword Art Online', 'You predict enemy movements and counter in a flash.'),
+('Sword Skill Mastery VII', 700, 'Sword Art Online', 'Your blade dances with lethal grace and rhythm.'),
+('Sword Skill Mastery VIII', 800, 'Sword Art Online', 'You master critical hits and perfect guards.'),
+('Sword Skill Mastery IX', 900, 'Sword Art Online', 'You unlock hidden arts, unleashing overwhelming power.'),
+('Sword Skill Mastery X', 1000, 'Sword Art Online', 'You are the sword itself—unbreakable and untouchable.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('System Assist Awakening I', 100, 'Sword Art Online', 'You sense the hidden flow of the system.'),
+('System Assist Awakening II', 200, 'Sword Art Online', 'You bend minor system rules unconsciously.'),
+('System Assist Awakening III', 300, 'Sword Art Online', 'Your reaction speed exceeds normal players.'),
+('System Assist Awakening IV', 400, 'Sword Art Online', 'You resist effects that should stun or paralyze you.'),
+('System Assist Awakening V', 500, 'Sword Art Online', 'You move faster than the system can predict.'),
+('System Assist Awakening VI', 600, 'Sword Art Online', 'You strike in ways not programmed by the system.'),
+('System Assist Awakening VII', 700, 'Sword Art Online', 'You survive fatal attacks through sheer willpower.'),
+('System Assist Awakening VIII', 800, 'Sword Art Online', 'Your aura disrupts enemy actions momentarily.'),
+('System Assist Awakening IX', 900, 'Sword Art Online', 'You transcend system limits, becoming a legend.'),
+('System Assist Awakening X', 1000, 'Sword Art Online', 'You rewrite the laws of the game itself through your existence.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Breathing Technique I', 100, 'Demon Slayer', 'You learn to control your breathing, enhancing your strength.'),
+('Breathing Technique II', 200, 'Demon Slayer', 'You regulate your heartbeat, gaining sharper reflexes.'),
+('Breathing Technique III', 300, 'Demon Slayer', 'You focus your lungs to maximize endurance and speed.'),
+('Breathing Technique IV', 400, 'Demon Slayer', 'You harmonize breath with sword, achieving precise strikes.'),
+('Breathing Technique V', 500, 'Demon Slayer', 'Your breathing grants brief bursts of overwhelming power.'),
+('Breathing Technique VI', 600, 'Demon Slayer', 'You sustain total concentration even under immense pressure.'),
+('Breathing Technique VII', 700, 'Demon Slayer', 'Your breath enhances recovery and sharpens perception.'),
+('Breathing Technique VIII', 800, 'Demon Slayer', 'Your strikes flow with elemental force through breathing.'),
+('Breathing Technique IX', 900, 'Demon Slayer', 'Your mastery allows seamless breathing even in death battles.'),
+('Breathing Technique X', 1000, 'Demon Slayer', 'You embody perfect breathing—your very existence sharpens your blade.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Demon Slayer Mark I', 100, 'Demon Slayer', 'A faint mark appears, stirring hidden strength.'),
+('Demon Slayer Mark II', 200, 'Demon Slayer', 'Your muscles awaken, surpassing human limits.'),
+('Demon Slayer Mark III', 300, 'Demon Slayer', 'You react to threats instinctively, beyond thought.'),
+('Demon Slayer Mark IV', 400, 'Demon Slayer', 'Your stamina surges like a roaring fire.'),
+('Demon Slayer Mark V', 500, 'Demon Slayer', 'You pierce through demons with terrifying speed.'),
+('Demon Slayer Mark VI', 600, 'Demon Slayer', 'You sense every movement in your surroundings.'),
+('Demon Slayer Mark VII', 700, 'Demon Slayer', 'Your heartbeat syncs perfectly with your blade.'),
+('Demon Slayer Mark VIII', 800, 'Demon Slayer', 'Your aura of battle becomes overwhelming.'),
+('Demon Slayer Mark IX', 900, 'Demon Slayer', 'You battle with strength rivaling even Upper Moons.'),
+('Demon Slayer Mark X', 1000, 'Demon Slayer', 'You embody the will to destroy all evil—an unstoppable force.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Shikai Mastery I', 100, 'Bleach', 'You hear a faint whisper from your Zanpakuto.'),
+('Shikai Mastery II', 200, 'Bleach', 'Your blade responds to your will, its spirit awakening.'),
+('Shikai Mastery III', 300, 'Bleach', 'Your Shikai form flickers briefly into existence.'),
+('Shikai Mastery IV', 400, 'Bleach', 'You call your Zanpakuto\'s true name with confidence.'),
+('Shikai Mastery V', 500, 'Bleach', 'Your blade shifts forms, becoming a true extension of yourself.'),
+('Shikai Mastery VI', 600, 'Bleach', 'You wield Shikai with deadly grace and precision.'),
+('Shikai Mastery VII', 700, 'Bleach', 'Your Zanpakuto spirit fights alongside you as one.'),
+('Shikai Mastery VIII', 800, 'Bleach', 'Your Shikai strikes can shatter defenses with ease.'),
+('Shikai Mastery IX', 900, 'Bleach', 'Enemies tremble at the sight of your released blade.'),
+('Shikai Mastery X', 1000, 'Bleach', 'Your Shikai resonates with your soul — boundless, unstoppable.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Bankai Awakening I', 100, 'Bleach', 'You feel the distant roar of your full power.'),
+('Bankai Awakening II', 200, 'Bleach', 'You glimpse the vast energy within your Zanpakuto.'),
+('Bankai Awakening III', 300, 'Bleach', 'You struggle to contain the emerging force.'),
+('Bankai Awakening IV', 400, 'Bleach', 'Fragments of your Bankai manifest in fierce bursts.'),
+('Bankai Awakening V', 500, 'Bleach', 'You tame the wildness of your released soul.'),
+('Bankai Awakening VI', 600, 'Bleach', 'You summon partial forms of your Bankai at will.'),
+('Bankai Awakening VII', 700, 'Bleach', 'You stand firm against overwhelming foes.'),
+('Bankai Awakening VIII', 800, 'Bleach', 'Your Bankai reshapes the battlefield itself.'),
+('Bankai Awakening IX', 900, 'Bleach', 'You battle as a true Captain among legends.'),
+('Bankai Awakening X', 1000, 'Bleach', 'You command your Bankai with godlike dominance.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Hollowfication I', 100, 'Bleach', 'A sinister mask flickers at the edge of your mind.'),
+('Hollowfication II', 200, 'Bleach', 'You feel a monstrous strength within your soul.'),
+('Hollowfication III', 300, 'Bleach', 'You momentarily unleash devastating hollow power.'),
+('Hollowfication IV', 400, 'Bleach', 'You struggle for dominance against your inner Hollow.'),
+('Hollowfication V', 500, 'Bleach', 'You briefly stabilize Hollow power during combat.'),
+('Hollowfication VI', 600, 'Bleach', 'You don the Hollow mask to surge beyond human limits.'),
+('Hollowfication VII', 700, 'Bleach', 'You synchronize Hollow instinct with Shinigami technique.'),
+('Hollowfication VIII', 800, 'Bleach', 'Your strikes carry Hollow fury and destruction.'),
+('Hollowfication IX', 900, 'Bleach', 'You harness Hollow powers without losing yourself.'),
+('Hollowfication X', 1000, 'Bleach', 'You embrace the Hollow within — an apex warrior of two worlds.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Quincy Techniques I', 100, 'Bleach', 'You form a simple spirit bow from reishi.'),
+('Quincy Techniques II', 200, 'Bleach', 'You gather reishi arrows with steady focus.'),
+('Quincy Techniques III', 300, 'Bleach', 'You enhance your shots with basic Hirenkyaku techniques.'),
+('Quincy Techniques IV', 400, 'Bleach', 'You manipulate reishi fields for faster attacks.'),
+('Quincy Techniques V', 500, 'Bleach', 'You unleash rapid-fire volleys of spirit arrows.'),
+('Quincy Techniques VI', 600, 'Bleach', 'You draw reishi directly from surroundings.'),
+('Quincy Techniques VII', 700, 'Bleach', 'You deploy unique Quincy spells to manipulate space.'),
+('Quincy Techniques VIII', 800, 'Bleach', 'You destabilize spirit energy within enemy defenses.'),
+('Quincy Techniques IX', 900, 'Bleach', 'You wield spiritual weapons beyond simple bows.'),
+('Quincy Techniques X', 1000, 'Bleach', 'You become a master of reishi domination—unstoppable.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Cursed Energy Control I', 100, 'Jujutsu Kaisen', 'You feel cursed energy stir faintly within your core.'),
+('Cursed Energy Control II', 200, 'Jujutsu Kaisen', 'Your cursed energy flares sporadically in battle.'),
+('Cursed Energy Control III', 300, 'Jujutsu Kaisen', 'You shape cursed energy to enhance basic attacks.'),
+('Cursed Energy Control IV', 400, 'Jujutsu Kaisen', 'Your cursed energy cloaks your body like an armor.'),
+('Cursed Energy Control V', 500, 'Jujutsu Kaisen', 'You maintain stable cursed flow under stress.'),
+('Cursed Energy Control VI', 600, 'Jujutsu Kaisen', 'Your strikes crack the air with cursed energy force.'),
+('Cursed Energy Control VII', 700, 'Jujutsu Kaisen', 'You imbue objects with cursed energy for enhanced attacks.'),
+('Cursed Energy Control VIII', 800, 'Jujutsu Kaisen', 'You conceal cursed energy to hide your presence.'),
+('Cursed Energy Control IX', 900, 'Jujutsu Kaisen', 'Your cursed flow reacts instinctively to incoming threats.'),
+('Cursed Energy Control X', 1000, 'Jujutsu Kaisen', 'Your body and cursed energy are fused in perfect harmony.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Cursed Technique Mastery I', 100, 'Jujutsu Kaisen', 'You glimpse the shape of your innate technique.'),
+('Cursed Technique Mastery II', 200, 'Jujutsu Kaisen', 'You instinctively activate minor cursed effects.'),
+('Cursed Technique Mastery III', 300, 'Jujutsu Kaisen', 'Your cursed technique responds in flashes of power.'),
+('Cursed Technique Mastery IV', 400, 'Jujutsu Kaisen', 'You consciously trigger your innate abilities.'),
+('Cursed Technique Mastery V', 500, 'Jujutsu Kaisen', 'Your cursed technique amplifies your combat instincts.'),
+('Cursed Technique Mastery VI', 600, 'Jujutsu Kaisen', 'You wield your technique with strategic precision.'),
+('Cursed Technique Mastery VII', 700, 'Jujutsu Kaisen', 'Your cursed domain influence extends beyond touch.'),
+('Cursed Technique Mastery VIII', 800, 'Jujutsu Kaisen', 'Your techniques twist reality around your strikes.'),
+('Cursed Technique Mastery IX', 900, 'Jujutsu Kaisen', 'You warp cursed energy laws to your advantage.'),
+('Cursed Technique Mastery X', 1000, 'Jujutsu Kaisen', 'You transcend mortal limits with your innate art.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Domain Expansion Mastery I', 100, 'Jujutsu Kaisen', 'You sense the possibility of shaping a personal domain.'),
+('Domain Expansion Mastery II', 200, 'Jujutsu Kaisen', 'You briefly manifest a flicker of domain power.'),
+('Domain Expansion Mastery III', 300, 'Jujutsu Kaisen', 'You reinforce your cursed techniques inside a proto-domain.'),
+('Domain Expansion Mastery IV', 400, 'Jujutsu Kaisen', 'You create unstable zones of enhanced ability.'),
+('Domain Expansion Mastery V', 500, 'Jujutsu Kaisen', 'You trap fleeting moments inside your half-formed domain.'),
+('Domain Expansion Mastery VI', 600, 'Jujutsu Kaisen', 'You summon stable partial domains at will.'),
+('Domain Expansion Mastery VII', 700, 'Jujutsu Kaisen', 'Your domain boundary solidifies against intruders.'),
+('Domain Expansion Mastery VIII', 800, 'Jujutsu Kaisen', 'Inside your domain, your attacks strike with absolute accuracy.'),
+('Domain Expansion Mastery IX', 900, 'Jujutsu Kaisen', 'Your domain distorts the laws of cursed energy completely.'),
+('Domain Expansion Mastery X', 1000, 'Jujutsu Kaisen', 'You rule an absolute realm where you are god.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Grimoire Awakening I', 100, 'Black Clover', 'A faint glow surrounds your hands—the first magic script awakens.'),
+('Grimoire Awakening II', 200, 'Black Clover', 'Your grimoire flutters open, revealing basic spells.'),
+('Grimoire Awakening III', 300, 'Black Clover', 'You call forth minor spells with growing ease.'),
+('Grimoire Awakening IV', 400, 'Black Clover', 'The pages respond eagerly to your will.'),
+('Grimoire Awakening V', 500, 'Black Clover', 'Your spells now burst with raw, untamed force.'),
+('Grimoire Awakening VI', 600, 'Black Clover', 'Complex incantations weave from your voice.'),
+('Grimoire Awakening VII', 700, 'Black Clover', 'You channel layered spells with split-second precision.'),
+('Grimoire Awakening VIII', 800, 'Black Clover', 'The grimoire hovers freely, reacting to your every thought.'),
+('Grimoire Awakening IX', 900, 'Black Clover', 'You bend advanced magics to crush even veteran foes.'),
+('Grimoire Awakening X', 1000, 'Black Clover', 'The entire grimoire pulses with limitless magic potential.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Magic Affinity Mastery I', 100, 'Black Clover', 'You sense a spark—your magic affinity stirs within.'),
+('Magic Affinity Mastery II', 200, 'Black Clover', 'Your chosen element flickers to life in your spells.'),
+('Magic Affinity Mastery III', 300, 'Black Clover', 'You refine control over basic elemental forms.'),
+('Magic Affinity Mastery IV', 400, 'Black Clover', 'You shape magic into versatile tools and weapons.'),
+('Magic Affinity Mastery V', 500, 'Black Clover', 'Your affinity enhances even mundane actions.'),
+('Magic Affinity Mastery VI', 600, 'Black Clover', 'You summon complex elemental constructs mid-battle.'),
+('Magic Affinity Mastery VII', 700, 'Black Clover', 'Your magic adapts naturally to combat conditions.'),
+('Magic Affinity Mastery VIII', 800, 'Black Clover', 'You merge multiple elemental traits with precision.'),
+('Magic Affinity Mastery IX', 900, 'Black Clover', 'Your elemental mastery overwhelms lesser mages.'),
+('Magic Affinity Mastery X', 1000, 'Black Clover', 'Your magic affinity shapes the very battlefield.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Anti-Magic Awakening I', 100, 'Black Clover', 'A strange, dark force flickers within your grasp.'),
+('Anti-Magic Awakening II', 200, 'Black Clover', 'You suppress minor magic fields without effort.'),
+('Anti-Magic Awakening III', 300, 'Black Clover', 'Spells weaken and fizzle near your presence.'),
+('Anti-Magic Awakening IV', 400, 'Black Clover', 'You repel magic projectiles by instinct alone.'),
+('Anti-Magic Awakening V', 500, 'Black Clover', 'Your body becomes a vessel of magic nullification.'),
+('Anti-Magic Awakening VI', 600, 'Black Clover', 'You sever complex spells with a swing.'),
+('Anti-Magic Awakening VII', 700, 'Black Clover', 'Magic-based defenses collapse at your approach.'),
+('Anti-Magic Awakening VIII', 800, 'Black Clover', 'You can briefly nullify entire magic zones.'),
+('Anti-Magic Awakening IX', 900, 'Black Clover', 'Your anti-magic surges in violent pulses of power.'),
+('Anti-Magic Awakening X', 1000, 'Black Clover', 'You walk as the absolute nemesis of all magic.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Nen Awakening I', 100, 'Hunter x Hunter', 'You sense a faint pressure stirring within your body.'),
+('Nen Awakening II', 200, 'Hunter x Hunter', 'Your aura leaks unconsciously into the world.'),
+('Nen Awakening III', 300, 'Hunter x Hunter', 'You suppress and release aura with basic control.'),
+('Nen Awakening IV', 400, 'Hunter x Hunter', 'Your aura responds to emotions and battle instinct.'),
+('Nen Awakening V', 500, 'Hunter x Hunter', 'You command aura flow consciously during fights.'),
+('Nen Awakening VI', 600, 'Hunter x Hunter', 'You detect hidden aura signatures around you.'),
+('Nen Awakening VII', 700, 'Hunter x Hunter', 'You solidify aura to shield yourself instinctively.'),
+('Nen Awakening VIII', 800, 'Hunter x Hunter', 'Your aura pressure influences weaker beings.'),
+('Nen Awakening IX', 900, 'Hunter x Hunter', 'You manipulate aura to deceive and misdirect.'),
+('Nen Awakening X', 1000, 'Hunter x Hunter', 'You wield aura as an extension of your very will.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Enhancement Mastery I', 100, 'Hunter x Hunter', 'You reinforce your body with raw aura instinctively.'),
+('Enhancement Mastery II', 200, 'Hunter x Hunter', 'You harden limbs against physical attacks.'),
+('Enhancement Mastery III', 300, 'Hunter x Hunter', 'You boost strength and speed with bursts of aura.'),
+('Enhancement Mastery IV', 400, 'Hunter x Hunter', 'Your attacks hit harder than normal human limits.'),
+('Enhancement Mastery V', 500, 'Hunter x Hunter', 'You withstand blows that would shatter bones.'),
+('Enhancement Mastery VI', 600, 'Hunter x Hunter', 'You temporarily surpass your own body limits.'),
+('Enhancement Mastery VII', 700, 'Hunter x Hunter', 'You condense aura to empower singular strikes.'),
+('Enhancement Mastery VIII', 800, 'Hunter x Hunter', 'Your aura shields critical organs instinctively.'),
+('Enhancement Mastery IX', 900, 'Hunter x Hunter', 'You achieve a state of aura-body resonance.'),
+('Enhancement Mastery X', 1000, 'Hunter x Hunter', 'Your body becomes a living weapon of pure aura.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Specialization Awakening I', 100, 'Hunter x Hunter', 'You glimpse powers beyond the six Nen categories.'),
+('Specialization Awakening II', 200, 'Hunter x Hunter', 'You manifest odd, unpredictable aura effects.'),
+('Specialization Awakening III', 300, 'Hunter x Hunter', 'Your aura resists normal Nen classifications.'),
+('Specialization Awakening IV', 400, 'Hunter x Hunter', 'You bend rules of aura interaction to your will.'),
+('Specialization Awakening V', 500, 'Hunter x Hunter', 'You create aura-based phenomena defying logic.'),
+('Specialization Awakening VI', 600, 'Hunter x Hunter', 'Your abilities bewilder even veteran Nen users.'),
+('Specialization Awakening VII', 700, 'Hunter x Hunter', 'You forge a unique aura trait that shapes reality.'),
+('Specialization Awakening VIII', 800, 'Hunter x Hunter', 'Your aura subtly alters causality around you.'),
+('Specialization Awakening IX', 900, 'Hunter x Hunter', 'You bypass standard Nen resistances instinctively.'),
+('Specialization Awakening X', 1000, 'Hunter x Hunter', 'You walk among gods and monsters, ruled by none.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Physical Strength I', 100, 'One Punch Man', 'You begin to build your basic physical strength, able to overpower weaker enemies.'),
+('Physical Strength II', 200, 'One Punch Man', 'Your strength allows you to lift heavy objects and defeat opponents with ease.'),
+('Physical Strength III', 300, 'One Punch Man', 'Your physical strength peaks, and you can break through walls and create shockwaves with your punches.'),
+('Physical Strength IV', 400, 'One Punch Man', 'Your power is nearly unmatched, you can crush mountains with a single strike.'),
+('Physical Strength V', 500, 'One Punch Man', 'You can wipe out entire cities with a single punch.'),
+('Physical Strength VI', 600, 'One Punch Man', 'You have god-like strength, able to shatter the earth with your attacks.'),
+('Physical Strength VII', 700, 'One Punch Man', 'You can obliterate planets with ease, no enemy is strong enough to withstand you.'),
+('Physical Strength VIII', 800, 'One Punch Man', 'Your strikes are so powerful they can rip through space and time itself.'),
+('Physical Strength IX', 900, 'One Punch Man', 'Your strength transcends all physical limits, making you invincible.'),
+('Physical Strength X', 1000, 'One Punch Man', 'You are the ultimate being, the embodiment of limitless power, no one can defeat you.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Speed I', 100, 'One Punch Man', 'You begin to move faster than ordinary humans, evading basic attacks with ease.'),
+('Speed II', 200, 'One Punch Man', 'Your speed allows you to dodge bullets and close the gap between you and your enemies effortlessly.'),
+('Speed III', 300, 'One Punch Man', 'You can travel at the speed of sound, leaving opponents unable to react.'),
+('Speed IV', 400, 'One Punch Man', 'You can run faster than the speed of light, easily outrunning any adversary.'),
+('Speed V', 500, 'One Punch Man', 'You can move faster than the speed of thought, appearing everywhere at once.'),
+('Speed VI', 600, 'One Punch Man', 'You can break the time-space continuum with your speed, leaving reality itself behind.'),
+('Speed VII', 700, 'One Punch Man', 'Your speed is beyond measurable limits, and you can manipulate time itself with your movements.'),
+('Speed VIII', 800, 'One Punch Man', 'You can surpass the speed of light with ease and achieve faster-than-instantaneous movement.'),
+('Speed IX', 900, 'One Punch Man', 'You move so fast that you exist in multiple places at once, creating afterimages across time.'),
+('Speed X', 1000, 'One Punch Man', 'You are a being of pure speed, able to move through dimensions and alter the fabric of reality with every step.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Psychic Power I', 100, 'One Punch Man', 'You begin to tap into psychic powers, able to move small objects with your mind.'),
+('Psychic Power II', 200, 'One Punch Man', 'Your psychic abilities grow stronger, able to control objects with more precision.'),
+('Psychic Power III', 300, 'One Punch Man', 'You can manipulate large objects and create powerful psychic blasts.'),
+('Psychic Power IV', 400, 'One Punch Man', 'Your psychic power allows you to control the environment and create force fields.'),
+('Psychic Power V', 500, 'One Punch Man', 'You can crush opponents with your mind and create devastating psychic storms.'),
+('Psychic Power VI', 600, 'One Punch Man', 'Your psychic abilities allow you to affect the very fabric of reality itself.'),
+('Psychic Power VII', 700, 'One Punch Man', 'You can control entire cities with your psychic powers, bending the world to your will.'),
+('Psychic Power VIII', 800, 'One Punch Man', 'Your psychic power can manipulate time and space, altering the flow of events.'),
+('Psychic Power IX', 900, 'One Punch Man', 'You have god-like psychic abilities, controlling matter and energy at will.'),
+('Psychic Power X', 1000, 'One Punch Man', 'You are the ultimate psychic, able to manipulate the universe with a mere thought.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Energy-based Power I', 100, 'One Punch Man', 'You begin to tap into energy-based powers, able to release small blasts of energy.'),
+('Energy-based Power II', 200, 'One Punch Man', 'Your energy-based attacks become stronger, capable of destroying obstacles.'),
+('Energy-based Power III', 300, 'One Punch Man', 'You can fire devastating energy beams, obliterating anything in your path.'),
+('Energy-based Power IV', 400, 'One Punch Man', 'Your energy powers allow you to destroy large areas with a single attack.'),
+('Energy-based Power V', 500, 'One Punch Man', 'You can create energy barriers and unleash massive energy explosions.'),
+('Energy-based Power VI', 600, 'One Punch Man', 'Your energy attacks can level entire cities, wiping out all enemies in your path.'),
+('Energy-based Power VII', 700, 'One Punch Man', 'You can control vast amounts of energy, able to create destructive energy waves.'),
+('Energy-based Power VIII', 800, 'One Punch Man', 'Your energy manipulation transcends the physical, capable of distorting reality.'),
+('Energy-based Power IX', 900, 'One Punch Man', 'You wield energy on a cosmic scale, able to manipulate the very essence of the universe.'),
+('Energy-based Power X', 1000, 'One Punch Man', 'You are the ultimate energy manipulator, capable of rewriting reality with your power.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Dark Power I', 100, 'Dark', 'You begin to channel the shadows, summoning faint dark energy to weaken enemies.'),
+('Dark Power II', 200, 'Dark', 'Your command over darkness grows; you can now blind foes and cloak yourself in shadow.'),
+('Dark Power III', 300, 'Dark', 'You unleash waves of despair that sap strength and shatter hope.'),
+('Dark Power IV', 400, 'Dark', 'You manipulate fear as a weapon, paralyzing weaker enemies with your presence.'),
+('Dark Power V', 500, 'Dark', 'Dark tendrils erupt from you, draining life and corrupting everything they touch.'),
+('Dark Power VI', 600, 'Dark', 'You engulf entire areas in darkness, nullifying light and hope alike.'),
+('Dark Power VII', 700, 'Dark', 'Your shadow magic distorts time and space, pulling enemies into the void.'),
+('Dark Power VIII', 800, 'Dark', 'You become a harbinger of ruin, your aura alone spreading decay and madness.'),
+('Dark Power IX', 900, 'Dark', 'You wield pure abyssal force, erasing existence with a glance.'),
+('Dark Power X', 1000, 'Dark', 'You are darkness incarnate, a god of oblivion who devours reality itself.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Earth Power I', 100, 'Earth', 'You gain a faint connection to the land, able to manipulate small rocks and dirt.'),
+('Earth Power II', 200, 'Earth', 'You strengthen your body with the resilience of stone, resisting light attacks.'),
+('Earth Power III', 300, 'Earth', 'You can summon stone spikes from the ground to impale enemies.'),
+('Earth Power IV', 400, 'Earth', 'You create barriers of solid rock, shielding yourself and allies from harm.'),
+('Earth Power V', 500, 'Earth', 'You can cause tremors beneath your enemies, knocking them off balance.'),
+('Earth Power VI', 600, 'Earth', 'You manipulate terrain itself, raising walls or sinking foes into the earth.'),
+('Earth Power VII', 700, 'Earth', 'You become an unstoppable force, encasing yourself in armor forged from living stone.'),
+('Earth Power VIII', 800, 'Earth', 'You tear mountains asunder and hurl boulders with ease.'),
+('Earth Power IX', 900, 'Earth', 'You command earthquakes, reshaping entire landscapes in your wake.'),
+('Earth Power X', 1000, 'Earth', 'You are the will of the planet itself, a titan who bends continents to your command.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Fire Power I', 100, 'Fire', 'You ignite small flames at will, enough to light objects or singe foes.'),
+('Fire Power II', 200, 'Fire', 'You can hurl fireballs that explode on impact, scorching enemies.'),
+('Fire Power III', 300, 'Fire', 'Your flames grow hotter and wilder, engulfing multiple targets.'),
+('Fire Power IV', 400, 'Fire', 'You surround yourself in a blazing aura that burns all who come near.'),
+('Fire Power V', 500, 'Fire', 'You summon pillars of fire from the ground to incinerate anything above.'),
+('Fire Power VI', 600, 'Fire', 'Your control over flame allows you to burn through barriers and armor.'),
+('Fire Power VII', 700, 'Fire', 'You conjure infernos that spread rapidly and consume entire fields.'),
+('Fire Power VIII', 800, 'Fire', 'You channel dragonfire, capable of melting stone and steel alike.'),
+('Fire Power IX', 900, 'Fire', 'You summon flaming meteors from the sky, turning battlefields to ash.'),
+('Fire Power X', 1000, 'Fire', 'You are fire incarnate, a living blaze that devours worlds.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Ice Power I', 100, 'Ice', 'You can create small shards of ice, chilling enemies on contact.'),
+('Ice Power II', 200, 'Ice', 'You release waves of cold that slow enemy movements.'),
+('Ice Power III', 300, 'Ice', 'You freeze surfaces and enemies, making them brittle and vulnerable.'),
+('Ice Power IV', 400, 'Ice', 'You form protective ice barriers to block attacks.'),
+('Ice Power V', 500, 'Ice', 'You hurl massive icicles capable of piercing armor and pinning foes.'),
+('Ice Power VI', 600, 'Ice', 'You freeze the air itself, creating zones of frost that damage over time.'),
+('Ice Power VII', 700, 'Ice', 'You summon blizzards that blind and freeze entire enemy lines.'),
+('Ice Power VIII', 800, 'Ice', 'You encase enemies in solid ice, halting them completely.'),
+('Ice Power IX', 900, 'Ice', 'You manipulate ice storms and glacial spikes with terrifying precision.'),
+('Ice Power X', 1000, 'Ice', 'You are the embodiment of winter, freezing the world with a single breath.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Life Power I', 100, 'Life', 'You gain a subtle connection to living energy, able to soothe minor wounds.'),
+('Life Power II', 200, 'Life', 'You emit a gentle aura that accelerates healing for nearby allies.'),
+('Life Power III', 300, 'Life', 'You mend broken flesh and bone with a touch, reversing moderate injuries.'),
+('Life Power IV', 400, 'Life', 'You purify poisons and diseases, restoring vitality to the afflicted.'),
+('Life Power V', 500, 'Life', 'You shield allies with living energy, absorbing incoming harm.'),
+('Life Power VI', 600, 'Life', 'You revitalize fallen comrades, bringing them back from the brink of death.'),
+('Life Power VII', 700, 'Life', 'You command the essence of life, regrowing lost limbs or withered flora.'),
+('Life Power VIII', 800, 'Life', 'You radiate regenerative power, healing all nearby allies over time.'),
+('Life Power IX', 900, 'Life', 'You can resurrect the recently deceased, restoring them with full strength.'),
+('Life Power X', 1000, 'Life', 'You are the source of all vitality, a divine force that defies death itself.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Light Power I', 100, 'Light', 'You summon a gentle glow that illuminates darkness and calms allies.'),
+('Light Power II', 200, 'Light', 'You emit a flash of light that disorients enemies and reveals hidden threats.'),
+('Light Power III', 300, 'Light', 'You project radiant beams that burn the unholy and shield the righteous.'),
+('Light Power IV', 400, 'Light', 'You form shields of pure light that absorb incoming attacks.'),
+('Light Power V', 500, 'Light', 'You cleanse allies of curses and negative effects with divine radiance.'),
+('Light Power VI', 600, 'Light', 'You blind enemies with bursts of searing brilliance.'),
+('Light Power VII', 700, 'Light', 'You rain down spears of light, striking foes with holy precision.'),
+('Light Power VIII', 800, 'Light', 'You create zones of sacred light that heal allies and repel darkness.'),
+('Light Power IX', 900, 'Light', 'You invoke the light of the heavens, smiting evil with overwhelming force.'),
+('Light Power X', 1000, 'Light', 'You embody divine illumination, wielding absolute light to purify the world.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Space Power I', 100, 'Space', 'You slightly distort space, allowing minor changes in object position.'),
+('Space Power II', 200, 'Space', 'You blink short distances, instantly teleporting a few meters.'),
+('Space Power III', 300, 'Space', 'You bend distance, letting projectiles travel farther or curve unnaturally.'),
+('Space Power IV', 400, 'Space', 'You create rifts to store or retrieve objects from a pocket dimension.'),
+('Space Power V', 500, 'Space', 'You generate small spatial barriers that deflect attacks.'),
+('Space Power VI', 600, 'Space', 'You shift yourself between positions mid-attack, making you hard to hit.'),
+('Space Power VII', 700, 'Space', 'You create void zones that slow enemies by warping space-time.'),
+('Space Power VIII', 800, 'Space', 'You open portals to redirect attacks or travel instantly across the battlefield.'),
+('Space Power IX', 900, 'Space', 'You collapse space around enemies, crushing them with gravitational force.'),
+('Space Power X', 1000, 'Space', 'You master all spatial dimensions, freely folding reality to your will.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Thunder Power I', 100, 'Thunder', 'You generate minor electric sparks to jolt nearby enemies.'),
+('Thunder Power II', 200, 'Thunder', 'You hurl bolts of lightning that shock and stagger your foes.'),
+('Thunder Power III', 300, 'Thunder', 'You move with a sudden burst of speed, like a lightning flash.'),
+('Thunder Power IV', 400, 'Thunder', 'Your strikes channel electricity, chaining damage between enemies.'),
+('Thunder Power V', 500, 'Thunder', 'You summon thunderclaps that deafen and disorient all nearby.'),
+('Thunder Power VI', 600, 'Thunder', 'You electrify your aura, damaging anyone who touches you.'),
+('Thunder Power VII', 700, 'Thunder', 'You call down lightning from the skies to strike with precision.'),
+('Thunder Power VIII', 800, 'Thunder', 'Your control of thunder allows you to paralyze enemies with voltage.'),
+('Thunder Power IX', 900, 'Thunder', 'You become lightning incarnate, striking and vanishing instantly.'),
+('Thunder Power X', 1000, 'Thunder', 'You command storms, unleashing devastation with thunder and lightning across vast areas.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Time Power I', 100, 'Time', 'You sense fluctuations in time, slightly anticipating enemy actions.'),
+('Time Power II', 200, 'Time', 'You slow down your perception, reacting faster in combat.'),
+('Time Power III', 300, 'Time', 'You delay enemy movements by distorting local time.'),
+('Time Power IV', 400, 'Time', 'You briefly rewind minor injuries to restore your condition.'),
+('Time Power V', 500, 'Time', 'You fast-forward your movement, dashing with unnatural speed.'),
+('Time Power VI', 600, 'Time', 'You freeze small areas in time, immobilizing enemies temporarily.'),
+('Time Power VII', 700, 'Time', 'You alter time flow around you, accelerating ally actions.'),
+('Time Power VIII', 800, 'Time', 'You rewind brief moments of battle, undoing fatal mistakes.'),
+('Time Power IX', 900, 'Time', 'You stop time for several seconds, acting while all else is frozen.'),
+('Time Power X', 1000, 'Time', 'You transcend time itself, rewriting outcomes before they occur.');

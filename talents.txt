@@ -1,0 +1,902 @@
+INSERT INTO talents (name, image, description) VALUES
+('Flame Fury', 'flame_fury.png', 'Unleash a fiery attack dealing [damage_value]% magical damage, stunning the target for [stun_duration] turns, and causing [burn_damage_value]% damage over [burn_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(1, 1, 'magical', 100),  -- Damage effect, scaling with level (default 100% damage)
+(1, 7, 'none', 1),       -- Stun effect, scaling with duration (1 turn by default)
+(1, 9, 'none', 5);       -- Burn effect, scaling with damage percentage (5% by default)
+
+INSERT INTO talents (name, image, description) VALUES
+('Titan’s Shield', 'titans_shield.png', 'Summon a powerful shield that absorbs [shield_value]% damage, grants [buff_defense]% defense for [buff_duration] turns, and reflects [reflect_damage]% of incoming damage.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(2, 2, 'none', 100),     -- Shield effect, scaling with the percentage (100% damage absorption)
+(2, 4, 'none', 30),      -- Buff defense, scaling with percentage (30% increased defense)
+(2, 37, 'none', 30);     -- Reflect damage, scaling with percentage (reflects 30% of damage)
+
+INSERT INTO talents (name, image, description) VALUES
+('Venomous Touch', 'venomous_touch.png', 'Inflict poison that deals [poison_damage_value]% damage over [poison_duration] turns, causes [debuff_attack]% decrease in target’s attack, and silences the target for [silence_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(3, 10, 'none', 5),      -- Poison effect, scaling with percentage (5% damage each turn)
+(3, 5, 'none', 30),      -- Decrease attack, scaling with percentage (30% reduced attack)
+(3, 13, 'none', 1);      -- Silence effect, scaling with duration (1 turn silence)
+
+INSERT INTO talents (name, image, description) VALUES
+('Blazing Charge', 'blazing_charge.png', 'Charge forward dealing [charge_damage_value]% physical damage to all enemies in your path, and applying [slow_value]% slow for [slow_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(4, 1, 'physical', 150),   -- Charge damage effect, scaling with level (150% damage)
+(4, 16, 'none', 30),       -- Slow effect, scaling with percentage (30% slow)
+(4, 17, 'none', 3);        -- Knockback effect, scaling with range (3 units knockback)
+
+INSERT INTO talents (name, image, description) VALUES
+('Arcane Blast', 'arcane_blast.png', 'Unleash a powerful arcane blast dealing [arcane_damage_value]% magical damage to all enemies in a radius and silencing them for [silence_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(5, 1, 'magical', 200),     -- Arcane damage effect, scaling with level (200% damage)
+(5, 13, 'none', 1),         -- Silence effect, scaling with duration (1 turn silence)
+(5, 6, 'none', 3);          -- Area effect, scaling with range (3 units radius)
+
+INSERT INTO talents (name, image, description) VALUES
+('Healing Wave', 'healing_wave.png', 'Heal all allies by [heal_value]% of their max health and grant them [buff_defense]% increased defense for [buff_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(6, 19, 'none', 30),       -- Heal effect, scaling with percentage (30% health)
+(6, 4, 'none', 20),        -- Buff defense, scaling with percentage (20% increased defense)
+(6, 18, 'none', 3);        -- Cleanse debuff, scaling with number of debuffs (cleanses up to 3 debuffs)
+
+INSERT INTO talents (name, image, description) VALUES
+('Shadow Step', 'shadow_step.png', 'Teleport behind an enemy, dealing [shadow_damage_value]% magical damage and causing them to be stunned for [stun_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(7, 1, 'magical', 150),  -- Shadow damage effect, scaling with level (150% damage)
+(7, 7, 'none', 1),       -- Stun effect, scaling with duration (1 turn stun)
+(7, 11, 'none', 2);      -- Damage over time, scaling with number of turns (2 turns)
+
+INSERT INTO talents (name, image, description) VALUES
+('Earthquake', 'earthquake.png', 'Cause the ground to shake, dealing [earthquake_damage_value]% physical damage to all enemies and applying a [slow_value]% slow for [slow_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(8, 1, 'physical', 120),  -- Earthquake damage effect, scaling with level (120% damage)
+(8, 16, 'none', 50),      -- Slow effect, scaling with percentage (50% slow)
+(8, 14, 'none', 1);       -- Stun effect, scaling with duration (1 turn stun)
+
+INSERT INTO talents (name, image, description) VALUES
+('Chain Lightning', 'chain_lightning.png', 'Release a chain of lightning that strikes [num_targets] enemies, dealing [lightning_damage_value]% magical damage to each and stunning them for [stun_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(9, 1, 'magical', 100),   -- Lightning damage effect, scaling with level (100% damage)
+(9, 7, 'none', 1),        -- Stun effect, scaling with duration (1 turn stun)
+(9, 16, 'none', 50);      -- Slow effect, scaling with percentage (50% slow)
+
+INSERT INTO talents (name, image, description) VALUES
+('Divine Blessing', 'divine_blessing.png', 'Heal all allies for [heal_value]% of their max health, grant [buff_attack]% increased attack for [buff_duration] turns, and cleanse debuffs.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(10, 19, 'none', 30),      -- Heal effect, scaling with percentage (30% health)
+(10, 3, 'none', 20),       -- Buff attack, scaling with percentage (20% increased attack)
+(10, 21, 'none', 1);       -- Cleanse effect, no scaling (instant cleanse)
+
+INSERT INTO talents (name, image, description) VALUES
+('Frozen Strike', 'frozen_strike.png', 'Deliver a frozen blow that deals [freeze_damage_value]% magical damage, applies [freeze_duration] turns of freeze, and reduces target’s movement speed by [slow_value]% for [slow_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(11, 1, 'magical', 120),   -- Freeze damage effect, scaling with level (120% damage)
+(11, 7, 'none', 1),        -- Freeze effect, scaling with duration (1 turn freeze)
+(11, 16, 'none', 40);      -- Slow effect, scaling with percentage (40% movement speed reduction)
+
+INSERT INTO talents (name, image, description) VALUES
+('Arcane Shield', 'arcane_shield.png', 'Create a magical barrier that absorbs [shield_value]% incoming damage, reflects [reflect_value]% of damage back to the attacker, and grants [buff_defense]% defense for [buff_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(12, 2, 'none', 100),      -- Shield effect, scaling with percentage (100% damage absorption)
+(12, 37, 'none', 20),      -- Reflect damage, scaling with percentage (20% damage reflected)
+(12, 4, 'none', 30);       -- Buff defense, scaling with percentage (30% increased defense)
+
+INSERT INTO talents (name, image, description) VALUES
+('Meteor Strike', 'meteor_strike.png', 'Summon a meteor that deals [meteor_damage_value]% magical damage in a large area, burns enemies for [burn_damage_value]% over [burn_duration] turns, and applies [stun_duration] turns of stun.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(13, 1, 'magical', 200),   -- Meteor damage effect, scaling with level (200% damage)
+(13, 9, 'none', 50),       -- Burn effect, scaling with damage percentage (50% burn damage)
+(13, 7, 'none', 2);        -- Stun effect, scaling with duration (2 turns stun)
+
+INSERT INTO talents (name, image, description) VALUES
+('Vampiric Touch', 'vampiric_touch.png', 'Deal [vampiric_damage_value]% physical damage and heal for [heal_percentage]% of the damage dealt, additionally applying [debuff_attack]% decrease in the target’s attack for [debuff_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(14, 1, 'physical', 150),   -- Vampiric damage effect, scaling with level (150% damage)
+(14, 19, 'none', 30),       -- Heal effect, scaling with percentage (30% of damage dealt)
+(14, 5, 'none', 20);        -- Debuff attack, scaling with percentage (20% reduced attack)
+
+INSERT INTO talents (name, image, description) VALUES
+('Thunderstorm', 'thunderstorm.png', 'Summon a thunderstorm that deals [lightning_damage_value]% magical damage in a wide radius, stuns all enemies for [stun_duration] turns, and applies [slow_value]% slow for [slow_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(15, 1, 'magical', 180),    -- Lightning damage effect, scaling with level (180% damage)
+(15, 7, 'none', 1),         -- Stun effect, scaling with duration (1 turn stun)
+(15, 16, 'none', 40);       -- Slow effect, scaling with percentage (40% movement speed reduction)
+
+INSERT INTO talents (name, image, description) VALUES
+('Thunderstorm', 'thunderstorm.png', 'Summon a thunderstorm that deals [lightning_damage_value]% magical damage in a wide radius, stuns all enemies for [stun_duration] turns, and applies [slow_value]% slow for [slow_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(15, 1, 'magical', 180),    -- Lightning damage effect, scaling with level (180% damage)
+(15, 7, 'none', 1),         -- Stun effect, scaling with duration (1 turn stun)
+(15, 16, 'none', 40);       -- Slow effect, scaling with percentage (40% movement speed reduction)
+
+INSERT INTO talents (name, image, description) VALUES
+('Light of Purity', 'light_of_purity.png', 'Heal all allies for [heal_value]% of their max health, remove all debuffs from them, and grant [buff_attack]% increased attack for [buff_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(16, 19, 'none', 30),      -- Heal effect, scaling with percentage (30% health)
+(16, 21, 'none', 1),       -- Cleanse debuff effect, removes all debuffs
+(16, 3, 'none', 20);       -- Buff attack, scaling with percentage (20% increased attack)
+
+INSERT INTO talents (name, image, description) VALUES
+('Soul Reaver', 'soul_reaver.png', 'Deal [damage_value]% of the target\'s health as magical damage and heal for [heal_value]% of the damage dealt, additionally applying [debuff_defense]% decrease in the target’s defense for [debuff_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(17, 1, 'magical', 150),     -- Damage effect, scaling with level (150% of target’s health)
+(17, 19, 'none', 50),        -- Heal effect, scaling with percentage (50% of the damage dealt)
+(17, 6, 'none', 20);         -- Debuff defense, scaling with percentage (20% reduced defense)
+
+INSERT INTO talents (name, image, description) VALUES
+('Gale Force', 'gale_force.png', 'Summon a powerful wind gust that deals [wind_damage_value]% physical damage, knocks enemies back by [knockback_distance] units, and reduces their attack speed by [attack_speed_reduction]% for [attack_speed_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(18, 1, 'physical', 120),    -- Wind damage effect, scaling with level (120% damage)
+(18, 2, 'none', 2),          -- Knockback effect, scaling with range (2 units)
+(18, 8, 'none', 30);         -- Attack speed reduction, scaling with percentage (30% reduction)
+
+INSERT INTO talents (name, image, description) VALUES
+('Raging Inferno', 'raging_inferno.png', 'Deal [fire_damage_value]% physical damage to all enemies, apply [burn_damage_value]% burn over [burn_duration] turns, and grant [buff_attack]% increased attack for [buff_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(19, 1, 'physical', 150),    -- Fire damage effect, scaling with level (150% damage)
+(19, 9, 'none', 40),         -- Burn effect, scaling with damage percentage (40% burn damage)
+(19, 3, 'none', 20);         -- Buff attack, scaling with percentage (20% increased attack)
+
+INSERT INTO talents (name, image, description) VALUES
+('Rejuvenating Surge', 'rejuvenating_surge.png', 'Heal all allies for [heal_value]% of their max health and grant them [buff_defense]% defense for [buff_duration] turns, additionally removing debuffs.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(20, 19, 'none', 30),       -- Heal effect, scaling with percentage (30% health)
+(20, 4, 'none', 25),        -- Buff defense, scaling with percentage (25% increased defense)
+(20, 21, 'none', 1);        -- Cleanse debuff, removes all debuffs
+
+INSERT INTO talents (name, image, description) VALUES
+('Cloak of Shadows', 'cloak_of_shadows.png', 'Become invisible for [invisibility_duration] turns, reducing all damage taken by [damage_reduction_value]% and granting increased critical hit chance of [crit_chance_value]% for [crit_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(21, 7, 'none', 2),         -- Invisibility effect, scaling with duration (2 turns)
+(21, 17, 'none', 30),       -- Damage reduction, scaling with percentage (30% damage reduction)
+(21, 10, 'none', 15);       -- Critical hit chance increase, scaling with percentage (15% increased crit chance)
+
+INSERT INTO talents (name, image, description) VALUES
+('Lunar Blessing', 'lunar_blessing.png', 'Bless an ally, healing them for [heal_value]% of their max health and increasing their magic resistance by [buff_resist_value]% for [buff_duration] turns, while also granting them [buff_speed]% increased movement speed for [buff_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(22, 19, 'none', 25),       -- Heal effect, scaling with percentage (25% health)
+(22, 20, 'none', 40),       -- Magic resistance buff, scaling with percentage (40% resistance)
+(22, 16, 'none', 20);       -- Movement speed buff, scaling with percentage (20% speed)
+
+INSERT INTO talents (name, image, description) VALUES
+('Spectral Strike', 'spectral_strike.png', 'Deal [damage_value]% magical damage to an enemy and apply a debuff that causes them to take [damage_increase_value]% more damage from all sources for [debuff_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(23, 1, 'magical', 150),     -- Damage effect, scaling with level (150% damage)
+(23, 14, 'none', 30),        -- Damage increase debuff, scaling with percentage (30% more damage)
+(23, 6, 'none', 3);          -- Debuff duration, scaling with turns (3 turns of debuff)
+
+INSERT INTO talents (name, image, description) VALUES
+('Soul Link', 'soul_link.png', 'Link your soul with an ally, healing them for [heal_value]% of their max health and transferring [damage_value]% of any damage they take to you.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(24, 19, 'none', 30),       -- Heal effect, scaling with percentage (30% health)
+(24, 2, 'none', 50);        -- Damage transfer, scaling with percentage (50% damage taken by you)
+
+INSERT INTO talents (name, image, description) VALUES
+('Flame Burst', 'flame_burst.png', 'Deal [flame_damage_value]% fire damage to enemies in a radius, apply [burn_damage_value]% burn damage over [burn_duration] turns, and reduce the target’s defense by [debuff_defense_value]% for [debuff_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(25, 1, 'magical', 160),    -- Flame damage effect, scaling with level (160% damage)
+(25, 9, 'none', 40),        -- Burn effect, scaling with percentage (40% burn damage)
+(25, 6, 'none', 20);        -- Defense debuff, scaling with percentage (20% reduced defense)
+
+INSERT INTO talents (name, image, description) VALUES
+('Echo of the Void', 'echo_of_the_void.png', 'Unleash an ethereal scream that deals [void_damage_value]% magical damage to all enemies, silences them for [silence_duration] turns, and reduces their mana regeneration by [mana_reduction_value]% for [mana_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(26, 1, 'magical', 180),    -- Void damage effect, scaling with level (180% damage)
+(26, 11, 'none', 2),        -- Silence effect, scaling with duration (2 turns silence)
+(26, 22, 'none', 50);       -- Mana regeneration reduction, scaling with percentage (50% less mana regen)
+
+INSERT INTO talents (name, image, description) VALUES
+('Wrath of the Ancients', 'wrath_of_the_ancients.png', 'Call upon the power of ancient spirits to deal [earth_damage_value]% physical damage, heal allies for [heal_value]% of their max health, and grant them a shield that absorbs [shield_value]% of damage for [shield_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(27, 1, 'physical', 200),   -- Earth damage effect, scaling with level (200% damage)
+(27, 19, 'none', 25),       -- Heal effect, scaling with percentage (25% health)
+(27, 2, 'none', 50);        -- Shield effect, scaling with percentage (50% damage absorption)
+
+INSERT INTO talents (name, image, description) VALUES
+('Vortex of Chaos', 'vortex_of_chaos.png', 'Create a vortex that deals [chaos_damage_value]% magical damage over [duration] turns, pulls enemies toward the center, and applies [chaos_effect_value]% chaos damage increase to enemies for [debuff_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(28, 1, 'magical', 160),    -- Chaos damage effect, scaling with level (160% damage)
+(28, 13, 'none', 20),       -- Chaos damage increase debuff, scaling with percentage (20% increased chaos damage)
+(28, 12, 'none', 3);        -- Debuff duration, scaling with turns (3 turns of debuff)
+
+INSERT INTO talents (name, image, description) VALUES
+('Divine Light', 'divine_light.png', 'Heal all allies for [heal_value]% of their max health and grant them immunity to debuffs for [buff_duration] turns, while also providing a burst of [burst_heal_value]% immediate healing.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(29, 19, 'none', 25),       -- Heal effect, scaling with percentage (25% health)
+(29, 21, 'none', 1),        -- Immunity to debuffs, scaling with turns (1 turn immunity)
+(29, 19, 'none', 10);       -- Burst heal effect, scaling with percentage (10% immediate healing)
+
+INSERT INTO talents (name, image, description) VALUES
+('Celestial Wrath', 'celestial_wrath.png', 'Call down a celestial strike that deals [celestial_damage_value]% physical damage to all enemies and applies a debuff that decreases their critical hit chance by [debuff_crit_value]% for [debuff_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(30, 1, 'physical', 220),   -- Celestial damage effect, scaling with level (220% damage)
+(30, 18, 'none', 40),       -- Critical hit chance debuff, scaling with percentage (40% reduced crit chance)
+(30, 6, 'none', 3);         -- Debuff duration, scaling with turns (3 turns of debuff)
+
+INSERT INTO talents (name, image, description) VALUES
+('Frostbite', 'frostbite.png', 'Deal [frost_damage_value]% magical frost damage to all enemies and apply a slow effect that reduces their movement speed by [slow_value]% for [slow_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(31, 1, 'magical', 150),    -- Frost damage effect, scaling with level (150% damage)
+(31, 15, 'none', 30),       -- Slow effect, scaling with percentage (30% reduced movement speed)
+(31, 6, 'none', 3);         -- Slow duration, scaling with turns (3 turns of slow)
+
+INSERT INTO talents (name, image, description) VALUES
+('Lightning Fury', 'lightning_fury.png', 'Strike enemies with a bolt of lightning, dealing [lightning_damage_value]% magical damage and stunning them for [stun_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(32, 1, 'magical', 180),    -- Lightning damage effect, scaling with level (180% damage)
+(32, 5, 'none', 2);         -- Stun effect, scaling with duration (2 turns of stun)
+
+INSERT INTO talents (name, image, description) VALUES
+('Blinding Radiance', 'blinding_radiance.png', 'Unleash a radiant burst of light, dealing [radiance_damage_value]% magical damage and blinding enemies for [blind_duration] turns, causing them to miss attacks for the duration.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(33, 1, 'magical', 200),    -- Radiance damage effect, scaling with level (200% damage)
+(33, 4, 'none', 3);         -- Blind duration, scaling with turns (3 turns of blindness)
+
+INSERT INTO talents (name, image, description) VALUES
+('Vampiric Touch', 'vampiric_touch.png', 'Steal [steal_health_value]% of damage dealt as health and heal yourself over [vamp_duration] turns, while applying a debuff that reduces enemy healing by [heal_reduction_value]% for [debuff_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(34, 1, 'magical', 120),    -- Damage effect, scaling with level (120% damage)
+(34, 19, 'none', 15),       -- Healing effect, scaling with percentage (15% of damage dealt)
+(34, 23, 'none', 30);       -- Heal reduction debuff, scaling with percentage (30% reduced healing)
+
+INSERT INTO talents (name, image, description) VALUES
+('Tornado Call', 'tornado_call.png', 'Summon a tornado that deals [tornado_damage_value]% physical damage to enemies in its path, pulls them in, and decreases their defense by [debuff_defense_value]% for [debuff_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(35, 1, 'physical', 180),   -- Tornado damage effect
+(35, 6, 'none', 25),        -- Defense debuff
+(35, 10, 'none', 5);        -- Pull effect
+
+INSERT INTO talents (name, image, description) VALUES
+('Shadow Rebirth', 'shadow_rebirth.png', 'After death, automatically revive with [revive_health_value]% of your max health, while granting temporary invulnerability for [invul_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(36, 19, 'none', 50),       -- Revive health
+(36, 3, 'none', 2),         -- Invulnerability duration
+(36, 2, 'none', 0);         -- Death trigger effect
+
+INSERT INTO talents (name, image, description) VALUES
+('Guardian\'s Shield', 'guardians_shield.png', 'Create a shield that absorbs [shield_value]% of incoming damage for allies within range, and grants them increased defense by [defense_buff_value]% for [defense_buff_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(37, 2, 'none', 40),        -- Shield absorption effect
+(37, 6, 'none', 20),        -- Defense buff
+(37, 15, 'none', 5);        -- Shield duration
+
+INSERT INTO talents (name, image, description) VALUES
+('Spectral Form', 'spectral_form.png', 'Become ethereal for [duration] turns, taking [damage_reduction_value]% less damage and passing through enemies while increasing your movement speed by [speed_boost_value]% for the duration.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(38, 2, 'none', 30),        -- Damage reduction
+(38, 14, 'none', 20),       -- Movement speed boost
+(38, 12, 'none', 5);        -- Ethereal movement effect
+
+INSERT INTO talents (name, image, description) VALUES
+('Blood Moon', 'blood_moon.png', 'Summon the power of the blood moon to deal [moon_damage_value]% magical damage to enemies and heal all allies for [heal_value]% of their max health, while also applying a debuff that reduces enemy healing by [heal_debuff_value]% for [heal_debuff_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(39, 1, 'magical', 220),    -- Blood moon damage effect
+(39, 19, 'none', 25),       -- Healing effect
+(39, 23, 'none', 40);       -- Healing debuff
+
+INSERT INTO talents (name, image, description) VALUES
+('Tidal Wave', 'tidal_wave.png', 'Unleash a massive tidal wave that deals [wave_damage_value]% magical water damage and knocks back enemies for [knockback_distance] meters, while reducing their attack speed by [attack_speed_reduction]% for [debuff_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(40, 1, 'magical', 200),    -- Tidal wave damage effect
+(40, 7, 'none', 15),        -- Attack speed reduction
+(40, 5, 'none', 3);         -- Knockback effect
+
+INSERT INTO talents (name, image, description) VALUES
+('Infernal Fury', 'infernal_fury.png', 'Unleash an infernal fury that deals [damage_value]% magical and physical damage to all nearby enemies, while reducing their speed by [slow_value]% for [slow_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(41, 1, 'magical', 120),    -- Infernal damage (magical)
+(41, 1, 'physical', 120),   -- Infernal damage (physical)
+(41, 16, 'none', 40),       -- Slow effect
+(41, 2, 'none', 3);         -- Duration of effect
+
+INSERT INTO talents (name, image, description) VALUES
+('Divine Blessing', 'divine_blessing.png', 'Bless allies, increasing their attack power by [buff_attack_value]% for [buff_duration] turns, while reducing enemy damage by [damage_reduction_value]% for [debuff_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(42, 3, 'none', 30),        -- Attack buff for allies
+(42, 2, 'none', 25),        -- Damage reduction for enemies
+(42, 5, 'none', -20),       -- Debuff enemy attack
+(42, 4, 'none', 3);         -- Duration for buffs/debuffs
+
+INSERT INTO talents (name, image, description) VALUES
+('Lightning Storm', 'lightning_storm.png', 'Summon a lightning storm that strikes enemies with [lightning_damage_value]% magical damage, and reduces their defense by [debuff_defense_value]% for [debuff_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(43, 1, 'magical', 150),    -- Lightning damage (magical)
+(43, 6, 'none', 30),        -- Defense debuff for enemies
+(43, 2, 'none', 3),         -- Duration for debuff
+(43, 16, 'none', 40);       -- Speed reduction
+
+INSERT INTO talents (name, image, description) VALUES
+('Vampiric Touch', 'vampiric_touch.png', 'Inflict enemies with a curse that deals [damage_value]% magical and physical damage while healing you for [heal_value]% of the damage dealt.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(44, 1, 'magical', 100),    -- Vampiric damage (magical)
+(44, 1, 'physical', 100),   -- Vampiric damage (physical)
+(44, 19, 'none', 50),       -- Healing based on damage dealt
+(44, 5, 'none', 3);         -- Duration of curse
+
+INSERT INTO talents (name, image, description) VALUES
+('Soul Bound', 'soul_bound.png', 'Bind your soul to a target, transferring [damage_transfer_value]% of the damage they take to you, while increasing your defense by [buff_defense_value]% for [buff_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(45, 2, 'none', 40),        -- Defense buff for self
+(45, 9, 'none', 50),        -- Damage transfer effect
+(45, 6, 'none', 30),        -- Transfer damage (effect from target)
+(45, 3, 'none', 2);         -- Duration of defense buff
+
+INSERT INTO talents (name, image, description) VALUES
+('Frozen Wrath', 'frozen_wrath.png', 'Freeze enemies in a large radius, dealing [freeze_damage_value]% magical damage and immobilizing them for [freeze_duration] turns, while reducing their attack speed by [attack_speed_debuff_value]%.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(46, 1, 'magical', 100),    -- Freeze damage (magical)
+(46, 12, 'none', 2),        -- Freeze effect (duration)
+(46, 16, 'none', 40),       -- Attack speed debuff
+(46, 3, 'none', 3);         -- Duration of debuff
+
+INSERT INTO talents (name, image, description) VALUES
+('Fury of the Beast', 'fury_of_the_beast.png', 'Unleash your primal fury, dealing [beast_damage_value]% physical damage and stunning enemies for [stun_duration] turns while increasing your attack power by [buff_attack_value]%.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(47, 1, 'physical', 150),   -- Beast damage (physical)
+(47, 7, 'none', 100),       -- Stun effect
+(47, 3, 'none', 40),        -- Attack power buff
+(47, 12, 'none', 2);        -- Duration of stun
+
+INSERT INTO talents (name, image, description) VALUES
+('Time Warp', 'time_warp.png', 'Slow time around you, reducing enemy movement speed by [slow_value]% and attack speed by [attack_speed_debuff_value]% for [duration] turns, while increasing your own speed by [speed_boost_value]%.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(48, 16, 'none', 40),       -- Movement speed debuff for enemies
+(48, 16, 'none', 30),       -- Attack speed debuff for enemies
+(48, 14, 'none', 20),       -- Speed boost for self
+(48, 5, 'none', 3);         -- Duration of time warp effect
+
+INSERT INTO talents (name, image, description) VALUES
+('Phantom Strike', 'phantom_strike.png', 'Strike from the shadows, dealing [damage_value]% magical and physical damage to a target and silencing them for [silence_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(49, 1, 'magical', 120),    -- Phantom strike damage (magical)
+(49, 1, 'physical', 120),   -- Phantom strike damage (physical)
+(49, 13, 'none', 2),        -- Silence effect duration
+(49, 6, 'none', 50);        -- Silence effect
+
+INSERT INTO talents (name, image, description) VALUES
+('Sacrificial Rite', 'sacrificial_rite.png', 'Sacrifice a portion of your health to deal [sacrifice_damage_value]% magical and physical damage to all enemies and reduce their defense by [defense_debuff_value]% for [defense_debuff_duration] turns. Additionally, it grants you a temporary health regeneration of [regen_value]% for [regen_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(50, 1, 'magical', 150),    -- Sacrificial damage (magical)
+(50, 1, 'physical', 150),   -- Sacrificial damage (physical)
+(50, 6, 'none', 30),        -- Defense debuff on enemies
+(50, 5, 'none', 3),         -- Duration of defense debuff
+(50, 19, 'none', 20),       -- Health regeneration effect
+(50, 4, 'none', 4);         -- Duration of health regen effect
+
+INSERT INTO talents (name, image, description) VALUES
+('Arcane Fury', 'arcane_fury.png', 'Unleashes a powerful burst of arcane energy, dealing [arcane_damage_value]% magical and physical damage to enemies in a wide area and reducing their attack speed by [attack_speed_debuff_value]% for [attack_speed_debuff_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(51, 1, 'magical', 120),    -- Arcane damage (magical)
+(51, 1, 'physical', 120),   -- Arcane damage (physical)
+(51, 8, 'none', 50),        -- Attack speed debuff
+(51, 5, 'none', 2);         -- Duration of attack speed debuff
+
+INSERT INTO talents (name, image, description) VALUES
+('Elemental Storm', 'elemental_storm.png', 'Summons a violent storm of elements, dealing [storm_damage_value]% magical, physical, and chemical damage to all enemies while also applying a confusion effect for [confuse_duration] turns, causing them to attack randomly.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(52, 1, 'magical', 100),    -- Elemental damage (magical)
+(52, 1, 'physical', 100),   -- Elemental damage (physical)
+(52, 1, 'chemical', 100),   -- Elemental damage (chemical)
+(52, 17, 'none', 100),      -- Confuse effect
+(52, 5, 'none', 2);         -- Duration of confuse
+
+INSERT INTO talents (name, image, description) VALUES
+('Vampiric Embrace', 'vampiric_embrace.png', 'Gains a percentage of the damage dealt as health, recovering [vampiric_heal_value]% of the total damage dealt over [vampiric_duration] turns, while also dealing [vampiric_damage_value]% magical and physical damage to the target.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(53, 1, 'magical', 120),    -- Vampiric damage (magical)
+(53, 1, 'physical', 120),   -- Vampiric damage (physical)
+(53, 19, 'none', 50),       -- Vampiric heal effect
+(53, 5, 'none', 3);         -- Duration of heal
+
+INSERT INTO talents (name, image, description) VALUES
+('Celestial Blessing', 'celestial_blessing.png', 'Calls upon celestial forces to heal allies, restoring [heal_value]% of their max health over [heal_duration] turns and granting a shield that absorbs [shield_value]% of incoming damage for [shield_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(54, 19, 'none', 40),       -- Heal effect for allies
+(54, 5, 'none', 3),         -- Duration of healing
+(54, 2, 'none', 50),        -- Shield effect
+(54, 5, 'none', 2);         -- Duration of shield
+
+INSERT INTO talents (name, image, description) VALUES
+('Frostbite', 'frostbite.png', 'Freezes enemies in a target area, dealing [freeze_damage_value]% magical and physical damage over [freeze_duration] turns and reducing their movement speed by [movement_speed_debuff_value]% for [movement_speed_debuff_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(55, 1, 'magical', 80),     -- Freeze damage (magical)
+(55, 1, 'physical', 80),    -- Freeze damage (physical)
+(55, 16, 'none', 50),       -- Movement speed debuff
+(55, 5, 'none', 3);         -- Duration of freeze effect
+
+INSERT INTO talents (name, image, description) VALUES
+('Temporal Warp', 'temporal_warp.png', 'Alters time, granting a bonus turn immediately after the current action, and reduces all incoming damage by [damage_reduction_value]% for [damage_reduction_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(56, 33, 'none', 100),      -- Extra turn effect
+(56, 2, 'none', 30),        -- Damage reduction
+(56, 5, 'none', 2);         -- Duration of damage reduction
+
+INSERT INTO talents (name, image, description) VALUES
+('Infernal Fury', 'infernal_fury.png', 'Unleashes fiery chaos, dealing [fire_damage_value]% magical and physical damage and causing burn effects to all enemies over [burn_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(57, 1, 'magical', 120),    -- Fire damage (magical)
+(57, 1, 'physical', 120),   -- Fire damage (physical)
+(57, 9, 'none', 10),        -- Burn damage
+(57, 5, 'none', 3);         -- Burn duration
+
+INSERT INTO talents (name, image, description) VALUES
+('Divine Shield', 'divine_shield.png', 'Protects allies with a divine shield, absorbing [shield_value]% of incoming damage for [shield_duration] turns and reflecting [reflection_value]% of the damage back to attackers.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(58, 2, 'none', 80),        -- Shield effect
+(58, 5, 'none', 4),         -- Duration of shield
+(58, 37, 'none', 30),       -- Damage reflection
+(58, 5, 'none', 2);         -- Duration of reflection
+
+INSERT INTO talents (name, image, description) VALUES
+('Judgment Day', 'judgment_day.png', 'Calls down a divine judgment, dealing [judgment_damage_value]% magical and physical damage to all enemies and applying a stun effect for [stun_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(59, 1, 'magical', 150),    -- Judgment damage (magical)
+(59, 1, 'physical', 150),   -- Judgment damage (physical)
+(59, 7, 'none', 100),       -- Stun effect
+(59, 5, 'none', 1);         -- Stun duration
+
+INSERT INTO talents (name, image, description) VALUES
+('Eternal Night', 'eternal_night.png', 'Covers the battlefield in eternal darkness, reducing enemies\' accuracy by [accuracy_debuff_value]% and dealing [dark_damage_value]% magical and physical damage over [dark_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(60, 1, 'magical', 100),    -- Dark damage (magical)
+(60, 1, 'physical', 100),   -- Dark damage (physical)
+(60, 14, 'none', 50),       -- Accuracy debuff
+(60, 5, 'none', 3);         -- Dark damage duration
+
+INSERT INTO talents (name, image, description) VALUES
+('Inferno Blades', 'inferno_blades.png', 'Unleashes an inferno of burning blades, dealing [fire_damage_value]% magical and physical damage over [burn_duration] turns, causing enemies to suffer a burn effect and reducing their defense by [defense_debuff_value]%.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(61, 1, 'magical', 100),    -- Fire damage (magical)
+(61, 1, 'physical', 100),   -- Fire damage (physical)
+(61, 9, 'none', 50),        -- Burn damage
+(61, 2, 'none', 30);        -- Defense debuff
+
+INSERT INTO talents (name, image, description) VALUES
+('Shadow Veil', 'shadow_veil.png', 'Envelops the user in shadow, reducing incoming damage by [damage_reduction_value]% for [duration] turns and applying a silence effect to all enemies within range for [silence_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(62, 2, 'none', 30),        -- Damage reduction
+(62, 5, 'none', 3),         -- Duration of damage reduction
+(62, 20, 'none', 100),      -- Silence effect
+(62, 5, 'none', 2);         -- Silence duration
+
+INSERT INTO talents (name, image, description) VALUES
+('Radiant Beam', 'radiant_beam.png', 'Fires a radiant beam of light, dealing [light_damage_value]% magical damage and stunning all enemies in its path for [stun_duration] turns. Additionally, the user gains a shield absorbing [shield_value]% of damage for [shield_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(63, 1, 'magical', 120),    -- Light damage (magical)
+(63, 7, 'none', 100),       -- Stun effect
+(63, 2, 'none', 50),        -- Shield effect
+(63, 5, 'none', 2);         -- Duration of shield
+
+INSERT INTO talents (name, image, description) VALUES
+('Celestial Strike', 'celestial_strike.png', 'Strikes enemies with a celestial force, dealing [celestial_damage_value]% magical and physical damage. Additionally, enemies are inflicted with a slow effect that reduces their movement speed by [movement_speed_debuff_value]% for [slow_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(64, 1, 'magical', 110),    -- Celestial damage (magical)
+(64, 1, 'physical', 110),   -- Celestial damage (physical)
+(64, 16, 'none', 40),       -- Movement speed debuff
+(64, 5, 'none', 3);         -- Slow duration
+
+INSERT INTO talents (name, image, description) VALUES
+('Thunderclap', 'thunderclap.png', 'Calls down a powerful thunderstrike, dealing [thunder_damage_value]% magical and physical damage to enemies and stunning them for [stun_duration] turns. Additionally, the thunderclap disorients enemies, reducing their accuracy by [accuracy_debuff_value]% for [accuracy_debuff_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(65, 1, 'magical', 130),    -- Thunder damage (magical)
+(65, 1, 'physical', 130),   -- Thunder damage (physical)
+(65, 7, 'none', 100),       -- Stun effect
+(65, 14, 'none', 50);       -- Accuracy debuff
+
+INSERT INTO talents (name, image, description) VALUES
+('Essence Drain', 'essence_drain.png', 'Drains the life force of enemies, dealing [drain_damage_value]% magical damage while healing the user for [heal_value]% of the damage dealt. This effect also decreases enemy\'s defense by [defense_debuff_value]% for [defense_debuff_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(66, 1, 'magical', 100),    -- Drain damage (magical)
+(66, 19, 'none', 50),       -- Heal effect
+(66, 2, 'none', 30),        -- Defense debuff
+(66, 5, 'none', 2);         -- Duration of defense debuff
+
+INSERT INTO talents (name, image, description) VALUES
+('Tidal Wave', 'tidal_wave.png', 'Summons a massive tidal wave, dealing [water_damage_value]% magical and physical damage to enemies while pushing them back. The wave also applies a slow effect to all affected enemies for [slow_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(67, 1, 'magical', 100),    -- Water damage (magical)
+(67, 1, 'physical', 100),   -- Water damage (physical)
+(67, 16, 'none', 50),       -- Slow effect
+(67, 5, 'none', 3);         -- Slow duration
+
+INSERT INTO talents (name, image, description) VALUES
+('Divine Wrath', 'divine_wrath.png', 'Unleashes a bolt of divine wrath, dealing [holy_damage_value]% magical and physical damage to enemies and stunning them for [stun_duration] turns. Additionally, it heals all allies for [ally_heal_value]% of their health.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(68, 1, 'magical', 130),    -- Holy damage (magical)
+(68, 1, 'physical', 130),   -- Holy damage (physical)
+(68, 7, 'none', 100),       -- Stun effect
+(68, 19, 'none', 50);       -- Heal effect
+
+INSERT INTO talents (name, image, description) VALUES
+('Whirlwind Slash', 'whirlwind_slash.png', 'Performs a devastating whirlwind attack, dealing [slash_damage_value]% magical and physical damage to enemies in a large area, causing them to be knocked back and disoriented for [disorient_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(69, 1, 'magical', 110),    -- Slash damage (magical)
+(69, 1, 'physical', 110),   -- Slash damage (physical)
+(69, 11, 'none', 100),      -- Knockback effect
+(69, 5, 'none', 3);         -- Disorient duration
+
+INSERT INTO talents (name, image, description) VALUES
+('Phoenix Rebirth', 'phoenix_rebirth.png', 'Upon death, the user is reborn with [rebirth_health_percentage]% health, deals [fire_damage_value]% magical and physical damage to enemies near the user upon resurrection, and applies a burn effect for [burn_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(70, 1, 'magical', 150),    -- Rebirth damage (magical)
+(70, 1, 'physical', 150),   -- Rebirth damage (physical)
+(70, 9, 'none', 30),        -- Burn effect
+(70, 5, 'none', 3);         -- Burn duration
+
+INSERT INTO talents (name, image, description) VALUES
+('Venomous Strike', 'venomous_strike.png', 'Strikes enemies with venom-infused blades, dealing [poison_damage_value]% magical and physical damage over [poison_duration] turns. Additionally, the strike reduces the enemies\' attack speed by [attack_speed_debuff_value]% for [attack_speed_debuff_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(71, 1, 'magical', 120),    -- Poison damage (magical)
+(71, 1, 'physical', 120),   -- Poison damage (physical)
+(71, 4, 'none', 40),        -- Attack speed debuff
+(71, 5, 'none', 3);         -- Duration of attack speed debuff
+
+INSERT INTO talents (name, image, description) VALUES
+('Meteor Strike', 'meteor_strike.png', 'Calls down a meteor, dealing [fire_damage_value]% magical and physical damage to all enemies in the impact area. Additionally, enemies are knocked down for [knockdown_duration] turns and burned for [burn_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(72, 1, 'magical', 150),    -- Fire damage (magical)
+(72, 1, 'physical', 150),   -- Fire damage (physical)
+(72, 11, 'none', 100),      -- Knockdown effect
+(72, 9, 'none', 30);        -- Burn effect
+
+INSERT INTO talents (name, image, description) VALUES
+('Frostbite', 'frostbite.png', 'Creates a freezing aura around the user, dealing [frost_damage_value]% magical damage to all enemies within range and reducing their movement speed by [movement_speed_debuff_value]% for [slow_duration] turns. The aura also causes enemies to be frozen for [freeze_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(73, 1, 'magical', 100),    -- Frost damage (magical)
+(73, 16, 'none', 50),       -- Movement speed debuff
+(73, 5, 'none', 3),         -- Slow duration
+(73, 7, 'none', 100);       -- Freeze effect
+
+INSERT INTO talents (name, image, description) VALUES
+('Blinding Flash', 'blinding_flash.png', 'Unleashes a flash of light, dealing [light_damage_value]% magical damage and blinding enemies, causing them to miss [accuracy_debuff_value]% of their attacks for [debuff_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(74, 1, 'magical', 120),    -- Light damage (magical)
+(74, 14, 'none', 50),       -- Accuracy debuff
+(74, 5, 'none', 2);         -- Duration of accuracy debuff
+
+INSERT INTO talents (name, image, description) VALUES
+('Eternal Flame', 'eternal_flame.png', 'Ignites the user’s weapon with eternal flames, causing each attack to deal [fire_damage_value]% magical and physical damage and inflict a burn effect for [burn_duration] turns. Additionally, the user heals for [heal_value]% of the damage dealt.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(75, 1, 'magical', 110),    -- Fire damage (magical)
+(75, 1, 'physical', 110),   -- Fire damage (physical)
+(75, 9, 'none', 30),        -- Burn effect
+(75, 19, 'none', 50);       -- Heal effect
+
+INSERT INTO talents (name, image, description) VALUES
+('Spectral Shield', 'spectral_shield.png', 'Summons a spectral shield that absorbs [shield_value]% of incoming damage and applies a fear effect to enemies within a radius, reducing their attack power by [attack_debuff_value]% for [debuff_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(76, 2, 'none', 50),        -- Shield effect
+(76, 6, 'none', 40),        -- Fear effect
+(76, 5, 'none', 3);         -- Duration of attack debuff
+
+INSERT INTO talents (name, image, description) VALUES
+('Soul Devourer', 'soul_devourer.png', 'Drains the soul of enemies, dealing [soul_damage_value]% magical and physical damage and healing the user for [heal_value]% of the damage dealt. The effect also reduces enemy attack speed by [attack_speed_debuff_value]% for [attack_speed_debuff_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(77, 1, 'magical', 120),    -- Soul damage (magical)
+(77, 1, 'physical', 120),   -- Soul damage (physical)
+(77, 19, 'none', 50),       -- Heal effect
+(77, 4, 'none', 30);        -- Attack speed debuff
+
+INSERT INTO talents (name, image, description) VALUES
+('Divine Light', 'divine_light.png', 'Calls down a burst of divine light, dealing [light_damage_value]% magical and physical damage to enemies and healing allies within the area for [ally_heal_value]% of their health. Enemies also receive a debuff, reducing their damage output by [damage_debuff_value]% for [damage_debuff_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(78, 1, 'magical', 130),    -- Light damage (magical)
+(78, 1, 'physical', 130),   -- Light damage (physical)
+(78, 19, 'none', 50),       -- Heal effect
+(78, 2, 'none', 30);        -- Damage debuff
+
+INSERT INTO talents (name, image, description) VALUES
+('Tempest Fury', 'tempest_fury.png', 'Unleashes a storm of lightning and wind, dealing [lightning_damage_value]% magical damage and [wind_damage_value]% physical damage, knocking enemies back and reducing their movement speed by [movement_speed_debuff_value]% for [slow_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(79, 1, 'magical', 120),    -- Lightning damage (magical)
+(79, 1, 'physical', 120),   -- Wind damage (physical)
+(79, 11, 'none', 100),      -- Knockback effect
+(79, 16, 'none', 50);       -- Movement speed debuff
+
+INSERT INTO talents (name, image, description) VALUES
+('Lunar Eclipse', 'lunar_eclipse.png', 'Summons the power of a lunar eclipse, dealing [eclipse_damage_value]% magical and physical damage to all enemies and inflicting a stun effect for [stun_duration] turns. The user gains a shield absorbing [shield_value]% of incoming damage for [shield_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(80, 1, 'magical', 150),    -- Eclipse damage (magical)
+(80, 1, 'physical', 150),   -- Eclipse damage (physical)
+(80, 7, 'none', 3),         -- Stun effect
+(80, 2, 'none', 40);        -- Shield effect
+
+-- 81. Talent: **Arcane Fury**
+-- Description: Unleashes an arcane storm, dealing [arcane_damage_value]% magical, physical, and elemental damage to all enemies and applying a debuff reducing their defense for [debuff_duration] turns. The caster also gains a buff increasing magic damage by [magic_damage_buff]% for [buff_duration] turns and becomes immune to crowd control effects.
+INSERT INTO talents (name, image, description) VALUES
+('Arcane Fury', 'arcane_fury.png', 'Unleashes an arcane storm, dealing [arcane_damage_value]% magical, physical, and elemental damage to all enemies and applying a debuff reducing their defense for [debuff_duration] turns. The caster also gains a buff increasing magic damage by [magic_damage_buff]% for [buff_duration] turns and becomes immune to crowd control effects.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(81, 1, 'magical', 120),     -- Arcane damage (magical)
+(81, 1, 'physical', 120),    -- Arcane damage (physical)
+(81, 1, 'mental', 120),   -- Arcane damage (elemental)
+(81, 6, 'physical', -20),    -- Debuff defense (physical)
+(81, 5, 'magical', 50),      -- Buff magic damage (magical)
+(81, 22, 'mental', 100);     -- Immune to crowd control (mental)
+
+-- 82. Talent: **Infernal Wrath**
+-- Description: Unleashes an infernal wrath, dealing [fire_damage_value]% magical, physical, and elemental damage to all enemies over [damage_duration] turns. The target is also burned, taking [burn_damage_value]% damage over [burn_duration] turns. Reduces their movement speed by [slow_percentage]% for [slow_duration] turns.
+INSERT INTO talents (name, image, description) VALUES
+('Infernal Wrath', 'infernal_wrath.png', 'Unleashes an infernal wrath, dealing [fire_damage_value]% magical, physical, and elemental damage to all enemies over [damage_duration] turns. The target is also burned, taking [burn_damage_value]% damage over [burn_duration] turns. Reduces their movement speed by [slow_percentage]% for [slow_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(82, 9, 'magical', 80),      -- Fire damage (magical)
+(82, 9, 'physical', 80),     -- Fire damage (physical)
+(82, 9, 'mental', 80),    -- Fire damage (elemental)
+(82, 12, 'magical', 5),      -- Burn damage (magical)
+(82, 12, 'physical', 5),     -- Burn damage (physical)
+(82, 16, 'none', -30);       -- Slow effect (none)
+
+-- 83. Talent: **Celestial Shield**
+-- Description: Summons a celestial shield, absorbing [shield_value]% damage for [shield_duration] turns and increasing the caster’s defense by [defense_buff]% for [buff_duration] turns. Enemies within a radius of [radius] meters are dealt [damage_value]% magical, physical, and elemental damage.
+INSERT INTO talents (name, image, description) VALUES
+('Celestial Shield', 'celestial_shield.png', 'Summons a celestial shield, absorbing [shield_value]% damage for [shield_duration] turns and increasing the caster’s defense by [defense_buff]% for [buff_duration] turns. Enemies within a radius of [radius] meters are dealt [damage_value]% magical, physical, and elemental damage.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(83, 1, 'magical', 100),     -- Shield damage absorb (magical)
+(83, 1, 'physical', 100),    -- Shield damage absorb (physical)
+(83, 1, 'mental', 100),   -- Shield damage absorb (elemental)
+(83, 3, 'none', 40),         -- Defense buff (none)
+(83, 1, 'magical', 30),      -- Damage dealt (magical)
+(83, 1, 'physical', 30);     -- Damage dealt (physical)
+
+-- 84. Talent: **Tempest Fury**
+-- Description: Summons a tempest, dealing [tempest_damage_value]% magical, physical, and elemental damage to enemies within a [radius] meter radius for [tempest_duration] turns. The tempest also reduces their movement speed by [slow_percentage]% for [slow_duration] turns and inflicts a stun effect for [stun_duration] turns.
+INSERT INTO talents (name, image, description) VALUES
+('Tempest Fury', 'tempest_fury.png', 'Summons a tempest, dealing [tempest_damage_value]% magical, physical, and elemental damage to enemies within a [radius] meter radius for [tempest_duration] turns. The tempest also reduces their movement speed by [slow_percentage]% for [slow_duration] turns and inflicts a stun effect for [stun_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(84, 1, 'magical', 100),     -- Tempest damage (magical)
+(84, 1, 'physical', 100),    -- Tempest damage (physical)
+(84, 1, 'mental', 100),   -- Tempest damage (elemental)
+(84, 16, 'none', -20),       -- Slow effect (none)
+(84, 7, 'none', 2),          -- Stun effect (none)
+(84, 22, 'mental', 50);      -- Immune to crowd control (mental)
+
+-- 85. Talent: **Vortex of Chaos**
+-- Description: Unleashes a vortex, pulling enemies towards the center and dealing [chaos_damage_value]% magical, physical, and elemental damage over [vortex_duration] turns. Enemies within the vortex will also have their magic resistance reduced by [resistance_debuff]% for [debuff_duration] turns.
+INSERT INTO talents (name, image, description) VALUES
+('Vortex of Chaos', 'vortex_of_chaos.png', 'Unleashes a vortex, pulling enemies towards the center and dealing [chaos_damage_value]% magical, physical, and elemental damage over [vortex_duration] turns. Enemies within the vortex will also have their magic resistance reduced by [resistance_debuff]% for [debuff_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(85, 1, 'magical', 150),     -- Chaos damage (magical)
+(85, 1, 'physical', 150),    -- Chaos damage (physical)
+(85, 1, 'atomic', 150),   -- Chaos damage (elemental)
+(85, 6, 'magical', -20),     -- Resistance debuff (magical)
+(85, 6, 'physical', -20),    -- Resistance debuff (physical)
+(85, 20, 'none', 30);        -- Pull effect (none)
+
+-- 86. Talent: **Frostbite Curse**
+-- Description: Casts a curse, dealing [frostbite_damage_value]% magical, physical, and elemental damage over [curse_duration] turns. The target is frozen, reducing their movement speed by [freeze_slow_percentage]% for the duration. Their defense is also decreased by [defense_debuff]% for [debuff_duration] turns.
+INSERT INTO talents (name, image, description) VALUES
+('Frostbite Curse', 'frostbite_curse.png', 'Casts a curse, dealing [frostbite_damage_value]% magical, physical, and elemental damage over [curse_duration] turns. The target is frozen, reducing their movement speed by [freeze_slow_percentage]% for the duration. Their defense is also decreased by [defense_debuff]% for [debuff_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(86, 9, 'magical', 80),      -- Frostbite damage (magical)
+(86, 9, 'physical', 80),     -- Frostbite damage (physical)
+(86, 9, 'atomic', 80),    -- Frostbite damage (elemental)
+(86, 16, 'none', -30),       -- Freeze slow (none)
+(86, 6, 'none', -20),        -- Defense debuff (none)
+(86, 7, 'none', 1);          -- Freeze effect (none)
+
+-- 87. Talent: **Divine Intervention**
+-- Description: Calls upon divine forces to protect the caster. Heals allies within range for [healing_value]% of their maximum health, grants [damage_buff]% increased damage for [buff_duration] turns, and shields them from the next [damage_value]% of incoming magical, physical, and elemental damage.
+INSERT INTO talents (name, image, description) VALUES
+('Divine Intervention', 'divine_intervention.png', 'Calls upon divine forces to protect the caster. Heals allies within range for [healing_value]% of their maximum health, grants [damage_buff]% increased damage for [buff_duration] turns, and shields them from the next [damage_value]% of incoming magical, physical, and elemental damage.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(87, 19, 'none', 40),        -- Healing effect (none)
+(87, 1, 'none', 30),         -- Damage buff (none)
+(87, 17, 'magical', 50),     -- Shield effect (magical)
+(87, 17, 'physical', 50),    -- Shield effect (physical)
+(87, 17, 'atomic', 50);   -- Shield effect (elemental)
+
+-- 88. Talent: **Arcane Reflection**
+-- Description: Reflects [arcane_reflection_value]% of all incoming magical, physical, and elemental damage back to the attackers for [reflection_duration] turns. Additionally, it grants [damage_buff]% increased damage to the caster for [buff_duration] turns.
+INSERT INTO talents (name, image, description) VALUES
+('Arcane Reflection', 'arcane_reflection.png', 'Reflects [arcane_reflection_value]% of all incoming magical, physical, and elemental damage back to the attackers for [reflection_duration] turns. Additionally, it grants [damage_buff]% increased damage to the caster for [buff_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(88, 4, 'magical', 50),      -- Damage reflection (magical)
+(88, 4, 'physical', 50),     -- Damage reflection (physical)
+(88, 4, 'chemical', 50),    -- Damage reflection (elemental)
+(88, 1, 'none', 30),         -- Damage buff (none)
+(88, 3, 'none', 20);         -- Reflection duration (none)
+
+-- 89. Talent: **Tidal Surge**
+-- Description: Unleashes a massive tidal wave, dealing [water_damage_value]% magical, physical, and elemental damage to enemies and knocking them back for [knockback_distance] meters. The wave also reduces enemies' attack speed by [attack_speed_debuff]% for [debuff_duration] turns.
+INSERT INTO talents (name, image, description) VALUES
+('Tidal Surge', 'tidal_surge.png', 'Unleashes a massive tidal wave, dealing [water_damage_value]% magical, physical, and elemental damage to enemies and knocking them back for [knockback_distance] meters. The wave also reduces enemies\' attack speed by [attack_speed_debuff]% for [debuff_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(89, 9, 'magical', 100),     -- Water damage (magical)
+(89, 9, 'physical', 100),    -- Water damage (physical)
+(89, 9, 'chemical', 100),   -- Water damage (elemental)
+(89, 5, 'none', -25),        -- Attack speed debuff (none)
+(89, 17, 'none', 5);         -- Knockback effect (none)
+
+-- 90. Talent: **Shadow Cloak**
+-- Description: Grants the caster a cloak of shadows, making them invisible to enemies for [stealth_duration] turns. While invisible, the caster gains [critical_hit_chance]% increased chance to critically hit, [damage_buff]% increased damage, and [movement_buff]% increased movement speed. Additionally, any attack while invisible will deal [critical_damage]% additional damage and apply [poison_debuff]% poison damage over [poison_duration] turns.
+INSERT INTO talents (name, image, description) VALUES
+('Shadow Cloak', 'shadow_cloak.png', 'Grants the caster a cloak of shadows, making them invisible to enemies for [stealth_duration] turns. While invisible, the caster gains [critical_hit_chance]% increased chance to critically hit, [damage_buff]% increased damage, and [movement_buff]% increased movement speed. Additionally, any attack while invisible will deal [critical_damage]% additional damage and apply [poison_debuff]% poison damage over [poison_duration] turns.');
+
+-- Link with effects
+INSERT INTO talent_effects (talent_id, effect_id, element_type, value) VALUES
+(90, 3, 'none', 100),        -- Stealth effect (none)
+(90, 2, 'none', 50),         -- Critical hit chance buff (none)
+(90, 1, 'none', 30),         -- Damage buff (none)
+(90, 8, 'physical', 20),     -- Critical damage bonus (physical)
+(90, 10, 'poison', 15);      -- Poison damage over time (poison)
+

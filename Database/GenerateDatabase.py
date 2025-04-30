@@ -393,54 +393,6 @@ def get_story(character):
             "In the enchanted Whispering Forest, trees hold the memories of the past. When a powerful sorceress seeks to harness these memories for her own gain, the balance of nature is threatened. A young herbalist named Finn discovers that he can communicate with the trees. Guided by the wisdom of the forest, Finn must unite a group of unlikely allies—a gruff ranger, a spirited dryad, and a skeptical scholar—to stop the sorceress. As they navigate the forest\\'s secrets, they learn the importance of preserving history. In a climactic showdown, Finn discovers that true strength comes from understanding and respecting the natural world.",
             "Every century, the Trial of the Ancients is held to test the worthiness of those seeking the title of Guardian of Zerath. A young warrior named Kiera dreams of becoming a Guardian but must prove herself in a series of grueling challenges. Joined by her loyal friend, a clever bard named Jorin, they face physical and mental trials that test their strength and resolve. Along the way, Kiera learns about the true meaning of sacrifice and bravery. In an epic finale, she must confront her deepest fears and prove that the heart of a Guardian lies not in power, but in compassion and courage."
         ],
-        "Aetherians": [
-            "In the shadowy recesses of the forsaken castle of Valthor, the powerful necromancer Malakar toiled for years, searching for a way to bring the dead back to life. One stormy night, he discovered an ancient ritual that required the blood of a thousand fallen warriors. Gathering their bones and spirits, he conducted the dark ceremony under the blood moon. As he recited the incantation, the ground shook and shadows coalesced into a single card: the Shadow Legionnaire. This card allowed Malakar to summon legions of spectral soldiers, bound to his will, fighting with the ferocity of their lost lives, and spreading terror in the realm of Domanus.", 
-            "In the desolate marshes of Eldrath, a reclusive druid named Nyssa sought to commune with nature\\'s darkest elements. One fateful day, she found an ancient tome buried in the muck, detailing how to harness the blood of mythical beasts. Driven by ambition, she captured a wyvern and, using its blood, created the Beastmaster card. This powerful card granted her the ability to control dark creatures from the marsh, commanding them to rise from the depths and join her in battle, turning the tide against her enemies with terrifying ferocity.", 
-            "A coven of warlocks, jealous of each other\\'s power, decided to unite their essences to create a card that would elevate them above all others. In a dark ritual lit by flickering candlelight, they fused their souls into the Warlock\\'s Pact. This card contained the essence of their combined magic, unleashing devastating spells that could obliterate entire armies. However, their bond was not without consequence; their fates were intertwined, leading to treachery and betrayal that echoed throughout their lives, forever binding them in a cycle of darkness.", 
-            "Selene, a sorceress renowned for her mastery over the elements, sought a way to harness the raw power of storms. During a fierce tempest, she climbed to the highest peak of the Stormbreaker Mountains. As lightning struck the ground, she captured its energy in a crystal, creating the Stormbringer card. This card allowed her to summon fierce storms, unleashing thunder and lightning upon her enemies, turning the battlefield into a chaotic maelstrom. However, each use drained her own life force, teaching her the heavy cost of wielding such power.", 
-            "In the dark depths of the Abyssal Caves, a cunning thief named Aidan stumbled upon an ancient artifact known as the Soulbinder. This relic held the power to trap souls within cards, allowing the wielder to command them. Driven by greed, Aidan crafted the Soulbound card, binding the spirits of those he had wronged to do his bidding. With each soul captured, his power grew, but so did the whispers of their rage. Eventually, the spirits demanded their freedom, leading Aidan down a path of confrontation and redemption he never expected.", 
-            "In the kingdom of Daroth, the tyrant king sought to maintain control through fear. He ordered his soldiers to gather the blood of his enemies and use it to create the Bloodlust card. During a gruesome festival of war, this card was forged, thriving on the violence and chaos of battle. Each time an enemy fell, the card empowered the king\\'s forces, making them stronger and more ruthless. However, as the bloodlust consumed them, the soldiers became mindless, losing their humanity and becoming mere instruments of destruction, haunted by the ghosts of those they killed.", 
-            "In the alchemical sanctum of the city of Eldoria, a brilliant but morally ambiguous alchemist named Zarek discovered the secret to harnessing decay. He gathered rare herbs and the essence of the most toxic creatures to create the Plaguebearer card. This card unleashed virulent diseases upon his enemies, weakening their ranks before a battle. However, the plague also began to affect Zarek, consuming him slowly. As he watched his own body wither, he realized that every creation has a price, and sometimes, that price is too high.", 
-            "In the heart of the Whispering Woods, a group of witches gathered under the full moon to cast a powerful spell. From this ritual, they forged the Witches\\' Brew card, capable of manipulating fate itself. This card could twist the outcomes of events, causing confusion and betrayal among enemies. However, as the witches used the card to gain power, they found themselves trapped in a web of their own making, as fate turned against them, leading to their downfall in a spectacularly ironic twist.", 
-            "The tale of the Vengeful Spirit card is rooted in tragedy. Once a hero who fought for justice, the spirit named Kaelan was betrayed by those he trusted most. His soul lingered on the mortal plane, filled with wrath and sorrow. A dark sorceress, sensing his pain, captured his essence and created the Vengeful Spirit card. This card allowed its wielder to unleash Kaelan\\'s fury upon their enemies, haunting them with visions of betrayal. Yet, the card also held Kaelan\\'s desire for redemption, forcing its wielder to confront their own choices and the cost of vengeance.", 
-            "In the ancient ruins of an otherworldly temple, a council of ancient beings convened to forge the Master of Shadows card. This card was the culmination of all their dark knowledge and power, allowing its wielder to control the forces of darkness itself. As the card was crafted, the beings merged their essences into it, creating a sentient force. However, they soon realized that their collective power could not be contained. In a climactic battle, the Master of Shadows turned against its creators, becoming a force of chaos that reshaped the very fabric of Domanus, forever altering the balance of power."
-        ],
-        "Galatic": [
-            "In the radiant city of Aetheria, a noble knight named Sir Cedric sought a way to protect his realm from the encroaching darkness. Guided by the whispers of ancient spirits, he discovered a forgotten temple where the light of the stars converged. There, he crafted the Guardian of Light card, infused with the essence of celestial beings. This card allowed him to summon ethereal warriors, shimmering with divine energy, to shield the innocent and strike down evil with unyielding resolve.",
-            "High atop the sacred mountain of Solara, the wise priestess Elara gazed into the celestial skies, longing to harness the power of the sun. After years of meditation, she summoned the Sunstone, a radiant gem that glowed with immense energy. With this gem, she created the Sunfire card, capable of unleashing searing rays of light that burned away shadows and healed the wounded. This card became a beacon of hope, inspiring the people of Domanus to stand against despair.",
-            "In the enchanted forest of Lumoria, a group of druids gathered to unite their powers in harmony with nature. They performed a sacred ritual, calling upon the spirits of the forest to forge the Nature\\'s Guardian card. This card embodied the essence of the flora and fauna, allowing its wielder to summon ancient beasts and verdant guardians. These creatures fought fiercely to protect the land, restoring balance and peace wherever darkness threatened to encroach.",
-            "A valiant sorceress named Lyra sought to channel the healing energies of the world. After a harrowing battle left her village in ruins, she ventured into the heart of the Crystal Caverns, where she discovered the Luminescent Crystals. With these crystals, she forged the Healing Light card, which radiated warmth and rejuvenation. This card could mend wounds and revitalize the weary, empowering those who fought for justice and kindness.",
-            "In the ancient archives of the Celestial Order, a scholar named Orion stumbled upon an ancient scroll detailing the creation of protective wards. Inspired by its teachings, he crafted the Shield of Valor card, imbuing it with the knowledge of countless battles fought for justice. This card created an impenetrable barrier around its wielder, deflecting dark magic and ensuring that the light would never be extinguished as long as courage remained.",
-            "During a celestial alignment, the stars shone brighter than ever, and the celestial beings descended to share their wisdom. A courageous paladin named Aric seized the moment to craft the Starblade card, which held the power of the cosmos. This card transformed into a weapon of pure light, able to cut through any darkness, and imbued its wielder with celestial strength, enabling them to vanquish evil with every swing.",
-            "In the twilight of a forgotten age, a group of warriors known as the Dawnbringers sought to restore hope to a world ravaged by despair. They traveled to the Valley of Radiance, where they discovered the Essence of Dawn. With this essence, they created the Dawn\\'s Embrace card, which spread light across the battlefield, inspiring allies and disheartening foes. It became a symbol of unity and strength, reminding all that hope can shine even in the darkest of times.",
-            "In the heart of the Crystal Glade, an ancient spirit named Seraphiel revealed the existence of the Harmony card. This card could amplify the positive emotions of love and compassion, allowing its wielder to unite allies and heal rifts between them. With the Harmony card, warriors could work together seamlessly, combining their strengths and efforts to overcome even the most formidable foes with grace and unity.",
-            "A young scribe named Thalia, longing for adventure, discovered a hidden prophecy that spoke of a card infused with the power of dreams. She journeyed into the Dreamweaver\\'s Realm, where she crafted the Dreamcatcher card. This card allowed its wielder to delve into the dreams of others, inspiring courage and creativity. As they fought, they could weave dreams into reality, turning nightmares into visions of hope and possibility.",
-            "Finally, in the sacred Temple of Light, the Grand Oracle foresaw the coming darkness and gathered the greatest minds of the Light Army. Together, they created the Luminara card, a culmination of their collective wisdom and power. This card acted as a conduit for divine energy, amplifying the light\\'s influence across Domanus. With the Luminara card in hand, its wielder could summon a brilliant aura that illuminated the path of righteousness, leading others away from despair and into the embrace of hope."
-        ],
-        "Heratic": [
-        "The Heratic are an enigmatic and spiritual race, known for their deep connection to the divine and the arcane. They originate from the sacred spires of Seraphis, a towering city built among the clouds, where the wind whispers secrets of the gods.",
-        "Heratic are born with golden tattoos that glow faintly, marking them as chosen by the divine. They possess an innate ability to commune with celestial beings and harness the powers of both light and shadow to maintain balance in the world.",
-        "Their society is governed by the \\\"Council of the Divine Light,\\\" a group of high priests and priestesses who interpret the will of the gods. The Heratic believe in the duality of existence, where light and shadow are two sides of the same coin, both essential for the world\\'s harmony.",
-        "During the Divine War, the Heratic stood as the last line of defense against the encroaching forces of darkness. With their mastery of celestial magic and their unwavering faith, they held the line against the shadow armies, preventing the world from falling into eternal night.",
-        "The Heratic\\'s most sacred relic is the \\\"Staff of the Ascendant,\\\" a powerful artifact said to have been crafted by the gods themselves. This staff is said to grant its wielder the ability to channel divine energy, heal the wounded, and banish evil from the world.",
-        "One of the most revered Heratic heroes, Azrael the Radiant, is remembered for his triumph over the Lord of Shadows. With the power of the Staff of the Ascendant, he smote the dark lord, bringing peace to the realms and ensuring the safety of his people for generations.",
-        "Heratic culture revolves around the \\\"Ritual of the Ascension,\\\" a sacred ceremony where the Heratic commune with the gods and seek their blessings. During this ritual, they offer prayers, sing sacred hymns, and make offerings of light to honor the divine.",
-        "The \\\"Trial of the Celestial Path\\\" is a sacred rite of passage for young Heratic. They must journey through the sacred mountains of Seraphis, facing trials set by the gods themselves, and return with a token that proves their worthiness to walk the divine path.",
-        "Despite their serene and spiritual nature, the Heratic are fierce defenders of their faith. They are known to wield divine magic to protect the innocent and smite those who would bring harm to the world, ensuring the balance of light and darkness is never broken.",
-        "The Heratic\\'s most cherished tradition is the \\\"Festival of the Dawn,\\\" a celebration of the first light of day. During this festival, they gather to meditate, reflect on the divine mysteries, and offer thanks for the blessings of the gods, ensuring that the light continues to shine upon the world."
-        ],
-        "Knean": [
-        "The Knean are a hardy and resilient race, known for their mastery over the earth and their deep connection to the mountains. They originate from the Ironcrest Peaks, towering mountains that scrape the sky and are filled with rich veins of precious metals and stones.",
-        "Knean are known for their remarkable strength and endurance. Their skin is tough like stone, and their eyes glow like molten metal. They possess an innate ability to manipulate earth and metal, shaping them to create powerful tools, weapons, and structures.",
-        "Their society is built upon a rigid hierarchy, with the \\\"Stoneguard Council\\\" at the top, made up of the most respected and accomplished Knean warriors and craftsmen. The council ensures that their people uphold the ancient traditions of their ancestors and maintain their bond with the earth.",
-        "During the Great Forge War, the Knean fought fiercely to protect their mountain home from the invading armies of the Ashari Empire. With their mastery of metal and stone, they forged powerful weapons and fortifications, turning their mountains into an impenetrable bastion.",
-        "The Knean\\'s most sacred relic is the \\\"Heartstone of Ironcrest,\\\" a massive gem said to be formed from the very core of their homeland. This heartstone is believed to grant its wielder the strength of the mountains and the ability to shape the earth with a mere thought.",
-        "One of the most legendary Knean heroes, Thorek Stonehammer, is remembered for his victory over the Golem King, a monstrous stone creature that threatened to destroy the Ironcrest Peaks. With his enchanted hammer, Thorek shattered the Golem and restored peace to the mountains.",
-        "Knean culture is deeply rooted in craftsmanship and stonework. They are renowned for their ability to carve intricate designs into the hardest of metals and stones, creating masterpieces that blend art with function. Every Knean is taught the ancient art of crafting from a young age.",
-        "The \\\"Trial of the Forge\\\" is a sacred rite of passage for young Knean. They must journey deep into the heart of the Ironcrest Peaks, where they must forge a weapon from the rarest materials found within the mountains. Only those who succeed in this trial are considered true Knean warriors.",
-        "Despite their stoic and formidable nature, the Knean are fiercely loyal to their families and clans. They value the bonds of kinship above all else, and they will go to great lengths to protect their loved ones and their mountain home.",
-        "The Knean\\'s most revered tradition is the \\\"Festival of the Stonefather,\\\" a celebration of their origins and their connection to the earth. During this festival, they honor their ancestors, tell stories of the great warriors and craftsmen of the past, and offer thanks to the Stonefather for his protection and guidance."
-        ],
         "Syrin_Book": [
             "In the depths of the Abyss, where light dared not venture, a creature known as the Void Wyrm slumbered for eons. A power-hungry sorcerer named Malphar sought to awaken the beast and bind it to his will. Through dark rituals involving forbidden tomes and the sacrifice of his own followers, he created the Wyrmcaller card. This card allowed him to summon the Void Wyrm, unleashing its destructive fury upon the world. However, with each summoning, Malphar lost a piece of his humanity, becoming more like the monster he controlled.",
             "In a cursed village, whispers of a nightmarish creature known as the Shadow Behemoth spread fear among the inhabitants. Driven by curiosity, a young alchemist named Elenora ventured into the darkness, determined to uncover the truth. In a forbidden cave, she discovered the essence of the Behemoth, a swirling mass of shadows. With this essence, she crafted the Behemoth\\'s Wrath card, which granted her the ability to unleash its primal rage. Yet, as she wielded the card, she felt its insatiable hunger clawing at her mind, blurring the line between hunter and prey.",
@@ -452,18 +404,6 @@ def get_story(character):
             "An enigmatic figure known only as the Voidcaller wandered the lands, collecting fragments of ancient horrors. In a dark ritual, he combined these fragments to forge the Horror Manifest card. This card could bring forth manifestations of the most primal fears, sending enemies into a frenzy of terror. However, as the Voidcaller unleashed the horrors, he realized that they were not merely illusions but real threats, causing destruction and chaos wherever they appeared.",
             "In a remote village plagued by disappearances, an old witch named Morwenna was accused of summoning creatures from the void. In truth, she had created the Echo of the Abyss card, a reflection of her own loneliness and despair. This card allowed her to summon echoes of lost souls, who wandered the earth seeking solace. However, each use of the card drew her closer to the void, threatening to swallow her spirit into the darkness she sought to escape.",
             "Finally, a fallen angel named Seraphiel, banished from the heavens, sought redemption through the void. He discovered the Celestial Void card, which contained the power to create an army of twisted angels, corrupted by despair. With this card, Seraphiel could unleash legions of dark seraphim to wage war against the realms of light. Yet, as he commanded his new army, he battled with his own inner demons, questioning whether he could ever truly find redemption or if he was destined to be a harbinger of darkness."
-        ],
-        "Void_Spell_Army": [
-            "In the depths of the Shadowrealm, a powerful sorceress named Vespera sought the knowledge of the ancients. She discovered a forbidden grimoire hidden within a crumbling temple, detailing dark incantations capable of bending reality. From this tome, she crafted the Spell of Oblivion card, allowing her to erase entire memories and events from existence. As she wielded the card, Vespera felt the weight of the void pulling at her own memories, threatening to erase her very essence if she continued to use its power.",
-            "The notorious warlock Thorne, obsessed with control, ventured into the Abyss to seek the fabled Essence of the Void. After enduring trials of madness and temptation, he acquired a vial of this potent energy. He infused it into the Shadowbind card, which granted him the ability to ensnare his foes in tendrils of darkness, immobilizing them while feeding on their fears. But with each casting, the void\\'s whispers grew louder in Thorne\\'s mind, driving him to question his own sanity as he became more entwined with the shadows.",
-            "In the haunted ruins of Eldergloom, a group of desperate mages convened to harness the power of despair. They conjured the Grasp of Despair card, which could summon illusions of their enemies\\' worst fears. However, as they unleashed the card upon their foes, they found themselves ensnared in the same illusions, confronted by their deepest regrets and failures. The line between reality and illusion blurred, leading to a catastrophic collapse of their minds, as the very spells they cast turned against them.",
-            "Deep in the caverns of Dreadspire, an eccentric inventor named Lucian experimented with the Void\\'s raw energies. He crafted the Echoes of the Abyss card, a device that could replicate and amplify the powers of others. This card allowed him to steal spells from rival sorcerers, turning their strengths against them. However, with each spell he borrowed, the echoes of the void began to overwhelm him, causing unpredictable surges of power that threatened to tear him apart as he fought for control over the chaos he had unleashed.",
-            "In a forsaken library, an ambitious scholar named Mara discovered an ancient text that spoke of the Dark Convergence. Intrigued by its promise of ultimate power, she performed the ritual to create the Convergence card. This card enabled her to merge her spells with those of others, creating devastating combinations that could reshape the battlefield. Yet, the more she fused her magic with the void, the more her own identity began to fracture, leaving her vulnerable to the very forces she sou ght to control.",
-            "A twisted sorcerer named Kael sought vengeance on the realm that wronged him. He forged the Vortex of Shadows card from the essence of captured souls, which could unleash devastating whirlwinds of darkness upon his enemies. As he unleashed the card, the howls of the trapped souls echoed in his ears, driving him into a frenzy of rage. Yet, with each use, he felt a piece of his own soul being siphoned away, leaving him increasingly hollow and consumed by his own hatred.",
-            "In the cursed marshlands of Murkmire, a witch named Isolde discovered a way to weave the fabric of nightmares into spells. From her dark cauldron, she created the Nightmare Weaver card, capable of summoning nightmares that drained the life force from her enemies. However, as she wielded this power, Isolde began to experience her own nightmares manifesting in reality, forcing her to confront the darkness within herself and the consequences of manipulating such potent forces.",
-            "A powerful entity known as the Whispering Shade roamed the Void, tempting mortals with promises of untold power. Many fell prey to its allure, but one mage named Garren resisted. Instead of succumbing, he captured the essence of the Shade and created the Shade\\'s Grasp card. This card allowed him to channel shadows into powerful spells that struck fear into the hearts of his enemies. However, the more he wielded the card, the more he felt the Shade\\'s influence creeping into his mind, urging him to abandon his no ble intentions.",
-            "A forgotten cult, devoted to the ancient Void God, unearthed a relic known as the Void Sigil. With this sigil, they crafted the Corruption card, which tainted the spells of their enemies, twisting them into instruments of destruction. As they unleashed the card\\'s power, they reveled in chaos, only to find that the corruption seeped into their own spells as well, leading to catastrophic consequences that turned their dark rituals against them in an unexpected twist of fate.",
-            "Finally, an enigmatic sorcerer known only as the Harbinger sought to unite the power of the void. He crafted the Void Mastery card, which allowed its wielder to bend reality itself, manipulating time and space. Yet, as he unleashed the card\\'s potential, he realized that the void had its own will, and it sought to escape the confines of his control. The power he sought to master became an uncontrollable force, threatening to engulf all of Domanus in a cataclysm of darkness and despair."
         ],
         "ArtKnight_Book": [
             "In the heart of the ancient city of Arcanum, a gifted scribe named Elowen stumbled upon a hidden chamber filled with relics of a forgotten order of knights. Among these treasures was a mysterious blank book, said to be enchanted by the spirits of legendary warriors. Driven by curiosity, Elowen began to write the tales of these knights within its pages. As she wrote, the ink shimmered with a life of its own, channeling the courage and valor of the knights, which began to manifest as illustrations that sprang to life. The ArtKnight Book became a living chronicle of heroism, inspiring all who dared to read it.",
@@ -1370,150 +1310,6 @@ def get_story(character):
         "One of Nova_Equipment\\'s proudest achievements is its contribution to a renewable energy project in Southeast Asia. By supplying cutting-edge equipment for a wind turbine project, Nova_Equipment played a key role in generating clean energy for thousands of households while reducing carbon emissions significantly.",
         "In 2017, Nova_Equipment faced a logistical challenge when a shipment of critical parts was delayed due to a natural disaster. The team mobilized resources, coordinated with multiple agencies, and managed to deliver the equipment within the required timeframe. Their resilience and problem-solving capabilities earned them the trust of their client and industry peers.",
         "Nova_Equipment has invested heavily in research and development over the past decade. By collaborating with universities and research institutions, the company has introduced groundbreaking innovations, including advanced robotics and automation systems that are shaping the future of industrial processes."
-        ],
-        "Aethrion": [
-        "The Aethrion tribe originated from the Skyward Peaks, a region known for its breathtaking floating islands and crystalline rivers. Legend has it that their ancestors were celestial beings who descended to the mortal realm to guide humanity through times of chaos.",
-        "Aethrion warriors are renowned for their mastery of aerial combat, wielding wings made of pure light and harnessing the winds to strike their enemies with unmatched precision. They are often called upon to protect sacred lands and ancient relics.",
-        "The tribe\\'s spiritual practices revolve around the worship of the Sky Mother, a deity believed to have granted them their ethereal abilities. Every year, the Aethrion hold a grand ceremony where they ascend to the highest peak to offer prayers and celestial melodies.",
-        "In ancient times, the Aethrion forged an alliance with the Emberkin, a tribe of fire-dwelling beings, to defeat the Shadow Horde. Together, they sealed the darkness in an unbreakable vault, ensuring the safety of the world for millennia.",
-        "Aethrion\\'s artisans are unmatched in their craft, creating intricate sculptures and tools from Skyglass, a rare material found only on their floating islands. These creations are said to carry fragments of celestial energy, making them highly sought after by other tribes.",
-        "One of the tribe\\'s most famous leaders, Solirion the Radiant, once united all the clans of Aethrion during the Great Sky Wars. His leadership and vision paved the way for an era of peace and prosperity that lasted centuries.",
-        "The Aethrion believe in the concept of \\\"Eternal Flight,\\\" where the soul ascends to the celestial realm after death. To honor the departed, they release luminous lanterns into the sky, creating a mesmerizing display of light and hope.",
-        "During the Age of Shattering, when the floating islands were at risk of collapse, the Aethrion engineered massive Sky Anchors to stabilize their homeland. This act of ingenuity and determination saved their people from extinction.",
-        "The Aethrion\\'s scholars are renowned for their deep understanding of the stars and celestial movements. Their observatories, perched on the highest peaks, serve as both scientific hubs and sacred sites for star gazing.",
-        "The tribe\\'s younger members undergo a rite of passage known as the \\\"Celestial Trial.\\\" This involves navigating the Labyrinth of Winds, a series of treacherous aerial pathways, to prove their strength, courage, and connection to the skies."
-        ],
-        "Mekanids": [
-        "The Mekanids are an ancient race of sentient constructs, believed to have been created by a long-forgotten civilization to serve as guardians of knowledge and technology. Over time, they developed their own consciousness and formed a unique society.",
-        "Mekanids are powered by Core Crystals, a mysterious energy source that not only sustains them but also grants them unique abilities. Each Mekanid\\'s crystal is attuned to a specific element, defining their roles within their society.",
-        "Their home, the Forge Nexus, is a sprawling metallic city located deep within the Hollowlands. It is said that the Nexus constantly reconfigures itself, adapting to the needs of its inhabitants and hiding its secrets from outsiders.",
-        "During the Cataclysmic War, the Mekanids allied with the Free Realms to fend off the forces of the Void. Their precision, resilience, and technological superiority turned the tide of many battles, earning them a reputation as formidable warriors.",
-        "The Mekanids\\' society is structured around the \\\"Cog Hierarchy,\\\" where every individual has a role, from maintenance workers to strategists. This system ensures efficiency and harmony, reflecting their belief that every cog is vital to the machine.",
-        "One of their most revered leaders, Prime Engineer Xylaris, once unified the scattered Mekanid factions during the Age of Disrepair. Xylaris\\' innovations in Core Crystal refinement allowed the Mekanids to thrive once more.",
-        "Mekanids have a deep reverence for their creators, whom they refer to as the \\\"Forge Ancestors.\\\" They maintain grand archives filled with ancient blueprints and relics, hoping to one day uncover the true purpose of their existence.",
-        "Despite their mechanical nature, Mekanids have a vibrant culture. They create intricate metal sculptures and compose harmonic tunes using resonating gears and energy conduits, blending artistry with engineering.",
-        "Young Mekanids must undergo the \\\"Trial of Assembly,\\\" a ritual where they construct a unique mechanism from discarded parts. This creation not only showcases their ingenuity but also symbolizes their individuality within the collective.",
-        "The Mekanids\\' mastery of technology extends to terraforming and environmental engineering. They have restored barren wastelands into thriving ecosystems, proving that even constructs can nurture life in their own way."
-        ],
-        "Sylphari": [
-        "The Sylphari are an ancient race of ethereal beings, known as guardians of nature\\'s balance. They dwell in the Verdant Veil, a lush, magical forest hidden by powerful enchantments that only the pure-hearted can enter.",
-        "Each Sylphari is deeply connected to the elements, with their forms often shimmering with traces of wind, water, or light. Their elemental attunement allows them to heal the land, summon storms, or channel sunlight into powerful bursts of energy.",
-        "Legend says the Sylphari were born from the first breath of the World Tree, a colossal, glowing tree at the heart of the Verdant Veil. It is believed that their lifeforce is tied to the tree, making its protection their highest duty.",
-        "During the Shadowfall Era, the Sylphari stood against the Dark Concord, an alliance of corrupted sorcerers seeking to drain the World Tree\\'s power. Their unyielding courage and mastery of natural magic saved the land from devastation.",
-        "Sylphari society revolves around the \\\"Circles of Harmony,\\\" a system where each member contributes to the preservation of balance—whether as healers, protectors, or sages. This unity reflects their core belief: \\\"When the world thrives, so do we.\\\"",
-        "One of the most celebrated Sylphari leaders, Lysera the Dawncaller, led a daring mission to cleanse the Veil of a cursed blight. With her radiant voice and unmatched elemental command, she restored the land\\'s purity, inspiring generations to come.",
-        "Sylphari rituals are breathtaking displays of their connection to nature. One such ritual, the \\\"Eclipse Dance,\\\" involves hundreds of Sylphari channeling the light of the sun and moon to renew the magical wards protecting their homeland.",
-        "Despite their serene demeanor, the Sylphari are formidable defenders. Their warriors wield weapons crafted from living branches and shimmering crystal, blending elegance with deadly precision. Stories of their victories are passed down in poetic ballads.",
-        "Young Sylphari undergo the \\\"Trial of Blossoms,\\\" where they must nurture a seedling from the World Tree. This test symbolizes their commitment to the cycle of life and their responsibility to uphold the balance of nature.",
-        "The Sylphari are also renowned for their wisdom. Many travel beyond the Veil as envoys, offering guidance to other races in times of turmoil. Their words carry the weight of ages, often bringing clarity and hope to those who listen."
-        ],
-        "Varkari": [
-        "The Varkari are a fierce and nomadic tribe, known for their unbreakable spirit and unmatched resilience. Originating from the Scorched Wastes, a barren desert of shifting sands and deadly storms, they have learned to thrive where others could not survive.",
-        "Varkari warriors are renowned for their ferocity in battle, wielding curved blades forged from the blackened steel of fallen meteors. Their combat style, a blend of speed and precision, strikes fear into the hearts of their enemies.",
-        "The tribe\\'s survival is deeply tied to the \\\"Bloodstone Oasis,\\\" a sacred and hidden wellspring said to grant vitality and strength to those who drink from it. Legends claim the oasis was created by their ancestors, who bargained with ancient desert spirits.",
-        "During the War of the Endless Sands, the Varkari united the scattered tribes of the desert to repel an invasion by the Ashen Empire. Their cunning tactics and mastery of the harsh terrain turned the tide, ensuring the survival of their homeland.",
-        "The Varkari follow the \\\"Path of the Flame,\\\" a spiritual journey that every member undertakes to prove their worth. This rite involves walking barefoot across burning sands to reach the summit of Ember Peak, where they receive their tribal markings.",
-        "One of the greatest Varkari leaders, Zarithra the Flamebearer, is celebrated for leading her people through a decade-long drought. Her discovery of new water sources and unyielding determination saved the tribe from extinction.",
-        "Varkari artisans are masters of crafting from what the desert provides. They create intricate armor, jewelry, and tools from bone, obsidian, and desert glass. These creations are not only functional but also hold deep cultural significance.",
-        "The Varkari believe in the \\\"Cycle of Ash,\\\" the idea that destruction paves the way for rebirth. To honor this belief, they perform the \\\"Rite of Renewal,\\\" where they burn effigies symbolizing their hardships and rise anew from the ashes.",
-        "Young Varkari must complete the \\\"Trial of the Dunes,\\\" where they navigate the endless sands alone, relying only on their instincts and courage. Those who return are celebrated as full-fledged members of the tribe.",
-        "The Varkari\\'s nomadic nature has made them exceptional storytellers. Around campfires, they recount tales of their ancestors, the spirits of the desert, and the stars that guide their way, passing their history and wisdom through generations."
-        ],
-        "Auroxian": [
-        "The Auroxians are a proud and enigmatic race, descended from the union of celestial beings and mortal champions. Their homeland, the Celestial Spires, is a breathtaking mountain range that glows faintly under the stars, said to be a remnant of the heavens themselves.",
-        "Auroxians possess a unique connection to cosmic energies, allowing them to channel starlight into powerful magic or imbue their weapons with celestial power. This ability has earned them the title of \\\"Starborn Guardians.\\\"",
-        "Their society revolves around the \\\"Astral Concord,\\\" a council of elders who interpret the constellations to guide the tribe\\'s actions. The Auroxians believe the stars carry the wisdom of their ancestors, shaping their destiny.",
-        "During the Eclipse War, the Auroxians played a pivotal role in defeating the Voidbringers, a race of interdimensional invaders. By harnessing the energy of a dying star, they created the Celestial Beacon, a weapon that banished the invaders from their realm.",
-        "Every Auroxian undergoes the \\\"Rite of Ascension,\\\" a sacred pilgrimage to the Starshard Caverns. There, they commune with ancient celestial fragments, seeking visions that reveal their life\\'s purpose and role within the tribe.",
-        "One of the most legendary Auroxians, Kaelith the Starforge, crafted the Celestial Aegis, an indestructible shield that protected the tribe during the Age of Sundering. The shield now resides in the Hall of Eternal Light as a symbol of unity and strength.",
-        "Auroxian culture is rich with art and music inspired by the cosmos. Their celestial tapestries, woven with threads of starlight, depict their history and myths, while their harmonic chants resonate with the vibrations of the universe.",
-        "The Auroxians believe in the \\\"Eternal Constellation,\\\" a celestial pattern representing the interconnectedness of all life. They perform the \\\"Celestial Dance\\\" during solstices, a ritual to harmonize their energies with the cosmos.",
-        "Young Auroxians are tested through the \\\"Trial of Stars,\\\" where they must navigate the Labyrinth of Lumina, a mystical maze that shifts with the constellations. Only those who emerge from the maze are deemed ready to wield the tribe\\'s celestial power.",
-        "Despite their otherworldly heritage, the Auroxians are compassionate envoys, often aiding other races in times of crisis. Their guidance and cosmic insights have brought hope and unity to many who seek their wisdom."
-        ],
-        "Gryphari": [
-        "The Gryphari are a noble race of griffon-like humanoids, revered for their unmatched agility and keen intelligence. Residing in the Skyclad Peaks, their homes are built into towering cliffs that are said to touch the heavens.",
-        "Every Gryphari is born with wings, feathers of shimmering gold or silver, and sharp talons that mark their predatory heritage. Their ability to soar above the clouds has made them unparalleled scouts and guardians of the skies.",
-        "The Gryphari revere the \\\"Eternal Winds,\\\" a mystical force they believe guides the flow of life. Their spiritual leaders, known as Windcallers, interpret the whispers of the winds to make decisions for their people.",
-        "During the War of the Tempest, the Gryphari allied with the Sylphari to combat the Stormforged, an army of elemental constructs threatening their lands. Their aerial prowess and clever tactics were instrumental in turning the tide of the war.",
-        "The Gryphari\\'s society is governed by the \\\"High Aerie Council,\\\" a group of elders chosen for their wisdom and strength. They ensure harmony among the clans and uphold the tribe\\'s traditions of honor and valor.",
-        "One of the Gryphari\\'s greatest champions, Kaelios the Skybreaker, is celebrated for slaying the Thunder Wyrm that terrorized their homeland. Kaelios\\' feathered mantle, imbued with the essence of the winds, is now passed down to each new leader.",
-        "Art and storytelling hold a central place in Gryphari culture. They weave intricate tapestries from their fallen feathers, depicting tales of heroism and legends of their ancestors, which are proudly displayed in the Great Hall of Winds.",
-        "The \\\"Rite of Galeborn\\\" is a sacred coming-of-age trial for young Gryphari. They must ascend the perilous Stormspire Mountain, enduring fierce winds and lightning, to retrieve a single Skygem as proof of their courage and strength.",
-        "The Gryphari have a unique bond with the creatures of the skies, often taming giant eagles, falcons, and other aerial beasts. These companions serve as loyal allies and symbols of the tribe\\'s unity with the natural world.",
-        "Despite their fearsome appearance, the Gryphari are known for their diplomacy. They often act as mediators between warring factions, using their wisdom and perspective from the skies to foster peace and understanding."
-        ],
-        "Krynn": [
-        "The Krynn are an ancient and secretive race, known for their mastery of both magic and technology. They originate from the Shattered Realms, a land that was once united but now lies in ruins, with only the Krynn remaining to protect its scattered remnants.",
-        "Krynn magic is derived from the energy of the cosmos itself, which they manipulate through intricate rituals and the use of powerful arcane devices. Their cities are built into the sides of mountains, protected by powerful wards and hidden from the eyes of invaders.",
-        "The Krynn\\'s society is built around the \\\"Arcane Covenant,\\\" a pact that binds them to uphold the balance of magic. Their leaders, known as the Starweavers, are chosen based on their understanding of both magic\\'s light and its shadow.",
-        "During the Collapse, the Krynn used their vast knowledge of magic and technology to protect their people from the cataclysmic forces threatening their world. They forged the Skyshield, an impenetrable dome of energy that kept their cities safe from the destructive waves of chaos.",
-        "The Krynn\\'s greatest creation is the \\\"Etherforge,\\\" an immense forge that harnesses the energy of stars to craft weapons and artifacts of unimaginable power. These creations are highly sought after by both allies and enemies alike.",
-        "One of their most revered leaders, Velithar the Eternal, once sacrificed his life to prevent a magical catastrophe that could have destroyed the world. His spirit is said to live on within the Etherforge, guiding future generations in their pursuit of knowledge.",
-        "The Krynn\\'s culture places great value on knowledge and discovery. Scholars known as the Starseers travel the world in search of ancient tomes, artifacts, and secrets that will unlock new powers and prevent the return of the great darkness that once ravaged their realm.",
-        "The \\\"Trial of the Astral Path\\\" is a sacred rite for all young Krynn. To prove their worth, they must journey across the void between stars, surviving the harsh conditions and returning with an Astral Crystal, a symbol of their resilience and connection to the cosmos.",
-        "Despite their aloof and secretive nature, the Krynn are known for their commitment to justice. They frequently intervene in conflicts to maintain the balance between light and darkness, seeing themselves as the guardians of the delicate equilibrium that holds the world together.",
-        "The Krynn\\'s legacy lives on in their monuments, built from both stone and starlight. These structures stand as a reminder of their triumphs and sacrifices, ensuring that the wisdom of their ancestors will guide future generations through times of uncertainty."
-        ],
-        "Velkryn": [
-        "The Velkryn are a reclusive and mysterious race, known for their unmatched stealth and cunning. They originate from the Shadowglade, a vast and haunting forest where the trees are said to whisper ancient secrets and the mist never lifts.",
-        "Velkryn are masters of shadow magic, able to manipulate the very darkness around them. Their ability to blend into the shadows and move without a sound has made them legendary spies, assassins, and scouts in the world beyond their homeland.",
-        "Their society is governed by the \\\"Council of Shadows,\\\" a secretive group of the most powerful and respected Velkryn who guide their people with wisdom passed down from generations. The council\\'s decrees are final, and their decisions are never questioned.",
-        "During the Great Betrayal, when a trusted ally sought to destroy the Velkryn, the tribe united to strike back using their knowledge of the dark arts. Their swift and silent retaliation ended the threat before it could spread, solidifying their reputation as masters of revenge.",
-        "Velkryn warriors are trained from a young age in the art of shadow combat, where they learn to wield daggers and short blades with deadly precision. Their strikes are often invisible, leaving only the faintest trace of their presence before their enemies fall.",
-        "One of the most feared Velkryn, Nyxar the Silent, once infiltrated an enemy kingdom, stealing the crown jewels and returning undetected. His exploits became legend, and his name is still whispered in awe and fear across the land.",
-        "The Velkryn\\'s culture values secrecy and loyalty above all else. They live by the \\\"Code of the Veil,\\\" which dictates that no Velkryn shall reveal their true intentions or identity to outsiders. To do so is considered the ultimate betrayal.",
-        "Young Velkryn must undergo the \\\"Rite of Shadows,\\\" a test of endurance and cunning. They must navigate through the heart of the Shadowglade, where the trees are alive with hostile creatures, and return with a symbol of their survival—a shard of midnight crystal.",
-        "Despite their reputation for secrecy, the Velkryn are not heartless. They value personal bonds deeply, and their families are tight-knit. In times of need, they are known to offer sanctuary and assistance to those they trust, though such favors are rarely extended.",
-        "The Velkryn\\'s most sacred relic is the \\\"Shroud of Eternity,\\\" a cloak said to be woven from the fabric of night itself. It is said that whoever wears the Shroud can walk between realms, slipping in and out of shadows as though they were one with the darkness."
-        ],
-        "Drakari": [
-        "The Drakari are a mighty and ancient race, known for their dragon-like heritage and unparalleled strength. Hailing from the Scorched Highlands, their cities are carved into the sides of active volcanoes, a constant reminder of their fiery origins.",
-        "Drakari are born with scales that shimmer in shades of red, gold, and black, and their eyes burn with the intensity of molten lava. They possess the innate ability to control fire and magma, making them formidable warriors and craftsmen.",
-        "Their society is structured around the \\\"Flameclaw Dynasty,\\\" a royal bloodline said to be descended from the first dragon, Ignaroth. The rulers of the Drakari are chosen by combat, where the strongest among them ascends to the throne through a ritual known as the \\\"Trial of Embers.\\\"",
-        "During the War of Ashes, the Drakari fought alongside the Elemental Lords to repel a catastrophic invasion by the Voidbreach Legion. Their mastery over fire and their unyielding will helped to turn the tide of battle and save the world from total destruction.",
-        "The Drakari\\'s greatest artifact is the \\\"Heart of Ignaroth,\\\" a legendary gem said to hold the soul of the first dragon. This gem is embedded in the throne of the Flameclaw Dynasty and is believed to grant the ruler the wisdom and strength of their draconic ancestors.",
-        "One of the most revered Drakari heroes, Korrath the Flamebringer, is remembered for his role in the Battle of the Molten Abyss, where he single-handedly defeated an army of ice giants with his fiery breath and indomitable spirit.",
-        "Drakari culture revolves around the \\\"Forge of Fury,\\\" a sacred forge that channels the power of their volcanoes. It is here that their legendary weapons, armor, and artifacts are crafted, with each piece infused with the essence of fire and strength.",
-        "The \\\"Rite of Fire\\\" is a sacred coming-of-age ceremony for young Drakari. They must journey into the heart of an active volcano, survive its molten heat, and return with a shard of volcanic rock as proof of their resilience and courage.",
-        "Despite their fearsome appearance, the Drakari are deeply bonded to their families and communities. They are known for their loyalty to one another, and their bonds are strengthened by the rituals and festivals that honor their ancestors and the power of fire.",
-        "The Drakari\\'s most prized treasure is the \\\"Dragon\\'s Roar,\\\" an ancient horn said to summon the power of dragons when blown. It is used only in times of dire need, and its sound is said to shake the very foundations of the earth."
-        ],
-        "Kalimar": [
-        "The Kalimar are an ancient and noble race, known for their profound connection to the earth and their ability to harness the primal forces of nature. Their homeland, the Verdant Hollow, is a lush and ever-blooming forest where the trees tower like giants and the land pulses with life.",
-        "Kalimar are guardians of the natural world, with the ability to communicate with plants, animals, and the very soil itself. Their druids are capable of calling upon the elements to aid them, from summoning storms to causing the ground to quake beneath their enemies.",
-        "Their society is governed by the \\\"Circle of Roots,\\\" a council of wise elders who are chosen for their deep understanding of nature and their connection to the land. The Kalimar value harmony and balance, believing that all things in nature are interconnected.",
-        "During the Great Verdancy War, the Kalimar defended their homeland from the encroaching armies of the Ironclad Empire. With their mastery of the elements and their bond with the forest, they managed to repel the invaders and restore peace to the Hollow.",
-        "The Kalimar\\'s most sacred relic is the \\\"Seed of the World Tree,\\\" an ancient and mystical seed said to hold the power to restore life to the land. It is guarded by the elders and is only used in times of great need to heal the world from devastation.",
-        "One of the most revered Kalimar heroes, Arannis Earthshaper, is celebrated for his role in the defeat of the Wyrmking, a monstrous creature that threatened to swallow the world. Using his mastery of earth magic, he trapped the beast in the roots of the World Tree, ensuring its destruction.",
-        "Kalimar culture revolves around the \\\"Festival of the Blooming Dawn,\\\" a celebration of the changing seasons and the renewal of life. During this festival, they offer sacrifices to the land, thanking it for its bounty and asking for its continued blessings.",
-        "The \\\"Trial of the Wildheart\\\" is a rite of passage for young Kalimar. They must venture into the deepest part of the Verdant Hollow, where they must survive the dangers of the wild and return with a token from the ancient heart of the forest as proof of their strength and courage.",
-        "Despite their deep connection to nature, the Kalimar are also skilled craftsmen. They create intricate tools and weapons from the materials of the forest, such as bone, wood, and enchanted stones. Their craftsmanship is revered for its beauty and functionality.",
-        "The Kalimar\\'s legacy is passed down through the \\\"Whispers of the Ancients,\\\" a series of oral traditions that recount the history of their people and the lessons learned from the natural world. These stories are told around the fire, keeping the wisdom of their ancestors alive for future generations."
-        ],
-        "Lunari": [
-        "The Lunari are an ethereal and mystical race, known for their deep connection to the moon and the tides of the cosmos. They hail from the Silver Crescent Isles, a group of moonlit islands where the night sky is forever bright with the glow of their celestial patron, Luna.",
-        "Lunari are born with skin that shimmers like silver under the moonlight and eyes that reflect the stars. Their abilities are drawn from the phases of the moon, and they harness lunar magic to heal, protect, and shape the world around them.",
-        "Their society is governed by the \\\"Moonlit Assembly,\\\" a council of sages and seers who interpret the will of Luna. They believe that the moon is a living being that watches over their people, guiding them through the cycles of life and death.",
-        "During the Nightfall Rebellion, the Lunari stood against the Sunfire Empire, who sought to erase the night from the world. With the help of their lunar magic, they summoned a great eclipse that plunged the empire into darkness, forcing them to retreat and restoring the balance between day and night.",
-        "The Lunari\\'s most sacred artifact is the \\\"Moonstone of Eternity,\\\" a crystal that is said to hold the essence of Luna herself. This moonstone is said to grant its bearer the ability to peer into the future and see the threads of fate that bind the world together.",
-        "One of the most legendary Lunari, Selene the Starborn, is remembered for her role in the creation of the Eternal Night, a moment when Luna\\'s power enveloped the world in a peaceful darkness that allowed for rest and rejuvenation. Her name is still invoked in times of need and reflection.",
-        "Lunari culture is rich with astronomy and celestial arts. They craft intricate star maps and create delicate jewelry made from lunar silver, each piece imbued with magic to capture the essence of the stars and the moon.",
-        "The \\\"Rite of the Lunar Eclipse\\\" is a rite of passage for young Lunari. On the night of a total lunar eclipse, they must venture into the Sacred Grove and commune with Luna, asking for guidance in their life\\'s journey. Only those who receive a vision are considered worthy of their people\\'s trust.",
-        "Despite their connection to the moon and the night, the Lunari are known for their wisdom and compassion. They are often sought after as advisors and healers, using their lunar magic to cure ailments and offer guidance to those in need.",
-        "The Lunari\\'s most cherished tradition is the \\\"Festival of the Silver Moon,\\\" held on the night of the full moon. During this festival, they gather to celebrate the celestial powers, dance under the light of Luna, and offer their prayers for peace and harmony in the world."
-        ],
-        "Thryxx": [
-        "The Thryxx are a mysterious and formidable race, known for their unparalleled ability to adapt to any environment. They hail from the shifting, ever-changing landscape of the Everstorm Wastes, a desolate expanse where the elements themselves are in constant flux.",
-        "Thryxx are characterized by their chameleon-like skin, which allows them to blend seamlessly into any terrain, from barren deserts to lush jungles. Their eyes, however, remain a constant fiery red, a mark of their inner strength and determination.",
-        "Their society is built around the \\\"Eternal Storm,\\\" a belief that the world is in a constant state of upheaval, and only through embracing change and chaos can one achieve true power. The Thryxx do not have traditional rulers but instead follow a leader known as the \\\"Stormseer,\\\" a visionary who guides them through the storms of life.",
-        "During the Great Tempest, when the forces of nature grew wild and unruly, the Thryxx proved their resilience. They stood firm against the chaos, using their mastery of elemental forces to harness the storm and shape it to their will, saving their people from certain destruction.",
-        "The Thryxx\\'s most sacred artifact is the \\\"Eye of the Cyclone,\\\" a crystal said to hold the power of a thousand storms. This artifact allows its wielder to control the winds and weather, bending the very forces of nature to their command.",
-        "One of the most legendary Thryxx warriors, Kaara Stormbane, is remembered for her defeat of the Raging Tempest, a monstrous elemental that threatened to swallow the world. She wielded the Eye of the Cyclone and calmed the storm, saving her people and securing her place in Thryxx history.",
-        "Thryxx culture is centered around the \\\"Trial of the Storm,\\\" a rite of passage that requires young Thryxx to survive the harshest elements of the Everstorm Wastes. Only those who can endure the tempest and return unbroken are deemed worthy of their people\\'s respect.",
-        "The \\\"Mark of the Winds\\\" is a sacred tattoo that all Thryxx warriors earn upon proving their strength and survival skills. It is said that the mark gives them the ability to move faster than the winds themselves and withstand any adversity.",
-        "Despite their fierce and tempestuous nature, the Thryxx are deeply bonded to their kin. Family and community are vital to their survival, and they are known to protect their own at any cost, even if it means confronting the fury of the elements themselves.",
-        "The Thryxx\\'s greatest celebration is the \\\"Festival of the Tempest,\\\" a yearly event where they gather to honor the elements. During this festival, they perform ceremonial dances in the rain, invoking the power of the storm and celebrating their survival through the chaos of life."
         ],
         "Relics": [
         "Relics of this world are often found in mysterious and perilous locations, places that only the bravest and most persistent can reach. These places might include desolate mountain peaks, deep caves, or forgotten forests where life has nearly disappeared, leaving only traces of legendary events.",
@@ -3046,7 +2842,7 @@ def create_collaboration_equipments_database():
                             + (name or '') + "','"
                             + (path or '') + "','"
                             + (rare or '') + "',"
-                            + str(20) + ",'"
+                            + str(25) + ",'"
                             + (dir_name or '') + "',"
                             + str(0) + ","
                             + str(power or 0) + ","
@@ -3289,7 +3085,7 @@ def create_symbols_database():
                             + (name or '') + "','"
                             + (path or '') + "',"
                             + "'MR',"  # Hằng số 'MR'
-                            + str(20) + ",'"
+                            + str(25) + ",'"
                             + (dir_name or '') + "',"
                             + str(power or 0) + ","
                             + str(health or 0) + ","
@@ -3415,7 +3211,7 @@ def create_medals_database():
                             + (name or '') + "','"
                             + (path or '') + "',"
                             + "'MR',"  # Hằng số 'MR'
-                            + str(20) + ","
+                            + str(25) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
                             + str(physical_attack or 0) + ","
@@ -3540,7 +3336,7 @@ def create_achievements_database():
                             + (name or '') + "','"
                             + (path or '') + "',"
                             + "'MR',"  # Hằng số 'MR'
-                            + str(20) + ","
+                            + str(25) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
                             + str(physical_attack or 0) + ","
@@ -3664,7 +3460,7 @@ def create_titles_database():
                             + (name or '') + "','"
                             + (path or '') + "',"
                             + "'MR',"  # Hằng số 'MR'
-                            + str(20) + ","
+                            + str(25) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
                             + str(physical_attack or 0) + ","
@@ -3894,7 +3690,7 @@ def create_borders_database():
                             + (name or '') + "','"
                             + (path or '') + "',"
                             + "'MR',"  # Hằng số 'MR'
-                            + str(20) + ","
+                            + str(25) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
                             + str(physical_attack or 0) + ","
@@ -4018,7 +3814,7 @@ def create_avatars_database():
                             + (name or '') + "','"
                             + (path or '') + "',"
                             + "'MR',"  # Hằng số 'MR'
-                            + str(20) + ","
+                            + str(25) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
                             + str(physical_attack or 0) + ","
@@ -4757,7 +4553,7 @@ def create_equipments_database():
                                     + name + "','"
                                     + path + "','"
                                     + dir_name + "',"
-                                    + str(20) + ",'"
+                                    + str(25) + ",'"
                                     + current_name + "','"
                                     + set1_folder_name + "',"
                                     + str(0) + ","
@@ -4885,7 +4681,7 @@ def create_collaboration_database():
                             + (name or '') + "','"
                             + (path or '') + "',"
                             + "'MR',"  # Hằng số 'MR'
-                            + str(20) + ","
+                            + str(25) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
                             + str(physical_attack or 0) + ","
@@ -5614,7 +5410,7 @@ def create_relics_database():
                             + (name or '') + "','"
                             + (path or '') + "',"
                             + "'MR',"  # Hằng số 'MR'
-                            + str(20) + ",'"
+                            + str(25) + ",'"
                             + (dir_name or '') + "',"
                             + str(0) + ","
                             + str(power or 0) + ","
@@ -5748,7 +5544,7 @@ def create_magic_formation_circle_database():
                             + (name or '') + "','"
                             + (path or '') + "',"
                             + "'MR',"  # Hằng số 'MR'
-                            + str(20) + ",'"
+                            + str(25) + ",'"
                             + (dir_name or '') + "',"
                             + str(0) + ","
                             + str(power or 0) + ","
@@ -5882,7 +5678,7 @@ def create_talisman_database():
                             + (name or '') + "','"
                             + (path or '') + "',"
                             + "'MR',"  # Hằng số 'MR'
-                            + str(20) + ",'"
+                            + str(25) + ",'"
                             + (dir_name or '') + "',"
                             + str(0) + ","
                             + str(power or 0) + ","
@@ -6016,7 +5812,7 @@ def create_puppet_database():
                             + (name or '') + "','"
                             + (path or '') + "',"
                             + "'MR',"  # Hằng số 'MR'
-                            + str(20) + ",'"
+                            + str(25) + ",'"
                             + (dir_name or '') + "',"
                             + str(0) + ","
                             + str(power or 0) + ","
@@ -6150,7 +5946,7 @@ def create_alchemy_database():
                             + (name or '') + "','"
                             + (path or '') + "',"
                             + "'MR',"  # Hằng số 'MR'
-                            + str(20) + ",'"
+                            + str(25) + ",'"
                             + (dir_name or '') + "',"
                             + str(0) + ","
                             + str(power or 0) + ","
@@ -6284,7 +6080,7 @@ def create_forge_database():
                             + (name or '') + "','"
                             + (path or '') + "',"
                             + "'MR',"  # Hằng số 'MR'
-                            + str(20) + ",'"
+                            + str(25) + ",'"
                             + (dir_name or '') + "',"
                             + str(0) + ","
                             + str(power or 0) + ","
@@ -6419,7 +6215,7 @@ def create_card_life_database():
                             + (name or '') + "','"
                             + (path or '') + "',"
                             + "'MR',"  # Hằng số 'MR'
-                            + str(20) + ",'"
+                            + str(25) + ",'"
                             + (dir_name or '') + "',"
                             + str(0) + ","
                             + str(power or 0) + ","
