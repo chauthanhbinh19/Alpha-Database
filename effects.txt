@@ -1,50 +1,98 @@
--- 1. Tấn công & Phòng thủ
-INSERT INTO effects (id, name, effect_type, value, value_type, scaling_factor, duration) VALUES
-(1, 'damage', 'damage', 100, 'percentage', 1.0, NULL),        -- Gây sát thương theo % sức mạnh kỹ năng
-(2, 'shield', 'shield', 100, 'percentage', 1.0, 2),           -- Tạo lá chắn hấp thụ sát thương, tồn tại 2 lượt
+INSERT INTO effects (id, name, effect_type, value, value_type, scaling_factor, duration, description) VALUES
+-- Buffs (id 1–35)
+(1, 'Increase Health', 'buff', 10, 'percentage', 1.0, 1, 'Increases Health by [value]% for [duration] turn.'),
+(2, 'Increase Physical Attack', 'buff', 10, 'percentage', 1.0, 1, 'Increases Physical Attack by [value]% for [duration] turn.'),
+(3, 'Increase Physical Defense', 'buff', 10, 'percentage', 1.0, 1, 'Increases Physical Defense by [value]% for [duration] turn.'),
+(4, 'Increase Magical Attack', 'buff', 10, 'percentage', 1.0, 1, 'Increases Magical Attack by [value]% for [duration] turn.'),
+(5, 'Increase Magical Defense', 'buff', 10, 'percentage', 1.0, 1, 'Increases Magical Defense by [value]% for [duration] turn.'),
+(6, 'Increase Chemical Attack', 'buff', 10, 'percentage', 1.0, 1, 'Increases Chemical Attack by [value]% for [duration] turn.'),
+(7, 'Increase Chemical Defense', 'buff', 10, 'percentage', 1.0, 1, 'Increases Chemical Defense by [value]% for [duration] turn.'),
+(8, 'Increase Atomic Attack', 'buff', 10, 'percentage', 1.0, 1, 'Increases Atomic Attack by [value]% for [duration] turn.'),
+(9, 'Increase Atomic Defense', 'buff', 10, 'percentage', 1.0, 1, 'Increases Atomic Defense by [value]% for [duration] turn.'),
+(10, 'Increase Mental Attack', 'buff', 10, 'percentage', 1.0, 1, 'Increases Mental Attack by [value]% for [duration] turn.'),
+(11, 'Increase Mental Defense', 'buff', 10, 'percentage', 1.0, 1, 'Increases Mental Defense by [value]% for [duration] turn.'),
+(12, 'Increase Speed', 'buff', 10, 'percentage', 1.0, 1, 'Increases Speed by [value]% for [duration] turn.'),
+(13, 'Increase Critical Damage Rate', 'buff', 10, 'percentage', 1.0, 1, 'Increases Critical Damage Rate by [value]% for [duration] turn.'),
+(14, 'Increase Critical Rate', 'buff', 10, 'percentage', 1.0, 1, 'Increases Critical Rate by [value]% for [duration] turn.'),
+(15, 'Increase Penetration Rate', 'buff', 10, 'percentage', 1.0, 1, 'Increases Penetration Rate by [value]% for [duration] turn.'),
+(16, 'Increase Evasion Rate', 'buff', 10, 'percentage', 1.0, 1, 'Increases Evasion Rate by [value]% for [duration] turn.'),
+(17, 'Increase Damage Absorption Rate', 'buff', 10, 'percentage', 1.0, 1, 'Increases Damage Absorption Rate by [value]% for [duration] turn.'),
+(18, 'Increase Vitality Regeneration Rate', 'buff', 10, 'percentage', 1.0, 1, 'Increases Vitality Regeneration Rate by [value]% for [duration] turn.'),
+(19, 'Increase Accuracy Rate', 'buff', 10, 'percentage', 1.0, 1, 'Increases Accuracy Rate by [value]% for [duration] turn.'),
+(20, 'Increase Lifesteal Rate', 'buff', 10, 'percentage', 1.0, 1, 'Increases Lifesteal Rate by [value]% for [duration] turn.'),
+(21, 'Increase Shield Strength', 'buff', 10, 'percentage', 1.0, 1, 'Increases Shield Strength by [value]% for [duration] turn.'),
+(22, 'Increase Tenacity', 'buff', 10, 'percentage', 1.0, 1, 'Increases Tenacity by [value]% for [duration] turn.'),
+(23, 'Increase Resistance Rate', 'buff', 10, 'percentage', 1.0, 1, 'Increases Resistance Rate by [value]% for [duration] turn.'),
+(24, 'Increase Combo Rate', 'buff', 10, 'percentage', 1.0, 1, 'Increases Combo Rate by [value]% for [duration] turn.'),
+(25, 'Increase Reflection Rate', 'buff', 10, 'percentage', 1.0, 1, 'Increases Reflection Rate by [value]% for [duration] turn.'),
+(26, 'Increase Mana', 'buff', 10, 'percentage', 1.0, 1, 'Increases Mana by [value]% for [duration] turn.'),
+(27, 'Increase Mana Regeneration Rate', 'buff', 10, 'percentage', 1.0, 1, 'Increases Mana Regeneration Rate by [value]% for [duration] turn.'),
+(28, 'Increase Damage To Different Faction Rate', 'buff', 10, 'percentage', 1.0, 1, 'Increases Damage To Different Faction Rate by [value]% for [duration] turn.'),
+(29, 'Increase Resistance To Different Faction Rate', 'buff', 10, 'percentage', 1.0, 1, 'Increases Resistance To Different Faction Rate by [value]% for [duration] turn.'),
+(30, 'Increase Damage To Same Faction Rate', 'buff', 10, 'percentage', 1.0, 1, 'Increases Damage To Same Faction Rate by [value]% for [duration] turn.'),
+(31, 'Increase Resistance To Same Faction Rate', 'buff', 10, 'percentage', 1.0, 1, 'Increases Resistance To Same Faction Rate by [value]% for [duration] turn.'),
+(32, 'Increase All Attack', 'buff', 10, 'percentage', 1.0, 1, 'Increases All Attack by [value]% for [duration] turn.'),
+(33, 'Increase All Defense', 'buff', 10, 'percentage', 1.0, 1, 'Increases All Defense by [value]% for [duration] turn.'),
+(34, 'Increase All Stats', 'buff', 10, 'percentage', 1.0, 1, 'Increases All Stats by [value]% for [duration] turn.'),
+(35, 'Increase All Rates', 'buff', 10, 'percentage', 1.0, 1, 'Increases All Rates by [value]% for [duration] turn.'),
 
--- 2. Buff chỉ số
-(3, 'buff_attack', 'buff', 30, 'percentage', 1.0, 3),         -- Tăng 30% sức tấn công trong 3 lượt
-(4, 'buff_defense', 'buff', 30, 'percentage', 1.0, 3),        -- Tăng 30% phòng thủ trong 3 lượt
+-- Debuffs (id 36–70)
+(36, 'Reduce Health', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces Health by [value]% for [duration] turn.'),
+(37, 'Reduce Physical Attack', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces Physical Attack by [value]% for [duration] turn.'),
+(38, 'Reduce Physical Defense', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces Physical Defense by [value]% for [duration] turn.'),
+(39, 'Reduce Magical Attack', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces Magical Attack by [value]% for [duration] turn.'),
+(40, 'Reduce Magical Defense', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces Magical Defense by [value]% for [duration] turn.'),
+(41, 'Reduce Chemical Attack', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces Chemical Attack by [value]% for [duration] turn.'),
+(42, 'Reduce Chemical Defense', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces Chemical Defense by [value]% for [duration] turn.'),
+(43, 'Reduce Atomic Attack', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces Atomic Attack by [value]% for [duration] turn.'),
+(44, 'Reduce Atomic Defense', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces Atomic Defense by [value]% for [duration] turn.'),
+(45, 'Reduce Mental Attack', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces Mental Attack by [value]% for [duration] turn.'),
+(46, 'Reduce Mental Defense', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces Mental Defense by [value]% for [duration] turn.'),
+(47, 'Reduce Speed', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces Speed by [value]% for [duration] turn.'),
+(48, 'Reduce Critical Damage Rate', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces Critical Damage Rate by [value]% for [duration] turn.'),
+(49, 'Reduce Critical Rate', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces Critical Rate by [value]% for [duration] turn.'),
+(50, 'Reduce Penetration Rate', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces Penetration Rate by [value]% for [duration] turn.'),
+(51, 'Reduce Evasion Rate', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces Evasion Rate by [value]% for [duration] turn.'),
+(52, 'Reduce Damage Absorption Rate', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces Damage Absorption Rate by [value]% for [duration] turn.'),
+(53, 'Reduce Vitality Regeneration Rate', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces Vitality Regeneration Rate by [value]% for [duration] turn.'),
+(54, 'Reduce Accuracy Rate', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces Accuracy Rate by [value]% for [duration] turn.'),
+(55, 'Reduce Lifesteal Rate', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces Lifesteal Rate by [value]% for [duration] turn.'),
+(56, 'Reduce Shield Strength', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces Shield Strength by [value]% for [duration] turn.'),
+(57, 'Reduce Tenacity', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces Tenacity by [value]% for [duration] turn.'),
+(58, 'Reduce Resistance Rate', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces Resistance Rate by [value]% for [duration] turn.'),
+(59, 'Reduce Combo Rate', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces Combo Rate by [value]% for [duration] turn.'),
+(60, 'Reduce Reflection Rate', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces Reflection Rate by [value]% for [duration] turn.'),
+(61, 'Reduce Mana', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces Mana by [value]% for [duration] turn.'),
+(62, 'Reduce Mana Regeneration Rate', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces Mana Regeneration Rate by [value]% for [duration] turn.'),
+(63, 'Reduce Damage To Different Faction Rate', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces Damage To Different Faction Rate by [value]% for [duration] turn.'),
+(64, 'Reduce Resistance To Different Faction Rate', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces Resistance To Different Faction Rate by [value]% for [duration] turn.'),
+(65, 'Reduce Damage To Same Faction Rate', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces Damage To Same Faction Rate by [value]% for [duration] turn.'),
+(66, 'Reduce Resistance To Same Faction Rate', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces Resistance To Same Faction Rate by [value]% for [duration] turn.'),
+(67, 'Reduce All Attack', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces All Attack by [value]% for [duration] turn.'),
+(68, 'Reduce All Defense', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces All Defense by [value]% for [duration] turn.'),
+(69, 'Reduce All Stats', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces All Stats by [value]% for [duration] turn.'),
+(70, 'Reduce All Rates', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces All Rates by [value]% for [duration] turn.');
+INSERT INTO effects (id, name, effect_type, value, value_type, scaling_factor, duration, description) VALUES
+-- Hiệu ứng bất lợi (negative status effects)
+(71, 'Burn', 'debuff', 10, 'percentage', 1.0, 1, 'Deals [value]% damage per turn for [duration] turn due to burning.'),
+(72, 'Poison', 'debuff', 10, 'percentage', 1.0, 1, 'Deals [value]% damage per turn for [duration] turn due to poison.'),
+(73, 'Bleed', 'debuff', 10, 'percentage', 1.0, 1, 'Causes target to bleed, losing [value]% health each turn for [duration] turn.'),
+(74, 'Freeze', 'debuff', 0, 'flat', 1.0, 1, 'Freezes target and prevents action for [duration] turn.'),
+(75, 'Stun', 'debuff', 0, 'flat', 1.0, 1, 'Stuns target and disables actions for [duration] turn.'),
+(76, 'Silence', 'debuff', 0, 'flat', 1.0, 1, 'Silences target and blocks skill use for [duration] turn.'),
+(77, 'Blind', 'debuff', 0, 'flat', 1.0, 1, 'Blinds target, causing attacks to miss for [duration] turn.'),
+(78, 'Confuse', 'debuff', 0, 'flat', 1.0, 1, 'Confuses target, may attack allies for [duration] turn.'),
+(79, 'Sleep', 'debuff', 0, 'flat', 1.0, 1, 'Puts target to sleep and disables all actions for [duration] turn.'),
+(80, 'Fear', 'debuff', 0, 'flat', 1.0, 1, 'Inflicts fear, preventing target from acting for [duration] turn.'),
 
--- 3. Debuff chỉ số
-(5, 'debuff_attack', 'debuff', -30, 'percentage', 1.0, 3),    -- Giảm 30% tấn công mục tiêu trong 3 lượt
-(6, 'debuff_defense', 'debuff', -30, 'percentage', 1.0, 3),   -- Giảm 30% phòng thủ mục tiêu trong 3 lượt
-
--- 4. Hiệu ứng bất lợi (Crowd Control & DoT)
-(7, 'stun', 'debuff', 100, 'percentage', 1.0, 1),             -- Choáng, mất lượt hành động
-(8, 'freeze', 'debuff', 100, 'percentage', 1.0, 1),           -- Đóng băng, không thể hành động
-(9, 'burn', 'damage', 5, 'percentage', 1.0, 3),               -- Gây sát thương theo % mỗi lượt (3 lượt)
-(10, 'poison', 'damage', 5, 'percentage', 1.0, 3),            -- Độc, gây sát thương % mỗi lượt
-(11, 'bleed', 'damage', 10, 'percentage', 1.0, 2),            -- Chảy máu, sát thương % trong 2 lượt
-(12, 'sleep', 'debuff', 100, 'percentage', 1.0, 1),           -- Ngủ, mất lượt trừ khi bị đánh thức
-(13, 'silence', 'debuff', 100, 'percentage', 1.0, 2),         -- Không thể dùng kỹ năng chủ động
-(14, 'blind', 'debuff', -50, 'percentage', 1.0, 2),           -- Giảm chính xác đánh trúng
-(15, 'root', 'debuff', 100, 'percentage', 1.0, 2),            -- Không thể di chuyển (nếu game có di chuyển)
-(16, 'slow', 'debuff', -30, 'percentage', 1.0, 2),            -- Giảm tốc độ (hoặc giảm tiến trình lượt)
-(17, 'confuse', 'debuff', 100, 'percentage', 1.0, 1),         -- Mất kiểm soát, có thể đánh nhầm phe
-(18, 'fear', 'debuff', 100, 'percentage', 1.0, 1),            -- Mất lượt vì hoảng loạn
-
--- 5. Hiệu ứng có lợi (Hỗ trợ)
-(19, 'heal', 'heal', 30, 'percentage', 1.0, NULL),            -- Hồi máu ngay lập tức theo %
-(20, 'regeneration', 'heal', 10, 'percentage', 1.0, 3),       -- Hồi máu mỗi lượt trong 3 lượt
-(21, 'cleanse', 'support', 100, 'percentage', 1.0, NULL),     -- Xóa tất cả debuff trên bản thân hoặc đồng minh
-(22, 'immune', 'support', 100, 'percentage', 1.0, 2),         -- Miễn nhiễm mọi debuff trong 2 lượt
-(23, 'revive', 'support', 50, 'percentage', 1.0, NULL),       -- Hồi sinh với 50% máu
-
--- 6. Trạng thái đặc biệt
-(26, 'mark', 'special', 20, 'percentage', 1.0, 2),            -- Đánh dấu mục tiêu, tăng sát thương nhận
-(27, 'taunt', 'debuff', 100, 'percentage', 1.0, 2),           -- Khiêu khích, buộc mục tiêu tấn công người này
-(30, 'multi_hit', 'special', 3, 'flat', 1.0, NULL),           -- Gây 3 đòn đánh liên tiếp (liên kích)
-(31, 'invincibility', 'special', 100, 'percentage', 1.0, 1),  -- Bất tử, không nhận sát thương trong 1 lượt
-
--- 7. Cơ chế nâng cao theo lượt
-(33, 'extra_turn', 'special', 100, 'percentage', 1.0, NULL),  -- Nhận thêm một lượt sau khi hành động
-(34, 'block_buff', 'debuff', 100, 'percentage', 1.0, 2),      -- Ngăn mục tiêu nhận buff mới
-(35, 'block_debuff', 'support', 100, 'percentage', 1.0, 2),   -- Ngăn bản thân/đồng minh nhận debuff
-(36, 'steal_buff', 'special', 100, 'percentage', 1.0, NULL),  -- Cướp buff từ kẻ địch
-(37, 'reflect_damage', 'special', 30, 'percentage', 1.0, 2),  -- Phản lại 30% sát thương đã nhận
-(38, 'unremovable', 'special', 100, 'percentage', 1.0, 2),    -- Khiến hiệu ứng không thể bị xóa
-(39, 'detonate', 'special', 100, 'percentage', 1.0, NULL),    -- Gây sát thương dựa trên số debuff hiện có
-(40, 'spread_debuff', 'special', 100, 'percentage', 1.0, NULL), -- Lan truyền debuff sang mục tiêu khác
-(41, 'skill_block', 'debuff', 100, 'percentage', 1.0, 2);     -- Không thể sử dụng kỹ năng chủ động
+-- Hiệu ứng có lợi (positive status effects)
+(81, 'Immunity', 'buff', 0, 'flat', 1.0, 1, 'Grants immunity to debuffs for [duration] turn.'),
+(82, 'Invincibility', 'buff', 0, 'flat', 1.0, 1, 'Prevents all damage for [duration] turn.'),
+(83, 'Cleanse', 'buff', 0, 'flat', 1.0, 0, 'Removes all debuffs immediately.'),
+(84, 'Revive', 'buff', 10, 'percentage', 1.0, 0, 'Revives with [value]% health upon death.'),
+(85, 'Shield', 'buff', 10, 'percentage', 1.0, 1, 'Applies a shield that absorbs [value]% damage for [duration] turn.'),
+(86, 'Reflect', 'buff', 10, 'percentage', 1.0, 1, 'Reflects [value]% of incoming damage for [duration] turn.'),
+(87, 'Taunt', 'debuff', 0, 'flat', 1.0, 1, 'Forces enemy to target this unit for [duration] turn.'),
+(88, 'Mark', 'debuff', 10, 'percentage', 1.0, 1, 'Marked target takes [value]% more damage for [duration] turn.'),
+(89, 'Expose', 'debuff', 10, 'percentage', 1.0, 1, 'Reduces target defense by [value]% for [duration] turn.'),
+(90, 'Energy Drain', 'debuff', 10, 'percentage', 1.0, 1, 'Drains [value]% energy per turn for [duration] turn.');

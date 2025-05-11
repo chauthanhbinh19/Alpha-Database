@@ -963,3 +963,447 @@ INSERT INTO features (feature_name, required_level, type, description) VALUES
 ('Time Power VIII', 800, 'Time', 'You rewind brief moments of battle, undoing fatal mistakes.'),
 ('Time Power IX', 900, 'Time', 'You stop time for several seconds, acting while all else is frozen.'),
 ('Time Power X', 1000, 'Time', 'You transcend time itself, rewriting outcomes before they occur.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Nanotech I', 100, 'Nanotech', 'Microscopic machines enhance your tissue repair.'),
+('Nanotech II', 200, 'Nanotech', 'Your nanobots strengthen muscles and bones.'),
+('Nanotech III', 300, 'Nanotech', 'Nanites detect and neutralize toxins instantly.'),
+('Nanotech IV', 400, 'Nanotech', 'You command nanites to form temporary tools or weapons.'),
+('Nanotech V', 500, 'Nanotech', 'Your body heals rapidly from wounds using internal nanites.'),
+('Nanotech VI', 600, 'Nanotech', 'Nanobots reinforce your defense against all damage types.'),
+('Nanotech VII', 700, 'Nanotech', 'You release clouds of nanites that dismantle enemy gear.'),
+('Nanotech VIII', 800, 'Nanotech', 'Your nanites enhance cognition and reaction time.'),
+('Nanotech IX', 900, 'Nanotech', 'You manipulate external objects using a swarm of nanites.'),
+('Nanotech X', 1000, 'Nanotech', 'You evolve into a living nanite collective with supreme control.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Quantum I', 100, 'Quantum', 'You sense fluctuations in quantum fields, slightly anticipating enemy actions.'),
+('Quantum II', 200, 'Quantum', 'You manipulate quantum uncertainty, reacting faster in combat.'),
+('Quantum III', 300, 'Quantum', 'You distort quantum states, delaying enemy movements.'),
+('Quantum IV', 400, 'Quantum', 'You briefly alter quantum probabilities to heal minor injuries.'),
+('Quantum V', 500, 'Quantum', 'You move through quantum states, dashing with unnatural speed.'),
+('Quantum VI', 600, 'Quantum', 'You freeze small quantum fluctuations in time, immobilizing enemies temporarily.'),
+('Quantum VII', 700, 'Quantum', 'You accelerate quantum processes around you, hastening ally actions.'),
+('Quantum VIII', 800, 'Quantum', 'You rewind quantum moments of battle, undoing fatal mistakes.'),
+('Quantum IX', 900, 'Quantum', 'You stop quantum time flow for several seconds, acting while all else is frozen.'),
+('Quantum X', 1000, 'Quantum', 'You transcend quantum reality, rewriting outcomes before they occur.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Holography I', 100, 'Holography', 'You create simple holograms to confuse enemies and obscure your movements.'),
+('Holography II', 200, 'Holography', 'You project deceptive holograms that mimic your actions, misleading enemies.'),
+('Holography III', 300, 'Holography', 'You generate multiple holograms, creating chaos and disorienting enemies.'),
+('Holography IV', 400, 'Holography', 'You create realistic holograms to distract and mislead enemies during combat.'),
+('Holography V', 500, 'Holography', 'You create holographic clones that can perform actions like you, confusing foes.'),
+('Holography VI', 600, 'Holography', 'You generate large-scale holograms that can alter the battlefield’s appearance.'),
+('Holography VII', 700, 'Holography', 'You manipulate holograms in real time to create perfect illusions, deceiving all senses.'),
+('Holography VIII', 800, 'Holography', 'You craft multi-layered holograms to create entire false realities on the battlefield.'),
+('Holography IX', 900, 'Holography', 'You project massive holographic projections that overwhelm enemy senses.'),
+('Holography X', 1000, 'Holography', 'You can fabricate holographic simulations of reality, confusing all who encounter them.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Plasma I', 100, 'Plasma', 'You generate small plasma bursts, dealing minor damage to enemies.'),
+('Plasma II', 200, 'Plasma', 'You control plasma energy, releasing it in focused blasts to burn through obstacles.'),
+('Plasma III', 300, 'Plasma', 'You release plasma waves, inflicting moderate damage to multiple enemies at once.'),
+('Plasma IV', 400, 'Plasma', 'You channel plasma into your weapons, increasing their effectiveness in combat.'),
+('Plasma V', 500, 'Plasma', 'You create a plasma shield, reducing incoming damage and stunning enemies that touch it.'),
+('Plasma VI', 600, 'Plasma', 'You unleash plasma storms, creating an area of effect that burns and disorients foes.'),
+('Plasma VII', 700, 'Plasma', 'You can manipulate plasma to create weapons of solid energy, striking with devastating force.'),
+('Plasma VIII', 800, 'Plasma', 'You generate plasma constructs that can form barriers or offensive attacks.'),
+('Plasma IX', 900, 'Plasma', 'You unleash a massive plasma blast that can obliterate multiple targets in one hit.'),
+('Plasma X', 1000, 'Plasma', 'You control the flow of plasma at a molecular level, bending it to your will with unimaginable power.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Biomech I', 100, 'Biomech', 'You enhance your body with biomechanical implants, boosting physical strength and resilience.'),
+('Biomech II', 200, 'Biomech', 'You integrate advanced biomechanical systems, improving your endurance and reaction time.'),
+('Biomech III', 300, 'Biomech', 'You gain enhanced reflexes and the ability to interface with machines directly.'),
+('Biomech IV', 400, 'Biomech', 'You install neural upgrades, allowing for faster processing and more precise movements.'),
+('Biomech V', 500, 'Biomech', 'You deploy biomechanical enhancements to reinforce your bones and muscles, increasing combat efficiency.'),
+('Biomech VI', 600, 'Biomech', 'You can repair and upgrade your biomechanical systems in the field, restoring lost capabilities.'),
+('Biomech VII', 700, 'Biomech', 'You synchronize your mind with biomechanical interfaces, gaining control over cybernetic systems.'),
+('Biomech VIII', 800, 'Biomech', 'You gain the ability to morph your biomechanical limbs into various tools or weapons.'),
+('Biomech IX', 900, 'Biomech', 'You evolve into a more advanced biomechanical form, dramatically enhancing your strength and speed.'),
+('Biomech X', 1000, 'Biomech', 'You transcend human limitations, merging fully with biomechanical systems for near invulnerability.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Cryotech I', 100, 'Cryotech', 'You manipulate cold temperatures, slowing down enemies and freezing small objects.'),
+('Cryotech II', 200, 'Cryotech', 'You generate cold waves, creating frost that hampers enemy movement.'),
+('Cryotech III', 300, 'Cryotech', 'You can create ice projectiles, launching them at foes to freeze them temporarily.'),
+('Cryotech IV', 400, 'Cryotech', 'You can create ice barriers, blocking paths and protecting allies from damage.'),
+('Cryotech V', 500, 'Cryotech', 'You freeze the air around you, reducing the speed and strength of nearby enemies.'),
+('Cryotech VI', 600, 'Cryotech', 'You create a blizzard, disorienting enemies and freezing their movements in a wide area.'),
+('Cryotech VII', 700, 'Cryotech', 'You summon ice storms, freezing enemies solid and causing massive area damage.'),
+('Cryotech VIII', 800, 'Cryotech', 'You encase enemies in ice, immobilizing them and rendering them vulnerable to attacks.'),
+('Cryotech IX', 900, 'Cryotech', 'You can freeze entire sections of the battlefield, controlling the environment to your advantage.'),
+('Cryotech X', 1000, 'Cryotech', 'You master absolute zero, freezing everything in your vicinity and stopping time for brief moments.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Psionics I', 100, 'Psionics', 'You tap into the power of the mind, sensing the thoughts and emotions of nearby enemies.'),
+('Psionics II', 200, 'Psionics', 'You manipulate weak minds, influencing thoughts and actions subtly.'),
+('Psionics III', 300, 'Psionics', 'You generate psychic blasts, stunning enemies with waves of mental energy.'),
+('Psionics IV', 400, 'Psionics', 'You create psychic shields that protect against physical and mental attacks.'),
+('Psionics V', 500, 'Psionics', 'You exert telekinetic force, moving objects and enemies at will.'),
+('Psionics VI', 600, 'Psionics', 'You can control the minds of weaker foes, bending them to your will temporarily.'),
+('Psionics VII', 700, 'Psionics', 'You communicate telepathically with others, bypassing all forms of communication.'),
+('Psionics VIII', 800, 'Psionics', 'You use psychic powers to cause intense pain or fear, crippling enemies mentally.'),
+('Psionics IX', 900, 'Psionics', 'You project powerful illusions into the minds of others, causing confusion and fear.'),
+('Psionics X', 1000, 'Psionics', 'You transcend mental limits, becoming a master of psychic energy and controlling minds at will.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Neurotech I', 100, 'Neurotech', 'You enhance your nervous system with neural implants, improving reflexes and coordination.'),
+('Neurotech II', 200, 'Neurotech', 'You boost your cognitive functions, increasing mental clarity and reaction time in combat.'),
+('Neurotech III', 300, 'Neurotech', 'You interface directly with machines, controlling devices with thought alone.'),
+('Neurotech IV', 400, 'Neurotech', 'You augment your neural pathways, gaining faster decision-making abilities during battle.'),
+('Neurotech V', 500, 'Neurotech', 'You install neural processors that allow for real-time analysis and tactical adjustments.'),
+('Neurotech VI', 600, 'Neurotech', 'You gain the ability to predict enemy actions by analyzing their neural patterns.'),
+('Neurotech VII', 700, 'Neurotech', 'You enhance your mental network, allowing you to synchronize with machines and allies seamlessly.'),
+('Neurotech VIII', 800, 'Neurotech', 'You can hack into enemy devices with your mind, disrupting their systems and gaining control.'),
+('Neurotech IX', 900, 'Neurotech', 'You interface with your environment, using your neural enhancements to alter the battlefield.'),
+('Neurotech X', 1000, 'Neurotech', 'You achieve full neural integration, gaining control over both biological and technological systems at will.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Antimatter I', 100, 'Antimatter', 'You harness the power of antimatter, causing small explosions upon contact with matter.'),
+('Antimatter II', 200, 'Antimatter', 'You create unstable antimatter particles, releasing bursts of destructive energy when detonated.'),
+('Antimatter III', 300, 'Antimatter', 'You manipulate antimatter fields, disintegrating objects and enemies in proximity.'),
+('Antimatter IV', 400, 'Antimatter', 'You create concentrated antimatter bombs that annihilate matter on impact.'),
+('Antimatter V', 500, 'Antimatter', 'You form antimatter shields, disintegrating projectiles and deflecting energy attacks.'),
+('Antimatter VI', 600, 'Antimatter', 'You generate antimatter storms, causing massive explosions and chaos across the battlefield.'),
+('Antimatter VII', 700, 'Antimatter', 'You manipulate antimatter to create rifts, pulling enemies into destructive singularities.'),
+('Antimatter VIII', 800, 'Antimatter', 'You can create controlled antimatter reactions, destabilizing entire sections of the environment.'),
+('Antimatter IX', 900, 'Antimatter', 'You generate a large-scale antimatter explosion, wiping out all matter in its blast radius.'),
+('Antimatter X', 1000, 'Antimatter', 'You become a master of antimatter, bending its destructive forces to rewrite the fabric of reality itself.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Phantomware I', 100, 'Phantomware', 'You cloak your presence, becoming nearly invisible to the naked eye.'),
+('Phantomware II', 200, 'Phantomware', 'You create holographic decoys, diverting attention away from your true location.'),
+('Phantomware III', 300, 'Phantomware', 'You can phase through solid objects, briefly slipping between physical matter.'),
+('Phantomware IV', 400, 'Phantomware', 'You can create silent, ghostly footsteps that mislead enemies and cover your movements.'),
+('Phantomware V', 500, 'Phantomware', 'You project a false presence, confusing enemies and making it difficult to track you.'),
+('Phantomware VI', 600, 'Phantomware', 'You gain the ability to become intangible, avoiding physical and energy-based attacks.'),
+('Phantomware VII', 700, 'Phantomware', 'You can merge with shadows, becoming completely undetectable and blending into your surroundings.'),
+('Phantomware VIII', 800, 'Phantomware', 'You create multiple illusions of yourself, making it impossible for enemies to identify your true form.'),
+('Phantomware IX', 900, 'Phantomware', 'You can phase between dimensions, appearing to teleport in and out of different spaces.'),
+('Phantomware X', 1000, 'Phantomware', 'You transcend physical form, becoming an ethereal entity that exists outside of time and space.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Gravitech I', 100, 'Gravitech', 'You manipulate gravity fields, slightly increasing or decreasing the weight of objects around you.'),
+('Gravitech II', 200, 'Gravitech', 'You can create localized gravity wells, pulling enemies toward you or pushing them away.'),
+('Gravitech III', 300, 'Gravitech', 'You generate intense gravity fields that distort space, slowing down enemy movements.'),
+('Gravitech IV', 400, 'Gravitech', 'You create gravity vortexes, causing enemies and objects to be pulled into a concentrated point.'),
+('Gravitech V', 500, 'Gravitech', 'You can manipulate gravity to enhance your jumping ability or reduce falling damage.'),
+('Gravitech VI', 600, 'Gravitech', 'You reverse gravity in a localized area, causing enemies to float and become vulnerable to attacks.'),
+('Gravitech VII', 700, 'Gravitech', 'You generate massive gravitational waves that distort the battlefield and crush your enemies.'),
+('Gravitech VIII', 800, 'Gravitech', 'You can alter the gravity of large objects, using them as weapons or shields in combat.'),
+('Gravitech IX', 900, 'Gravitech', 'You create a singularity, collapsing space-time and trapping enemies within a gravity well.'),
+('Gravitech X', 1000, 'Gravitech', 'You can control gravitational forces on a planetary scale, altering the environment and battlefield at will.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Aethernet I', 100, 'Aethernet', 'You tap into the aether, enabling basic communication across distant locations.'),
+('Aethernet II', 200, 'Aethernet', 'You extend your control over the aether, creating a network for rapid information transmission.'),
+('Aethernet III', 300, 'Aethernet', 'You generate stable aetheric connections, allowing you to transmit energy or data across vast distances.'),
+('Aethernet IV', 400, 'Aethernet', 'You create aetheric nodes that can store and relay complex information between connected entities.'),
+('Aethernet V', 500, 'Aethernet', 'You establish a linked network, allowing real-time communication and control of distant machines.'),
+('Aethernet VI', 600, 'Aethernet', 'You can manipulate the aether to create a network of interconnected devices that operate autonomously.'),
+('Aethernet VII', 700, 'Aethernet', 'You form a powerful aetheric grid that enhances the communication and control range over all connected systems.'),
+('Aethernet VIII', 800, 'Aethernet', 'You can connect to other minds through the aether, sharing knowledge and thoughts instantly.'),
+('Aethernet IX', 900, 'Aethernet', 'You manipulate the aether on a cosmic scale, enabling telepathic communication across vast distances.'),
+('Aethernet X', 1000, 'Aethernet', 'You transcend physical limitations, becoming a part of the aether itself and controlling all connected systems effortlessly.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Starforge I', 100, 'Starforge', 'You forge basic materials using cosmic energy, creating tools with exceptional durability.'),
+('Starforge II', 200, 'Starforge', 'You manipulate stardust, crafting weapons and armor with enhanced strength and sharpness.'),
+('Starforge III', 300, 'Starforge', 'You harness stellar energy, creating items with properties of light and heat.'),
+('Starforge IV', 400, 'Starforge', 'You fuse celestial metals, creating near-indestructible weapons and armor that resist all but the most powerful forces.'),
+('Starforge V', 500, 'Starforge', 'You craft items imbued with the power of stars, allowing them to regenerate or adapt to their surroundings.'),
+('Starforge VI', 600, 'Starforge', 'You create celestial constructs, bending the fabric of space to enhance the properties of your creations.'),
+('Starforge VII', 700, 'Starforge', 'You manipulate the essence of stars to create living weapons that respond to your will.'),
+('Starforge VIII', 800, 'Starforge', 'You draw energy from supernovae, imbuing your creations with explosive force capable of obliterating foes.'),
+('Starforge IX', 900, 'Starforge', 'You command the power of entire star systems, forging artifacts of unimaginable strength and functionality.'),
+('Starforge X', 1000, 'Starforge', 'You transcend material creation, shaping realities with the power of stellar and cosmic forces.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Orbitalis I', 100, 'Orbitalis', 'You can call upon small satellites to provide real-time surveillance and minor support.'),
+('Orbitalis II', 200, 'Orbitalis', 'You control orbital drones, deploying them to attack or scout enemy positions from above.'),
+('Orbitalis III', 300, 'Orbitalis', 'You manipulate orbital beams, targeting enemies with devastating focused energy strikes.'),
+('Orbitalis IV', 400, 'Orbitalis', 'You control a network of satellites that enhance communication and provide battlefield awareness.'),
+('Orbitalis V', 500, 'Orbitalis', 'You can deploy orbital weaponry, raining down devastating bombardments onto enemies below.'),
+('Orbitalis VI', 600, 'Orbitalis', 'You establish orbital defense platforms, creating shields that protect large areas from incoming attacks.'),
+('Orbitalis VII', 700, 'Orbitalis', 'You use orbital energy to empower your weapons, allowing them to channel devastating laser blasts.'),
+('Orbitalis VIII', 800, 'Orbitalis', 'You manipulate gravitational fields from orbit, creating artificial gravity wells to trap or disorient enemies.'),
+('Orbitalis IX', 900, 'Orbitalis', 'You launch massive orbital strikes, causing massive damage across entire zones of the battlefield.'),
+('Orbitalis X', 1000, 'Orbitalis', 'You command entire orbital fleets, calling down devastating attacks and altering the environment with orbital power.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Azathoth Fragment I', 100, 'Azathoth', 'A fragment of Azathoth stirs, granting you whispers from the cosmic void—subtle shifts in reality ripple around you.'),
+('Azathoth Fragment II', 200, 'Azathoth', 'The chaos deepens. You summon entities of unknowable form to scout and destabilize minds from afar.'),
+('Azathoth Fragment III', 300, 'Azathoth', 'You channel rays of unformed energy, tearing through dimensions and obliterating matter itself.'),
+('Azathoth Fragment IV', 400, 'Azathoth', 'Space and time twist in your presence. Communication becomes instinct, and awareness spreads through the void.'),
+('Azathoth Fragment V', 500, 'Azathoth', 'Reality bends as you unleash waves of chaos, calling upon the madness at the heart of the universe.'),
+('Azathoth Fragment VI', 600, 'Azathoth', 'The Outer God shields your domain with writhing cosmic energy, deflecting even the most potent assaults.'),
+('Azathoth Fragment VII', 700, 'Azathoth', 'Your weaponry is infused with entropy, each strike echoing the mindless hunger of the blind idiot god.'),
+('Azathoth Fragment VIII', 800, 'Azathoth', 'You create gravitational anomalies that distort space, ensnaring foes in the madness of shifting laws.'),
+('Azathoth Fragment IX', 900, 'Azathoth', 'Entire regions are engulfed in chaotic storms as Azathoth’s essence tears through the veil of reality.'),
+('Azathoth Fragment X', 1000, 'Azathoth', 'You become an avatar of the nuclear chaos. Orbital fleets act as extensions of your will, remaking the world in the image of the void.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Yog-Sothoth Fragment I', 100, 'Yog-Sothoth', 'A fragment of the All-in-One grants you vision across dimensions—past, present, and future blur into one.'),
+('Yog-Sothoth Fragment II', 200, 'Yog-Sothoth', 'Your awareness pierces the veil; spectral drones obey your thoughts to observe and intervene across realms.'),
+('Yog-Sothoth Fragment III', 300, 'Yog-Sothoth', 'You channel converging timelines into focused beams that annihilate both physical form and destiny.'),
+('Yog-Sothoth Fragment IV', 400, 'Yog-Sothoth', 'You commune with distant minds, threading thought through cosmic networks beyond comprehension.'),
+('Yog-Sothoth Fragment V', 500, 'Yog-Sothoth', 'Reality yields to your will—you bend the heavens to rain judgment through coordinated cosmic alignment.'),
+('Yog-Sothoth Fragment VI', 600, 'Yog-Sothoth', 'Timeless energy surrounds you, forming barriers that deny entropy and protect space from intrusion.'),
+('Yog-Sothoth Fragment VII', 700, 'Yog-Sothoth', 'Each strike you deliver echoes through realities—your weapons resonate with absolute, logical destruction.'),
+('Yog-Sothoth Fragment VIII', 800, 'Yog-Sothoth', 'You twist gravitational fields through higher mathematics, ensnaring all within paradoxes of motion.'),
+('Yog-Sothoth Fragment IX', 900, 'Yog-Sothoth', 'Entire timelines fracture as you command massive strikes that rewrite the fate of entire battlefields.'),
+('Yog-Sothoth Fragment X', 1000, 'Yog-Sothoth', 'You embody the Gate and the Key. The cosmos answers your call as infinite knowledge becomes raw dominion.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Nyarlathotep Fragment I', 100, 'Nyarlathotep', 'A whisper enters your mind—through subtle surveillance, you gather secrets and plant confusion among your foes.'),
+('Nyarlathotep Fragment II', 200, 'Nyarlathotep', 'Deceitful drones follow your will, spreading false signals and sowing mistrust across enemy ranks.'),
+('Nyarlathotep Fragment III', 300, 'Nyarlathotep', 'You twist beams of chaos and illusion, striking not just bodies, but the minds behind them.'),
+('Nyarlathotep Fragment IV', 400, 'Nyarlathotep', 'You weave a net of dark communications, intercepting thoughts and corrupting strategic decisions.'),
+('Nyarlathotep Fragment V', 500, 'Nyarlathotep', 'You rain down deceptive force, making enemies strike illusions while true destruction slips through unnoticed.'),
+('Nyarlathotep Fragment VI', 600, 'Nyarlathotep', 'A cloak of madness envelops the battlefield—your shields shimmer with unreality, confusing and redirecting attacks.'),
+('Nyarlathotep Fragment VII', 700, 'Nyarlathotep', 'Your weapons channel unpredictable chaos, warping form and function with each blast of malevolent energy.'),
+('Nyarlathotep Fragment VIII', 800, 'Nyarlathotep', 'You distort gravity through trickery, trapping minds as much as bodies within shifting pressure illusions.'),
+('Nyarlathotep Fragment IX', 900, 'Nyarlathotep', 'Your strikes fracture not just space, but resolve—hallucinations and panic spread before the destruction ever lands.'),
+('Nyarlathotep Fragment X', 1000, 'Nyarlathotep', 'You become the Crawling Chaos incarnate, bending truth, fear, and force into a symphony of exquisite manipulation.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Shub-Niggurath Fragment I', 100, 'Shub-Niggurath', 'You summon small, writhing spawn to scout and infest, spreading organic sensors across the land.'),
+('Shub-Niggurath Fragment II', 200, 'Shub-Niggurath', 'You release parasitic drones, which replicate rapidly and overwhelm enemies with biological decay.'),
+('Shub-Niggurath Fragment III', 300, 'Shub-Niggurath', 'You channel corrupted biomass into tendrils of flesh and energy, lashing out with primal force.'),
+('Shub-Niggurath Fragment IV', 400, 'Shub-Niggurath', 'A network of fungal veins and whispering spores grants you battlefield awareness through pulsating growth.'),
+('Shub-Niggurath Fragment V', 500, 'Shub-Niggurath', 'You cause explosive growths to erupt from the ground, unleashing destructive waves of living matter.'),
+('Shub-Niggurath Fragment VI', 600, 'Shub-Niggurath', 'You create a living wall of flesh and bone, absorbing enemy fire while constantly regenerating.'),
+('Shub-Niggurath Fragment VII', 700, 'Shub-Niggurath', 'Your weapons become fused with alien lifeforms, mutating into unpredictable yet devastating bio-cannons.'),
+('Shub-Niggurath Fragment VIII', 800, 'Shub-Niggurath', 'You distort the terrain with pulsing roots and tentacles, slowing and entrapping all who enter your domain.'),
+('Shub-Niggurath Fragment IX', 900, 'Shub-Niggurath', 'You unleash a catastrophic bloom of offspring, overrunning entire regions in seconds with primal biomass.'),
+('Shub-Niggurath Fragment X', 1000, 'Shub-Niggurath', 'You become the Hive Mother incarnate, spawning armies and terraforming the world in your grotesque image.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Nihorath Fragment I', 100, 'Nihorath', 'You awaken subtle distortions in space, allowing echoes of yourself to observe and whisper across dimensions.'),
+('Nihorath Fragment II', 200, 'Nihorath', 'You fracture perception, conjuring mirages and echoes to disorient and mislead enemies.'),
+('Nihorath Fragment III', 300, 'Nihorath', 'You manipulate rays of unreality, targeting foes with beams that unravel thoughts and matter.'),
+('Nihorath Fragment IV', 400, 'Nihorath', 'You weave a web of awareness through the void, sensing all movement as ripples in a warped realm.'),
+('Nihorath Fragment V', 500, 'Nihorath', 'You call forth void storms, striking enemies with chaotic surges of temporal and spatial collapse.'),
+('Nihorath Fragment VI', 600, 'Nihorath', 'You cloak your allies in a shifting veil of unreality, distorting space to bend away attacks.'),
+('Nihorath Fragment VII', 700, 'Nihorath', 'Your weapons pulse with dimensional noise, tearing through physical and psychic defenses alike.'),
+('Nihorath Fragment VIII', 800, 'Nihorath', 'You generate fields of collapsing logic, trapping enemies in loops of space and thought.'),
+('Nihorath Fragment IX', 900, 'Nihorath', 'You unleash entropy cascades, causing regions of the battlefield to fold into nonexistence.'),
+('Nihorath Fragment X', 1000, 'Nihorath', 'You embody the essence of Nihorath, reshaping reality itself in a storm of void, madness, and disintegration.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Aeonax Fragment I', 100, 'Aeonax', 'You glimpse fragments of time, allowing you to anticipate actions moments before they unfold.'),
+('Aeonax Fragment II', 200, 'Aeonax', 'You accelerate allies briefly, letting them act faster than the flow of time would normally permit.'),
+('Aeonax Fragment III', 300, 'Aeonax', 'You unleash temporal bolts that decay matter and memory alike, aging your targets in an instant.'),
+('Aeonax Fragment IV', 400, 'Aeonax', 'You link minds across timelines, sharing vision and awareness through temporal resonance.'),
+('Aeonax Fragment V', 500, 'Aeonax', 'You rewind localized zones, restoring allies or undoing enemy advantages.'),
+('Aeonax Fragment VI', 600, 'Aeonax', 'You anchor protective chronospheres that slow enemy projectiles and stabilize collapsing moments.'),
+('Aeonax Fragment VII', 700, 'Aeonax', 'You empower your strikes with entropy, causing damage that lingers across seconds and futures.'),
+('Aeonax Fragment VIII', 800, 'Aeonax', 'You collapse possible futures into a singularity, trapping enemies in frozen causality loops.'),
+('Aeonax Fragment IX', 900, 'Aeonax', 'You fracture reality, unleashing waves of distorted time that delay, hasten, or erase events.'),
+('Aeonax Fragment X', 1000, 'Aeonax', 'You become one with the temporal flow, reshaping the battlefield through sheer mastery of time itself.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Seraphiros Fragment I', 100, 'Seraphiros', 'You channel divine insight, granting you brief visions of enemy intent and movement.'),
+('Seraphiros Fragment II', 200, 'Seraphiros', 'You summon ethereal sentinels of light to patrol and defend key locations.'),
+('Seraphiros Fragment III', 300, 'Seraphiros', 'You unleash radiant lances that pierce through corruption, searing both flesh and spirit.'),
+('Seraphiros Fragment IV', 400, 'Seraphiros', 'You spread holy awareness across your allies, linking minds through celestial guidance.'),
+('Seraphiros Fragment V', 500, 'Seraphiros', 'You call down sacred judgments, raining divine wrath upon foes who defy cosmic balance.'),
+('Seraphiros Fragment VI', 600, 'Seraphiros', 'You form sanctified barriers that shimmer with angelic runes, repelling hostile forces.'),
+('Seraphiros Fragment VII', 700, 'Seraphiros', 'You infuse your weapons with heavenly essence, allowing them to burn away darkness itself.'),
+('Seraphiros Fragment VIII', 800, 'Seraphiros', 'You invoke a celestial gravity, drawing enemies toward pillars of radiant absolution.'),
+('Seraphiros Fragment IX', 900, 'Seraphiros', 'You summon blazing seraphim to scour the battlefield, purifying vast swathes with sacred fire.'),
+('Seraphiros Fragment X', 1000, 'Seraphiros', 'You become the vessel of divine will, reshaping the world around you with luminous authority.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Thorindar Fragment I', 100, 'Thorindar', 'You awaken the spark of thunder within, enhancing perception and reaction with storm-born clarity.'),
+('Thorindar Fragment II', 200, 'Thorindar', 'You summon minor storm spirits to harass enemies and cloak your movements in mist and static.'),
+('Thorindar Fragment III', 300, 'Thorindar', 'You hurl bolts of forged lightning, cleaving armor and searing flesh with elemental rage.'),
+('Thorindar Fragment IV', 400, 'Thorindar', 'You channel storm energy to form a battle aura that bolsters allies and disrupts enemy coordination.'),
+('Thorindar Fragment V', 500, 'Thorindar', 'You invoke a storm hammer strike from the sky, smashing enemies with concussive force and thunderclaps.'),
+('Thorindar Fragment VI', 600, 'Thorindar', 'You form a dome of tempest winds and charged shields, repelling projectiles and nullifying energy blasts.'),
+('Thorindar Fragment VII', 700, 'Thorindar', 'Your weapons surge with stormfire, unleashing chained lightning that leaps between enemies.'),
+('Thorindar Fragment VIII', 800, 'Thorindar', 'You call forth cyclones of wrath, drawing enemies inward before blasting them outward with explosive force.'),
+('Thorindar Fragment IX', 900, 'Thorindar', 'You become a conduit for primal storms, striking entire fields with chaotic thunder and molten hail.'),
+('Thorindar Fragment X', 1000, 'Thorindar', 'You ascend as the Storm Incarnate, reshaping the battlefield with divine lightning, roaring skies, and unyielding fury.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Zilthros Fragment I', 100, 'Zilthros', 'You hear the first whisper beyond the veil, granting brief insights into enemy thoughts and intentions.'),
+('Zilthros Fragment II', 200, 'Zilthros', 'You project subtle mental distortions, causing foes to hesitate or misjudge simple actions.'),
+('Zilthros Fragment III', 300, 'Zilthros', 'You send shards of psychic pain through the minds of your enemies, disrupting concentration and resolve.'),
+('Zilthros Fragment IV', 400, 'Zilthros', 'You bend perception, creating phantasmal doubles and shifting illusions to obscure your movements.'),
+('Zilthros Fragment V', 500, 'Zilthros', 'You manipulate the battlefield through fear, causing lesser foes to flee or freeze in terror.'),
+('Zilthros Fragment VI', 600, 'Zilthros', 'You link minds with allies, forming a telepathic web for rapid coordination and shared senses.'),
+('Zilthros Fragment VII', 700, 'Zilthros', 'You cause hallucinations so vivid they manifest physically for a moment, damaging and disorienting.'),
+('Zilthros Fragment VIII', 800, 'Zilthros', 'You warp the flow of time and memory in a zone, forcing enemies to relive moments or forget their actions.'),
+('Zilthros Fragment IX', 900, 'Zilthros', 'You tear open a mental rift, causing psychic storms that ripple through the minds of all nearby.'),
+('Zilthros Fragment X', 1000, 'Zilthros', 'You become a nexus of consciousness, overriding wills, reshaping thoughts, and commanding reality through belief.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Khorazal Fragment I', 100, 'Khorazal', 'You awaken the first flame within, allowing you to ignite minor objects or enemies.'),
+('Khorazal Fragment II', 200, 'Khorazal', 'You conjure flame wisps that swirl around you, burning attackers who get too close.'),
+('Khorazal Fragment III', 300, 'Khorazal', 'You hurl firebolts infused with soulfire, dealing lingering damage to enemies.'),
+('Khorazal Fragment IV', 400, 'Khorazal', 'You radiate heat that warps metal and weakens enemy armor in your vicinity.'),
+('Khorazal Fragment V', 500, 'Khorazal', 'You summon a phoenix of flame to dive at enemies, exploding in a burst of searing ash.'),
+('Khorazal Fragment VI', 600, 'Khorazal', 'You cloak yourself in living fire, damaging all who dare strike you.'),
+('Khorazal Fragment VII', 700, 'Khorazal', 'You bend fire into protective sigils, warding allies and scorching intruders.'),
+('Khorazal Fragment VIII', 800, 'Khorazal', 'You incinerate a wide area, leaving behind cursed embers that linger and reignite.'),
+('Khorazal Fragment IX', 900, 'Khorazal', 'You open a burning rift, unleashing infernal tongues of flame that seek out foes.'),
+('Khorazal Fragment X', 1000, 'Khorazal', 'You become the Heart of the Pyre, commanding infernos, resurrecting through ash, and burning away fate itself.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Ixithra Fragment I', 100, 'Ixithra', 'You tap into the void, allowing you to manipulate small pockets of dark energy for scouting and minor disruptions.'),
+('Ixithra Fragment II', 200, 'Ixithra', 'You summon void drones to traverse the battlefield, distorting time and space as they attack or reconnoiter.'),
+('Ixithra Fragment III', 300, 'Ixithra', 'You unleash a beam of concentrated dark matter, disintegrating enemies with unparalleled force.'),
+('Ixithra Fragment IV', 400, 'Ixithra', 'You control gravitational anomalies, causing the battlefield to warp and slow enemies caught within it.'),
+('Ixithra Fragment V', 500, 'Ixithra', 'You open a rift to the void, raining down spheres of crushing dark energy onto enemy positions.'),
+('Ixithra Fragment VI', 600, 'Ixithra', 'You generate protective void shields, absorbing incoming damage and redirecting it as a black hole of destruction.'),
+('Ixithra Fragment VII', 700, 'Ixithra', 'You harness the gravitational pull of distant stars, empowering your weapons to become singularities that tear through enemies.'),
+('Ixithra Fragment VIII', 800, 'Ixithra', 'You warp the fabric of space-time itself, creating void wells that pull enemies into crushing gravity fields.'),
+('Ixithra Fragment IX', 900, 'Ixithra', 'You summon a massive void eruption, distorting the battlefield and crushing all enemies within its event horizon.'),
+('Ixithra Fragment X', 1000, 'Ixithra', 'You command the true essence of the void, calling down a cataclysmic gravitational collapse that alters the very nature of reality.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Omnitheus Fragment I', 100, 'Omnitheus', 'You bend time, allowing you to manipulate small temporal anomalies that slow enemies or grant minor advantages to allies.'),
+('Omnitheus Fragment II', 200, 'Omnitheus', 'You control temporal drones that distort time around them, making enemies move sluggishly or speeding up your forces.'),
+('Omnitheus Fragment III', 300, 'Omnitheus', 'You create a focused time distortion beam, freezing enemies in their tracks or accelerating your own attacks to blur the line of time itself.'),
+('Omnitheus Fragment IV', 400, 'Omnitheus', 'You control a web of temporal rifts, enhancing communication and allowing real-time battlefield awareness with minimal delay.'),
+('Omnitheus Fragment V', 500, 'Omnitheus', 'You open a temporal rift that rains destructive energy from the future, dealing massive damage to enemy forces below.'),
+('Omnitheus Fragment VI', 600, 'Omnitheus', 'You establish time-shield platforms, slowing incoming attacks and rerouting them in a temporal loop to protect your forces.'),
+('Omnitheus Fragment VII', 700, 'Omnitheus', 'You channel the energy of time, empowering your weapons with accelerated force that cuts through enemies at breakneck speed.'),
+('Omnitheus Fragment VIII', 800, 'Omnitheus', 'You manipulate temporal fields to slow down or trap enemies in stasis, rendering them helpless within an impenetrable field of time.'),
+('Omnitheus Fragment IX', 900, 'Omnitheus', 'You release a massive temporal wave, causing enemies to age rapidly or lose their ability to act as time itself becomes their enemy.'),
+('Omnitheus Fragment X', 1000, 'Omnitheus', 'You control the flow of time itself, calling upon the full power of the cosmos to rewrite fate and alter the battlefield as you see fit.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Phyrixa Fragment I', 100, 'Phyrixa', 'You tap into the cosmic power of Phyrixa, summoning celestial fragments to assist in surveillance and minor support on the battlefield.'),
+('Phyrixa Fragment II', 200, 'Phyrixa', 'You command orbiting drones, infusing them with the will of Phyrixa to scout and strike down enemies with precision from above.'),
+('Phyrixa Fragment III', 300, 'Phyrixa', 'You channel Phyrixa\'s divine energy, manipulating concentrated beams of cosmic power to devastate foes with pinpoint accuracy.'),
+('Phyrixa Fragment IV', 400, 'Phyrixa', 'Your mastery of Phyrixa\'s satellites enhances battlefield communication, providing divine insight and awareness of enemy movements.'),
+('Phyrixa Fragment V', 500, 'Phyrixa', 'You deploy Phyrixa\'s celestial weaponry, calling down powerful bombardments from the heavens to obliterate your enemies below.'),
+('Phyrixa Fragment VI', 600, 'Phyrixa', 'You harness Phyrixa\'s protective power, establishing orbital defense shields that safeguard vast areas from incoming assaults.'),
+('Phyrixa Fragment VII', 700, 'Phyrixa', 'You empower your weapons with cosmic energy, channeling the wrath of Phyrixa into devastating laser blasts that scorch everything in their path.'),
+('Phyrixa Fragment VIII', 800, 'Phyrixa', 'You manipulate the gravitational forces bestowed by Phyrixa, creating artificial gravity wells that trap or disorient your enemies.'),
+('Phyrixa Fragment IX', 900, 'Phyrixa', 'You summon the fury of Phyrixa, launching massive orbital strikes that shake the battlefield and leave enemies in ruins.'),
+('Phyrixa Fragment X', 1000, 'Phyrixa', 'You command Phyrixa\'s full might, calling down devastating attacks and altering the battlefield itself, as the heavens bend to your will.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Atherion Fragment I', 100, 'Atherion', 'You call upon the power of Atherion to control celestial satellites, providing surveillance and light support from above.'),
+('Atherion Fragment II', 200, 'Atherion', 'You command drones infused with Atherion’s cosmic energy, using them to scout the battlefield and target enemies from above.'),
+('Atherion Fragment III', 300, 'Atherion', 'You harness Atherion’s power to manipulate focused orbital beams, striking enemies with destructive energy pulses.'),
+('Atherion Fragment IV', 400, 'Atherion', 'You link multiple satellites through Atherion’s will, enhancing battlefield communication and situational awareness.'),
+('Atherion Fragment V', 500, 'Atherion', 'You unleash Atherion’s might, deploying orbital weaponry that rains down devastating energy blasts upon your foes.'),
+('Atherion Fragment VI', 600, 'Atherion', 'Atherion\’s divine energy forms defensive orbital shields that protect vast areas from hostile attacks.'),
+('Atherion Fragment VII', 700, 'Atherion', 'You tap into Atherion\’s gravitational control, empowering your weapons to release beams of pure destructive energy.'),
+('Atherion Fragment VIII', 800, 'Atherion', 'Using Atherion’s command over gravity, you create artificial gravity wells to trap or disorient your enemies.'),
+('Atherion Fragment IX', 900, 'Atherion', 'Atherion\’s influence allows you to summon devastating orbital strikes, crushing entire zones with overwhelming power.'),
+('Atherion Fragment X', 1000, 'Atherion', 'You gain ultimate control over Atherion’s cosmic fleet, unleashing orbital bombardments and reshaping the battlefield with celestial power.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Vorathos Fragment I', 100, 'Vorathos', 'You call upon Vorathos’s cosmic influence to summon small satellites, offering surveillance and minimal support from above.'),
+('Vorathos Fragment II', 200, 'Vorathos', 'You wield Vorathos’s power to control orbital drones, sending them to scout and attack enemies from the skies.'),
+('Vorathos Fragment III', 300, 'Vorathos', 'With Vorathos’s might, you manipulate focused orbital beams, unleashing destructive energy strikes upon your foes.'),
+('Vorathos Fragment IV', 400, 'Vorathos', 'You create a network of satellites, enhancing battlefield communication and granting insight into enemy movements under Vorathos’s command.'),
+('Vorathos Fragment V', 500, 'Vorathos', 'You unleash devastating orbital bombardments, harnessing Vorathos’s energy to rain destruction upon the battlefield.'),
+('Vorathos Fragment VI', 600, 'Vorathos', 'Vorathos’s divine power allows you to establish orbital defense platforms, forming shields that protect vast regions from incoming attacks.'),
+('Vorathos Fragment VII', 700, 'Vorathos', 'You channel Vorathos’s energy into your weapons, allowing them to unleash laser blasts of immense destructive force.'),
+('Vorathos Fragment VIII', 800, 'Vorathos', 'With Vorathos’s control over gravitational forces, you manipulate gravity fields to trap or disorient enemies in combat.'),
+('Vorathos Fragment IX', 900, 'Vorathos', 'You command Vorathos’s vast power to launch massive orbital strikes, causing widespread devastation across multiple zones.'),
+('Vorathos Fragment X', 1000, 'Vorathos', 'You gain ultimate dominion over Vorathos’s orbital fleets, calling down cataclysmic attacks and reshaping the environment with celestial power.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Tenebris Fragment I', 100, 'Tenebris', 'You invoke Tenebris’s shadowy dominion, summoning small satellites to provide stealthy surveillance and subtle support.'),
+('Tenebris Fragment II', 200, 'Tenebris', 'Under Tenebris’s influence, you command orbital drones to scout and strike enemies from the darkness of the void.'),
+('Tenebris Fragment III', 300, 'Tenebris', 'You wield Tenebris’s dark power, manipulating orbital beams that unleash devastating focused energy to obliterate your enemies.'),
+('Tenebris Fragment IV', 400, 'Tenebris', 'You extend Tenebris’s reach, controlling a network of satellites that offer covert communication and provide battlefield dominance from the shadows.'),
+('Tenebris Fragment V', 500, 'Tenebris', 'You summon orbital weaponry under Tenebris’s command, raining down devastating, shadow-infused bombardments that crush your enemies.'),
+('Tenebris Fragment VI', 600, 'Tenebris', 'With Tenebris’s divine might, you establish orbital defense platforms that form impenetrable shields, protecting vast regions from any threat.'),
+('Tenebris Fragment VII', 700, 'Tenebris', 'You channel Tenebris’s dark energy to empower your weapons, unleashing lethal laser blasts that pierce through your foes with deadly precision.'),
+('Tenebris Fragment VIII', 800, 'Tenebris', 'You manipulate gravitational forces from orbit, creating artificial gravity wells that trap or disorient your enemies in the grip of Tenebris’s darkness.'),
+('Tenebris Fragment IX', 900, 'Tenebris', 'You call down Tenebris’s wrath, launching massive orbital strikes that devastate entire zones with destructive shadow power.'),
+('Tenebris Fragment X', 1000, 'Tenebris', 'You command Tenebris’s entire fleet, bringing down catastrophic attacks that reshape the battlefield and warp the very fabric of reality with darkness.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Xylkor Fragment I', 100, 'Xylkor', 'You invoke Xylkor’s celestial might to summon small satellites, offering real-time surveillance and support from the heavens.'),
+('Xylkor Fragment II', 200, 'Xylkor', 'Under Xylkor’s influence, you control orbital drones, deploying them to scout or attack from above with precision and power.'),
+('Xylkor Fragment III', 300, 'Xylkor', 'You manipulate orbital beams with Xylkor’s divine energy, focusing devastating energy strikes on enemies below.'),
+('Xylkor Fragment IV', 400, 'Xylkor', 'You command a network of satellites under Xylkor’s celestial command, enhancing communication and providing strategic battlefield awareness.'),
+('Xylkor Fragment V', 500, 'Xylkor', 'Xylkor’s power allows you to deploy orbital weaponry, raining destruction down on your enemies with overwhelming force.'),
+('Xylkor Fragment VI', 600, 'Xylkor', 'You create orbital defense platforms, using Xylkor’s energy to form protective shields that safeguard vast regions from incoming threats.'),
+('Xylkor Fragment VII', 700, 'Xylkor', 'You channel Xylkor’s celestial power into your weapons, empowering them to unleash devastating laser blasts against foes.'),
+('Xylkor Fragment VIII', 800, 'Xylkor', 'You manipulate gravitational forces with Xylkor’s cosmic influence, creating artificial gravity wells to trap or disorient your enemies.'),
+('Xylkor Fragment IX', 900, 'Xylkor', 'You launch massive orbital strikes under Xylkor’s guidance, unleashing catastrophic damage across the battlefield.'),
+('Xylkor Fragment X', 1000, 'Xylkor', 'You command entire fleets of celestial orbital forces, calling down apocalyptic attacks and reshaping the battlefield with Xylkor’s cosmic might.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Veltharion Fragment I', 100, 'Veltharion', 'You invoke Veltharion’s cosmic might, summoning small satellites to provide real-time surveillance and minor support from the stars.'),
+('Veltharion Fragment II', 200, 'Veltharion', 'Under Veltharion’s guidance, you control orbital drones to scout, attack, and disrupt enemy positions from the heavens above.'),
+('Veltharion Fragment III', 300, 'Veltharion', 'You channel Veltharion’s celestial power, manipulating orbital beams to unleash devastating energy strikes on your enemies.'),
+('Veltharion Fragment IV', 400, 'Veltharion', 'You command a network of satellites, enhancing communication and providing unparalleled battlefield awareness under Veltharion’s influence.'),
+('Veltharion Fragment V', 500, 'Veltharion', 'Veltharion’s power allows you to deploy orbital weaponry, raining down devastating bombardments upon your foes from above.'),
+('Veltharion Fragment VI', 600, 'Veltharion', 'You establish orbital defense platforms, conjuring shields that protect large areas from incoming attacks under Veltharion’s divine protection.'),
+('Veltharion Fragment VII', 700, 'Veltharion', 'You channel Veltharion’s orbital energy, empowering your weapons to unleash destructive laser blasts that pierce through enemies with precision.'),
+('Veltharion Fragment VIII', 800, 'Veltharion', 'You manipulate gravitational fields, creating artificial gravity wells that trap or disorient your enemies in the weightless void of space.'),
+('Veltharion Fragment IX', 900, 'Veltharion', 'You summon Veltharion’s wrath, launching massive orbital strikes that wreak havoc and cause massive damage across the battlefield.'),
+('Veltharion Fragment X', 1000, 'Veltharion', 'You command entire orbital fleets under Veltharion’s rule, calling down cataclysmic attacks that reshape the battlefield with divine power.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Arcanos Fragment I', 100, 'Arcanos', 'You summon Arcanos’s cosmic energy, calling upon small satellites to provide real-time surveillance and offer minor support on the battlefield.'),
+('Arcanos Fragment II', 200, 'Arcanos', 'Guided by Arcanos’s will, you command orbital drones to scout, attack, and disrupt enemy positions from above, weaving through the stars.'),
+('Arcanos Fragment III', 300, 'Arcanos', 'You wield Arcanos’s celestial might to manipulate orbital beams, focusing devastating energy strikes on your enemies below.'),
+('Arcanos Fragment IV', 400, 'Arcanos', 'You control an expansive network of satellites, enhancing communication and providing battlefield awareness under Arcanos’s divine guidance.'),
+('Arcanos Fragment V', 500, 'Arcanos', 'Arcanos’s power allows you to unleash orbital weaponry, bombarding your enemies from above with destructive force and precision.'),
+('Arcanos Fragment VI', 600, 'Arcanos', 'You establish impenetrable orbital defense platforms, creating shields that protect vast areas from incoming attacks under Arcanos’s watch.'),
+('Arcanos Fragment VII', 700, 'Arcanos', 'You harness the cosmic energy of Arcanos to empower your weapons, channeling devastating laser blasts capable of obliterating foes with a single strike.'),
+('Arcanos Fragment VIII', 800, 'Arcanos', 'Under Arcanos’s guidance, you manipulate gravitational fields from orbit, creating artificial gravity wells to trap and disorient your enemies in the vast void.'),
+('Arcanos Fragment IX', 900, 'Arcanos', 'You call down Arcanos’s fury, launching massive orbital strikes that cause massive damage and devastation across entire zones of the battlefield.'),
+('Arcanos Fragment X', 1000, 'Arcanos', 'As a master of Arcanos’s cosmic energy, you command entire orbital fleets, raining down cataclysmic attacks and reshaping the battlefield with cosmic power.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Dolomath Fragment I', 100, 'Dolomath', 'You harness the power of Dolomath to call upon small satellites, providing real-time surveillance and minor tactical support for your forces.'),
+('Dolomath Fragment II', 200, 'Dolomath', 'Under Dolomath’s command, you control orbital drones, deploying them to attack or scout enemy positions with precision from above.'),
+('Dolomath Fragment III', 300, 'Dolomath', 'Dolomath grants you the ability to manipulate orbital beams, unleashing devastating energy strikes that target your enemies with pinpoint accuracy.'),
+('Dolomath Fragment IV', 400, 'Dolomath', 'You manage a vast network of satellites that enhance communication and provide valuable battlefield awareness, guided by Dolomath’s strategic vision.'),
+('Dolomath Fragment V', 500, 'Dolomath', 'Dolomath’s strength allows you to deploy powerful orbital weaponry, raining down devastating bombardments that destroy enemies from the heavens.'),
+('Dolomath Fragment VI', 600, 'Dolomath', 'You establish orbital defense platforms that create protective shields, safeguarding large areas from incoming enemy attacks under Dolomath’s protection.'),
+('Dolomath Fragment VII', 700, 'Dolomath', 'Harnessing the orbital energy bestowed by Dolomath, you empower your weapons to fire devastating laser blasts capable of annihilating your enemies.'),
+('Dolomath Fragment VIII', 800, 'Dolomath', 'You manipulate gravitational fields from orbit, creating artificial gravity wells that trap or disorient your enemies, as dictated by Dolomath’s cosmic will.'),
+('Dolomath Fragment IX', 900, 'Dolomath', 'Dolomath’s power allows you to launch massive orbital strikes, causing widespread devastation and massive damage across entire zones of the battlefield.'),
+('Dolomath Fragment X', 1000, 'Dolomath', 'You wield the full might of Dolomath’s cosmic energy, commanding entire orbital fleets, calling down cataclysmic attacks, and altering the environment itself with orbital power.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Arathor Fragment I', 100, 'Arathor', 'You call upon Arathor’s power, summoning small satellites to provide real-time surveillance and minor tactical support for your forces.'),
+('Arathor Fragment II', 200, 'Arathor', 'Under Arathor’s guidance, you command orbital drones, deploying them to attack or scout enemy positions from above with unparalleled precision.'),
+('Arathor Fragment III', 300, 'Arathor', 'You manipulate orbital beams with Arathor’s might, targeting enemies with devastating, focused energy strikes that obliterate all in their path.'),
+('Arathor Fragment IV', 400, 'Arathor', 'Arathor’s influence allows you to control a vast network of satellites, enhancing communication and providing essential battlefield awareness.'),
+('Arathor Fragment V', 500, 'Arathor', 'You wield Arathor’s power to deploy orbital weaponry, raining down devastating bombardments that crush your enemies below.'),
+('Arathor Fragment VI', 600, 'Arathor', 'With Arathor’s strength, you establish orbital defense platforms, creating powerful shields that protect vast areas from enemy attacks.'),
+('Arathor Fragment VII', 700, 'Arathor', 'You channel orbital energy through your weapons, empowering them to unleash devastating laser blasts under Arathor’s divine influence.'),
+('Arathor Fragment VIII', 800, 'Arathor', 'Arathor’s cosmic control allows you to manipulate gravitational fields, creating artificial gravity wells that trap or disorient your enemies.'),
+('Arathor Fragment IX', 900, 'Arathor', 'With Arathor’s might, you launch massive orbital strikes that cause massive destruction, devastating entire zones of the battlefield.'),
+('Arathor Fragment X', 1000, 'Arathor', 'You command entire orbital fleets under Arathor’s will, calling down cataclysmic attacks and altering the environment with orbital power.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Xyphos Fragment I', 100, 'Xyphos', 'You channel the essence of Xyphos, gaining access to a small group of celestial drones that provide real-time surveillance, offering minor tactical advantages from above.'),
+('Xyphos Fragment II', 200, 'Xyphos', 'You control orbital drones as extensions of Xyphos, deploying them to attack or scout enemy positions, weaving a celestial web of reconnaissance and aggression.'),
+('Xyphos Fragment III', 300, 'Xyphos', 'You manipulate the cosmic energy of Xyphos to unleash concentrated orbital beams, targeting and obliterating enemies with devastating focused energy strikes from the heavens.'),
+('Xyphos Fragment IV', 400, 'Xyphos', 'You command a vast network of orbital satellites, channeling Xyphos’ power to enhance communication and provide unmatched awareness of the battlefield, guiding your forces.'),
+('Xyphos Fragment V', 500, 'Xyphos', 'You invoke the wrath of Xyphos to deploy powerful orbital weaponry, raining down celestial bombardments that devastate enemies and reshape the battlefield below.'),
+('Xyphos Fragment VI', 600, 'Xyphos', 'You establish divine orbital defense platforms, calling upon Xyphos to create protective shields that defend entire areas from incoming attacks, ensuring your dominion remains secure.'),
+('Xyphos Fragment VII', 700, 'Xyphos', 'You harness Xyphos’ cosmic energy to empower your weapons, channeling destructive laser blasts capable of disintegrating foes, adding celestial might to your armament.'),
+('Xyphos Fragment VIII', 800, 'Xyphos', 'You manipulate the gravitational forces of Xyphos, creating artificial gravity wells that trap or disorient enemies, turning their movements against them and binding them in your will.'),
+('Xyphos Fragment IX', 900, 'Xyphos', 'You unleash the full fury of Xyphos with massive orbital strikes, raining destruction across entire battle zones, ensuring no enemy escapes the celestial purge.'),
+('Xyphos Fragment X', 1000, 'Xyphos', 'You transcend earthly limitations and command entire fleets of celestial ships, calling down devastating strikes from the heavens and altering the battlefield with Xyphos’ divine influence.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Vaelith Fragment I', 100, 'Vaelith', 'You call upon Vaelith’s celestial power, summoning small satellites that provide real-time surveillance and offer minor tactical support to your forces on the battlefield.'),
+('Vaelith Fragment II', 200, 'Vaelith', 'You command Vaelith’s orbital drones, deploying them to attack or scout enemy positions, acting as a divine extension of Vaelith’s will to dominate the skies.'),
+('Vaelith Fragment III', 300, 'Vaelith', 'You harness Vaelith’s cosmic energy to manipulate orbital beams, focusing them on enemies below with devastating precision and power, obliterating foes in your path.'),
+('Vaelith Fragment IV', 400, 'Vaelith', 'You control a vast network of satellites infused with Vaelith’s energy, enhancing battlefield awareness and ensuring flawless communication for your forces.'),
+('Vaelith Fragment V', 500, 'Vaelith', 'You invoke Vaelith’s might to deploy powerful orbital weaponry, raining down destructive bombardments from the heavens, wiping out enemies and reshaping the terrain.'),
+('Vaelith Fragment VI', 600, 'Vaelith', 'You summon Vaelith’s divine presence to establish orbital defense platforms, creating powerful shields that protect large areas from incoming attacks and secure your forces.'),
+('Vaelith Fragment VII', 700, 'Vaelith', 'You channel Vaelith’s energy to empower your weapons, allowing them to unleash devastating laser blasts, further enhancing your combat capabilities.'),
+('Vaelith Fragment VIII', 800, 'Vaelith', 'You manipulate gravitational forces through Vaelith’s will, creating artificial gravity wells that trap or disorient enemies, bending space to your advantage on the battlefield.'),
+('Vaelith Fragment IX', 900, 'Vaelith', 'You call down Vaelith’s wrath with massive orbital strikes, causing massive damage across entire zones of the battlefield, leaving destruction in your wake.'),
+('Vaelith Fragment X', 1000, 'Vaelith', 'You command Vaelith’s full celestial power, summoning entire fleets of orbital vessels, calling down cataclysmic attacks, and reshaping the environment with divine might.');

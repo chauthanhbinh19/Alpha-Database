@@ -3937,6 +3937,7 @@ def create_currencies_database():
         file.write("insert into currency values (" + str(71) + ",'Victory_Normal_Coin','Currency/Victory_Normal_Coin.png');\n")
         file.write("insert into currency values (" + str(72) + ",'Victory_Ultimate_Coin','Currency/Victory_Ultimate_Coin.png');\n")
         file.write("insert into currency values (" + str(73) + ",'Weapon_Star','Currency/Weapon_Star.png');\n")
+        file.write("insert into currency values (" + str(74) + ",'Dragon_Crystal','Currency/Dragon_Crystal.png');\n")
 
 def create_items_database():
     cards_dir="Item"
