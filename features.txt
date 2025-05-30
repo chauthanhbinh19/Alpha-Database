@@ -1,3 +1,4 @@
+-- Main menu set 1
 INSERT INTO features (feature_name, required_level, type, description) VALUES
 ('Amplification', 10, 'Upgrade', 'Enhances power and effectiveness.'),
 ('Ascension', 20, 'Upgrade', 'Elevates to a higher state of being.'),
@@ -424,6 +425,7 @@ INSERT INTO features (feature_name, required_level, type, description) VALUES
 ('Gun IX', 900, 'Gun', 'No wall shields them, no cover hides them. One shot, one silence.'),
 ('Gun X', 1000, 'Gun', 'You are the last sound in their world—a gunshot carried by wind.');
 
+-- Main menu anime
 INSERT INTO features (feature_name, required_level, type, description) VALUES
 ('Haki I', 100, 'One Piece', 'A faint pressure stirs within you—the first hint of unseen strength.'),
 ('Haki II', 200, 'One Piece', 'Your will sharpens. Weak minds tremble as you pass.'),
@@ -856,6 +858,7 @@ INSERT INTO features (feature_name, required_level, type, description) VALUES
 ('Energy-based Power IX', 900, 'One Punch Man', 'You wield energy on a cosmic scale, able to manipulate the very essence of the universe.'),
 ('Energy-based Power X', 1000, 'One Punch Man', 'You are the ultimate energy manipulator, capable of rewriting reality with your power.');
 
+-- Main menu set 2
 INSERT INTO features (feature_name, required_level, type, description) VALUES
 ('Dark Power I', 100, 'Dark', 'You begin to channel the shadows, summoning faint dark energy to weaken enemies.'),
 ('Dark Power II', 200, 'Dark', 'Your command over darkness grows; you can now blind foes and cloak yourself in shadow.'),
@@ -1132,6 +1135,7 @@ INSERT INTO features (feature_name, required_level, type, description) VALUES
 ('Orbitalis IX', 900, 'Orbitalis', 'You launch massive orbital strikes, causing massive damage across entire zones of the battlefield.'),
 ('Orbitalis X', 1000, 'Orbitalis', 'You command entire orbital fleets, calling down devastating attacks and altering the environment with orbital power.');
 
+-- Main menu set 3
 INSERT INTO features (feature_name, required_level, type, description) VALUES
 ('Azathoth Fragment I', 100, 'Azathoth', 'A fragment of Azathoth stirs, granting you whispers from the cosmic void—subtle shifts in reality ripple around you.'),
 ('Azathoth Fragment II', 200, 'Azathoth', 'The chaos deepens. You summon entities of unknowable form to scout and destabilize minds from afar.'),
@@ -1407,3 +1411,280 @@ INSERT INTO features (feature_name, required_level, type, description) VALUES
 ('Vaelith Fragment VIII', 800, 'Vaelith', 'You manipulate gravitational forces through Vaelith’s will, creating artificial gravity wells that trap or disorient enemies, bending space to your advantage on the battlefield.'),
 ('Vaelith Fragment IX', 900, 'Vaelith', 'You call down Vaelith’s wrath with massive orbital strikes, causing massive damage across entire zones of the battlefield, leaving destruction in your wake.'),
 ('Vaelith Fragment X', 1000, 'Vaelith', 'You command Vaelith’s full celestial power, summoning entire fleets of orbital vessels, calling down cataclysmic attacks, and reshaping the environment with divine might.');
+
+-- Main menu set 4
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Zarx Fragment I', 100, 'Zarx', 'Synchronize with Zarx\'s tier-I systems, enhancing unique combat functions.'),
+('Zarx Fragment II', 200, 'Zarx', 'Synchronize with Zarx\'s tier-II systems, enhancing unique combat functions.'),
+('Zarx Fragment III', 300, 'Zarx', 'Synchronize with Zarx\'s tier-III systems, enhancing unique combat functions.'),
+('Zarx Fragment IV', 400, 'Zarx', 'Synchronize with Zarx\'s tier-IV systems, enhancing unique combat functions.'),
+('Zarx Fragment V', 500, 'Zarx', 'Synchronize with Zarx\'s tier-V systems, enhancing unique combat functions.'),
+('Zarx Fragment VI', 600, 'Zarx', 'Synchronize with Zarx\'s tier-VI systems, enhancing unique combat functions.'),
+('Zarx Fragment VII', 700, 'Zarx', 'Synchronize with Zarx\'s tier-VII systems, enhancing unique combat functions.'),
+('Zarx Fragment VIII', 800, 'Zarx', 'Synchronize with Zarx\'s tier-VIII systems, enhancing unique combat functions.'),
+('Zarx Fragment IX', 900, 'Zarx', 'Synchronize with Zarx\'s tier-IX systems, enhancing unique combat functions.'),
+('Zarx Fragment X', 1000, 'Zarx', 'Synchronize with Zarx\'s tier-X systems, enhancing unique combat functions.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Raik Fragment I', 100, 'Raik', 'Synchronize with Raik\'s tier-I systems, enhancing unique combat functions.'),
+('Raik Fragment II', 200, 'Raik', 'Synchronize with Raik\'s tier-II systems, enhancing unique combat functions.'),
+('Raik Fragment III', 300, 'Raik', 'Synchronize with Raik\'s tier-III systems, enhancing unique combat functions.'),
+('Raik Fragment IV', 400, 'Raik', 'Synchronize with Raik\'s tier-IV systems, enhancing unique combat functions.'),
+('Raik Fragment V', 500, 'Raik', 'Synchronize with Raik\'s tier-V systems, enhancing unique combat functions.'),
+('Raik Fragment VI', 600, 'Raik', 'Synchronize with Raik\'s tier-VI systems, enhancing unique combat functions.'),
+('Raik Fragment VII', 700, 'Raik', 'Synchronize with Raik\'s tier-VII systems, enhancing unique combat functions.'),
+('Raik Fragment VIII', 800, 'Raik', 'Synchronize with Raik\'s tier-VIII systems, enhancing unique combat functions.'),
+('Raik Fragment IX', 900, 'Raik', 'Synchronize with Raik\'s tier-IX systems, enhancing unique combat functions.'),
+('Raik Fragment X', 1000, 'Raik', 'Synchronize with Raik\'s tier-X systems, enhancing unique combat functions.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Drax Fragment I', 100, 'Drax', 'Synchronize with Drax\'s tier-I systems, enhancing unique combat functions.'),
+('Drax Fragment II', 200, 'Drax', 'Synchronize with Drax\'s tier-II systems, enhancing unique combat functions.'),
+('Drax Fragment III', 300, 'Drax', 'Synchronize with Drax\'s tier-III systems, enhancing unique combat functions.'),
+('Drax Fragment IV', 400, 'Drax', 'Synchronize with Drax\'s tier-IV systems, enhancing unique combat functions.'),
+('Drax Fragment V', 500, 'Drax', 'Synchronize with Drax\'s tier-V systems, enhancing unique combat functions.'),
+('Drax Fragment VI', 600, 'Drax', 'Synchronize with Drax\'s tier-VI systems, enhancing unique combat functions.'),
+('Drax Fragment VII', 700, 'Drax', 'Synchronize with Drax\'s tier-VII systems, enhancing unique combat functions.'),
+('Drax Fragment VIII', 800, 'Drax', 'Synchronize with Drax\'s tier-VIII systems, enhancing unique combat functions.'),
+('Drax Fragment IX', 900, 'Drax', 'Synchronize with Drax\'s tier-IX systems, enhancing unique combat functions.'),
+('Drax Fragment X', 1000, 'Drax', 'Synchronize with Drax\'s tier-X systems, enhancing unique combat functions.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Kron Fragment I', 100, 'Kron', 'Synchronize with Kron\'s tier-I systems, enhancing unique combat functions.'),
+('Kron Fragment II', 200, 'Kron', 'Synchronize with Kron\'s tier-II systems, enhancing unique combat functions.'),
+('Kron Fragment III', 300, 'Kron', 'Synchronize with Kron\'s tier-III systems, enhancing unique combat functions.'),
+('Kron Fragment IV', 400, 'Kron', 'Synchronize with Kron\'s tier-IV systems, enhancing unique combat functions.'),
+('Kron Fragment V', 500, 'Kron', 'Synchronize with Kron\'s tier-V systems, enhancing unique combat functions.'),
+('Kron Fragment VI', 600, 'Kron', 'Synchronize with Kron\'s tier-VI systems, enhancing unique combat functions.'),
+('Kron Fragment VII', 700, 'Kron', 'Synchronize with Kron\'s tier-VII systems, enhancing unique combat functions.'),
+('Kron Fragment VIII', 800, 'Kron', 'Synchronize with Kron\'s tier-VIII systems, enhancing unique combat functions.'),
+('Kron Fragment IX', 900, 'Kron', 'Synchronize with Kron\'s tier-IX systems, enhancing unique combat functions.'),
+('Kron Fragment X', 1000, 'Kron', 'Synchronize with Kron\'s tier-X systems, enhancing unique combat functions.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Zolt Fragment I', 100, 'Zolt', 'Synchronize with Zolt\'s tier-I systems, enhancing unique combat functions.'),
+('Zolt Fragment II', 200, 'Zolt', 'Synchronize with Zolt\'s tier-II systems, enhancing unique combat functions.'),
+('Zolt Fragment III', 300, 'Zolt', 'Synchronize with Zolt\'s tier-III systems, enhancing unique combat functions.'),
+('Zolt Fragment IV', 400, 'Zolt', 'Synchronize with Zolt\'s tier-IV systems, enhancing unique combat functions.'),
+('Zolt Fragment V', 500, 'Zolt', 'Synchronize with Zolt\'s tier-V systems, enhancing unique combat functions.'),
+('Zolt Fragment VI', 600, 'Zolt', 'Synchronize with Zolt\'s tier-VI systems, enhancing unique combat functions.'),
+('Zolt Fragment VII', 700, 'Zolt', 'Synchronize with Zolt\'s tier-VII systems, enhancing unique combat functions.'),
+('Zolt Fragment VIII', 800, 'Zolt', 'Synchronize with Zolt\'s tier-VIII systems, enhancing unique combat functions.'),
+('Zolt Fragment IX', 900, 'Zolt', 'Synchronize with Zolt\'s tier-IX systems, enhancing unique combat functions.'),
+('Zolt Fragment X', 1000, 'Zolt', 'Synchronize with Zolt\'s tier-X systems, enhancing unique combat functions.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Gorr Fragment I', 100, 'Gorr', 'Synchronize with Gorr\'s tier-I systems, enhancing unique combat functions.'),
+('Gorr Fragment II', 200, 'Gorr', 'Synchronize with Gorr\'s tier-II systems, enhancing unique combat functions.'),
+('Gorr Fragment III', 300, 'Gorr', 'Synchronize with Gorr\'s tier-III systems, enhancing unique combat functions.'),
+('Gorr Fragment IV', 400, 'Gorr', 'Synchronize with Gorr\'s tier-IV systems, enhancing unique combat functions.'),
+('Gorr Fragment V', 500, 'Gorr', 'Synchronize with Gorr\'s tier-V systems, enhancing unique combat functions.'),
+('Gorr Fragment VI', 600, 'Gorr', 'Synchronize with Gorr\'s tier-VI systems, enhancing unique combat functions.'),
+('Gorr Fragment VII', 700, 'Gorr', 'Synchronize with Gorr\'s tier-VII systems, enhancing unique combat functions.'),
+('Gorr Fragment VIII', 800, 'Gorr', 'Synchronize with Gorr\'s tier-VIII systems, enhancing unique combat functions.'),
+('Gorr Fragment IX', 900, 'Gorr', 'Synchronize with Gorr\'s tier-IX systems, enhancing unique combat functions.'),
+('Gorr Fragment X', 1000, 'Gorr', 'Synchronize with Gorr\'s tier-X systems, enhancing unique combat functions.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Ryze Fragment I', 100, 'Ryze', 'Synchronize with Ryze\'s tier-I systems, enhancing unique combat functions.'),
+('Ryze Fragment II', 200, 'Ryze', 'Synchronize with Ryze\'s tier-II systems, enhancing unique combat functions.'),
+('Ryze Fragment III', 300, 'Ryze', 'Synchronize with Ryze\'s tier-III systems, enhancing unique combat functions.'),
+('Ryze Fragment IV', 400, 'Ryze', 'Synchronize with Ryze\'s tier-IV systems, enhancing unique combat functions.'),
+('Ryze Fragment V', 500, 'Ryze', 'Synchronize with Ryze\'s tier-V systems, enhancing unique combat functions.'),
+('Ryze Fragment VI', 600, 'Ryze', 'Synchronize with Ryze\'s tier-VI systems, enhancing unique combat functions.'),
+('Ryze Fragment VII', 700, 'Ryze', 'Synchronize with Ryze\'s tier-VII systems, enhancing unique combat functions.'),
+('Ryze Fragment VIII', 800, 'Ryze', 'Synchronize with Ryze\'s tier-VIII systems, enhancing unique combat functions.'),
+('Ryze Fragment IX', 900, 'Ryze', 'Synchronize with Ryze\'s tier-IX systems, enhancing unique combat functions.'),
+('Ryze Fragment X', 1000, 'Ryze', 'Synchronize with Ryze\'s tier-X systems, enhancing unique combat functions.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Jaxx Fragment I', 100, 'Jaxx', 'Synchronize with Jaxx\'s tier-I systems, enhancing unique combat functions.'),
+('Jaxx Fragment II', 200, 'Jaxx', 'Synchronize with Jaxx\'s tier-II systems, enhancing unique combat functions.'),
+('Jaxx Fragment III', 300, 'Jaxx', 'Synchronize with Jaxx\'s tier-III systems, enhancing unique combat functions.'),
+('Jaxx Fragment IV', 400, 'Jaxx', 'Synchronize with Jaxx\'s tier-IV systems, enhancing unique combat functions.'),
+('Jaxx Fragment V', 500, 'Jaxx', 'Synchronize with Jaxx\'s tier-V systems, enhancing unique combat functions.'),
+('Jaxx Fragment VI', 600, 'Jaxx', 'Synchronize with Jaxx\'s tier-VI systems, enhancing unique combat functions.'),
+('Jaxx Fragment VII', 700, 'Jaxx', 'Synchronize with Jaxx\'s tier-VII systems, enhancing unique combat functions.'),
+('Jaxx Fragment VIII', 800, 'Jaxx', 'Synchronize with Jaxx\'s tier-VIII systems, enhancing unique combat functions.'),
+('Jaxx Fragment IX', 900, 'Jaxx', 'Synchronize with Jaxx\'s tier-IX systems, enhancing unique combat functions.'),
+('Jaxx Fragment X', 1000, 'Jaxx', 'Synchronize with Jaxx\'s tier-X systems, enhancing unique combat functions.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Thar Fragment I', 100, 'Thar', 'Synchronize with Thar\'s tier-I systems, enhancing unique combat functions.'),
+('Thar Fragment II', 200, 'Thar', 'Synchronize with Thar\'s tier-II systems, enhancing unique combat functions.'),
+('Thar Fragment III', 300, 'Thar', 'Synchronize with Thar\'s tier-III systems, enhancing unique combat functions.'),
+('Thar Fragment IV', 400, 'Thar', 'Synchronize with Thar\'s tier-IV systems, enhancing unique combat functions.'),
+('Thar Fragment V', 500, 'Thar', 'Synchronize with Thar\'s tier-V systems, enhancing unique combat functions.'),
+('Thar Fragment VI', 600, 'Thar', 'Synchronize with Thar\'s tier-VI systems, enhancing unique combat functions.'),
+('Thar Fragment VII', 700, 'Thar', 'Synchronize with Thar\'s tier-VII systems, enhancing unique combat functions.'),
+('Thar Fragment VIII', 800, 'Thar', 'Synchronize with Thar\'s tier-VIII systems, enhancing unique combat functions.'),
+('Thar Fragment IX', 900, 'Thar', 'Synchronize with Thar\'s tier-IX systems, enhancing unique combat functions.'),
+('Thar Fragment X', 1000, 'Thar', 'Synchronize with Thar\'s tier-X systems, enhancing unique combat functions.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Vorn Fragment I', 100, 'Vorn', 'Synchronize with Vorn\'s tier-I systems, enhancing unique combat functions.'),
+('Vorn Fragment II', 200, 'Vorn', 'Synchronize with Vorn\'s tier-II systems, enhancing unique combat functions.'),
+('Vorn Fragment III', 300, 'Vorn', 'Synchronize with Vorn\'s tier-III systems, enhancing unique combat functions.'),
+('Vorn Fragment IV', 400, 'Vorn', 'Synchronize with Vorn\'s tier-IV systems, enhancing unique combat functions.'),
+('Vorn Fragment V', 500, 'Vorn', 'Synchronize with Vorn\'s tier-V systems, enhancing unique combat functions.'),
+('Vorn Fragment VI', 600, 'Vorn', 'Synchronize with Vorn\'s tier-VI systems, enhancing unique combat functions.'),
+('Vorn Fragment VII', 700, 'Vorn', 'Synchronize with Vorn\'s tier-VII systems, enhancing unique combat functions.'),
+('Vorn Fragment VIII', 800, 'Vorn', 'Synchronize with Vorn\'s tier-VIII systems, enhancing unique combat functions.'),
+('Vorn Fragment IX', 900, 'Vorn', 'Synchronize with Vorn\'s tier-IX systems, enhancing unique combat functions.'),
+('Vorn Fragment X', 1000, 'Vorn', 'Synchronize with Vorn\'s tier-X systems, enhancing unique combat functions.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Nyx Fragment I', 100, 'Nyx', 'Synchronize with Nyx\'s tier-I systems, enhancing unique combat functions.'),
+('Nyx Fragment II', 200, 'Nyx', 'Synchronize with Nyx\'s tier-II systems, enhancing unique combat functions.'),
+('Nyx Fragment III', 300, 'Nyx', 'Synchronize with Nyx\'s tier-III systems, enhancing unique combat functions.'),
+('Nyx Fragment IV', 400, 'Nyx', 'Synchronize with Nyx\'s tier-IV systems, enhancing unique combat functions.'),
+('Nyx Fragment V', 500, 'Nyx', 'Synchronize with Nyx\'s tier-V systems, enhancing unique combat functions.'),
+('Nyx Fragment VI', 600, 'Nyx', 'Synchronize with Nyx\'s tier-VI systems, enhancing unique combat functions.'),
+('Nyx Fragment VII', 700, 'Nyx', 'Synchronize with Nyx\'s tier-VII systems, enhancing unique combat functions.'),
+('Nyx Fragment VIII', 800, 'Nyx', 'Synchronize with Nyx\'s tier-VIII systems, enhancing unique combat functions.'),
+('Nyx Fragment IX', 900, 'Nyx', 'Synchronize with Nyx\'s tier-IX systems, enhancing unique combat functions.'),
+('Nyx Fragment X', 1000, 'Nyx', 'Synchronize with Nyx\'s tier-X systems, enhancing unique combat functions.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Aros Fragment I', 100, 'Aros', 'Synchronize with Aros\'s tier-I systems, enhancing unique combat functions.'),
+('Aros Fragment II', 200, 'Aros', 'Synchronize with Aros\'s tier-II systems, enhancing unique combat functions.'),
+('Aros Fragment III', 300, 'Aros', 'Synchronize with Aros\'s tier-III systems, enhancing unique combat functions.'),
+('Aros Fragment IV', 400, 'Aros', 'Synchronize with Aros\'s tier-IV systems, enhancing unique combat functions.'),
+('Aros Fragment V', 500, 'Aros', 'Synchronize with Aros\'s tier-V systems, enhancing unique combat functions.'),
+('Aros Fragment VI', 600, 'Aros', 'Synchronize with Aros\'s tier-VI systems, enhancing unique combat functions.'),
+('Aros Fragment VII', 700, 'Aros', 'Synchronize with Aros\'s tier-VII systems, enhancing unique combat functions.'),
+('Aros Fragment VIII', 800, 'Aros', 'Synchronize with Aros\'s tier-VIII systems, enhancing unique combat functions.'),
+('Aros Fragment IX', 900, 'Aros', 'Synchronize with Aros\'s tier-IX systems, enhancing unique combat functions.'),
+('Aros Fragment X', 1000, 'Aros', 'Synchronize with Aros\'s tier-X systems, enhancing unique combat functions.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Hex Fragment I', 100, 'Hex', 'Synchronize with Hex\'s tier-I systems, enhancing unique combat functions.'),
+('Hex Fragment II', 200, 'Hex', 'Synchronize with Hex\'s tier-II systems, enhancing unique combat functions.'),
+('Hex Fragment III', 300, 'Hex', 'Synchronize with Hex\'s tier-III systems, enhancing unique combat functions.'),
+('Hex Fragment IV', 400, 'Hex', 'Synchronize with Hex\'s tier-IV systems, enhancing unique combat functions.'),
+('Hex Fragment V', 500, 'Hex', 'Synchronize with Hex\'s tier-V systems, enhancing unique combat functions.'),
+('Hex Fragment VI', 600, 'Hex', 'Synchronize with Hex\'s tier-VI systems, enhancing unique combat functions.'),
+('Hex Fragment VII', 700, 'Hex', 'Synchronize with Hex\'s tier-VII systems, enhancing unique combat functions.'),
+('Hex Fragment VIII', 800, 'Hex', 'Synchronize with Hex\'s tier-VIII systems, enhancing unique combat functions.'),
+('Hex Fragment IX', 900, 'Hex', 'Synchronize with Hex\'s tier-IX systems, enhancing unique combat functions.'),
+('Hex Fragment X', 1000, 'Hex', 'Synchronize with Hex\'s tier-X systems, enhancing unique combat functions.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Lorn Fragment I', 100, 'Lorn', 'Synchronize with Lorn\'s tier-I systems, enhancing unique combat functions.'),
+('Lorn Fragment II', 200, 'Lorn', 'Synchronize with Lorn\'s tier-II systems, enhancing unique combat functions.'),
+('Lorn Fragment III', 300, 'Lorn', 'Synchronize with Lorn\'s tier-III systems, enhancing unique combat functions.'),
+('Lorn Fragment IV', 400, 'Lorn', 'Synchronize with Lorn\'s tier-IV systems, enhancing unique combat functions.'),
+('Lorn Fragment V', 500, 'Lorn', 'Synchronize with Lorn\'s tier-V systems, enhancing unique combat functions.'),
+('Lorn Fragment VI', 600, 'Lorn', 'Synchronize with Lorn\'s tier-VI systems, enhancing unique combat functions.'),
+('Lorn Fragment VII', 700, 'Lorn', 'Synchronize with Lorn\'s tier-VII systems, enhancing unique combat functions.'),
+('Lorn Fragment VIII', 800, 'Lorn', 'Synchronize with Lorn\'s tier-VIII systems, enhancing unique combat functions.'),
+('Lorn Fragment IX', 900, 'Lorn', 'Synchronize with Lorn\'s tier-IX systems, enhancing unique combat functions.'),
+('Lorn Fragment X', 1000, 'Lorn', 'Synchronize with Lorn\'s tier-X systems, enhancing unique combat functions.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Baxx Fragment I', 100, 'Baxx', 'Synchronize with Baxx\'s tier-I systems, enhancing unique combat functions.'),
+('Baxx Fragment II', 200, 'Baxx', 'Synchronize with Baxx\'s tier-II systems, enhancing unique combat functions.'),
+('Baxx Fragment III', 300, 'Baxx', 'Synchronize with Baxx\'s tier-III systems, enhancing unique combat functions.'),
+('Baxx Fragment IV', 400, 'Baxx', 'Synchronize with Baxx\'s tier-IV systems, enhancing unique combat functions.'),
+('Baxx Fragment V', 500, 'Baxx', 'Synchronize with Baxx\'s tier-V systems, enhancing unique combat functions.'),
+('Baxx Fragment VI', 600, 'Baxx', 'Synchronize with Baxx\'s tier-VI systems, enhancing unique combat functions.'),
+('Baxx Fragment VII', 700, 'Baxx', 'Synchronize with Baxx\'s tier-VII systems, enhancing unique combat functions.'),
+('Baxx Fragment VIII', 800, 'Baxx', 'Synchronize with Baxx\'s tier-VIII systems, enhancing unique combat functions.'),
+('Baxx Fragment IX', 900, 'Baxx', 'Synchronize with Baxx\'s tier-IX systems, enhancing unique combat functions.'),
+('Baxx Fragment X', 1000, 'Baxx', 'Synchronize with Baxx\'s tier-X systems, enhancing unique combat functions.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Zeph Fragment I', 100, 'Zeph', 'Synchronize with Zeph\'s tier-I systems, enhancing unique combat functions.'),
+('Zeph Fragment II', 200, 'Zeph', 'Synchronize with Zeph\'s tier-II systems, enhancing unique combat functions.'),
+('Zeph Fragment III', 300, 'Zeph', 'Synchronize with Zeph\'s tier-III systems, enhancing unique combat functions.'),
+('Zeph Fragment IV', 400, 'Zeph', 'Synchronize with Zeph\'s tier-IV systems, enhancing unique combat functions.'),
+('Zeph Fragment V', 500, 'Zeph', 'Synchronize with Zeph\'s tier-V systems, enhancing unique combat functions.'),
+('Zeph Fragment VI', 600, 'Zeph', 'Synchronize with Zeph\'s tier-VI systems, enhancing unique combat functions.'),
+('Zeph Fragment VII', 700, 'Zeph', 'Synchronize with Zeph\'s tier-VII systems, enhancing unique combat functions.'),
+('Zeph Fragment VIII', 800, 'Zeph', 'Synchronize with Zeph\'s tier-VIII systems, enhancing unique combat functions.'),
+('Zeph Fragment IX', 900, 'Zeph', 'Synchronize with Zeph\'s tier-IX systems, enhancing unique combat functions.'),
+('Zeph Fragment X', 1000, 'Zeph', 'Synchronize with Zeph\'s tier-X systems, enhancing unique combat functions.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Kael Fragment I', 100, 'Kael', 'Synchronize with Kael\'s tier-I systems, enhancing unique combat functions.'),
+('Kael Fragment II', 200, 'Kael', 'Synchronize with Kael\'s tier-II systems, enhancing unique combat functions.'),
+('Kael Fragment III', 300, 'Kael', 'Synchronize with Kael\'s tier-III systems, enhancing unique combat functions.'),
+('Kael Fragment IV', 400, 'Kael', 'Synchronize with Kael\'s tier-IV systems, enhancing unique combat functions.'),
+('Kael Fragment V', 500, 'Kael', 'Synchronize with Kael\'s tier-V systems, enhancing unique combat functions.'),
+('Kael Fragment VI', 600, 'Kael', 'Synchronize with Kael\'s tier-VI systems, enhancing unique combat functions.'),
+('Kael Fragment VII', 700, 'Kael', 'Synchronize with Kael\'s tier-VII systems, enhancing unique combat functions.'),
+('Kael Fragment VIII', 800, 'Kael', 'Synchronize with Kael\'s tier-VIII systems, enhancing unique combat functions.'),
+('Kael Fragment IX', 900, 'Kael', 'Synchronize with Kael\'s tier-IX systems, enhancing unique combat functions.'),
+('Kael Fragment X', 1000, 'Kael', 'Synchronize with Kael\'s tier-X systems, enhancing unique combat functions.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Drav Fragment I', 100, 'Drav', 'Synchronize with Drav\'s tier-I systems, enhancing unique combat functions.'),
+('Drav Fragment II', 200, 'Drav', 'Synchronize with Drav\'s tier-II systems, enhancing unique combat functions.'),
+('Drav Fragment III', 300, 'Drav', 'Synchronize with Drav\'s tier-III systems, enhancing unique combat functions.'),
+('Drav Fragment IV', 400, 'Drav', 'Synchronize with Drav\'s tier-IV systems, enhancing unique combat functions.'),
+('Drav Fragment V', 500, 'Drav', 'Synchronize with Drav\'s tier-V systems, enhancing unique combat functions.'),
+('Drav Fragment VI', 600, 'Drav', 'Synchronize with Drav\'s tier-VI systems, enhancing unique combat functions.'),
+('Drav Fragment VII', 700, 'Drav', 'Synchronize with Drav\'s tier-VII systems, enhancing unique combat functions.'),
+('Drav Fragment VIII', 800, 'Drav', 'Synchronize with Drav\'s tier-VIII systems, enhancing unique combat functions.'),
+('Drav Fragment IX', 900, 'Drav', 'Synchronize with Drav\'s tier-IX systems, enhancing unique combat functions.'),
+('Drav Fragment X', 1000, 'Drav', 'Synchronize with Drav\'s tier-X systems, enhancing unique combat functions.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Torn Fragment I', 100, 'Torn', 'Synchronize with Torn\'s tier-I systems, enhancing unique combat functions.'),
+('Torn Fragment II', 200, 'Torn', 'Synchronize with Torn\'s tier-II systems, enhancing unique combat functions.'),
+('Torn Fragment III', 300, 'Torn', 'Synchronize with Torn\'s tier-III systems, enhancing unique combat functions.'),
+('Torn Fragment IV', 400, 'Torn', 'Synchronize with Torn\'s tier-IV systems, enhancing unique combat functions.'),
+('Torn Fragment V', 500, 'Torn', 'Synchronize with Torn\'s tier-V systems, enhancing unique combat functions.'),
+('Torn Fragment VI', 600, 'Torn', 'Synchronize with Torn\'s tier-VI systems, enhancing unique combat functions.'),
+('Torn Fragment VII', 700, 'Torn', 'Synchronize with Torn\'s tier-VII systems, enhancing unique combat functions.'),
+('Torn Fragment VIII', 800, 'Torn', 'Synchronize with Torn\'s tier-VIII systems, enhancing unique combat functions.'),
+('Torn Fragment IX', 900, 'Torn', 'Synchronize with Torn\'s tier-IX systems, enhancing unique combat functions.'),
+('Torn Fragment X', 1000, 'Torn', 'Synchronize with Torn\'s tier-X systems, enhancing unique combat functions.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Myrr Fragment I', 100, 'Myrr', 'Synchronize with Myrr\'s tier-I systems, enhancing unique combat functions.'),
+('Myrr Fragment II', 200, 'Myrr', 'Synchronize with Myrr\'s tier-II systems, enhancing unique combat functions.'),
+('Myrr Fragment III', 300, 'Myrr', 'Synchronize with Myrr\'s tier-III systems, enhancing unique combat functions.'),
+('Myrr Fragment IV', 400, 'Myrr', 'Synchronize with Myrr\'s tier-IV systems, enhancing unique combat functions.'),
+('Myrr Fragment V', 500, 'Myrr', 'Synchronize with Myrr\'s tier-V systems, enhancing unique combat functions.'),
+('Myrr Fragment VI', 600, 'Myrr', 'Synchronize with Myrr\'s tier-VI systems, enhancing unique combat functions.'),
+('Myrr Fragment VII', 700, 'Myrr', 'Synchronize with Myrr\'s tier-VII systems, enhancing unique combat functions.'),
+('Myrr Fragment VIII', 800, 'Myrr', 'Synchronize with Myrr\'s tier-VIII systems, enhancing unique combat functions.'),
+('Myrr Fragment IX', 900, 'Myrr', 'Synchronize with Myrr\'s tier-IX systems, enhancing unique combat functions.'),
+('Myrr Fragment X', 1000, 'Myrr', 'Synchronize with Myrr\'s tier-X systems, enhancing unique combat functions.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Vask Fragment I', 100, 'Vask', 'Synchronize with Vask\'s tier-I systems, enhancing unique combat functions.'),
+('Vask Fragment II', 200, 'Vask', 'Synchronize with Vask\'s tier-II systems, enhancing unique combat functions.'),
+('Vask Fragment III', 300, 'Vask', 'Synchronize with Vask\'s tier-III systems, enhancing unique combat functions.'),
+('Vask Fragment IV', 400, 'Vask', 'Synchronize with Vask\'s tier-IV systems, enhancing unique combat functions.'),
+('Vask Fragment V', 500, 'Vask', 'Synchronize with Vask\'s tier-V systems, enhancing unique combat functions.'),
+('Vask Fragment VI', 600, 'Vask', 'Synchronize with Vask\'s tier-VI systems, enhancing unique combat functions.'),
+('Vask Fragment VII', 700, 'Vask', 'Synchronize with Vask\'s tier-VII systems, enhancing unique combat functions.'),
+('Vask Fragment VIII', 800, 'Vask', 'Synchronize with Vask\'s tier-VIII systems, enhancing unique combat functions.'),
+('Vask Fragment IX', 900, 'Vask', 'Synchronize with Vask\'s tier-IX systems, enhancing unique combat functions.'),
+('Vask Fragment X', 1000, 'Vask', 'Synchronize with Vask\'s tier-X systems, enhancing unique combat functions.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Jorr Fragment I', 100, 'Jorr', 'Synchronize with Jorr\'s tier-I systems, enhancing unique combat functions.'),
+('Jorr Fragment II', 200, 'Jorr', 'Synchronize with Jorr\'s tier-II systems, enhancing unique combat functions.'),
+('Jorr Fragment III', 300, 'Jorr', 'Synchronize with Jorr\'s tier-III systems, enhancing unique combat functions.'),
+('Jorr Fragment IV', 400, 'Jorr', 'Synchronize with Jorr\'s tier-IV systems, enhancing unique combat functions.'),
+('Jorr Fragment V', 500, 'Jorr', 'Synchronize with Jorr\'s tier-V systems, enhancing unique combat functions.'),
+('Jorr Fragment VI', 600, 'Jorr', 'Synchronize with Jorr\'s tier-VI systems, enhancing unique combat functions.'),
+('Jorr Fragment VII', 700, 'Jorr', 'Synchronize with Jorr\'s tier-VII systems, enhancing unique combat functions.'),
+('Jorr Fragment VIII', 800, 'Jorr', 'Synchronize with Jorr\'s tier-VIII systems, enhancing unique combat functions.'),
+('Jorr Fragment IX', 900, 'Jorr', 'Synchronize with Jorr\'s tier-IX systems, enhancing unique combat functions.'),
+('Jorr Fragment X', 1000, 'Jorr', 'Synchronize with Jorr\'s tier-X systems, enhancing unique combat functions.');
+
+INSERT INTO features (feature_name, required_level, type, description) VALUES
+('Quen Fragment I', 100, 'Quen', 'Synchronize with Quen\'s tier-I systems, enhancing unique combat functions.'),
+('Quen Fragment II', 200, 'Quen', 'Synchronize with Quen\'s tier-II systems, enhancing unique combat functions.'),
+('Quen Fragment III', 300, 'Quen', 'Synchronize with Quen\'s tier-III systems, enhancing unique combat functions.'),
+('Quen Fragment IV', 400, 'Quen', 'Synchronize with Quen\'s tier-IV systems, enhancing unique combat functions.'),
+('Quen Fragment V', 500, 'Quen', 'Synchronize with Quen\'s tier-V systems, enhancing unique combat functions.'),
+('Quen Fragment VI', 600, 'Quen', 'Synchronize with Quen\'s tier-VI systems, enhancing unique combat functions.'),
+('Quen Fragment VII', 700, 'Quen', 'Synchronize with Quen\'s tier-VII systems, enhancing unique combat functions.'),
+('Quen Fragment VIII', 800, 'Quen', 'Synchronize with Quen\'s tier-VIII systems, enhancing unique combat functions.'),
+('Quen Fragment IX', 900, 'Quen', 'Synchronize with Quen\'s tier-IX systems, enhancing unique combat functions.'),
+('Quen Fragment X', 1000, 'Quen', 'Synchronize with Quen\'s tier-X systems, enhancing unique combat functions.');

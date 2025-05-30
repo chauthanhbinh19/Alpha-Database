@@ -3,7 +3,7 @@ create database alpha;
 use alpha;
 
 create table card_heroes(
-	id int primary key,
+	id varchar(255) primary key,
     name varchar(255) NOT NULL,
     image varchar(255) NOT NULL,
     rare varchar(100) NOT NULL,
@@ -46,7 +46,7 @@ create table card_heroes(
 );
 
 create table books(
-	id int primary key,
+	id varchar(255) primary key,
     name varchar(255) NOT NULL,
     image varchar(255) NOT NULL,
     rare varchar(100) NOT NULL,
@@ -89,7 +89,7 @@ create table books(
 );
 
 create table card_captains(
-	id int primary key,
+	id varchar(255) primary key,
     name varchar(255) NOT NULL,
     image varchar(255) NOT NULL,
     rare varchar(100) NOT NULL,
@@ -132,7 +132,7 @@ create table card_captains(
 );
 
 create table card_colonels(
-	id int primary key,
+	id varchar(255) primary key,
     name varchar(255) NOT NULL,
     image varchar(255) NOT NULL,
     rare varchar(100) NOT NULL,
@@ -175,7 +175,7 @@ create table card_colonels(
 );
 
 create table card_generals(
-	id int primary key,
+	id varchar(255) primary key,
     name varchar(255) NOT NULL,
     image varchar(255) NOT NULL,
     rare varchar(100) NOT NULL,
@@ -218,7 +218,7 @@ create table card_generals(
 );
 
 create table card_admirals(
-	id int primary key,
+	id varchar(255) primary key,
     name varchar(255) NOT NULL,
     image varchar(255) NOT NULL,
     rare varchar(100) NOT NULL,
@@ -261,7 +261,7 @@ create table card_admirals(
 );
 
 create table collaboration_equipments(
-	id int primary key,
+	id varchar(255) primary key,
     name varchar(255) NOT NULL,
     image varchar(255) NOT NULL,
     rare varchar(100) NOT NULL,
@@ -316,7 +316,7 @@ create table collaboration_equipments(
 );
 
 create table card_monsters(
-	id int primary key,
+	id varchar(255) primary key,
     name varchar(255) NOT NULL,
     image varchar(255) NOT NULL,
     rare varchar(100) NOT NULL,
@@ -359,13 +359,13 @@ create table card_monsters(
 );
 
 create table currency(
-	id int primary key,
+	id varchar(255) primary key,
     name varchar(255) NOT NULL,
     image varchar(255) NOT NULL
 );
 
 create table equipments(
-	id int primary key,
+	id varchar(255) primary key,
     name varchar(255) NOT NULL,
     image varchar(255) NOT NULL,
     rare varchar(100) NOT NULL,
@@ -423,7 +423,7 @@ create table equipments(
 );
 
 create table items(
-	id int primary key,
+	id varchar(255) primary key,
     name varchar(255) NOT NULL,
     image varchar(255) NOT NULL,
     type varchar(100) NOT NULL,
@@ -432,7 +432,7 @@ create table items(
 );
 
 create table achievements(
-	id int primary key,
+	id varchar(255) primary key,
     name varchar(255) NOT NULL,
     image varchar(255) NOT NULL,
     rare varchar(100) NOT NULL,
@@ -486,7 +486,7 @@ create table achievements(
 );
 
 create table medals(
-	id int primary key,
+	id varchar(255) primary key,
     name varchar(255) NOT NULL,
     image varchar(255) NOT NULL,
     rare varchar(100) NOT NULL,
@@ -540,7 +540,7 @@ create table medals(
 );
 
 create table pets(
-	id int primary key,
+	id varchar(255) primary key,
     name varchar(255) NOT NULL,
     image varchar(255) NOT NULL,
     rare varchar(100) NOT NULL,
@@ -583,7 +583,7 @@ create table pets(
 );
 
 create table skills(
-	id int primary key,
+	id varchar(255) primary key,
     name varchar(255) NOT NULL,
     image varchar(255) NOT NULL,
     rare varchar(100) NOT NULL,
@@ -625,7 +625,7 @@ create table skills(
 );
 
 create table symbols(
-	id int primary key,
+	id varchar(255) primary key,
     name varchar(255) NOT NULL,
     image varchar(255) NOT NULL,
     rare varchar(100) NOT NULL,
@@ -680,7 +680,7 @@ create table symbols(
 );
 
 create table titles(
-	id int primary key,
+	id varchar(255) primary key,
     name varchar(255) NOT NULL,
     image varchar(255) NOT NULL,
     rare varchar(100) NOT NULL,
@@ -734,7 +734,7 @@ create table titles(
 );
 
 create table borders(
-	id int primary key,
+	id varchar(255) primary key,
     name varchar(255) NOT NULL,
     image varchar(255) NOT NULL,
     rare varchar(100) NOT NULL,
@@ -788,7 +788,7 @@ create table borders(
 );
 
 create table avatars(
-	id int primary key,
+	id varchar(255) primary key,
     name varchar(255) NOT NULL,
     image varchar(255) NOT NULL,
     rare varchar(100) NOT NULL,
@@ -842,7 +842,7 @@ create table avatars(
 );
 
 create table collaborations (
-	id int primary key,
+	id varchar(255) primary key,
     name varchar(255) NOT NULL,
     image varchar(255) NOT NULL,
     rare varchar(100) NOT NULL,
@@ -896,7 +896,7 @@ create table collaborations (
 );
 
 create table card_military(
-	id int primary key,
+	id varchar(255) primary key,
     name varchar(255) NOT NULL,
     image varchar(255) NOT NULL,
     rare varchar(100) NOT NULL,
@@ -939,7 +939,7 @@ create table card_military(
 );
 
 create table card_spell(
-	id int primary key,
+	id varchar(255) primary key,
     name varchar(255) NOT NULL,
     image varchar(255) NOT NULL,
     rare varchar(100) NOT NULL,
@@ -982,7 +982,7 @@ create table card_spell(
 );
 
 create table relics(
-	id int primary key,
+	id varchar(255) primary key,
     name varchar(255) NOT NULL,
     image varchar(255) NOT NULL,
     rare varchar(100) NOT NULL,
@@ -1037,7 +1037,7 @@ create table relics(
 );
 
 create table magic_formation_circle(
-	id int primary key,
+	id varchar(255) primary key,
     name varchar(255) NOT NULL,
     image varchar(255) NOT NULL,
     rare varchar(100) NOT NULL,
@@ -1092,7 +1092,7 @@ create table magic_formation_circle(
 );
 
 create table talisman(
-	id int primary key,
+	id varchar(255) primary key,
     name varchar(255) NOT NULL,
     image varchar(255) NOT NULL,
     rare varchar(100) NOT NULL,
@@ -1147,7 +1147,7 @@ create table talisman(
 );
 
 create table puppet(
-	id int primary key,
+	id varchar(255) primary key,
     name varchar(255) NOT NULL,
     image varchar(255) NOT NULL,
     rare varchar(100) NOT NULL,
@@ -1202,7 +1202,7 @@ create table puppet(
 );
 
 create table alchemy(
-	id int primary key,
+	id varchar(255) primary key,
     name varchar(255) NOT NULL,
     image varchar(255) NOT NULL,
     rare varchar(100) NOT NULL,
@@ -1257,7 +1257,7 @@ create table alchemy(
 );
 
 create table forge(
-	id int primary key,
+	id varchar(255) primary key,
     name varchar(255) NOT NULL,
     image varchar(255) NOT NULL,
     rare varchar(100) NOT NULL,
@@ -1312,7 +1312,7 @@ create table forge(
 );
 
 create table card_life(
-	id int primary key,
+	id varchar(255) primary key,
     name varchar(255) NOT NULL,
     image varchar(255) NOT NULL,
     rare varchar(100) NOT NULL,
@@ -1370,7 +1370,7 @@ create table card_life(
 /*--create user -------------------------------------------------------------------------------*/
 
 create table users(
-	id int primary key,
+	id varchar(255) primary key,
     username varchar(100) NOT NULL,
     password varchar(100) NOT NULL,
     name varchar(100) NOT NULL,
@@ -1381,8 +1381,8 @@ create table users(
 );
 
 create table user_card_heroes(
-    user_id int NOT NULL,
-    card_hero_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_hero_id varchar(255) NOT NULL,
     level int NOT NULL,
     experiment int NOT NULL,
     star int NOT NULL,
@@ -1429,8 +1429,8 @@ create table user_card_heroes(
 );
 
 create table user_card_heroes_rank(
-    user_id int NOT NULL,
-    user_card_hero_id int NOT NULL, 
+    user_id varchar(255) NOT NULL,
+    user_card_hero_id varchar(255) NOT NULL, 
     rank_type varchar(255) NOT NULL,
     rank_level int NOT NULL,
     
@@ -1485,8 +1485,8 @@ create table user_card_heroes_rank(
 );
 
 create table user_books(
-    user_id int NOT NULL,
-    book_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    book_id varchar(255) NOT NULL,
     level int NOT NULL,
     experiment int NOT NULL,
     star int NOT NULL,
@@ -1533,8 +1533,8 @@ create table user_books(
 );
 
 create table user_books_rank(
-    user_id int NOT NULL,
-    user_book_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    user_book_id varchar(255) NOT NULL,
     rank_type varchar(255) NOT NULL,
     rank_level int NOT NULL,
     power DOUBLE NOT NULL,
@@ -1588,8 +1588,8 @@ create table user_books_rank(
 );
 
 create table user_card_monsters(
-    user_id int NOT NULL,
-    card_monster_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_monster_id varchar(255) NOT NULL,
     level int NOT NULL,
     experiment int NOT NULL,
     star int NOT NULL,
@@ -1636,8 +1636,8 @@ create table user_card_monsters(
 );
 
 create table user_card_monsters_rank(
-    user_id int NOT NULL,
-    user_card_monster_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    user_card_monster_id varchar(255) NOT NULL,
     rank_type varchar(255) NOT NULL,
     rank_level int NOT NULL,
     power DOUBLE NOT NULL,
@@ -1691,8 +1691,8 @@ create table user_card_monsters_rank(
 );
 
 create table user_card_captains(
-    user_id int NOT NULL,
-    card_captain_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_captain_id varchar(255) NOT NULL,
     level int NOT NULL,
     experiment int NOT NULL,
     star int NOT NULL,
@@ -1739,8 +1739,8 @@ create table user_card_captains(
 );
 
 create table user_card_captains_rank(
-    user_id int NOT NULL,
-    user_card_captain_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    user_card_captain_id varchar(255) NOT NULL,
     rank_type varchar(255) NOT NULL,
     rank_level int NOT NULL,
     power DOUBLE NOT NULL,
@@ -1794,8 +1794,8 @@ create table user_card_captains_rank(
 );
 
 create table user_card_colonels(
-    user_id int NOT NULL,
-    card_colonel_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_colonel_id varchar(255) NOT NULL,
     level int NOT NULL,
     experiment int NOT NULL,
     star int NOT NULL,
@@ -1842,8 +1842,8 @@ create table user_card_colonels(
 );
 
 create table user_card_colonels_rank(
-    user_id int NOT NULL,
-    user_card_colonel_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    user_card_colonel_id varchar(255) NOT NULL,
     rank_type varchar(255) NOT NULL,
     rank_level int NOT NULL,
     power DOUBLE NOT NULL,
@@ -1897,8 +1897,8 @@ create table user_card_colonels_rank(
 );
 
 create table user_card_generals(
-    user_id int NOT NULL,
-    card_general_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_general_id varchar(255) NOT NULL,
     level int NOT NULL,
     experiment int NOT NULL,
     star int NOT NULL,
@@ -1945,8 +1945,8 @@ create table user_card_generals(
 );
 
 create table user_card_generals_rank(
-    user_id int NOT NULL,
-    user_card_general_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    user_card_general_id varchar(255) NOT NULL,
     rank_type varchar(255) NOT NULL,
     rank_level int NOT NULL,
     power DOUBLE NOT NULL,
@@ -2000,8 +2000,8 @@ create table user_card_generals_rank(
 );
 
 create table user_card_admirals(
-    user_id int NOT NULL,
-    card_admiral_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_admiral_id varchar(255) NOT NULL,
     level int NOT NULL,
     experiment int NOT NULL,
     star int NOT NULL,
@@ -2048,8 +2048,8 @@ create table user_card_admirals(
 );
 
 create table user_card_admirals_rank(
-    user_id int NOT NULL,
-    user_card_admiral_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    user_card_admiral_id varchar(255) NOT NULL,
     rank_type varchar(255) NOT NULL,
     rank_level int NOT NULL,
     power DOUBLE NOT NULL,
@@ -2103,8 +2103,8 @@ create table user_card_admirals_rank(
 );
 
 create table user_collaboration_equipments(
-    user_id int NOT NULL,
-    collaboration_equipment_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    collaboration_equipment_id varchar(255) NOT NULL,
     level int NOT NULL,
     experiment int NOT NULL,
     star int NOT NULL,
@@ -2151,8 +2151,8 @@ create table user_collaboration_equipments(
 );
 
 create table user_equipments(
-    user_id int NOT NULL,
-    equipment_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    equipment_id varchar(255) NOT NULL,
     sequence int NOT NULL,
     level int NOT NULL,
     experiment int NOT NULL,
@@ -2212,8 +2212,8 @@ create table user_equipments(
 );
 
 create table user_equipments_rank(
-    user_id int NOT NULL,
-    user_equipment_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    user_equipment_id varchar(255) NOT NULL,
     sequence int NOT NULL,
     rank_type varchar(255) NOT NULL,
     rank_level int NOT NULL,
@@ -2268,8 +2268,8 @@ create table user_equipments_rank(
 );
 
 create table user_pets(
-    user_id int NOT NULL,
-    pet_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    pet_id varchar(255) NOT NULL,
     level int NOT NULL,
     experiment int NOT NULL,
     star int NOT NULL,
@@ -2315,8 +2315,8 @@ create table user_pets(
 );
 
 create table user_pets_rank(
-    user_id int NOT NULL,
-    user_pet_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    user_pet_id varchar(255) NOT NULL,
     rank_type varchar(255) NOT NULL,
     rank_level int NOT NULL,
     power DOUBLE NOT NULL,
@@ -2370,8 +2370,8 @@ create table user_pets_rank(
 );
 
 create table user_card_military(
-    user_id int NOT NULL,
-    card_military_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_military_id varchar(255) NOT NULL,
     level int NOT NULL,
     experiment int NOT NULL,
     star int NOT NULL,
@@ -2418,8 +2418,8 @@ create table user_card_military(
 );
 
 create table user_card_military_rank(
-    user_id int NOT NULL,
-    user_card_military_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    user_card_military_id varchar(255) NOT NULL,
     rank_type varchar(255) NOT NULL,
     rank_level int NOT NULL,
     power DOUBLE NOT NULL,
@@ -2473,8 +2473,8 @@ create table user_card_military_rank(
 );
 
 create table user_card_spell(
-    user_id int NOT NULL,
-    card_spell_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_spell_id varchar(255) NOT NULL,
     level int NOT NULL,
     experiment int NOT NULL,
     star int NOT NULL,
@@ -2521,8 +2521,8 @@ create table user_card_spell(
 );
 
 create table user_card_spell_rank(
-    user_id int NOT NULL,
-    user_card_spell_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    user_card_spell_id varchar(255) NOT NULL,
     rank_type varchar(255) NOT NULL,
     rank_level int NOT NULL,
     power DOUBLE NOT NULL,
@@ -2576,8 +2576,8 @@ create table user_card_spell_rank(
 );
 
 create table user_skills(
-    user_id int NOT NULL,
-    skill_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    skill_id varchar(255) NOT NULL,
     level int NOT NULL,
 	experiment int NOT NULL,
     star int NOT NULL,
@@ -2624,8 +2624,8 @@ create table user_skills(
 );
 
 create table user_items(
-    user_id int NOT NULL,
-    item_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    item_id varchar(255) NOT NULL,
     quantity int NOT NULL,
     
     PRIMARY KEY(user_id,item_id),
@@ -2634,8 +2634,8 @@ create table user_items(
 );
 
 create table user_achievements(
-    user_id int NOT NULL,
-    achievement_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    achievement_id varchar(255) NOT NULL,
     level int NOT NULL,
 	experiment int NOT NULL,
     star int NOT NULL,
@@ -2682,8 +2682,8 @@ create table user_achievements(
 );
 
 create table user_medals(
-    user_id int NOT NULL,
-    medal_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    medal_id varchar(255) NOT NULL,
     level int NOT NULL,
     experiment int NOT NULL,
     star int NOT NULL,
@@ -2730,8 +2730,8 @@ create table user_medals(
 );
 
 create table user_symbols(
-    user_id int NOT NULL,
-    symbol_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    symbol_id varchar(255) NOT NULL,
     level int NOT NULL,
     experiment int NOT NULL,
     star int NOT NULL,
@@ -2778,8 +2778,8 @@ create table user_symbols(
 );
 
 create table user_titles(
-    user_id int NOT NULL,
-    title_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    title_id varchar(255) NOT NULL,
     level int NOT NULL,
     experiment int NOT NULL,
     star int NOT NULL,
@@ -2826,8 +2826,8 @@ create table user_titles(
 );
 
 create table user_borders(
-    user_id int NOT NULL,
-    border_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    border_id varchar(255) NOT NULL,
     level int NOT NULL,
 	experiment int NOT NULL,
     star int NOT NULL,
@@ -2875,8 +2875,8 @@ create table user_borders(
 );
 
 create table user_avatars(
-    user_id int NOT NULL,
-    avatar_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    avatar_id varchar(255) NOT NULL,
     level int NOT NULL,
 	experiment int NOT NULL,
     star int NOT NULL,
@@ -2924,8 +2924,8 @@ create table user_avatars(
 );
 
 create table user_collaborations(
-    user_id int NOT NULL,
-    collaboration_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    collaboration_id varchar(255) NOT NULL,
     level int NOT NULL,
     experiment int NOT NULL,
     star int NOT NULL,
@@ -2972,8 +2972,8 @@ create table user_collaborations(
 );
 
 create table user_relics(
-    user_id int NOT NULL,
-	relic_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+	relic_id varchar(255) NOT NULL,
 	level int NOT NULL,
     experiment int NOT NULL,
     star int NOT NULL,
@@ -3020,8 +3020,8 @@ create table user_relics(
 );
 
 create table user_magic_formation_circle(
-    user_id int NOT NULL,
-	mfc_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+	mfc_id varchar(255) NOT NULL,
     level int NOT NULL,
     experiment int NOT NULL,
     star int NOT NULL,
@@ -3068,8 +3068,8 @@ create table user_magic_formation_circle(
 );
 
 create table user_talisman(
-    user_id int NOT NULL,
-	talisman_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+	talisman_id varchar(255) NOT NULL,
     level int NOT NULL,
     experiment int NOT NULL,
     star int NOT NULL,
@@ -3116,8 +3116,8 @@ create table user_talisman(
 );
 
 create table user_puppet(
-    user_id int NOT NULL,
-	puppet_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+	puppet_id varchar(255) NOT NULL,
     level int NOT NULL,
     experiment int NOT NULL,
     star int NOT NULL,
@@ -3164,8 +3164,8 @@ create table user_puppet(
 );
 
 create table user_alchemy(
-    user_id int NOT NULL,
-	alchemy_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+	alchemy_id varchar(255) NOT NULL,
     level int NOT NULL,
     experiment int NOT NULL,
     star int NOT NULL,
@@ -3212,8 +3212,8 @@ create table user_alchemy(
 );
 
 create table user_forge(
-    user_id int NOT NULL,
-	forge_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+	forge_id varchar(255) NOT NULL,
     level int NOT NULL,
     experiment int NOT NULL,
     star int NOT NULL,
@@ -3260,8 +3260,8 @@ create table user_forge(
 );
 
 create table user_card_life(
-    user_id int NOT NULL,
-	card_life_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+	card_life_id varchar(255) NOT NULL,
     level int NOT NULL,
     experiment int NOT NULL,
     star int NOT NULL,
@@ -3308,8 +3308,8 @@ create table user_card_life(
 );
 
 create table card_heroes_gallery(
-    user_id int NOT NULL,
-    card_hero_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_hero_id varchar(255) NOT NULL,
     
     status varchar(100),
     current_star int,
@@ -3365,8 +3365,8 @@ create table card_heroes_gallery(
 );
 
 create table books_gallery(
-    user_id int NOT NULL,
-    book_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    book_id varchar(255) NOT NULL,
     
     status varchar(100),
     current_star int,
@@ -3422,8 +3422,8 @@ create table books_gallery(
 );
 
 create table card_monsters_gallery(
-    user_id int NOT NULL,
-    card_monster_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_monster_id varchar(255) NOT NULL,
     
     status varchar(100),
     current_star int,
@@ -3479,8 +3479,8 @@ create table card_monsters_gallery(
 );
 
 create table card_captains_gallery(
-    user_id int NOT NULL,
-    card_captain_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_captain_id varchar(255) NOT NULL,
     
     status varchar(100),
     current_star int,
@@ -3536,8 +3536,8 @@ create table card_captains_gallery(
 );
 
 create table card_colonels_gallery(
-    user_id int NOT NULL,
-    card_colonel_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_colonel_id varchar(255) NOT NULL,
     
     status varchar(100),
     current_star int,
@@ -3593,8 +3593,8 @@ create table card_colonels_gallery(
 );
 
 create table card_generals_gallery(
-    user_id int NOT NULL,
-    card_general_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_general_id varchar(255) NOT NULL,
     
     status varchar(100),
     current_star int,
@@ -3650,8 +3650,8 @@ create table card_generals_gallery(
 );
 
 create table card_admirals_gallery(
-    user_id int NOT NULL,
-    card_admiral_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_admiral_id varchar(255) NOT NULL,
     
     status varchar(100),
     current_star int,
@@ -3707,8 +3707,8 @@ create table card_admirals_gallery(
 );
 
 create table collaboration_equipments_gallery(
-    user_id int NOT NULL,
-    collaboration_equipment_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    collaboration_equipment_id varchar(255) NOT NULL,
     
     status varchar(100),
     current_star int,
@@ -3764,8 +3764,8 @@ create table collaboration_equipments_gallery(
 );
 
 create table equipments_gallery(
-    user_id int NOT NULL,
-    equipment_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    equipment_id varchar(255) NOT NULL,
     
 	status varchar(100),
     current_star int,
@@ -3821,8 +3821,8 @@ create table equipments_gallery(
 );
 
 create table pets_gallery(
-    user_id int NOT NULL,
-    pet_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    pet_id varchar(255) NOT NULL,
     
     status varchar(100),
     current_star int,
@@ -3878,8 +3878,8 @@ create table pets_gallery(
 );
 
 create table card_military_gallery(
-    user_id int NOT NULL,
-    card_military_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_military_id varchar(255) NOT NULL,
     
     status varchar(100),
     current_star int,
@@ -3935,8 +3935,8 @@ create table card_military_gallery(
 );
 
 create table card_spell_gallery(
-    user_id int NOT NULL,
-    card_spell_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_spell_id varchar(255) NOT NULL,
     
     status varchar(100),
     current_star int,
@@ -3992,8 +3992,8 @@ create table card_spell_gallery(
 );
 
 create table skills_gallery(
-    user_id int NOT NULL,
-    skill_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    skill_id varchar(255) NOT NULL,
     
     status varchar(100),
     current_star int,
@@ -4049,8 +4049,8 @@ create table skills_gallery(
 );
 
 create table medals_gallery(
-    user_id int NOT NULL,
-    medal_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    medal_id varchar(255) NOT NULL,
     
     status varchar(100),
     current_star int,
@@ -4106,8 +4106,8 @@ create table medals_gallery(
 );
 
 create table titles_gallery(
-    user_id int NOT NULL,
-    title_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    title_id varchar(255) NOT NULL,
     
     status varchar(100),
     current_star int,
@@ -4163,8 +4163,8 @@ create table titles_gallery(
 );
 
 create table borders_gallery(
-    user_id int NOT NULL,
-    border_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    border_id varchar(255) NOT NULL,
     
     status varchar(100),
     current_star int,
@@ -4220,8 +4220,8 @@ create table borders_gallery(
 );
 
 create table avatars_gallery(
-    user_id int NOT NULL,
-    avatar_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    avatar_id varchar(255) NOT NULL,
     
     status varchar(100),
     current_star int,
@@ -4277,8 +4277,8 @@ create table avatars_gallery(
 );
 
 create table symbols_gallery(
-    user_id int NOT NULL,
-    symbol_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    symbol_id varchar(255) NOT NULL,
     
     status varchar(100),
     current_star int,
@@ -4334,8 +4334,8 @@ create table symbols_gallery(
 );
 
 create table collaborations_gallery(
-    user_id int NOT NULL,
-    collaboration_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    collaboration_id varchar(255) NOT NULL,
     
     status varchar(100),
     current_star int,
@@ -4391,8 +4391,8 @@ create table collaborations_gallery(
 );
 
 create table relics_gallery(
-    user_id int NOT NULL,
-    relic_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    relic_id varchar(255) NOT NULL,
     
     status varchar(100),
     current_star int,
@@ -4448,8 +4448,8 @@ create table relics_gallery(
 );
 
 create table magic_formation_circle_gallery(
-    user_id int NOT NULL,
-    mfc_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    mfc_id varchar(255) NOT NULL,
     
     status varchar(100),
     current_star int,
@@ -4505,8 +4505,8 @@ create table magic_formation_circle_gallery(
 );
 
 create table talisman_gallery(
-    user_id int NOT NULL,
-    talisman_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    talisman_id varchar(255) NOT NULL,
     
     status varchar(100),
     current_star int,
@@ -4562,8 +4562,8 @@ create table talisman_gallery(
 );
 
 create table puppet_gallery(
-    user_id int NOT NULL,
-    puppet_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    puppet_id varchar(255) NOT NULL,
     
     status varchar(100),
     current_star int,
@@ -4619,8 +4619,8 @@ create table puppet_gallery(
 );
 
 create table alchemy_gallery(
-    user_id int NOT NULL,
-    alchemy_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    alchemy_id varchar(255) NOT NULL,
     
     status varchar(100),
     current_star int,
@@ -4676,8 +4676,8 @@ create table alchemy_gallery(
 );
 
 create table forge_gallery(
-    user_id int NOT NULL,
-    forge_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    forge_id varchar(255) NOT NULL,
     
     status varchar(100),
     current_star int,
@@ -4733,8 +4733,8 @@ create table forge_gallery(
 );
 
 create table card_life_gallery(
-    user_id int NOT NULL,
-    card_life_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_life_id varchar(255) NOT NULL,
     
     status varchar(100),
     current_star int,
@@ -4790,8 +4790,8 @@ create table card_life_gallery(
 );
 
 create table user_currency(
-    user_id int NOT NULL,
-    currency_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    currency_id varchar(255) NOT NULL,
     quantity DOUBLE NOT NULL,
     
     PRIMARY KEY(user_id,currency_id),
@@ -4800,12 +4800,12 @@ create table user_currency(
 );
 
 create table mail(
-	id int NOT NULL,
-    receiver_id int NOT NULL,
-    sender_id INT NOT NULL,
+	id varchar(255) NOT NULL,
+    receiver_id varchar(255) NOT NULL,
+    sender_id varchar(255) NOT NULL,
     subject VARCHAR(100) NOT NULL, 
     body TEXT, 
-    item_id int NOT NULL,
+    item_id varchar(255) NOT NULL,
     is_read BOOLEAN DEFAULT FALSE, 
     type varchar(100),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -4817,15 +4817,15 @@ create table mail(
 );
 
 create table teams(
-    user_id int NOT NULL,
-    team_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    team_id varchar(255) NOT NULL,
 	
     PRIMARY KEY(user_id,team_id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 create table user_stats(
-    user_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
     
     all_power DOUBLE NOT NULL,
     all_health DOUBLE NOT NULL,
@@ -4877,7 +4877,7 @@ create table user_stats(
 );
 
 create table anime_stats(
-    user_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
     rank_type varchar(255) NOT NULL,
     rank_level int NOT NULL,
     
@@ -4933,9 +4933,9 @@ create table anime_stats(
 /*--Fact----------------------------------------------------------------------*/
 
 create table fact_card_captains(
-    user_id int NOT NULL,
-    user_card_captain_id int NOT NULL,
-    team_id int default null,
+    user_id varchar(255) NOT NULL,
+    user_card_captain_id varchar(255) NOT NULL,
+    team_id varchar(255) default null,
 	position varchar(250),
     role varchar(250),
     
@@ -4979,9 +4979,9 @@ create table fact_card_captains(
 );
 
 create table fact_card_colonels(
-    user_id int NOT NULL,
-    user_card_colonel_id int NOT NULL,
-    team_id int default null,
+    user_id varchar(255) NOT NULL,
+    user_card_colonel_id varchar(255) NOT NULL,
+    team_id varchar(255) default null,
     position varchar(250),
     role varchar(250),
     
@@ -5025,9 +5025,9 @@ create table fact_card_colonels(
 );
 
 create table fact_card_generals(
-    user_id int NOT NULL,
-    user_card_general_id int NOT NULL,
-    team_id int default null,
+    user_id varchar(255) NOT NULL,
+    user_card_general_id varchar(255) NOT NULL,
+    team_id varchar(255) default null,
     position varchar(250),
     role varchar(250),
     
@@ -5071,9 +5071,9 @@ create table fact_card_generals(
 );
 
 create table fact_card_admirals(
-    user_id int NOT NULL,
-    user_card_admiral_id int NOT NULL,
-    team_id int default null,
+    user_id varchar(255) NOT NULL,
+    user_card_admiral_id varchar(255) NOT NULL,
+    team_id varchar(255) default null,
     position varchar(250),
     role varchar(250),
     
@@ -5117,9 +5117,9 @@ create table fact_card_admirals(
 );
 
 create table fact_books(
-    user_id int NOT NULL,
-    user_book_id int NOT NULL,
-    team_id int default null,
+    user_id varchar(255) NOT NULL,
+    user_book_id varchar(255) NOT NULL,
+    team_id varchar(255) default null,
     position varchar(250),
     role varchar(250),
     
@@ -5163,9 +5163,9 @@ create table fact_books(
 );
 
 create table fact_card_monsters(
-    user_id int NOT NULL,
-    user_card_monster_id int NOT NULL,
-    team_id int default null,
+    user_id varchar(255) NOT NULL,
+    user_card_monster_id varchar(255) NOT NULL,
+    team_id varchar(255) default null,
     position varchar(250),
     role varchar(250),
     
@@ -5209,9 +5209,9 @@ create table fact_card_monsters(
 );
 
 create table fact_pets(
-    user_id int NOT NULL,
-    user_pet_id int NOT NULL,
-    team_id int default null,
+    user_id varchar(255) NOT NULL,
+    user_pet_id varchar(255) NOT NULL,
+    team_id varchar(255) default null,
     position varchar(250),
     role varchar(250),
     
@@ -5255,9 +5255,9 @@ create table fact_pets(
 );
 
 create table fact_card_heroes(
-    user_id int NOT NULL,
-    user_card_hero_id int NOT NULL,
-    team_id int default null,
+    user_id varchar(255) NOT NULL,
+    user_card_hero_id varchar(255) NOT NULL,
+    team_id varchar(255) default null,
     position varchar(250),
     role varchar(250),
     
@@ -5301,9 +5301,9 @@ create table fact_card_heroes(
 );
 
 create table fact_card_military(
-    user_id int NOT NULL,
-    user_card_military_id int NOT NULL,
-    team_id int default null,
+    user_id varchar(255) NOT NULL,
+    user_card_military_id varchar(255) NOT NULL,
+    team_id varchar(255) default null,
     position varchar(250),
     role varchar(250),
     
@@ -5347,9 +5347,9 @@ create table fact_card_military(
 );
 
 create table fact_card_spell(
-    user_id int NOT NULL,
-    user_card_spell_id int NOT NULL,
-    team_id int default null,
+    user_id varchar(255) NOT NULL,
+    user_card_spell_id varchar(255) NOT NULL,
+    team_id varchar(255) default null,
     position varchar(250),
     role varchar(250),
     
@@ -5394,9 +5394,9 @@ create table fact_card_spell(
 /*--Equipment wearing--------------------------------------------------------------------------*/
 
 create table card_heroes_equipment(
-    user_id int NOT NULL,
-    card_hero_id int NOT NULL,
-    equipment_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_hero_id varchar(255) NOT NULL,
+    equipment_id varchar(255) NOT NULL,
     sequence int NOT NULL,
     position int NOT NULL,
 
@@ -5407,9 +5407,9 @@ create table card_heroes_equipment(
 );
 
 create table card_captains_equipment(
-    user_id int NOT NULL,
-    card_captain_id int NOT NULL,
-    equipment_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_captain_id varchar(255) NOT NULL,
+    equipment_id varchar(255) NOT NULL,
     sequence int NOT NULL,
     position int NOT NULL,
 
@@ -5420,9 +5420,9 @@ create table card_captains_equipment(
 );
 
 create table card_colonels_equipment(
-    user_id int NOT NULL,
-    card_colonel_id int NOT NULL,
-    equipment_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_colonel_id varchar(255) NOT NULL,
+    equipment_id varchar(255) NOT NULL,
     sequence int NOT NULL,
     position int NOT NULL,
 
@@ -5433,9 +5433,9 @@ create table card_colonels_equipment(
 );
 
 create table card_generals_equipment(
-    user_id int NOT NULL,
-    card_general_id int NOT NULL,
-    equipment_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_general_id varchar(255) NOT NULL,
+    equipment_id varchar(255) NOT NULL,
     sequence int NOT NULL,
     position int NOT NULL,
 
@@ -5446,9 +5446,9 @@ create table card_generals_equipment(
 );
 
 create table card_admirals_equipment(
-    user_id int NOT NULL,
-    card_admiral_id int NOT NULL,
-    equipment_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_admiral_id varchar(255) NOT NULL,
+    equipment_id varchar(255) NOT NULL,
     sequence int NOT NULL,
     position int NOT NULL,
 
@@ -5459,9 +5459,9 @@ create table card_admirals_equipment(
 );
 
 create table books_equipment(
-    user_id int NOT NULL,
-    book_id int NOT NULL,
-    equipment_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    book_id varchar(255) NOT NULL,
+    equipment_id varchar(255) NOT NULL,
     sequence int NOT NULL,
     position int NOT NULL,
 
@@ -5472,9 +5472,9 @@ create table books_equipment(
 );
 
 create table pets_equipment(
-    user_id int NOT NULL,
-    pet_id int NOT NULL,
-    equipment_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    pet_id varchar(255) NOT NULL,
+    equipment_id varchar(255) NOT NULL,
     sequence int NOT NULL,
     position int NOT NULL,
 
@@ -5485,9 +5485,9 @@ create table pets_equipment(
 );
 
 create table card_monsters_equipment(
-    user_id int NOT NULL,
-    card_monster_id int NOT NULL,
-    equipment_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_monster_id varchar(255) NOT NULL,
+    equipment_id varchar(255) NOT NULL,
     sequence int NOT NULL,
     position int NOT NULL,
 
@@ -5498,9 +5498,9 @@ create table card_monsters_equipment(
 );
 
 create table card_military_equipment(
-    user_id int NOT NULL,
-    card_military_id int NOT NULL,
-    equipment_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_military_id varchar(255) NOT NULL,
+    equipment_id varchar(255) NOT NULL,
     sequence int NOT NULL,
     position int NOT NULL,
 
@@ -5511,9 +5511,9 @@ create table card_military_equipment(
 );
 
 create table card_spell_equipment(
-    user_id int NOT NULL,
-    card_spell_id int NOT NULL,
-    equipment_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_spell_id varchar(255) NOT NULL,
+    equipment_id varchar(255) NOT NULL,
     sequence int NOT NULL,
     position int NOT NULL,
 
@@ -5524,8 +5524,8 @@ create table card_spell_equipment(
 );
 
 create table equipment_details(
-    user_id int NOT NULL,
-    equipment_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    equipment_id varchar(255) NOT NULL,
     sequence int NOT NULL,
     extra_equipment_id int NOT NULL,
     extra_sequence int NOT NULL,
@@ -5539,9 +5539,9 @@ create table equipment_details(
 /*Skills-------------------------------------*/
 
 create table card_heroes_skills(
-    user_id int NOT NULL,
-    card_hero_id int NOT NULL,
-    skill_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_hero_id varchar(255) NOT NULL,
+    skill_id varchar(255) NOT NULL,
     level int NOT NULL,
     position int NOT NULL,
     
@@ -5584,9 +5584,9 @@ create table card_heroes_skills(
 );
 
 create table card_captains_skills(
-    user_id int NOT NULL,
-    card_captain_id int NOT NULL,
-    skill_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_captain_id varchar(255) NOT NULL,
+    skill_id varchar(255) NOT NULL,
     level int NOT NULL,
     position int NOT NULL,
     
@@ -5629,9 +5629,9 @@ create table card_captains_skills(
 );
 
 create table card_colonels_skills(
-    user_id int NOT NULL,
-    card_colonel_id int NOT NULL,
-    skill_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_colonel_id varchar(255) NOT NULL,
+    skill_id varchar(255) NOT NULL,
     level int NOT NULL,
     position int NOT NULL,
     
@@ -5674,9 +5674,9 @@ create table card_colonels_skills(
 );
 
 create table card_generals_skills(
-    user_id int NOT NULL,
-    card_general_id int NOT NULL,
-    skill_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_general_id varchar(255) NOT NULL,
+    skill_id varchar(255) NOT NULL,
     level int NOT NULL,
     position int NOT NULL,
     
@@ -5719,9 +5719,9 @@ create table card_generals_skills(
 );
 
 create table card_admirals_skills(
-    user_id int NOT NULL,
-    card_admiral_id int NOT NULL,
-    skill_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_admiral_id varchar(255) NOT NULL,
+    skill_id varchar(255) NOT NULL,
     level int NOT NULL,
     position int NOT NULL,
     
@@ -5764,9 +5764,9 @@ create table card_admirals_skills(
 );
 
 create table card_military_skills(
-    user_id int NOT NULL,
-    card_military_id int NOT NULL,
-    skill_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_military_id varchar(255) NOT NULL,
+    skill_id varchar(255) NOT NULL,
     level int NOT NULL,
     position int NOT NULL,
     
@@ -5809,9 +5809,9 @@ create table card_military_skills(
 );
 
 create table card_monsters_skills(
-    user_id int NOT NULL,
-    card_monster_id int NOT NULL,
-    skill_id int NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_monster_id varchar(255) NOT NULL,
+    skill_id varchar(255) NOT NULL,
     level int NOT NULL,
     position int NOT NULL,
     
@@ -5856,8 +5856,8 @@ create table card_monsters_skills(
 /*-- Trading -------------------------------------------------------------------------------*/
 
 create table card_captain_trade(
-    card_captain_id int NOT NULL,
-    currency_id int NOT NULL,
+    card_captain_id varchar(255) NOT NULL,
+    currency_id varchar(255) NOT NULL,
     price DOUBLE NOT NULL,
     
     PRIMARY KEY(card_captain_id, currency_id),
@@ -5866,8 +5866,8 @@ create table card_captain_trade(
 );
 
 create table card_colonel_trade(
-    card_colonel_id int NOT NULL,
-    currency_id int NOT NULL,
+    card_colonel_id varchar(255) NOT NULL,
+    currency_id varchar(255) NOT NULL,
     price DOUBLE NOT NULL,
     
     PRIMARY KEY(card_colonel_id, currency_id),
@@ -5876,8 +5876,8 @@ create table card_colonel_trade(
 );
 
 create table card_general_trade(
-    card_general_id int NOT NULL,
-    currency_id int NOT NULL,
+    card_general_id varchar(255) NOT NULL,
+    currency_id varchar(255) NOT NULL,
     price DOUBLE NOT NULL,
     
     PRIMARY KEY(card_general_id, currency_id),
@@ -5886,8 +5886,8 @@ create table card_general_trade(
 );
 
 create table card_admiral_trade(
-    card_admiral_id int NOT NULL,
-    currency_id int NOT NULL,
+    card_admiral_id varchar(255) NOT NULL,
+    currency_id varchar(255) NOT NULL,
     price DOUBLE NOT NULL,
     
     PRIMARY KEY(card_admiral_id, currency_id),
@@ -5896,8 +5896,8 @@ create table card_admiral_trade(
 );
 
 create table book_trade(
-    book_id int NOT NULL,
-    currency_id int NOT NULL,
+    book_id varchar(255) NOT NULL,
+    currency_id varchar(255) NOT NULL,
     price DOUBLE NOT NULL,
     
     PRIMARY KEY(book_id, currency_id),
@@ -5906,8 +5906,8 @@ create table book_trade(
 );
 
 create table border_trade(
-    border_id int NOT NULL,
-    currency_id int NOT NULL,
+    border_id varchar(255) NOT NULL,
+    currency_id varchar(255) NOT NULL,
     price DOUBLE NOT NULL,
     
     PRIMARY KEY(border_id, currency_id),
@@ -5916,8 +5916,8 @@ create table border_trade(
 );
 
 create table avatar_trade(
-    avatar_id int NOT NULL,
-    currency_id int NOT NULL,
+    avatar_id varchar(255) NOT NULL,
+    currency_id varchar(255) NOT NULL,
     price DOUBLE NOT NULL,
     
     PRIMARY KEY(avatar_id, currency_id),
@@ -5926,8 +5926,8 @@ create table avatar_trade(
 );
 
 create table card_hero_trade(
-    card_hero_id int NOT NULL,
-    currency_id int NOT NULL,
+    card_hero_id varchar(255) NOT NULL,
+    currency_id varchar(255) NOT NULL,
     price DOUBLE NOT NULL,
     
     PRIMARY KEY(card_hero_id, currency_id),
@@ -5936,8 +5936,8 @@ create table card_hero_trade(
 );
 
 create table collaboration_trade(
-    collaboration_id int NOT NULL,
-    currency_id int NOT NULL,
+    collaboration_id varchar(255) NOT NULL,
+    currency_id varchar(255) NOT NULL,
     price DOUBLE NOT NULL,
     
     PRIMARY KEY(collaboration_id, currency_id),
@@ -5946,8 +5946,8 @@ create table collaboration_trade(
 );
 
 create table collaboration_equipment_trade(
-    collaboration_equipment_id int NOT NULL,
-    currency_id int NOT NULL,
+    collaboration_equipment_id varchar(255) NOT NULL,
+    currency_id varchar(255) NOT NULL,
     price DOUBLE NOT NULL,
     
     PRIMARY KEY(collaboration_equipment_id, currency_id),
@@ -5956,8 +5956,8 @@ create table collaboration_equipment_trade(
 );
 
 create table equipment_trade(
-    equipment_id int NOT NULL,
-    currency_id int NOT NULL,
+    equipment_id varchar(255) NOT NULL,
+    currency_id varchar(255) NOT NULL,
     price DOUBLE NOT NULL,
     
     PRIMARY KEY(equipment_id, currency_id),
@@ -5966,8 +5966,8 @@ create table equipment_trade(
 );
 
 create table skill_trade(
-    skill_id int NOT NULL,
-    currency_id int NOT NULL,
+    skill_id varchar(255) NOT NULL,
+    currency_id varchar(255) NOT NULL,
 	price DOUBLE NOT NULL,
     
     PRIMARY KEY(skill_id, currency_id),
@@ -5976,8 +5976,8 @@ create table skill_trade(
 );
 
 create table item_trade(
-    item_id int NOT NULL,
-    currency_id int NOT NULL,
+    item_id varchar(255) NOT NULL,
+    currency_id varchar(255) NOT NULL,
     price DOUBLE NOT NULL,
     
     PRIMARY KEY(item_id, currency_id),
@@ -5986,8 +5986,8 @@ create table item_trade(
 );
 
 create table medal_trade(
-    medal_id int NOT NULL,
-    currency_id int NOT NULL,
+    medal_id varchar(255) NOT NULL,
+    currency_id varchar(255) NOT NULL,
     price DOUBLE NOT NULL,
     
     PRIMARY KEY(medal_id, currency_id),
@@ -5996,8 +5996,8 @@ create table medal_trade(
 );
 
 create table pet_trade(
-    pet_id int NOT NULL,
-    currency_id int NOT NULL,
+    pet_id varchar(255) NOT NULL,
+    currency_id varchar(255) NOT NULL,
     price DOUBLE NOT NULL,
     
     PRIMARY KEY(pet_id, currency_id),
@@ -6006,8 +6006,8 @@ create table pet_trade(
 );
 
 create table symbol_trade(
-    symbol_id int NOT NULL,
-    currency_id int NOT NULL,
+    symbol_id varchar(255) NOT NULL,
+    currency_id varchar(255) NOT NULL,
     price DOUBLE NOT NULL,
     
     PRIMARY KEY(symbol_id, currency_id),
@@ -6016,8 +6016,8 @@ create table symbol_trade(
 );
 
 create table title_trade(
-    title_id int NOT NULL,
-    currency_id int NOT NULL,
+    title_id varchar(255) NOT NULL,
+    currency_id varchar(255) NOT NULL,
     price DOUBLE NOT NULL,
     
     PRIMARY KEY(title_id, currency_id),
@@ -6026,8 +6026,8 @@ create table title_trade(
 );
 
 create table card_monster_trade(
-    card_monster_id int NOT NULL,
-    currency_id int NOT NULL,
+    card_monster_id varchar(255) NOT NULL,
+    currency_id varchar(255) NOT NULL,
     price DOUBLE NOT NULL,
     
     PRIMARY KEY(card_monster_id, currency_id),
@@ -6036,8 +6036,8 @@ create table card_monster_trade(
 );
 
 create table achievement_trade(
-    achievement_id int NOT NULL,
-    currency_id int NOT NULL,
+    achievement_id varchar(255) NOT NULL,
+    currency_id varchar(255) NOT NULL,
     price DOUBLE NOT NULL,
     
     PRIMARY KEY(achievement_id, currency_id),
@@ -6046,8 +6046,8 @@ create table achievement_trade(
 );
 
 create table card_military_trade(
-    card_military_id int NOT NULL,
-    currency_id int NOT NULL,
+    card_military_id varchar(255) NOT NULL,
+    currency_id varchar(255) NOT NULL,
     price DOUBLE NOT NULL,
     
     PRIMARY KEY(card_military_id, currency_id),
@@ -6056,8 +6056,8 @@ create table card_military_trade(
 );
 
 create table card_spell_trade(
-    card_spell_id int NOT NULL,
-    currency_id int NOT NULL,
+    card_spell_id varchar(255) NOT NULL,
+    currency_id varchar(255) NOT NULL,
     price DOUBLE NOT NULL,
     
     PRIMARY KEY(card_spell_id, currency_id),
@@ -6066,8 +6066,8 @@ create table card_spell_trade(
 );
 
 create table relic_trade(
-    relic_id int NOT NULL,
-    currency_id int NOT NULL,
+    relic_id varchar(255) NOT NULL,
+    currency_id varchar(255) NOT NULL,
     price DOUBLE NOT NULL,
     
     PRIMARY KEY(relic_id, currency_id),
@@ -6076,8 +6076,8 @@ create table relic_trade(
 );
 
 create table magic_formation_circle_trade(
-    mfc_id int NOT NULL,
-    currency_id int NOT NULL,
+    mfc_id varchar(255) NOT NULL,
+    currency_id varchar(255) NOT NULL,
     price DOUBLE NOT NULL,
     
     PRIMARY KEY(mfc_id, currency_id),
@@ -6086,8 +6086,8 @@ create table magic_formation_circle_trade(
 );
 
 create table talisman_trade(
-    talisman_id int NOT NULL,
-    currency_id int NOT NULL,
+    talisman_id varchar(255) NOT NULL,
+    currency_id varchar(255) NOT NULL,
     price DOUBLE NOT NULL,
     
     PRIMARY KEY(talisman_id, currency_id),
@@ -6096,8 +6096,8 @@ create table talisman_trade(
 );
 
 create table puppet_trade(
-    puppet_id int NOT NULL,
-    currency_id int NOT NULL,
+    puppet_id varchar(255) NOT NULL,
+    currency_id varchar(255) NOT NULL,
     price DOUBLE NOT NULL,
     
     PRIMARY KEY(puppet_id, currency_id),
@@ -6106,8 +6106,8 @@ create table puppet_trade(
 );
 
 create table alchemy_trade(
-    alchemy_id int NOT NULL,
-    currency_id int NOT NULL,
+    alchemy_id varchar(255) NOT NULL,
+    currency_id varchar(255) NOT NULL,
     price DOUBLE NOT NULL,
     
     PRIMARY KEY(alchemy_id, currency_id),
@@ -6116,8 +6116,8 @@ create table alchemy_trade(
 );
 
 create table forge_trade(
-    forge_id int NOT NULL,
-    currency_id int NOT NULL,
+    forge_id varchar(255) NOT NULL,
+    currency_id varchar(255) NOT NULL,
     price DOUBLE NOT NULL,
     
     PRIMARY KEY(forge_id, currency_id),
@@ -6126,8 +6126,8 @@ create table forge_trade(
 );
 
 create table card_life_trade(
-    card_life_id int NOT NULL,
-    currency_id int NOT NULL,
+    card_life_id varchar(255) NOT NULL,
+    currency_id varchar(255) NOT NULL,
     price DOUBLE NOT NULL,
     
     PRIMARY KEY(card_life_id, currency_id),
@@ -6138,8 +6138,8 @@ create table card_life_trade(
 /*--Chest--------------------------------------------------------------------------------------*/
 
 create table chest_equipment(
-    item_id int NOT NULL,
-    equipment_id int NOT NULL,
+    item_id varchar(255) NOT NULL,
+    equipment_id varchar(255) NOT NULL,
     quantity int NOT NULL,
     
     PRIMARY KEY(equipment_id, item_id),
@@ -6148,8 +6148,8 @@ create table chest_equipment(
 );
 
 create table chest_card_hero(
-    item_id int NOT NULL,
-    card_hero_id int NOT NULL,
+    item_id varchar(255) NOT NULL,
+    card_hero_id varchar(255) NOT NULL,
     quantity int NOT NULL,
     
     PRIMARY KEY(card_hero_id, item_id),
@@ -6158,8 +6158,8 @@ create table chest_card_hero(
 );
 
 create table chest_book(
-    item_id int NOT NULL,
-    book_id int NOT NULL,
+    item_id varchar(255) NOT NULL,
+    book_id varchar(255) NOT NULL,
     quantity int NOT NULL,
     
     PRIMARY KEY(book_id, item_id),
@@ -6168,8 +6168,8 @@ create table chest_book(
 );
 
 create table chest_card_captain(
-    item_id int NOT NULL,
-    card_captain_id int NOT NULL,
+    item_id varchar(255) NOT NULL,
+    card_captain_id varchar(255) NOT NULL,
     quantity int NOT NULL,
     
     PRIMARY KEY(card_captain_id, item_id),
@@ -6178,8 +6178,8 @@ create table chest_card_captain(
 );
 
 create table chest_card_colonel(
-    item_id int NOT NULL,
-    card_colonel_id int NOT NULL,
+    item_id varchar(255) NOT NULL,
+    card_colonel_id varchar(255) NOT NULL,
     quantity int NOT NULL,
     
     PRIMARY KEY(card_colonel_id, item_id),
@@ -6188,8 +6188,8 @@ create table chest_card_colonel(
 );
 
 create table chest_card_general(
-    item_id int NOT NULL,
-    card_general_id int NOT NULL,
+    item_id varchar(255) NOT NULL,
+    card_general_id varchar(255) NOT NULL,
     quantity int NOT NULL,
     
     PRIMARY KEY(card_general_id, item_id),
@@ -6198,8 +6198,8 @@ create table chest_card_general(
 );
 
 create table chest_card_admiral(
-    item_id int NOT NULL,
-    card_admiral_id int NOT NULL,
+    item_id varchar(255) NOT NULL,
+    card_admiral_id varchar(255) NOT NULL,
     quantity int NOT NULL,
     
     PRIMARY KEY(card_admiral_id, item_id),
@@ -6208,8 +6208,8 @@ create table chest_card_admiral(
 );
 
 create table chest_border(
-    item_id int NOT NULL,
-    border_id int NOT NULL,
+    item_id varchar(255) NOT NULL,
+    border_id varchar(255) NOT NULL,
     quantity int NOT NULL,
     
     PRIMARY KEY(border_id, item_id),
@@ -6218,8 +6218,8 @@ create table chest_border(
 );
 
 create table chest_avatar(
-    item_id int NOT NULL,
-    avatar_id int NOT NULL,
+    item_id varchar(255) NOT NULL,
+    avatar_id varchar(255) NOT NULL,
     quantity int NOT NULL,
     
     PRIMARY KEY(avatar_id, item_id),
@@ -6228,8 +6228,8 @@ create table chest_avatar(
 );
 
 create table chest_collaboration(
-    item_id int NOT NULL,
-    collaboration_id int NOT NULL,
+    item_id varchar(255) NOT NULL,
+    collaboration_id varchar(255) NOT NULL,
     quantity int NOT NULL,
     
     PRIMARY KEY(collaboration_id, item_id),
@@ -6238,8 +6238,8 @@ create table chest_collaboration(
 );
 
 create table chest_collaboration_equipment(
-    item_id int NOT NULL,
-    collaboration_equipment_id int NOT NULL,
+    item_id varchar(255) NOT NULL,
+    collaboration_equipment_id varchar(255) NOT NULL,
     quantity int NOT NULL,
     
     PRIMARY KEY(collaboration_equipment_id, item_id),
@@ -6248,8 +6248,8 @@ create table chest_collaboration_equipment(
 );
 
 create table chest_currency(
-    item_id int NOT NULL,
-    currency_id int NOT NULL,
+    item_id varchar(255) NOT NULL,
+    currency_id varchar(255) NOT NULL,
     quantity int NOT NULL,
     
     PRIMARY KEY(currency_id, item_id),
@@ -6258,8 +6258,8 @@ create table chest_currency(
 );
 
 create table chest_item(
-    item_id int NOT NULL,
-    material_id int NOT NULL,
+    item_id varchar(255) NOT NULL,
+    material_id varchar(255) NOT NULL,
     quantity int NOT NULL,
     
     PRIMARY KEY(material_id, item_id),
@@ -6268,8 +6268,8 @@ create table chest_item(
 );
 
 create table chest_medal(
-    item_id int NOT NULL,
-    medal_id int NOT NULL,
+    item_id varchar(255) NOT NULL,
+    medal_id varchar(255) NOT NULL,
     quantity int NOT NULL,
     
     PRIMARY KEY(medal_id, item_id),
@@ -6278,8 +6278,8 @@ create table chest_medal(
 );
 
 create table chest_card_monster(
-    item_id int NOT NULL,
-    card_monster_id int NOT NULL,
+    item_id varchar(255) NOT NULL,
+    card_monster_id varchar(255) NOT NULL,
     quantity int NOT NULL,
     
     PRIMARY KEY(card_monster_id, item_id),
@@ -6288,8 +6288,8 @@ create table chest_card_monster(
 );
 
 create table chest_pet(
-    item_id int NOT NULL,
-    pet_id int NOT NULL,
+    item_id varchar(255) NOT NULL,
+    pet_id varchar(255) NOT NULL,
     quantity int NOT NULL,
     
     PRIMARY KEY(pet_id, item_id),
@@ -6298,8 +6298,8 @@ create table chest_pet(
 );
 
 create table chest_skill(
-    item_id int NOT NULL,
-    skill_id int NOT NULL,
+    item_id varchar(255) NOT NULL,
+    skill_id varchar(255) NOT NULL,
     quantity int NOT NULL,
     
     PRIMARY KEY(skill_id, item_id),
@@ -6308,8 +6308,8 @@ create table chest_skill(
 );
 
 create table chest_symbol(
-    item_id int NOT NULL,
-    symbol_id int NOT NULL,
+    item_id varchar(255) NOT NULL,
+    symbol_id varchar(255) NOT NULL,
     quantity int NOT NULL,
     
     PRIMARY KEY(symbol_id, item_id),
@@ -6318,8 +6318,8 @@ create table chest_symbol(
 );
 
 create table chest_title(
-    item_id int NOT NULL,
-    title_id int NOT NULL,
+    item_id varchar(255) NOT NULL,
+    title_id varchar(255) NOT NULL,
     quantity int NOT NULL,
     
     PRIMARY KEY(title_id, item_id),
@@ -6328,8 +6328,8 @@ create table chest_title(
 );
 
 create table chest_card_military(
-    item_id int NOT NULL,
-    card_military_id int NOT NULL,
+    item_id varchar(255) NOT NULL,
+    card_military_id varchar(255) NOT NULL,
     quantity int NOT NULL,
     
     PRIMARY KEY(card_military_id, item_id),
@@ -6338,8 +6338,8 @@ create table chest_card_military(
 );
 
 create table chest_card_spell(
-    item_id int NOT NULL,
-    card_spell_id int NOT NULL,
+    item_id varchar(255) NOT NULL,
+    card_spell_id varchar(255) NOT NULL,
     quantity int NOT NULL,
     
     PRIMARY KEY(card_spell_id, item_id),
@@ -6348,8 +6348,8 @@ create table chest_card_spell(
 );
 
 create table chest_relic(
-    item_id int NOT NULL,
-    relic_id int NOT NULL,
+    item_id varchar(255) NOT NULL,
+    relic_id varchar(255) NOT NULL,
     quantity int NOT NULL,
     
     PRIMARY KEY(relic_id, item_id),
@@ -6358,8 +6358,8 @@ create table chest_relic(
 );
 
 create table chest_magic_formation_circle(
-    item_id int NOT NULL,
-    mfc_id int NOT NULL,
+    item_id varchar(255) NOT NULL,
+    mfc_id varchar(255) NOT NULL,
     quantity int NOT NULL,
     
     PRIMARY KEY(mfc_id, item_id),
@@ -6368,8 +6368,8 @@ create table chest_magic_formation_circle(
 );
 
 create table chest_talisman(
-    item_id int NOT NULL,
-    talisman_id int NOT NULL,
+    item_id varchar(255) NOT NULL,
+    talisman_id varchar(255) NOT NULL,
     quantity int NOT NULL,
     
     PRIMARY KEY(talisman_id, item_id),
@@ -6378,8 +6378,8 @@ create table chest_talisman(
 );
 
 create table chest_puppet(
-    item_id int NOT NULL,
-    puppet_id int NOT NULL,
+    item_id varchar(255) NOT NULL,
+    puppet_id varchar(255) NOT NULL,
     quantity int NOT NULL,
     
     PRIMARY KEY(puppet_id, item_id),
@@ -6388,8 +6388,8 @@ create table chest_puppet(
 );
 
 create table chest_alchemy(
-    item_id int NOT NULL,
-    alchemy_id int NOT NULL,
+    item_id varchar(255) NOT NULL,
+    alchemy_id varchar(255) NOT NULL,
     quantity int NOT NULL,
     
     PRIMARY KEY(alchemy_id, item_id),
@@ -6398,8 +6398,8 @@ create table chest_alchemy(
 );
 
 create table chest_forge(
-    item_id int NOT NULL,
-    forge_id int NOT NULL,
+    item_id varchar(255) NOT NULL,
+    forge_id varchar(255) NOT NULL,
     quantity int NOT NULL,
     
     PRIMARY KEY(forge_id, item_id),
@@ -6408,8 +6408,8 @@ create table chest_forge(
 );
 
 create table chest_card_life(
-    item_id int NOT NULL,
-    card_life_id int NOT NULL,
+    item_id varchar(255) NOT NULL,
+    card_life_id varchar(255) NOT NULL,
     quantity int NOT NULL,
     
     PRIMARY KEY(card_life_id, item_id),
@@ -6445,7 +6445,7 @@ create table campaign_details(
 CREATE TABLE campaign_detail_card_heroes (
     campaign_id int NOT NULL,
     campaign_detail_id INT NOT NULL,                        
-    card_hero_id INT NOT NULL,  
+    card_hero_id varchar(255) NOT NULL,  
     chapter varchar(100) NOT NULL,
     PRIMARY KEY (campaign_id,campaign_detail_id, card_hero_id,chapter), 
     FOREIGN KEY (campaign_id) REFERENCES campaigns(id),    
@@ -6456,7 +6456,7 @@ CREATE TABLE campaign_detail_card_heroes (
 CREATE TABLE campaign_rewards (
     campaign_id int NOT NULL,
     campaign_detail_id INT NOT NULL,
-    item_id INT NOT NULL,
+    item_id varchar(255) NOT NULL,
     quantity INT DEFAULT 1,    
     chapter varchar(100) NOT NULL,
     PRIMARY KEY (campaign_id,campaign_detail_id, item_id,chapter),     
@@ -6466,7 +6466,7 @@ CREATE TABLE campaign_rewards (
 );
 
 CREATE TABLE user_campaign (
-    user_id INT NOT NULL,                                  
+    user_id varchar(255) NOT NULL,                                  
     campaign_id INT NOT NULL,  
     campaign_detail_id INT NOT NULL,                            
     stars INT DEFAULT 0,                          
@@ -6487,7 +6487,7 @@ CREATE TABLE quests (
 );
 
 CREATE TABLE player_quests (
-    user_id INT NOT NULL,
+    user_id varchar(255) NOT NULL,
     quest_id INT NOT NULL,
     status varchar(255),
     start_time DATETIME,
@@ -6498,7 +6498,7 @@ CREATE TABLE player_quests (
 );
 
 CREATE TABLE quest_rewards (
-    currency_id INT NOT NULL,
+    currency_id varchar(255) NOT NULL,
     quest_id INT NOT NULL,
     amount INT,
     PRIMARY KEY (currency_id, quest_id),
@@ -6513,23 +6513,23 @@ CREATE TABLE features (
     description TEXT NULL,
     PRIMARY KEY (feature_name, required_level)
 );
-use alpha;
+
 CREATE TABLE arena_mode (
-    id int PRIMARY KEY,
+    id varchar(255) PRIMARY KEY,
     mode varchar(255) UNIQUE
 );
 
 CREATE TABLE arena (
-    id int PRIMARY KEY,
-    mode_id int not null,
+    id varchar(255) PRIMARY KEY,
+    mode_id varchar(255) not null,
     start_time DATETIME,
     end_time DATETIME,
     FOREIGN KEY (mode_id) REFERENCES arena_mode(id)
 );
 
 CREATE TABLE arena_participant (
-    arena_id INT not null,
-    user_id INT not null,
+    arena_id varchar(255) not null,
+    user_id varchar(255) not null,
     rank_point INT not null,
 
     PRIMARY KEY (arena_id, user_id),
@@ -6538,30 +6538,30 @@ CREATE TABLE arena_participant (
 );
 
 CREATE TABLE arena_team(
-	arena_id INT not null,
-    user_id INT not null,
-    team_id INT not null,
+	arena_id varchar(255) not null,
+    user_id varchar(255) not null,
+    team_id varchar(255) not null,
     PRIMARY KEY (arena_id, user_id, team_id),
     FOREIGN KEY (arena_id, user_id) REFERENCES arena_participant(arena_id, user_id),
     FOREIGN KEY (user_id, team_id) REFERENCES teams(user_id, team_id)
 );
 
 CREATE TABLE tower_mode (
-    id int PRIMARY KEY,
+    id varchar(255) PRIMARY KEY,
     mode varchar(255) UNIQUE
 );
 
 CREATE TABLE tower_floor (
-    mode_id INT,
+    mode_id varchar(255),
     floor_number INT, -- tầng số mấy trong mode
     PRIMARY KEY (mode_id, floor_number),
     FOREIGN KEY (mode_id) REFERENCES tower_mode(id)
 );
 
 CREATE TABLE tower_floor_enemy (
-    mode_id INT,
+    mode_id varchar(255),
     floor_number INT,
-    enemy_id INT,     -- id của quái (tham chiếu đến bảng `enemy`)
+    enemy_id varchar(255),     -- id của quái (tham chiếu đến bảng `enemy`)
 
 	PRIMARY KEY (mode_id, floor_number, enemy_id),
     FOREIGN KEY (mode_id, floor_number) REFERENCES tower_floor(mode_id, floor_number),
@@ -6569,9 +6569,9 @@ CREATE TABLE tower_floor_enemy (
 );
 
 CREATE TABLE tower_rewards (
-    mode_id int NOT NULL,
+    mode_id varchar(255) NOT NULL,
     floor_number INT NOT NULL,
-    item_id INT NOT NULL,
+    item_id varchar(255) NOT NULL,
     quantity INT DEFAULT 1,    
     PRIMARY KEY (mode_id, floor_number, item_id),     
     FOREIGN KEY (mode_id, floor_number) REFERENCES tower_floor(mode_id, floor_number),          
@@ -6579,17 +6579,17 @@ CREATE TABLE tower_rewards (
 );
 
 CREATE TABLE card_heroes_synery(
-    card_hero_id int NOT NULL,
-    card_life_id int NOT NULL,
+    card_hero_id varchar(255) NOT NULL,
+    card_life_id varchar(255) NOT NULL,
     PRIMARY KEY (card_hero_id, card_life_id),
     FOREIGN KEY (card_hero_id) REFERENCES card_heroes(id),
     FOREIGN KEY (card_life_id) REFERENCES card_life(id)
 );
 
 CREATE TABLE user_card_heroes_synery (
-    user_id INT NOT NULL,
-    card_hero_id INT NOT NULL,
-    card_life_id INT NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_hero_id varchar(255) NOT NULL,
+    card_life_id varchar(255) NOT NULL,
     status BOOLEAN DEFAULT FALSE,
     PRIMARY KEY (user_id, card_hero_id, card_life_id),
     FOREIGN KEY (user_id) REFERENCES users(id),
@@ -6598,17 +6598,17 @@ CREATE TABLE user_card_heroes_synery (
 );
 
 CREATE TABLE card_captains_synery(
-    card_captain_id int NOT NULL,
-    card_life_id int NOT NULL,
+    card_captain_id varchar(255) NOT NULL,
+    card_life_id varchar(255) NOT NULL,
     PRIMARY KEY (card_captain_id, card_life_id),
     FOREIGN KEY (card_captain_id) REFERENCES card_captains(id),
     FOREIGN KEY (card_life_id) REFERENCES card_life(id)
 );
 
 CREATE TABLE user_card_captains_synery (
-    user_id INT NOT NULL,
-    card_captain_id INT NOT NULL,
-    card_life_id INT NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_captain_id varchar(255) NOT NULL,
+    card_life_id varchar(255) NOT NULL,
     status BOOLEAN DEFAULT FALSE,
     PRIMARY KEY (user_id, card_captain_id, card_life_id),
     FOREIGN KEY (user_id) REFERENCES users(id),
@@ -6617,17 +6617,17 @@ CREATE TABLE user_card_captains_synery (
 );
 
 CREATE TABLE card_colonels_synery(
-    card_colonel_id int NOT NULL,
-    card_life_id int NOT NULL,
+    card_colonel_id varchar(255) NOT NULL,
+    card_life_id varchar(255) NOT NULL,
     PRIMARY KEY (card_colonel_id, card_life_id),
     FOREIGN KEY (card_colonel_id) REFERENCES card_colonels(id),
     FOREIGN KEY (card_life_id) REFERENCES card_life(id)
 );
 
 CREATE TABLE user_card_colonels_synery (
-    user_id INT NOT NULL,
-    card_colonel_id INT NOT NULL,
-    card_life_id INT NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_colonel_id varchar(255) NOT NULL,
+    card_life_id varchar(255) NOT NULL,
     status BOOLEAN DEFAULT FALSE,
     PRIMARY KEY (user_id, card_colonel_id, card_life_id),
     FOREIGN KEY (user_id) REFERENCES users(id),
@@ -6636,17 +6636,17 @@ CREATE TABLE user_card_colonels_synery (
 );
 
 CREATE TABLE card_generals_synery(
-    card_general_id int NOT NULL,
-    card_life_id int NOT NULL,
+    card_general_id varchar(255) NOT NULL,
+    card_life_id varchar(255) NOT NULL,
     PRIMARY KEY (card_general_id, card_life_id),
     FOREIGN KEY (card_general_id) REFERENCES card_generals(id),
     FOREIGN KEY (card_life_id) REFERENCES card_life(id)
 );
 
 CREATE TABLE user_card_generals_synery (
-    user_id INT NOT NULL,
-    card_general_id INT NOT NULL,
-    card_life_id INT NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_general_id varchar(255) NOT NULL,
+    card_life_id varchar(255) NOT NULL,
     status BOOLEAN DEFAULT FALSE,
     PRIMARY KEY (user_id, card_general_id, card_life_id),
     FOREIGN KEY (user_id) REFERENCES users(id),
@@ -6655,17 +6655,17 @@ CREATE TABLE user_card_generals_synery (
 );
 
 CREATE TABLE card_admirals_synery(
-    card_admiral_id int NOT NULL,
-    card_life_id int NOT NULL,
+    card_admiral_id varchar(255) NOT NULL,
+    card_life_id varchar(255) NOT NULL,
     PRIMARY KEY (card_admiral_id, card_life_id),
     FOREIGN KEY (card_admiral_id) REFERENCES card_admirals(id),
     FOREIGN KEY (card_life_id) REFERENCES card_life(id)
 );
 
 CREATE TABLE user_card_admirals_synery (
-    user_id INT NOT NULL,
-    card_admiral_id INT NOT NULL,
-    card_life_id INT NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_admiral_id varchar(255) NOT NULL,
+    card_life_id varchar(255) NOT NULL,
     status BOOLEAN DEFAULT FALSE,
     PRIMARY KEY (user_id, card_admiral_id, card_life_id),
     FOREIGN KEY (user_id) REFERENCES users(id),
@@ -6674,17 +6674,17 @@ CREATE TABLE user_card_admirals_synery (
 );
 
 CREATE TABLE card_military_synery(
-    card_military_id int NOT NULL,
-    card_life_id int NOT NULL,
+    card_military_id varchar(255) NOT NULL,
+    card_life_id varchar(255) NOT NULL,
     PRIMARY KEY (card_military_id, card_life_id),
     FOREIGN KEY (card_military_id) REFERENCES card_military(id),
     FOREIGN KEY (card_life_id) REFERENCES card_life(id)
 );
 
 CREATE TABLE user_card_military_synery (
-    user_id INT NOT NULL,
-    card_military_id INT NOT NULL,
-    card_life_id INT NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_military_id varchar(255) NOT NULL,
+    card_life_id varchar(255) NOT NULL,
     status BOOLEAN DEFAULT FALSE,
     PRIMARY KEY (user_id, card_military_id, card_life_id),
     FOREIGN KEY (user_id) REFERENCES users(id),
@@ -6693,17 +6693,17 @@ CREATE TABLE user_card_military_synery (
 );
 
 CREATE TABLE card_monsters_synery(
-    card_monster_id int NOT NULL,
-    card_life_id int NOT NULL,
+    card_monster_id varchar(255) NOT NULL,
+    card_life_id varchar(255) NOT NULL,
     PRIMARY KEY (card_monster_id, card_life_id),
     FOREIGN KEY (card_monster_id) REFERENCES card_monsters(id),
     FOREIGN KEY (card_life_id) REFERENCES card_life(id)
 );
 
 CREATE TABLE user_card_monsters_synery (
-    user_id INT NOT NULL,
-    card_monster_id INT NOT NULL,
-    card_life_id INT NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_monster_id varchar(255) NOT NULL,
+    card_life_id varchar(255) NOT NULL,
     status BOOLEAN DEFAULT FALSE,
     PRIMARY KEY (user_id, card_monster_id, card_life_id),
     FOREIGN KEY (user_id) REFERENCES users(id),
@@ -6712,17 +6712,17 @@ CREATE TABLE user_card_monsters_synery (
 );
 
 CREATE TABLE card_spell_synery(
-    card_spell_id int NOT NULL,
-    card_life_id int NOT NULL,
+    card_spell_id varchar(255) NOT NULL,
+    card_life_id varchar(255) NOT NULL,
     PRIMARY KEY (card_spell_id, card_life_id),
     FOREIGN KEY (card_spell_id) REFERENCES card_spell(id),
     FOREIGN KEY (card_life_id) REFERENCES card_life(id)
 );
 
 CREATE TABLE user_card_spell_synery (
-    user_id INT NOT NULL,
-    card_spell_id INT NOT NULL,
-    card_life_id INT NOT NULL,
+    user_id varchar(255) NOT NULL,
+    card_spell_id varchar(255) NOT NULL,
+    card_life_id varchar(255) NOT NULL,
     status BOOLEAN DEFAULT FALSE,
     PRIMARY KEY (user_id, card_spell_id, card_life_id),
     FOREIGN KEY (user_id) REFERENCES users(id),
@@ -6731,7 +6731,7 @@ CREATE TABLE user_card_spell_synery (
 );
 
 CREATE TABLE effects (
-    id INT PRIMARY KEY auto_increment,
+    id int PRIMARY KEY auto_increment,
     name VARCHAR(50) NOT NULL,
     effect_type ENUM('buff', 'debuff') NOT NULL,
     value INT,                        -- % hoặc số tuyệt đối
