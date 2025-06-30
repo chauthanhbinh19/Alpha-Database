@@ -3,19 +3,20 @@ import os
 import random
 import math
 
-import math
-
-import math
-
 def calculate_power(
     health, physical_attack, physical_defense, magical_attack, magical_defense,
     chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-    speed, critical_damage_rate, critical_rate, penetration_rate, evasion_rate, 
-    damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-    shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
+    speed, critical_damage_rate, critical_rate, critical_resistance_rate, ignore_critical_rate, 
+    penetration_rate, penetration_resistance_rate, evasion_rate, 
+    damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+    vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+    shield_strength, tenacity, resistance_rate, combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, 
+    stun_rate, ignore_stun_rate, reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
     mana, mana_regeneration_rate, 
     damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-    damage_to_same_faction_rate, resistance_to_same_faction_rate
+    damage_to_same_faction_rate, resistance_to_same_faction_rate,
+    normal_damage_rate, normal_resistance_rate,
+    skill_damage_rate, skill_resistance_rate
 ):
     # Hệ số mặc định cho các chỉ số cơ bản
     weight = 0.5
@@ -32,22 +33,41 @@ def calculate_power(
     # Điều chỉnh các chỉ số `rate` theo tổng attack, defense, và health
     adjusted_critical_rate = (critical_rate / 100) * total_attack /100 
     adjusted_critical_damage = (critical_damage_rate / 100) * total_attack /100
+    adjusted_critical_resistance_rate = (critical_resistance_rate / 100) * total_defense /100
+    adjusted_ignore_critical_rate = (ignore_critical_rate / 100) * total_attack /100
     adjusted_penetration = (penetration_rate / 100) * total_attack /100
+    adjusted_penetration_resistance_rate = (penetration_resistance_rate / 100) * total_defense /100
     adjusted_evasion = (evasion_rate / 100) * total_defense /100
-    adjusted_absorption = (damage_absorption_rate / 100) * (total_defense + health * 0.5) /100
+    adjusted_absorption = (damage_absorption_rate / 100) * total_defense /100
+    adjusted_ignore_damage_absorption_rate = (ignore_damage_absorption_rate / 100) * total_defense /100
+    adjusted_absorbed_damage_rate = (absorbed_damage_rate / 100) * total_defense /100
     adjusted_regeneration = (vitality_regeneration_rate / 100) * health /100
+    adjusted_vitality_regeneration_resistance_rate = (vitality_regeneration_resistance_rate / 100) * health /100
     adjusted_accuracy = (accuracy_rate / 100) * total_attack /100
     adjusted_lifesteal = (lifesteal_rate / 100) * total_attack /100
     adjusted_tenacity = (tenacity / 100) * total_defense /100
     adjusted_resistance = (resistance_rate / 100) * (total_defense + health * 0.5) /100 
     adjusted_combo = (combo_rate / 100) * total_attack /100
+    adjusted_ignore_combo_rate = (ignore_combo_rate / 100) * total_attack /100
+    adjusted_combo_damage_rate = (combo_damage_rate / 100) * total_attack /100
+    adjusted_combo_resistance_rate = (combo_resistance_rate / 100) * total_defense /100
+    adjusted_stun_rate = (stun_rate / 100) * total_attack /100
+    adjusted_ignore_stun_rate = (ignore_stun_rate / 100) * total_attack /100
     adjusted_reflection = (reflection_rate / 100) * (total_defense + health * 0.5) /100
+    adjusted_ignore_reflection_rate = (ignore_reflection_rate / 100) * total_attack /100
+    adjusted_reflection_damage_rate = (reflection_damage_rate / 100) * total_attack /100
+    adjusted_reflection_resistance_rate = (reflection_resistance_rate / 100) * total_defense /100
 
     # Điều chỉnh thuộc tính về faction (chủng tộc)
     adjusted_damage_to_different_faction = (damage_to_different_faction_rate / 100) * total_attack /100
     adjusted_resistance_to_different_faction = (resistance_to_different_faction_rate / 100) * total_defense /100
     adjusted_damage_to_same_faction = (damage_to_same_faction_rate / 100) * total_attack /100
     adjusted_resistance_to_same_faction = (resistance_to_same_faction_rate / 100) * total_defense /100
+
+    adjusted_normal_damage_rate = (normal_damage_rate / 100) * total_attack /100
+    adjusted_normal_resistance_rate = (normal_resistance_rate / 100) * total_defense /100
+    adjusted_skill_damage_rate = (skill_damage_rate / 100) * total_attack /100
+    adjusted_skill_resistance_rate = (skill_resistance_rate / 100) * total_defense /100
 
     # Điều chỉnh mana và hồi mana
     adjusted_mana = mana * 0.5  
@@ -56,16 +76,22 @@ def calculate_power(
     # Tính tổng sức mạnh
     power = (
         health * weight + total_attack + total_defense + speed * weight +
-        adjusted_critical_rate + adjusted_critical_damage + adjusted_penetration +
-        adjusted_evasion + adjusted_absorption + adjusted_regeneration + adjusted_accuracy +
-        adjusted_lifesteal + adjusted_tenacity + adjusted_resistance + adjusted_combo + adjusted_reflection +
+        adjusted_critical_rate + adjusted_critical_damage + adjusted_critical_resistance_rate + adjusted_ignore_critical_rate + 
+        adjusted_penetration + adjusted_penetration_resistance_rate +
+        adjusted_evasion + adjusted_absorption + adjusted_ignore_damage_absorption_rate + adjusted_absorbed_damage_rate + 
+        adjusted_regeneration + adjusted_vitality_regeneration_resistance_rate + adjusted_accuracy +
+        adjusted_lifesteal + adjusted_tenacity + adjusted_resistance + 
+        adjusted_combo + adjusted_ignore_combo_rate + adjusted_combo_damage_rate + adjusted_combo_resistance_rate + 
+        adjusted_stun_rate + adjusted_ignore_stun_rate + 
+        adjusted_reflection + adjusted_ignore_reflection_rate + adjusted_reflection_damage_rate + adjusted_reflection_resistance_rate +
         adjusted_damage_to_different_faction + adjusted_resistance_to_different_faction +
         adjusted_damage_to_same_faction + adjusted_resistance_to_same_faction +
-        adjusted_mana + adjusted_mana_regeneration
+        adjusted_mana + adjusted_mana_regeneration + 
+        adjusted_normal_damage_rate + adjusted_normal_resistance_rate +
+        adjusted_skill_damage_rate + adjusted_skill_resistance_rate
     )
 
     return power
-
 
 def get_story(character):
     stories = {
@@ -1416,25 +1442,43 @@ def create_cards_database():
     mental_attack=100000
     mental_defense=100000
     speed = 100000
-    critical_damage_rate = 0
-    critical_rate = 0
-    penetration_rate = 0
-    evasion_rate = 0
-    damage_absorption_rate = 0
-    vitality_regeneration_rate = 0
-    accuracy_rate = 0
-    lifesteal_rate = 0
+    critical_damage_rate = 10
+    critical_rate = 10
+    critical_resistance_rate = 10
+    ignore_critical_rate = 10
+    penetration_rate = 10
+    penetration_resistance_rate = 10
+    evasion_rate = 10
+    damage_absorption_rate = 10
+    ignore_damage_absorption_rate = 10
+    absorbed_damage_rate = 10
+    vitality_regeneration_rate = 10
+    vitality_regeneration_resistance_rate = 10
+    accuracy_rate = 10
+    lifesteal_rate = 10
     shield_strength = 100000
-    tenacity = 0
-    resistance_rate = 0
-    combo_rate = 0
-    reflection_rate = 0
+    tenacity = 10
+    resistance_rate = 10
+    combo_rate = 10
+    ignore_combo_rate = 10
+    combo_damage_rate = 10
+    combo_resistance_rate = 10
+    stun_rate = 10
+    ignore_stun_rate = 10
+    reflection_rate = 10
+    ignore_reflection_rate = 10
+    reflection_damage_rate = 10
+    reflection_resistance_rate = 10
     mana = 100
-    mana_regeneration_rate = 0
-    damage_to_different_faction_rate = 0
-    resistance_to_different_faction_rate = 0
-    damage_to_same_faction_rate = 0
-    resistance_to_same_faction_rate = 0
+    mana_regeneration_rate = 10
+    damage_to_different_faction_rate = 10
+    resistance_to_different_faction_rate = 10
+    damage_to_same_faction_rate = 10
+    resistance_to_same_faction_rate = 10
+    normal_damage_rate = 10
+    normal_resistance_rate = 10
+    skill_damage_rate = 10
+    skill_resistance_rate = 10
     rare="SR"
     clan=""
     price=100000
@@ -1460,12 +1504,17 @@ def create_cards_database():
                         power = calculate_power(
                             health, physical_attack, physical_defense, magical_attack, magical_defense,
                             chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                            speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                            damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                            shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
                             mana, mana_regeneration_rate, 
                             damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                            damage_to_same_faction_rate, resistance_to_same_faction_rate
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
                         )
 
                         with open('test.txt', 'a') as file:
@@ -1493,23 +1542,41 @@ def create_cards_database():
                                 + str(speed or 0) + ","
                                 + str(critical_damage_rate or 0) + ","
                                 + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
                                 + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
                                 + str(evasion_rate or 0) + ","
                                 + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
                                 + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
                                 + str(accuracy_rate or 0) + ","
                                 + str(lifesteal_rate or 0) + ","
                                 + str(shield_strength or 0) + ","
                                 + str(tenacity or 0) + ","
                                 + str(resistance_rate or 0) + ","
                                 + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
                                 + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
                                 + str(mana or 0) + ","
                                 + str(mana_regeneration_rate or 0) + ","
                                 + str(damage_to_different_faction_rate or 0) + ","
                                 + str(resistance_to_different_faction_rate or 0) + ","
                                 + str(damage_to_same_faction_rate or 0) + ","
-                                + str(resistance_to_same_faction_rate or 0) + ",'"
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ",'"
                                 + (story or '') + "');\n"
                             )
 
@@ -1540,12 +1607,17 @@ def create_cards_database():
                         power = calculate_power(
                             health, physical_attack, physical_defense, magical_attack, magical_defense,
                             chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                            speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                            damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                            shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
                             mana, mana_regeneration_rate, 
                             damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                            damage_to_same_faction_rate, resistance_to_same_faction_rate
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
                         )
 
                         with open('test.txt', 'a') as file:
@@ -1573,23 +1645,41 @@ def create_cards_database():
                                 + str(speed or 0) + ","
                                 + str(critical_damage_rate or 0) + ","
                                 + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
                                 + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
                                 + str(evasion_rate or 0) + ","
                                 + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
                                 + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
                                 + str(accuracy_rate or 0) + ","
                                 + str(lifesteal_rate or 0) + ","
                                 + str(shield_strength or 0) + ","
                                 + str(tenacity or 0) + ","
                                 + str(resistance_rate or 0) + ","
                                 + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
                                 + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
                                 + str(mana or 0) + ","
                                 + str(mana_regeneration_rate or 0) + ","
                                 + str(damage_to_different_faction_rate or 0) + ","
                                 + str(resistance_to_different_faction_rate or 0) + ","
                                 + str(damage_to_same_faction_rate or 0) + ","
-                                + str(resistance_to_same_faction_rate or 0) + ",'"
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ",'"
                                 + (story or '') + "');\n"
                             )
                         id=id+1
@@ -1619,12 +1709,17 @@ def create_cards_database():
                         power = calculate_power(
                             health, physical_attack, physical_defense, magical_attack, magical_defense,
                             chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                            speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                            damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                            shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
                             mana, mana_regeneration_rate, 
                             damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                            damage_to_same_faction_rate, resistance_to_same_faction_rate
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
                         )
 
                         with open('test.txt', 'a') as file:
@@ -1652,23 +1747,41 @@ def create_cards_database():
                                 + str(speed or 0) + ","
                                 + str(critical_damage_rate or 0) + ","
                                 + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
                                 + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
                                 + str(evasion_rate or 0) + ","
                                 + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
                                 + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
                                 + str(accuracy_rate or 0) + ","
                                 + str(lifesteal_rate or 0) + ","
                                 + str(shield_strength or 0) + ","
                                 + str(tenacity or 0) + ","
                                 + str(resistance_rate or 0) + ","
                                 + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
                                 + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
                                 + str(mana or 0) + ","
                                 + str(mana_regeneration_rate or 0) + ","
                                 + str(damage_to_different_faction_rate or 0) + ","
                                 + str(resistance_to_different_faction_rate or 0) + ","
                                 + str(damage_to_same_faction_rate or 0) + ","
-                                + str(resistance_to_same_faction_rate or 0) + ",'"
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ",'"
                                 + (story or '') + "');\n"
                             )
                         id=id+1
@@ -1698,12 +1811,17 @@ def create_cards_database():
                         power = calculate_power(
                             health, physical_attack, physical_defense, magical_attack, magical_defense,
                             chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                            speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                            damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                            shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
                             mana, mana_regeneration_rate, 
                             damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                            damage_to_same_faction_rate, resistance_to_same_faction_rate
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
                         )
 
                         with open('test.txt', 'a') as file:
@@ -1731,23 +1849,41 @@ def create_cards_database():
                                 + str(speed or 0) + ","
                                 + str(critical_damage_rate or 0) + ","
                                 + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
                                 + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
                                 + str(evasion_rate or 0) + ","
                                 + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
                                 + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
                                 + str(accuracy_rate or 0) + ","
                                 + str(lifesteal_rate or 0) + ","
                                 + str(shield_strength or 0) + ","
                                 + str(tenacity or 0) + ","
                                 + str(resistance_rate or 0) + ","
                                 + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
                                 + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
                                 + str(mana or 0) + ","
                                 + str(mana_regeneration_rate or 0) + ","
                                 + str(damage_to_different_faction_rate or 0) + ","
                                 + str(resistance_to_different_faction_rate or 0) + ","
                                 + str(damage_to_same_faction_rate or 0) + ","
-                                + str(resistance_to_same_faction_rate or 0) + ",'"
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ",'"
                                 + (story or '') + "');\n"
                             )
 
@@ -1770,25 +1906,43 @@ def create_books_database():
     mental_attack=5000000
     mental_defense=5000000
     speed = 5000000
-    critical_damage_rate = 5
-    critical_rate = 5
-    penetration_rate = 5
-    evasion_rate = 5
-    damage_absorption_rate = 5
-    vitality_regeneration_rate = 5
-    accuracy_rate = 5
-    lifesteal_rate = 5
+    critical_damage_rate = 10
+    critical_rate = 10
+    critical_resistance_rate = 10
+    ignore_critical_rate = 10
+    penetration_rate = 10
+    penetration_resistance_rate = 10
+    evasion_rate = 10
+    damage_absorption_rate = 10
+    ignore_damage_absorption_rate = 10
+    absorbed_damage_rate = 10
+    vitality_regeneration_rate = 10
+    vitality_regeneration_resistance_rate = 10
+    accuracy_rate = 10
+    lifesteal_rate = 10
     shield_strength = 5000000
-    tenacity = 5
-    resistance_rate = 5
-    combo_rate = 0
-    reflection_rate = 5
+    tenacity = 10
+    resistance_rate = 10
+    combo_rate = 10
+    ignore_combo_rate = 10
+    combo_damage_rate = 10
+    combo_resistance_rate = 10
+    stun_rate = 10
+    ignore_stun_rate = 10
+    reflection_rate = 10
+    ignore_reflection_rate = 10
+    reflection_damage_rate = 10
+    reflection_resistance_rate = 10
     mana = 100
-    mana_regeneration_rate = 5
+    mana_regeneration_rate = 10
     damage_to_different_faction_rate = 10
     resistance_to_different_faction_rate = 10
     damage_to_same_faction_rate = 10
     resistance_to_same_faction_rate = 10
+    normal_damage_rate = 10
+    normal_resistance_rate = 10
+    skill_damage_rate = 10
+    skill_resistance_rate = 10
     rare="LG"
     price=2000000
     price_unit="Chasmic_Blue_Crystalyte"
@@ -1807,15 +1961,20 @@ def create_books_database():
                     story = get_story(dir_name)
                 
                     power = calculate_power(
-                        health, physical_attack, physical_defense, magical_attack, magical_defense,
-                        chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                        speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                        damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                        shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
-                        mana, mana_regeneration_rate, 
-                        damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                        damage_to_same_faction_rate, resistance_to_same_faction_rate
-                    )
+                            health, physical_attack, physical_defense, magical_attack, magical_defense,
+                            chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
+                            mana, mana_regeneration_rate, 
+                            damage_to_different_faction_rate, resistance_to_different_faction_rate, 
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
+                        )
 
                     with open('test.txt', 'a') as file:
                         file.write(
@@ -1842,23 +2001,41 @@ def create_books_database():
                             + str(speed or 0) + ","
                             + str(critical_damage_rate or 0) + ","
                             + str(critical_rate or 0) + ","
+                            + str(critical_resistance_rate or 0) + ","
+                            + str(ignore_critical_rate or 0) + ","
                             + str(penetration_rate or 0) + ","
+                            + str(penetration_resistance_rate or 0) + ","
                             + str(evasion_rate or 0) + ","
                             + str(damage_absorption_rate or 0) + ","
+                            + str(ignore_damage_absorption_rate  or 0) + ","
+                            + str(absorbed_damage_rate  or 0) + ","
                             + str(vitality_regeneration_rate or 0) + ","
+                            + str(vitality_regeneration_resistance_rate or 0) + ","
                             + str(accuracy_rate or 0) + ","
                             + str(lifesteal_rate or 0) + ","
                             + str(shield_strength or 0) + ","
                             + str(tenacity or 0) + ","
                             + str(resistance_rate or 0) + ","
                             + str(combo_rate or 0) + ","
+                            + str(ignore_combo_rate or 0) + ","
+                            + str(combo_damage_rate or 0) + ","
+                            + str(combo_resistance_rate or 0) + ","
+                            + str(stun_rate or 0) + ","
+                            + str(ignore_stun_rate or 0) + ","
                             + str(reflection_rate or 0) + ","
+                            + str(ignore_reflection_rate or 0) + ","
+                            + str(reflection_damage_rate or 0) + ","
+                            + str(reflection_resistance_rate or 0) + ","
                             + str(mana or 0) + ","
                             + str(mana_regeneration_rate or 0) + ","
                             + str(damage_to_different_faction_rate or 0) + ","
                             + str(resistance_to_different_faction_rate or 0) + ","
                             + str(damage_to_same_faction_rate or 0) + ","
-                            + str(resistance_to_same_faction_rate or 0) + ",'"
+                            + str(resistance_to_same_faction_rate or 0) + ","
+                            + str(normal_damage_rate or 0) + ","
+                            + str(normal_resistance_rate or 0) + ","
+                            + str(skill_damage_rate or 0) + ","
+                            + str(skill_resistance_rate or 0) + ",'"
                             + (story or '') + "');\n"
                         )
                     id=id+1
@@ -1880,23 +2057,41 @@ def create_captain_database():
     speed = 5000000*2
     critical_damage_rate = 20
     critical_rate = 20
+    critical_resistance_rate = 20
+    ignore_critical_rate = 20
     penetration_rate = 20
+    penetration_resistance_rate = 20
     evasion_rate = 20
     damage_absorption_rate = 20
+    ignore_damage_absorption_rate = 20
+    absorbed_damage_rate = 20
     vitality_regeneration_rate = 20
+    vitality_regeneration_resistance_rate = 20
     accuracy_rate = 20
     lifesteal_rate = 20
     shield_strength = 5000000*2
     tenacity = 20
     resistance_rate = 20
     combo_rate = 20
+    ignore_combo_rate = 20
+    combo_damage_rate = 20
+    combo_resistance_rate = 20
+    stun_rate = 20
+    ignore_stun_rate = 20
     reflection_rate = 20
+    ignore_reflection_rate = 20
+    reflection_damage_rate = 20
+    reflection_resistance_rate = 20
     mana = 100
     mana_regeneration_rate = 20
     damage_to_different_faction_rate = 20
     resistance_to_different_faction_rate = 20
     damage_to_same_faction_rate = 20
     resistance_to_same_faction_rate = 20
+    normal_damage_rate = 20
+    normal_resistance_rate = 20
+    skill_damage_rate = 20
+    skill_resistance_rate = 20
     rare="LG"
     path=""
     for root, dirs, files in os.walk(cards_dir):
@@ -1913,15 +2108,20 @@ def create_captain_database():
                     story = get_story(dir_name)
                     
                     power = calculate_power(
-                        health, physical_attack, physical_defense, magical_attack, magical_defense,
-                        chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                        speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                        damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                        shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
-                        mana, mana_regeneration_rate, 
-                        damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                        damage_to_same_faction_rate, resistance_to_same_faction_rate
-                    )
+                            health, physical_attack, physical_defense, magical_attack, magical_defense,
+                            chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
+                            mana, mana_regeneration_rate, 
+                            damage_to_different_faction_rate, resistance_to_different_faction_rate, 
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
+                        )
 
                     # print(str(physical_attack))
                     with open('test.txt', 'a') as file:
@@ -1949,23 +2149,41 @@ def create_captain_database():
                             + str(speed or 0) + ","
                             + str(critical_damage_rate or 0) + ","
                             + str(critical_rate or 0) + ","
+                            + str(critical_resistance_rate or 0) + ","
+                            + str(ignore_critical_rate or 0) + ","
                             + str(penetration_rate or 0) + ","
+                            + str(penetration_resistance_rate or 0) + ","
                             + str(evasion_rate or 0) + ","
                             + str(damage_absorption_rate or 0) + ","
+                            + str(ignore_damage_absorption_rate  or 0) + ","
+                            + str(absorbed_damage_rate  or 0) + ","
                             + str(vitality_regeneration_rate or 0) + ","
+                            + str(vitality_regeneration_resistance_rate or 0) + ","
                             + str(accuracy_rate or 0) + ","
                             + str(lifesteal_rate or 0) + ","
                             + str(shield_strength or 0) + ","
                             + str(tenacity or 0) + ","
                             + str(resistance_rate or 0) + ","
                             + str(combo_rate or 0) + ","
+                            + str(ignore_combo_rate or 0) + ","
+                            + str(combo_damage_rate or 0) + ","
+                            + str(combo_resistance_rate or 0) + ","
+                            + str(stun_rate or 0) + ","
+                            + str(ignore_stun_rate or 0) + ","
                             + str(reflection_rate or 0) + ","
+                            + str(ignore_reflection_rate or 0) + ","
+                            + str(reflection_damage_rate or 0) + ","
+                            + str(reflection_resistance_rate or 0) + ","
                             + str(mana or 0) + ","
                             + str(mana_regeneration_rate or 0) + ","
                             + str(damage_to_different_faction_rate or 0) + ","
                             + str(resistance_to_different_faction_rate or 0) + ","
                             + str(damage_to_same_faction_rate or 0) + ","
-                            + str(resistance_to_same_faction_rate or 0) + ",'"
+                            + str(resistance_to_same_faction_rate or 0) + ","
+                            + str(normal_damage_rate or 0) + ","
+                            + str(normal_resistance_rate or 0) + ","
+                            + str(skill_damage_rate or 0) + ","
+                            + str(skill_resistance_rate or 0) + ",'"
                             + (story or '') + "');\n"
                         )
                     id=id+1
@@ -1987,23 +2205,41 @@ def create_colonel_database():
     speed = 5000000*3
     critical_damage_rate = 30
     critical_rate = 30
+    critical_resistance_rate = 30
+    ignore_critical_rate = 30
     penetration_rate = 30
+    penetration_resistance_rate = 30
     evasion_rate = 30
     damage_absorption_rate = 30
+    ignore_damage_absorption_rate = 30
+    absorbed_damage_rate = 30
     vitality_regeneration_rate = 30
+    vitality_regeneration_resistance_rate = 30
     accuracy_rate = 30
     lifesteal_rate = 30
     shield_strength = 5000000*3
     tenacity = 30
     resistance_rate = 30
     combo_rate = 30
+    ignore_combo_rate = 30
+    combo_damage_rate = 30
+    combo_resistance_rate = 30
+    stun_rate = 30
+    ignore_stun_rate = 30
     reflection_rate = 30
+    ignore_reflection_rate = 30
+    reflection_damage_rate = 30
+    reflection_resistance_rate = 30
     mana = 100
     mana_regeneration_rate = 30
     damage_to_different_faction_rate = 30
     resistance_to_different_faction_rate = 30
     damage_to_same_faction_rate = 30
     resistance_to_same_faction_rate = 30
+    normal_damage_rate = 30
+    normal_resistance_rate = 30
+    skill_damage_rate = 30
+    skill_resistance_rate = 30
     rare="LG"
     path=""
     for root, dirs, files in os.walk(cards_dir):
@@ -2020,15 +2256,20 @@ def create_colonel_database():
                     story = get_story(dir_name)
                     
                     power = calculate_power(
-                        health, physical_attack, physical_defense, magical_attack, magical_defense,
-                        chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                        speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                        damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                        shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
-                        mana, mana_regeneration_rate, 
-                        damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                        damage_to_same_faction_rate, resistance_to_same_faction_rate
-                    )
+                            health, physical_attack, physical_defense, magical_attack, magical_defense,
+                            chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
+                            mana, mana_regeneration_rate, 
+                            damage_to_different_faction_rate, resistance_to_different_faction_rate, 
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
+                        )
 
                     # print(str(physical_attack))
                     with open('test.txt', 'a') as file:
@@ -2056,23 +2297,41 @@ def create_colonel_database():
                             + str(speed or 0) + ","
                             + str(critical_damage_rate or 0) + ","
                             + str(critical_rate or 0) + ","
+                            + str(critical_resistance_rate or 0) + ","
+                            + str(ignore_critical_rate or 0) + ","
                             + str(penetration_rate or 0) + ","
+                            + str(penetration_resistance_rate or 0) + ","
                             + str(evasion_rate or 0) + ","
                             + str(damage_absorption_rate or 0) + ","
+                            + str(ignore_damage_absorption_rate  or 0) + ","
+                            + str(absorbed_damage_rate  or 0) + ","
                             + str(vitality_regeneration_rate or 0) + ","
+                            + str(vitality_regeneration_resistance_rate or 0) + ","
                             + str(accuracy_rate or 0) + ","
                             + str(lifesteal_rate or 0) + ","
                             + str(shield_strength or 0) + ","
                             + str(tenacity or 0) + ","
                             + str(resistance_rate or 0) + ","
                             + str(combo_rate or 0) + ","
+                            + str(ignore_combo_rate or 0) + ","
+                            + str(combo_damage_rate or 0) + ","
+                            + str(combo_resistance_rate or 0) + ","
+                            + str(stun_rate or 0) + ","
+                            + str(ignore_stun_rate or 0) + ","
                             + str(reflection_rate or 0) + ","
+                            + str(ignore_reflection_rate or 0) + ","
+                            + str(reflection_damage_rate or 0) + ","
+                            + str(reflection_resistance_rate or 0) + ","
                             + str(mana or 0) + ","
                             + str(mana_regeneration_rate or 0) + ","
                             + str(damage_to_different_faction_rate or 0) + ","
                             + str(resistance_to_different_faction_rate or 0) + ","
                             + str(damage_to_same_faction_rate or 0) + ","
-                            + str(resistance_to_same_faction_rate or 0) + ",'"
+                            + str(resistance_to_same_faction_rate or 0) + ","
+                            + str(normal_damage_rate or 0) + ","
+                            + str(normal_resistance_rate or 0) + ","
+                            + str(skill_damage_rate or 0) + ","
+                            + str(skill_resistance_rate or 0) + ",'"
                             + (story or '') + "');\n"
                         )
                     id=id+1
@@ -2094,23 +2353,41 @@ def create_general_database():
     speed = 5000000*4
     critical_damage_rate = 40
     critical_rate = 40
+    critical_resistance_rate = 40
+    ignore_critical_rate = 40
     penetration_rate = 40
+    penetration_resistance_rate = 40
     evasion_rate = 40
     damage_absorption_rate = 40
+    ignore_damage_absorption_rate = 40
+    absorbed_damage_rate = 40
     vitality_regeneration_rate = 40
+    vitality_regeneration_resistance_rate = 40
     accuracy_rate = 40
     lifesteal_rate = 40
     shield_strength = 5000000*4
     tenacity = 40
     resistance_rate = 40
     combo_rate = 40
+    ignore_combo_rate = 40
+    combo_damage_rate = 40
+    combo_resistance_rate = 40
+    stun_rate = 40
+    ignore_stun_rate = 40
     reflection_rate = 40
+    ignore_reflection_rate = 40
+    reflection_damage_rate = 40
+    reflection_resistance_rate = 40
     mana = 100
     mana_regeneration_rate = 40
     damage_to_different_faction_rate = 40
     resistance_to_different_faction_rate = 40
     damage_to_same_faction_rate = 40
     resistance_to_same_faction_rate = 40
+    normal_damage_rate = 40
+    normal_resistance_rate = 40
+    skill_damage_rate = 40
+    skill_resistance_rate = 40
     rare="LG"
     path=""
     for root, dirs, files in os.walk(cards_dir):
@@ -2127,15 +2404,20 @@ def create_general_database():
                     story = get_story(dir_name)
                     
                     power = calculate_power(
-                        health, physical_attack, physical_defense, magical_attack, magical_defense,
-                        chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                        speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                        damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                        shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
-                        mana, mana_regeneration_rate, 
-                        damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                        damage_to_same_faction_rate, resistance_to_same_faction_rate
-                    )
+                            health, physical_attack, physical_defense, magical_attack, magical_defense,
+                            chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
+                            mana, mana_regeneration_rate, 
+                            damage_to_different_faction_rate, resistance_to_different_faction_rate, 
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
+                        )
                     # print(str(physical_attack))
                     with open('test.txt', 'a') as file:
                         file.write(
@@ -2149,36 +2431,54 @@ def create_general_database():
                             + str(0) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
-                            + str(physical_attack or 0) + ","
-                            + str(physical_defense or 0) + ","
-                            + str(magical_attack or 0) + ","
-                            + str(magical_defense or 0) + ","
-                            + str(chemical_attack or 0) + ","
-                            + str(chemical_defense or 0) + ","
-                            + str(atomic_attack or 0) + ","
-                            + str(atomic_defense or 0) + ","
-                            + str(mental_attack or 0) + ","
-                            + str(mental_defense or 0) + ","
-                            + str(speed or 0) + ","
-                            + str(critical_damage_rate or 0) + ","
-                            + str(critical_rate or 0) + ","
-                            + str(penetration_rate or 0) + ","
-                            + str(evasion_rate or 0) + ","
-                            + str(damage_absorption_rate or 0) + ","
-                            + str(vitality_regeneration_rate or 0) + ","
-                            + str(accuracy_rate or 0) + ","
-                            + str(lifesteal_rate or 0) + ","
-                            + str(shield_strength or 0) + ","
-                            + str(tenacity or 0) + ","
-                            + str(resistance_rate or 0) + ","
-                            + str(combo_rate or 0) + ","
-                            + str(reflection_rate or 0) + ","
-                            + str(mana or 0) + ","
-                            + str(mana_regeneration_rate or 0) + ","
-                            + str(damage_to_different_faction_rate or 0) + ","
-                            + str(resistance_to_different_faction_rate or 0) + ","
-                            + str(damage_to_same_faction_rate or 0) + ","
-                            + str(resistance_to_same_faction_rate or 0) + ",'"
+                                + str(physical_attack or 0) + ","
+                                + str(physical_defense or 0) + ","
+                                + str(magical_attack or 0) + ","
+                                + str(magical_defense or 0) + ","
+                                + str(chemical_attack or 0) + ","
+                                + str(chemical_defense or 0) + ","
+                                + str(atomic_attack or 0) + ","
+                                + str(atomic_defense or 0) + ","
+                                + str(mental_attack or 0) + ","
+                                + str(mental_defense or 0) + ","
+                                + str(speed or 0) + ","
+                                + str(critical_damage_rate or 0) + ","
+                                + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
+                                + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
+                                + str(evasion_rate or 0) + ","
+                                + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
+                                + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
+                                + str(accuracy_rate or 0) + ","
+                                + str(lifesteal_rate or 0) + ","
+                                + str(shield_strength or 0) + ","
+                                + str(tenacity or 0) + ","
+                                + str(resistance_rate or 0) + ","
+                                + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
+                                + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
+                                + str(mana or 0) + ","
+                                + str(mana_regeneration_rate or 0) + ","
+                                + str(damage_to_different_faction_rate or 0) + ","
+                                + str(resistance_to_different_faction_rate or 0) + ","
+                                + str(damage_to_same_faction_rate or 0) + ","
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ",'"
                             + (story or '') + "');\n"
                         )
                     id=id+1
@@ -2200,23 +2500,41 @@ def create_admiral_database():
     speed = 5000000*5
     critical_damage_rate = 50
     critical_rate = 50
+    critical_resistance_rate = 50
+    ignore_critical_rate = 50
     penetration_rate = 50
+    penetration_resistance_rate = 50
     evasion_rate = 50
     damage_absorption_rate = 50
+    ignore_damage_absorption_rate = 50
+    absorbed_damage_rate = 50
     vitality_regeneration_rate = 50
+    vitality_regeneration_resistance_rate = 50
     accuracy_rate = 50
     lifesteal_rate = 50
     shield_strength = 5000000*5
     tenacity = 50
     resistance_rate = 50
     combo_rate = 50
+    ignore_combo_rate = 50
+    combo_damage_rate = 50
+    combo_resistance_rate = 50
+    stun_rate = 50
+    ignore_stun_rate = 50
     reflection_rate = 50
+    ignore_reflection_rate = 50
+    reflection_damage_rate = 50
+    reflection_resistance_rate = 50
     mana = 100
     mana_regeneration_rate = 50
     damage_to_different_faction_rate = 50
     resistance_to_different_faction_rate = 50
     damage_to_same_faction_rate = 50
     resistance_to_same_faction_rate = 50
+    normal_damage_rate = 50
+    normal_resistance_rate = 50
+    skill_damage_rate = 50
+    skill_resistance_rate = 50
     rare="LG"
     path=""
     for root, dirs, files in os.walk(cards_dir):
@@ -2233,15 +2551,20 @@ def create_admiral_database():
                     story = get_story(dir_name)
                     
                     power = calculate_power(
-                        health, physical_attack, physical_defense, magical_attack, magical_defense,
-                        chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                        speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                        damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                        shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
-                        mana, mana_regeneration_rate, 
-                        damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                        damage_to_same_faction_rate, resistance_to_same_faction_rate
-                    )
+                            health, physical_attack, physical_defense, magical_attack, magical_defense,
+                            chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
+                            mana, mana_regeneration_rate, 
+                            damage_to_different_faction_rate, resistance_to_different_faction_rate, 
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
+                        )
                     # print(str(physical_attack))
                     with open('test.txt', 'a') as file:
                         file.write(
@@ -2255,36 +2578,54 @@ def create_admiral_database():
                             + str(0) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
-                            + str(physical_attack or 0) + ","
-                            + str(physical_defense or 0) + ","
-                            + str(magical_attack or 0) + ","
-                            + str(magical_defense or 0) + ","
-                            + str(chemical_attack or 0) + ","
-                            + str(chemical_defense or 0) + ","
-                            + str(atomic_attack or 0) + ","
-                            + str(atomic_defense or 0) + ","
-                            + str(mental_attack or 0) + ","
-                            + str(mental_defense or 0) + ","
-                            + str(speed or 0) + ","
-                            + str(critical_damage_rate or 0) + ","
-                            + str(critical_rate or 0) + ","
-                            + str(penetration_rate or 0) + ","
-                            + str(evasion_rate or 0) + ","
-                            + str(damage_absorption_rate or 0) + ","
-                            + str(vitality_regeneration_rate or 0) + ","
-                            + str(accuracy_rate or 0) + ","
-                            + str(lifesteal_rate or 0) + ","
-                            + str(shield_strength or 0) + ","
-                            + str(tenacity or 0) + ","
-                            + str(resistance_rate or 0) + ","
-                            + str(combo_rate or 0) + ","
-                            + str(reflection_rate or 0) + ","
-                            + str(mana or 0) + ","
-                            + str(mana_regeneration_rate or 0) + ","
-                            + str(damage_to_different_faction_rate or 0) + ","
-                            + str(resistance_to_different_faction_rate or 0) + ","
-                            + str(damage_to_same_faction_rate or 0) + ","
-                            + str(resistance_to_same_faction_rate or 0) + ",'"
+                                + str(physical_attack or 0) + ","
+                                + str(physical_defense or 0) + ","
+                                + str(magical_attack or 0) + ","
+                                + str(magical_defense or 0) + ","
+                                + str(chemical_attack or 0) + ","
+                                + str(chemical_defense or 0) + ","
+                                + str(atomic_attack or 0) + ","
+                                + str(atomic_defense or 0) + ","
+                                + str(mental_attack or 0) + ","
+                                + str(mental_defense or 0) + ","
+                                + str(speed or 0) + ","
+                                + str(critical_damage_rate or 0) + ","
+                                + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
+                                + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
+                                + str(evasion_rate or 0) + ","
+                                + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
+                                + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
+                                + str(accuracy_rate or 0) + ","
+                                + str(lifesteal_rate or 0) + ","
+                                + str(shield_strength or 0) + ","
+                                + str(tenacity or 0) + ","
+                                + str(resistance_rate or 0) + ","
+                                + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
+                                + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
+                                + str(mana or 0) + ","
+                                + str(mana_regeneration_rate or 0) + ","
+                                + str(damage_to_different_faction_rate or 0) + ","
+                                + str(resistance_to_different_faction_rate or 0) + ","
+                                + str(damage_to_same_faction_rate or 0) + ","
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ",'"
                             + (story or '') + "');\n"
                         )
                     id=id+1
@@ -2306,25 +2647,43 @@ def create_skills_database():
     mental_attack=2000000
     mental_defense=2000000
     speed = 2000000
-    critical_damage_rate = 5
-    critical_rate = 5
-    penetration_rate = 5
-    evasion_rate = 5
-    damage_absorption_rate = 5
-    vitality_regeneration_rate = 5
-    accuracy_rate = 5
-    lifesteal_rate = 5
+    critical_damage_rate = 20
+    critical_rate = 20
+    critical_resistance_rate = 20
+    ignore_critical_rate = 20
+    penetration_rate = 20
+    penetration_resistance_rate = 20
+    evasion_rate = 20
+    damage_absorption_rate = 20
+    ignore_damage_absorption_rate = 20
+    absorbed_damage_rate = 20
+    vitality_regeneration_rate = 20
+    vitality_regeneration_resistance_rate = 20
+    accuracy_rate = 20
+    lifesteal_rate = 20
     shield_strength = 2000000
-    tenacity = 5
-    resistance_rate = 5
-    combo_rate = 5
-    reflection_rate = 5
+    tenacity = 20
+    resistance_rate = 20
+    combo_rate = 20
+    ignore_combo_rate = 20
+    combo_damage_rate = 20
+    combo_resistance_rate = 20
+    stun_rate = 20
+    ignore_stun_rate = 20
+    reflection_rate = 20
+    ignore_reflection_rate = 20
+    reflection_damage_rate = 20
+    reflection_resistance_rate = 20
     mana = 100
-    mana_regeneration_rate = 5
-    damage_to_different_faction_rate = 10
-    resistance_to_different_faction_rate = 10
-    damage_to_same_faction_rate = 10
-    resistance_to_same_faction_rate = 10
+    mana_regeneration_rate = 20
+    damage_to_different_faction_rate = 20
+    resistance_to_different_faction_rate = 20
+    damage_to_same_faction_rate = 20
+    resistance_to_same_faction_rate = 20
+    normal_damage_rate = 20
+    normal_resistance_rate = 20
+    skill_damage_rate = 20
+    skill_resistance_rate = 20
     rare="LG"
     price=1000000
     price_unit="Chasmic_Purple_Crystalyte"
@@ -2342,15 +2701,20 @@ def create_skills_database():
                     name=name.replace("_"," ")
                     
                     power = calculate_power(
-                        health, physical_attack, physical_defense, magical_attack, magical_defense,
-                        chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                        speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                        damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                        shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
-                        mana, mana_regeneration_rate, 
-                        damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                        damage_to_same_faction_rate, resistance_to_same_faction_rate
-                    )
+                            health, physical_attack, physical_defense, magical_attack, magical_defense,
+                            chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
+                            mana, mana_regeneration_rate, 
+                            damage_to_different_faction_rate, resistance_to_different_faction_rate, 
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
+                        )
                     with open('test.txt', 'a') as file:
                         file.write(
                             "insert into skills values ("
@@ -2362,36 +2726,54 @@ def create_skills_database():
                             + (dir_name or '') + "',"
                             + str(power or 0) + ","
                             + str(health or 0) + ","
-                            + str(physical_attack or 0) + ","
-                            + str(physical_defense or 0) + ","
-                            + str(magical_attack or 0) + ","
-                            + str(magical_defense or 0) + ","
-                            + str(chemical_attack or 0) + ","
-                            + str(chemical_defense or 0) + ","
-                            + str(atomic_attack or 0) + ","
-                            + str(atomic_defense or 0) + ","
-                            + str(mental_attack or 0) + ","
-                            + str(mental_defense or 0) + ","
-                            + str(speed or 0) + ","
-                            + str(critical_damage_rate or 0) + ","
-                            + str(critical_rate or 0) + ","
-                            + str(penetration_rate or 0) + ","
-                            + str(evasion_rate or 0) + ","
-                            + str(damage_absorption_rate or 0) + ","
-                            + str(vitality_regeneration_rate or 0) + ","
-                            + str(accuracy_rate or 0) + ","
-                            + str(lifesteal_rate or 0) + ","
-                            + str(shield_strength or 0) + ","
-                            + str(tenacity or 0) + ","
-                            + str(resistance_rate or 0) + ","
-                            + str(combo_rate or 0) + ","
-                            + str(reflection_rate or 0) + ","
-                            + str(mana or 0) + ","
-                            + str(mana_regeneration_rate or 0) + ","
-                            + str(damage_to_different_faction_rate or 0) + ","
-                            + str(resistance_to_different_faction_rate or 0) + ","
-                            + str(damage_to_same_faction_rate or 0) + ","
-                            + str(resistance_to_same_faction_rate or 0) + ",'"
+                                + str(physical_attack or 0) + ","
+                                + str(physical_defense or 0) + ","
+                                + str(magical_attack or 0) + ","
+                                + str(magical_defense or 0) + ","
+                                + str(chemical_attack or 0) + ","
+                                + str(chemical_defense or 0) + ","
+                                + str(atomic_attack or 0) + ","
+                                + str(atomic_defense or 0) + ","
+                                + str(mental_attack or 0) + ","
+                                + str(mental_defense or 0) + ","
+                                + str(speed or 0) + ","
+                                + str(critical_damage_rate or 0) + ","
+                                + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
+                                + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
+                                + str(evasion_rate or 0) + ","
+                                + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
+                                + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
+                                + str(accuracy_rate or 0) + ","
+                                + str(lifesteal_rate or 0) + ","
+                                + str(shield_strength or 0) + ","
+                                + str(tenacity or 0) + ","
+                                + str(resistance_rate or 0) + ","
+                                + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
+                                + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
+                                + str(mana or 0) + ","
+                                + str(mana_regeneration_rate or 0) + ","
+                                + str(damage_to_different_faction_rate or 0) + ","
+                                + str(resistance_to_different_faction_rate or 0) + ","
+                                + str(damage_to_same_faction_rate or 0) + ","
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ",'"
                             + ('') + "');\n"
                         )
                     id=id+1
@@ -2413,25 +2795,43 @@ def create_collaboration_equipments_database():
     mental_attack=100000
     mental_defense=100000
     speed = 100000
-    critical_damage_rate = 10
-    critical_rate = 10
-    penetration_rate = 10
-    evasion_rate = 10
-    damage_absorption_rate = 10
-    vitality_regeneration_rate = 10
-    accuracy_rate = 10
-    lifesteal_rate = 10
+    critical_damage_rate = 20
+    critical_rate = 20
+    critical_resistance_rate = 20
+    ignore_critical_rate = 20
+    penetration_rate = 20
+    penetration_resistance_rate = 20
+    evasion_rate = 20
+    damage_absorption_rate = 20
+    ignore_damage_absorption_rate = 20
+    absorbed_damage_rate = 20
+    vitality_regeneration_rate = 20
+    vitality_regeneration_resistance_rate = 20
+    accuracy_rate = 20
+    lifesteal_rate = 20
     shield_strength = 100000
-    tenacity = 10
-    resistance_rate = 10
-    combo_rate = 10
-    reflection_rate = 10
+    tenacity = 20
+    resistance_rate = 20
+    combo_rate = 20
+    ignore_combo_rate = 20
+    combo_damage_rate = 20
+    combo_resistance_rate = 20
+    stun_rate = 20
+    ignore_stun_rate = 20
+    reflection_rate = 20
+    ignore_reflection_rate = 20
+    reflection_damage_rate = 20
+    reflection_resistance_rate = 20
     mana = 100
-    mana_regeneration_rate = 10
-    damage_to_different_faction_rate = 10
-    resistance_to_different_faction_rate = 10
-    damage_to_same_faction_rate = 10
-    resistance_to_same_faction_rate = 10
+    mana_regeneration_rate = 20
+    damage_to_different_faction_rate = 20
+    resistance_to_different_faction_rate = 20
+    damage_to_same_faction_rate = 20
+    resistance_to_same_faction_rate = 20
+    normal_damage_rate = 20
+    normal_resistance_rate = 20
+    skill_damage_rate = 20
+    skill_resistance_rate = 20
     rare="SR"
     clan=""
     price=100000
@@ -2468,12 +2868,17 @@ def create_collaboration_equipments_database():
                         power = calculate_power(
                             health, physical_attack, physical_defense, magical_attack, magical_defense,
                             chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                            speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                            damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                            shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
                             mana, mana_regeneration_rate, 
                             damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                            damage_to_same_faction_rate, resistance_to_same_faction_rate
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
                         )
                         with open('test.txt', 'a') as file:
                             file.write(
@@ -2487,36 +2892,54 @@ def create_collaboration_equipments_database():
                             + str(0) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
-                            + str(physical_attack or 0) + ","
-                            + str(physical_defense or 0) + ","
-                            + str(magical_attack or 0) + ","
-                            + str(magical_defense or 0) + ","
-                            + str(chemical_attack or 0) + ","
-                            + str(chemical_defense or 0) + ","
-                            + str(atomic_attack or 0) + ","
-                            + str(atomic_defense or 0) + ","
-                            + str(mental_attack or 0) + ","
-                            + str(mental_defense or 0) + ","
-                            + str(speed or 0) + ","
-                            + str(critical_damage_rate or 0) + ","
-                            + str(critical_rate or 0) + ","
-                            + str(penetration_rate or 0) + ","
-                            + str(evasion_rate or 0) + ","
-                            + str(damage_absorption_rate or 0) + ","
-                            + str(vitality_regeneration_rate or 0) + ","
-                            + str(accuracy_rate or 0) + ","
-                            + str(lifesteal_rate or 0) + ","
-                            + str(shield_strength or 0) + ","
-                            + str(tenacity or 0) + ","
-                            + str(resistance_rate or 0) + ","
-                            + str(combo_rate or 0) + ","
-                            + str(reflection_rate or 0) + ","
-                            + str(mana or 0) + ","
-                            + str(mana_regeneration_rate or 0) + ","
-                            + str(damage_to_different_faction_rate or 0) + ","
-                            + str(resistance_to_different_faction_rate or 0) + ","
-                            + str(damage_to_same_faction_rate or 0) + ","
-                            + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(physical_attack or 0) + ","
+                                + str(physical_defense or 0) + ","
+                                + str(magical_attack or 0) + ","
+                                + str(magical_defense or 0) + ","
+                                + str(chemical_attack or 0) + ","
+                                + str(chemical_defense or 0) + ","
+                                + str(atomic_attack or 0) + ","
+                                + str(atomic_defense or 0) + ","
+                                + str(mental_attack or 0) + ","
+                                + str(mental_defense or 0) + ","
+                                + str(speed or 0) + ","
+                                + str(critical_damage_rate or 0) + ","
+                                + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
+                                + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
+                                + str(evasion_rate or 0) + ","
+                                + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
+                                + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
+                                + str(accuracy_rate or 0) + ","
+                                + str(lifesteal_rate or 0) + ","
+                                + str(shield_strength or 0) + ","
+                                + str(tenacity or 0) + ","
+                                + str(resistance_rate or 0) + ","
+                                + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
+                                + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
+                                + str(mana or 0) + ","
+                                + str(mana_regeneration_rate or 0) + ","
+                                + str(damage_to_different_faction_rate or 0) + ","
+                                + str(resistance_to_different_faction_rate or 0) + ","
+                                + str(damage_to_same_faction_rate or 0) + ","
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ","
                             + str(per_health)+","
                             + str(per_physical_attack) +","
                             + str(per_physical_defense) + ","
@@ -2559,12 +2982,17 @@ def create_collaboration_equipments_database():
                         power = calculate_power(
                             health, physical_attack, physical_defense, magical_attack, magical_defense,
                             chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                            speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                            damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                            shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
                             mana, mana_regeneration_rate, 
                             damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                            damage_to_same_faction_rate, resistance_to_same_faction_rate
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
                         )
                         with open('test.txt', 'a') as file:
                             file.write(
@@ -2578,36 +3006,54 @@ def create_collaboration_equipments_database():
                             + str(0) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
-                            + str(physical_attack or 0) + ","
-                            + str(physical_defense or 0) + ","
-                            + str(magical_attack or 0) + ","
-                            + str(magical_defense or 0) + ","
-                            + str(chemical_attack or 0) + ","
-                            + str(chemical_defense or 0) + ","
-                            + str(atomic_attack or 0) + ","
-                            + str(atomic_defense or 0) + ","
-                            + str(mental_attack or 0) + ","
-                            + str(mental_defense or 0) + ","
-                            + str(speed or 0) + ","
-                            + str(critical_damage_rate or 0) + ","
-                            + str(critical_rate or 0) + ","
-                            + str(penetration_rate or 0) + ","
-                            + str(evasion_rate or 0) + ","
-                            + str(damage_absorption_rate or 0) + ","
-                            + str(vitality_regeneration_rate or 0) + ","
-                            + str(accuracy_rate or 0) + ","
-                            + str(lifesteal_rate or 0) + ","
-                            + str(shield_strength or 0) + ","
-                            + str(tenacity or 0) + ","
-                            + str(resistance_rate or 0) + ","
-                            + str(combo_rate or 0) + ","
-                            + str(reflection_rate or 0) + ","
-                            + str(mana or 0) + ","
-                            + str(mana_regeneration_rate or 0) + ","
-                            + str(damage_to_different_faction_rate or 0) + ","
-                            + str(resistance_to_different_faction_rate or 0) + ","
-                            + str(damage_to_same_faction_rate or 0) + ","
-                            + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(physical_attack or 0) + ","
+                                + str(physical_defense or 0) + ","
+                                + str(magical_attack or 0) + ","
+                                + str(magical_defense or 0) + ","
+                                + str(chemical_attack or 0) + ","
+                                + str(chemical_defense or 0) + ","
+                                + str(atomic_attack or 0) + ","
+                                + str(atomic_defense or 0) + ","
+                                + str(mental_attack or 0) + ","
+                                + str(mental_defense or 0) + ","
+                                + str(speed or 0) + ","
+                                + str(critical_damage_rate or 0) + ","
+                                + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
+                                + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
+                                + str(evasion_rate or 0) + ","
+                                + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
+                                + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
+                                + str(accuracy_rate or 0) + ","
+                                + str(lifesteal_rate or 0) + ","
+                                + str(shield_strength or 0) + ","
+                                + str(tenacity or 0) + ","
+                                + str(resistance_rate or 0) + ","
+                                + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
+                                + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
+                                + str(mana or 0) + ","
+                                + str(mana_regeneration_rate or 0) + ","
+                                + str(damage_to_different_faction_rate or 0) + ","
+                                + str(resistance_to_different_faction_rate or 0) + ","
+                                + str(damage_to_same_faction_rate or 0) + ","
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ","
                             + str(per_health)+","
                             + str(per_physical_attack) +","
                             + str(per_physical_defense) + ","
@@ -2649,12 +3095,17 @@ def create_collaboration_equipments_database():
                         power = calculate_power(
                             health, physical_attack, physical_defense, magical_attack, magical_defense,
                             chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                            speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                            damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                            shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
                             mana, mana_regeneration_rate, 
                             damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                            damage_to_same_faction_rate, resistance_to_same_faction_rate
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
                         )
                         with open('test.txt', 'a') as file:
                             file.write(
@@ -2668,36 +3119,54 @@ def create_collaboration_equipments_database():
                             + str(0) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
-                            + str(physical_attack or 0) + ","
-                            + str(physical_defense or 0) + ","
-                            + str(magical_attack or 0) + ","
-                            + str(magical_defense or 0) + ","
-                            + str(chemical_attack or 0) + ","
-                            + str(chemical_defense or 0) + ","
-                            + str(atomic_attack or 0) + ","
-                            + str(atomic_defense or 0) + ","
-                            + str(mental_attack or 0) + ","
-                            + str(mental_defense or 0) + ","
-                            + str(speed or 0) + ","
-                            + str(critical_damage_rate or 0) + ","
-                            + str(critical_rate or 0) + ","
-                            + str(penetration_rate or 0) + ","
-                            + str(evasion_rate or 0) + ","
-                            + str(damage_absorption_rate or 0) + ","
-                            + str(vitality_regeneration_rate or 0) + ","
-                            + str(accuracy_rate or 0) + ","
-                            + str(lifesteal_rate or 0) + ","
-                            + str(shield_strength or 0) + ","
-                            + str(tenacity or 0) + ","
-                            + str(resistance_rate or 0) + ","
-                            + str(combo_rate or 0) + ","
-                            + str(reflection_rate or 0) + ","
-                            + str(mana or 0) + ","
-                            + str(mana_regeneration_rate or 0) + ","
-                            + str(damage_to_different_faction_rate or 0) + ","
-                            + str(resistance_to_different_faction_rate or 0) + ","
-                            + str(damage_to_same_faction_rate or 0) + ","
-                            + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(physical_attack or 0) + ","
+                                + str(physical_defense or 0) + ","
+                                + str(magical_attack or 0) + ","
+                                + str(magical_defense or 0) + ","
+                                + str(chemical_attack or 0) + ","
+                                + str(chemical_defense or 0) + ","
+                                + str(atomic_attack or 0) + ","
+                                + str(atomic_defense or 0) + ","
+                                + str(mental_attack or 0) + ","
+                                + str(mental_defense or 0) + ","
+                                + str(speed or 0) + ","
+                                + str(critical_damage_rate or 0) + ","
+                                + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
+                                + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
+                                + str(evasion_rate or 0) + ","
+                                + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
+                                + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
+                                + str(accuracy_rate or 0) + ","
+                                + str(lifesteal_rate or 0) + ","
+                                + str(shield_strength or 0) + ","
+                                + str(tenacity or 0) + ","
+                                + str(resistance_rate or 0) + ","
+                                + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
+                                + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
+                                + str(mana or 0) + ","
+                                + str(mana_regeneration_rate or 0) + ","
+                                + str(damage_to_different_faction_rate or 0) + ","
+                                + str(resistance_to_different_faction_rate or 0) + ","
+                                + str(damage_to_same_faction_rate or 0) + ","
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ","
                             + str(per_health)+","
                             + str(per_physical_attack) +","
                             + str(per_physical_defense) + ","
@@ -2739,12 +3208,17 @@ def create_collaboration_equipments_database():
                         power = calculate_power(
                             health, physical_attack, physical_defense, magical_attack, magical_defense,
                             chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                            speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                            damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                            shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
                             mana, mana_regeneration_rate, 
                             damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                            damage_to_same_faction_rate, resistance_to_same_faction_rate
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
                         )
                         with open('test.txt', 'a') as file:
                             file.write(
@@ -2758,36 +3232,54 @@ def create_collaboration_equipments_database():
                             + str(0) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
-                            + str(physical_attack or 0) + ","
-                            + str(physical_defense or 0) + ","
-                            + str(magical_attack or 0) + ","
-                            + str(magical_defense or 0) + ","
-                            + str(chemical_attack or 0) + ","
-                            + str(chemical_defense or 0) + ","
-                            + str(atomic_attack or 0) + ","
-                            + str(atomic_defense or 0) + ","
-                            + str(mental_attack or 0) + ","
-                            + str(mental_defense or 0) + ","
-                            + str(speed or 0) + ","
-                            + str(critical_damage_rate or 0) + ","
-                            + str(critical_rate or 0) + ","
-                            + str(penetration_rate or 0) + ","
-                            + str(evasion_rate or 0) + ","
-                            + str(damage_absorption_rate or 0) + ","
-                            + str(vitality_regeneration_rate or 0) + ","
-                            + str(accuracy_rate or 0) + ","
-                            + str(lifesteal_rate or 0) + ","
-                            + str(shield_strength or 0) + ","
-                            + str(tenacity or 0) + ","
-                            + str(resistance_rate or 0) + ","
-                            + str(combo_rate or 0) + ","
-                            + str(reflection_rate or 0) + ","
-                            + str(mana or 0) + ","
-                            + str(mana_regeneration_rate or 0) + ","
-                            + str(damage_to_different_faction_rate or 0) + ","
-                            + str(resistance_to_different_faction_rate or 0) + ","
-                            + str(damage_to_same_faction_rate or 0) + ","
-                            + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(physical_attack or 0) + ","
+                                + str(physical_defense or 0) + ","
+                                + str(magical_attack or 0) + ","
+                                + str(magical_defense or 0) + ","
+                                + str(chemical_attack or 0) + ","
+                                + str(chemical_defense or 0) + ","
+                                + str(atomic_attack or 0) + ","
+                                + str(atomic_defense or 0) + ","
+                                + str(mental_attack or 0) + ","
+                                + str(mental_defense or 0) + ","
+                                + str(speed or 0) + ","
+                                + str(critical_damage_rate or 0) + ","
+                                + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
+                                + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
+                                + str(evasion_rate or 0) + ","
+                                + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
+                                + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
+                                + str(accuracy_rate or 0) + ","
+                                + str(lifesteal_rate or 0) + ","
+                                + str(shield_strength or 0) + ","
+                                + str(tenacity or 0) + ","
+                                + str(resistance_rate or 0) + ","
+                                + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
+                                + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
+                                + str(mana or 0) + ","
+                                + str(mana_regeneration_rate or 0) + ","
+                                + str(damage_to_different_faction_rate or 0) + ","
+                                + str(resistance_to_different_faction_rate or 0) + ","
+                                + str(damage_to_same_faction_rate or 0) + ","
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ","
                             + str(per_health)+","
                             + str(per_physical_attack) +","
                             + str(per_physical_defense) + ","
@@ -2828,12 +3320,17 @@ def create_collaboration_equipments_database():
                         power = calculate_power(
                             health, physical_attack, physical_defense, magical_attack, magical_defense,
                             chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                            speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                            damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                            shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
                             mana, mana_regeneration_rate, 
                             damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                            damage_to_same_faction_rate, resistance_to_same_faction_rate
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
                         )
                         with open('test.txt', 'a') as file:
                             file.write(
@@ -2847,36 +3344,54 @@ def create_collaboration_equipments_database():
                             + str(0) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
-                            + str(physical_attack or 0) + ","
-                            + str(physical_defense or 0) + ","
-                            + str(magical_attack or 0) + ","
-                            + str(magical_defense or 0) + ","
-                            + str(chemical_attack or 0) + ","
-                            + str(chemical_defense or 0) + ","
-                            + str(atomic_attack or 0) + ","
-                            + str(atomic_defense or 0) + ","
-                            + str(mental_attack or 0) + ","
-                            + str(mental_defense or 0) + ","
-                            + str(speed or 0) + ","
-                            + str(critical_damage_rate or 0) + ","
-                            + str(critical_rate or 0) + ","
-                            + str(penetration_rate or 0) + ","
-                            + str(evasion_rate or 0) + ","
-                            + str(damage_absorption_rate or 0) + ","
-                            + str(vitality_regeneration_rate or 0) + ","
-                            + str(accuracy_rate or 0) + ","
-                            + str(lifesteal_rate or 0) + ","
-                            + str(shield_strength or 0) + ","
-                            + str(tenacity or 0) + ","
-                            + str(resistance_rate or 0) + ","
-                            + str(combo_rate or 0) + ","
-                            + str(reflection_rate or 0) + ","
-                            + str(mana or 0) + ","
-                            + str(mana_regeneration_rate or 0) + ","
-                            + str(damage_to_different_faction_rate or 0) + ","
-                            + str(resistance_to_different_faction_rate or 0) + ","
-                            + str(damage_to_same_faction_rate or 0) + ","
-                            + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(physical_attack or 0) + ","
+                                + str(physical_defense or 0) + ","
+                                + str(magical_attack or 0) + ","
+                                + str(magical_defense or 0) + ","
+                                + str(chemical_attack or 0) + ","
+                                + str(chemical_defense or 0) + ","
+                                + str(atomic_attack or 0) + ","
+                                + str(atomic_defense or 0) + ","
+                                + str(mental_attack or 0) + ","
+                                + str(mental_defense or 0) + ","
+                                + str(speed or 0) + ","
+                                + str(critical_damage_rate or 0) + ","
+                                + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
+                                + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
+                                + str(evasion_rate or 0) + ","
+                                + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
+                                + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
+                                + str(accuracy_rate or 0) + ","
+                                + str(lifesteal_rate or 0) + ","
+                                + str(shield_strength or 0) + ","
+                                + str(tenacity or 0) + ","
+                                + str(resistance_rate or 0) + ","
+                                + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
+                                + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
+                                + str(mana or 0) + ","
+                                + str(mana_regeneration_rate or 0) + ","
+                                + str(damage_to_different_faction_rate or 0) + ","
+                                + str(resistance_to_different_faction_rate or 0) + ","
+                                + str(damage_to_same_faction_rate or 0) + ","
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ","
                             + str(per_health)+","
                             + str(per_physical_attack) +","
                             + str(per_physical_defense) + ","
@@ -2911,23 +3426,41 @@ def create_pets_database():
     speed = 1500000
     critical_damage_rate = 10
     critical_rate = 10
+    critical_resistance_rate = 10
+    ignore_critical_rate = 10
     penetration_rate = 10
+    penetration_resistance_rate = 10
     evasion_rate = 10
     damage_absorption_rate = 10
+    ignore_damage_absorption_rate = 10
+    absorbed_damage_rate = 10
     vitality_regeneration_rate = 10
+    vitality_regeneration_resistance_rate = 10
     accuracy_rate = 10
     lifesteal_rate = 10
     shield_strength = 1500000
     tenacity = 10
     resistance_rate = 10
     combo_rate = 10
+    ignore_combo_rate = 10
+    combo_damage_rate = 10
+    combo_resistance_rate = 10
+    stun_rate = 10
+    ignore_stun_rate = 10
     reflection_rate = 10
+    ignore_reflection_rate = 10
+    reflection_damage_rate = 10
+    reflection_resistance_rate = 10
     mana = 100
     mana_regeneration_rate = 10
-    damage_to_different_faction_rate = 20
-    resistance_to_different_faction_rate = 20
-    damage_to_same_faction_rate = 20
-    resistance_to_same_faction_rate = 20
+    damage_to_different_faction_rate = 10
+    resistance_to_different_faction_rate = 10
+    damage_to_same_faction_rate = 10
+    resistance_to_same_faction_rate = 10
+    normal_damage_rate = 10
+    normal_resistance_rate = 10
+    skill_damage_rate = 10
+    skill_resistance_rate = 10
     rare="LG"
     price=10000000
     price_unit="Ancient_Rune_Crystal_Fire"
@@ -2946,15 +3479,20 @@ def create_pets_database():
                     story=get_story(dir_name)
                     
                     power = calculate_power(
-                        health, physical_attack, physical_defense, magical_attack, magical_defense,
-                        chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                        speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                        damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                        shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
-                        mana, mana_regeneration_rate, 
-                        damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                        damage_to_same_faction_rate, resistance_to_same_faction_rate
-                    )
+                            health, physical_attack, physical_defense, magical_attack, magical_defense,
+                            chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
+                            mana, mana_regeneration_rate, 
+                            damage_to_different_faction_rate, resistance_to_different_faction_rate, 
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
+                        )
                     with open('test.txt', 'a') as file:
                         file.write(
                             "insert into pets values ("
@@ -2967,36 +3505,54 @@ def create_pets_database():
                             + str(0) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
-                            + str(physical_attack or 0) + ","
-                            + str(physical_defense or 0) + ","
-                            + str(magical_attack or 0) + ","
-                            + str(magical_defense or 0) + ","
-                            + str(chemical_attack or 0) + ","
-                            + str(chemical_defense or 0) + ","
-                            + str(atomic_attack or 0) + ","
-                            + str(atomic_defense or 0) + ","
-                            + str(mental_attack or 0) + ","
-                            + str(mental_defense or 0) + ","
-                            + str(speed or 0) + ","
-                            + str(critical_damage_rate or 0) + ","
-                            + str(critical_rate or 0) + ","
-                            + str(penetration_rate or 0) + ","
-                            + str(evasion_rate or 0) + ","
-                            + str(damage_absorption_rate or 0) + ","
-                            + str(vitality_regeneration_rate or 0) + ","
-                            + str(accuracy_rate or 0) + ","
-                            + str(lifesteal_rate or 0) + ","
-                            + str(shield_strength or 0) + ","
-                            + str(tenacity or 0) + ","
-                            + str(resistance_rate or 0) + ","
-                            + str(combo_rate or 0) + ","
-                            + str(reflection_rate or 0) + ","
-                            + str(mana or 0) + ","
-                            + str(mana_regeneration_rate or 0) + ","
-                            + str(damage_to_different_faction_rate or 0) + ","
-                            + str(resistance_to_different_faction_rate or 0) + ","
-                            + str(damage_to_same_faction_rate or 0) + ","
-                            + str(resistance_to_same_faction_rate or 0) + ",'"
+                                + str(physical_attack or 0) + ","
+                                + str(physical_defense or 0) + ","
+                                + str(magical_attack or 0) + ","
+                                + str(magical_defense or 0) + ","
+                                + str(chemical_attack or 0) + ","
+                                + str(chemical_defense or 0) + ","
+                                + str(atomic_attack or 0) + ","
+                                + str(atomic_defense or 0) + ","
+                                + str(mental_attack or 0) + ","
+                                + str(mental_defense or 0) + ","
+                                + str(speed or 0) + ","
+                                + str(critical_damage_rate or 0) + ","
+                                + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
+                                + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
+                                + str(evasion_rate or 0) + ","
+                                + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
+                                + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
+                                + str(accuracy_rate or 0) + ","
+                                + str(lifesteal_rate or 0) + ","
+                                + str(shield_strength or 0) + ","
+                                + str(tenacity or 0) + ","
+                                + str(resistance_rate or 0) + ","
+                                + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
+                                + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
+                                + str(mana or 0) + ","
+                                + str(mana_regeneration_rate or 0) + ","
+                                + str(damage_to_different_faction_rate or 0) + ","
+                                + str(resistance_to_different_faction_rate or 0) + ","
+                                + str(damage_to_same_faction_rate or 0) + ","
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ",'"
                             + (story or '') + "');\n"
                         )
 
@@ -3030,25 +3586,43 @@ def create_symbols_database():
     per_mental_attack=10
     per_mental_defense=10
     speed = 3500000
-    critical_damage_rate = 5
-    critical_rate = 5
-    penetration_rate = 5
-    evasion_rate = 5
-    damage_absorption_rate = 5
-    vitality_regeneration_rate = 5
-    accuracy_rate = 5
-    lifesteal_rate = 5
+    critical_damage_rate = 20
+    critical_rate = 20
+    critical_resistance_rate = 20
+    ignore_critical_rate = 20
+    penetration_rate = 20
+    penetration_resistance_rate = 20
+    evasion_rate = 20
+    damage_absorption_rate = 20
+    ignore_damage_absorption_rate = 20
+    absorbed_damage_rate = 20
+    vitality_regeneration_rate = 20
+    vitality_regeneration_resistance_rate = 20
+    accuracy_rate = 20
+    lifesteal_rate = 20
     shield_strength = 3500000
-    tenacity = 5
-    resistance_rate = 5
-    combo_rate = 5
-    reflection_rate = 5
+    tenacity = 20
+    resistance_rate = 20
+    combo_rate = 20
+    ignore_combo_rate = 20
+    combo_damage_rate = 20
+    combo_resistance_rate = 20
+    stun_rate = 20
+    ignore_stun_rate = 20
+    reflection_rate = 20
+    ignore_reflection_rate = 20
+    reflection_damage_rate = 20
+    reflection_resistance_rate = 20
     mana = 100
-    mana_regeneration_rate = 10
-    damage_to_different_faction_rate = 10
-    resistance_to_different_faction_rate = 10
-    damage_to_same_faction_rate = 10
-    resistance_to_same_faction_rate = 10
+    mana_regeneration_rate = 20
+    damage_to_different_faction_rate = 20
+    resistance_to_different_faction_rate = 20
+    damage_to_same_faction_rate = 20
+    resistance_to_same_faction_rate = 20
+    normal_damage_rate = 20
+    normal_resistance_rate = 20
+    skill_damage_rate = 20
+    skill_resistance_rate = 20
     rare="LG"
     price=10000000
     price_unit="Ancient_Rune_Crystal_Dark"
@@ -3069,15 +3643,20 @@ def create_symbols_database():
                     story=get_story(dir_name)
                     
                     power = calculate_power(
-                        health, physical_attack, physical_defense, magical_attack, magical_defense,
-                        chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                        speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                        damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                        shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
-                        mana, mana_regeneration_rate, 
-                        damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                        damage_to_same_faction_rate, resistance_to_same_faction_rate
-                    )
+                            health, physical_attack, physical_defense, magical_attack, magical_defense,
+                            chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
+                            mana, mana_regeneration_rate, 
+                            damage_to_different_faction_rate, resistance_to_different_faction_rate, 
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
+                        )
                     with open('test.txt', 'a') as file:
                         file.write(
                             "insert into symbols values ("
@@ -3089,36 +3668,54 @@ def create_symbols_database():
                             + (dir_name or '') + "',"
                             + str(power or 0) + ","
                             + str(health or 0) + ","
-                            + str(physical_attack or 0) + ","
-                            + str(physical_defense or 0) + ","
-                            + str(magical_attack or 0) + ","
-                            + str(magical_defense or 0) + ","
-                            + str(chemical_attack or 0) + ","
-                            + str(chemical_defense or 0) + ","
-                            + str(atomic_attack or 0) + ","
-                            + str(atomic_defense or 0) + ","
-                            + str(mental_attack or 0) + ","
-                            + str(mental_defense or 0) + ","
-                            + str(speed or 0) + ","
-                            + str(critical_damage_rate or 0) + ","
-                            + str(critical_rate or 0) + ","
-                            + str(penetration_rate or 0) + ","
-                            + str(evasion_rate or 0) + ","
-                            + str(damage_absorption_rate or 0) + ","
-                            + str(vitality_regeneration_rate or 0) + ","
-                            + str(accuracy_rate or 0) + ","
-                            + str(lifesteal_rate or 0) + ","
-                            + str(shield_strength or 0) + ","
-                            + str(tenacity or 0) + ","
-                            + str(resistance_rate or 0) + ","
-                            + str(combo_rate or 0) + ","
-                            + str(reflection_rate or 0) + ","
-                            + str(mana or 0) + ","
-                            + str(mana_regeneration_rate or 0) + ","
-                            + str(damage_to_different_faction_rate or 0) + ","
-                            + str(resistance_to_different_faction_rate or 0) + ","
-                            + str(damage_to_same_faction_rate or 0) + ","
-                            + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(physical_attack or 0) + ","
+                                + str(physical_defense or 0) + ","
+                                + str(magical_attack or 0) + ","
+                                + str(magical_defense or 0) + ","
+                                + str(chemical_attack or 0) + ","
+                                + str(chemical_defense or 0) + ","
+                                + str(atomic_attack or 0) + ","
+                                + str(atomic_defense or 0) + ","
+                                + str(mental_attack or 0) + ","
+                                + str(mental_defense or 0) + ","
+                                + str(speed or 0) + ","
+                                + str(critical_damage_rate or 0) + ","
+                                + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
+                                + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
+                                + str(evasion_rate or 0) + ","
+                                + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
+                                + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
+                                + str(accuracy_rate or 0) + ","
+                                + str(lifesteal_rate or 0) + ","
+                                + str(shield_strength or 0) + ","
+                                + str(tenacity or 0) + ","
+                                + str(resistance_rate or 0) + ","
+                                + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
+                                + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
+                                + str(mana or 0) + ","
+                                + str(mana_regeneration_rate or 0) + ","
+                                + str(damage_to_different_faction_rate or 0) + ","
+                                + str(resistance_to_different_faction_rate or 0) + ","
+                                + str(damage_to_same_faction_rate or 0) + ","
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ","
                             + str(per_health)+","
                             + str(per_physical_attack) +","
                             + str(per_physical_defense) + ","
@@ -3163,25 +3760,43 @@ def create_medals_database():
     per_mental_attack=10
     per_mental_defense=10
     speed = 3500000
-    critical_damage_rate = 10
-    critical_rate = 10
-    penetration_rate = 10
-    evasion_rate = 10
-    damage_absorption_rate = 10
-    vitality_regeneration_rate = 10
-    accuracy_rate = 10
-    lifesteal_rate = 10
+    critical_damage_rate = 20
+    critical_rate = 20
+    critical_resistance_rate = 20
+    ignore_critical_rate = 20
+    penetration_rate = 20
+    penetration_resistance_rate = 20
+    evasion_rate = 20
+    damage_absorption_rate = 20
+    ignore_damage_absorption_rate = 20
+    absorbed_damage_rate = 20
+    vitality_regeneration_rate = 20
+    vitality_regeneration_resistance_rate = 20
+    accuracy_rate = 20
+    lifesteal_rate = 20
     shield_strength = 3500000
-    tenacity = 10
-    resistance_rate = 10
-    combo_rate = 10
-    reflection_rate = 10
+    tenacity = 20
+    resistance_rate = 20
+    combo_rate = 20
+    ignore_combo_rate = 20
+    combo_damage_rate = 20
+    combo_resistance_rate = 20
+    stun_rate = 20
+    ignore_stun_rate = 20
+    reflection_rate = 20
+    ignore_reflection_rate = 20
+    reflection_damage_rate = 20
+    reflection_resistance_rate = 20
     mana = 100
-    mana_regeneration_rate = 10
-    damage_to_different_faction_rate = 10
-    resistance_to_different_faction_rate = 10
-    damage_to_same_faction_rate = 10
-    resistance_to_same_faction_rate = 10
+    mana_regeneration_rate = 20
+    damage_to_different_faction_rate = 20
+    resistance_to_different_faction_rate = 20
+    damage_to_same_faction_rate = 20
+    resistance_to_same_faction_rate = 20
+    normal_damage_rate = 20
+    normal_resistance_rate = 20
+    skill_damage_rate = 20
+    skill_resistance_rate = 20
     rare="LG"
     path=""
     for root, dirs, files in os.walk(cards_dir):
@@ -3195,15 +3810,20 @@ def create_medals_database():
                 story=get_story("Medal")
                 
                 power = calculate_power(
-                        health, physical_attack, physical_defense, magical_attack, magical_defense,
-                        chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                        speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                        damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                        shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
-                        mana, mana_regeneration_rate, 
-                        damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                        damage_to_same_faction_rate, resistance_to_same_faction_rate
-                    )
+                            health, physical_attack, physical_defense, magical_attack, magical_defense,
+                            chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
+                            mana, mana_regeneration_rate, 
+                            damage_to_different_faction_rate, resistance_to_different_faction_rate, 
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
+                        )
                 with open('test.txt', 'a') as file:
                     file.write(
                             "insert into medals values ("
@@ -3214,36 +3834,54 @@ def create_medals_database():
                             + str(25) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
-                            + str(physical_attack or 0) + ","
-                            + str(physical_defense or 0) + ","
-                            + str(magical_attack or 0) + ","
-                            + str(magical_defense or 0) + ","
-                            + str(chemical_attack or 0) + ","
-                            + str(chemical_defense or 0) + ","
-                            + str(atomic_attack or 0) + ","
-                            + str(atomic_defense or 0) + ","
-                            + str(mental_attack or 0) + ","
-                            + str(mental_defense or 0) + ","
-                            + str(speed or 0) + ","
-                            + str(critical_damage_rate or 0) + ","
-                            + str(critical_rate or 0) + ","
-                            + str(penetration_rate or 0) + ","
-                            + str(evasion_rate or 0) + ","
-                            + str(damage_absorption_rate or 0) + ","
-                            + str(vitality_regeneration_rate or 0) + ","
-                            + str(accuracy_rate or 0) + ","
-                            + str(lifesteal_rate or 0) + ","
-                            + str(shield_strength or 0) + ","
-                            + str(tenacity or 0) + ","
-                            + str(resistance_rate or 0) + ","
-                            + str(combo_rate or 0) + ","
-                            + str(reflection_rate or 0) + ","
-                            + str(mana or 0) + ","
-                            + str(mana_regeneration_rate or 0) + ","
-                            + str(damage_to_different_faction_rate or 0) + ","
-                            + str(resistance_to_different_faction_rate or 0) + ","
-                            + str(damage_to_same_faction_rate or 0) + ","
-                            + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(physical_attack or 0) + ","
+                                + str(physical_defense or 0) + ","
+                                + str(magical_attack or 0) + ","
+                                + str(magical_defense or 0) + ","
+                                + str(chemical_attack or 0) + ","
+                                + str(chemical_defense or 0) + ","
+                                + str(atomic_attack or 0) + ","
+                                + str(atomic_defense or 0) + ","
+                                + str(mental_attack or 0) + ","
+                                + str(mental_defense or 0) + ","
+                                + str(speed or 0) + ","
+                                + str(critical_damage_rate or 0) + ","
+                                + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
+                                + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
+                                + str(evasion_rate or 0) + ","
+                                + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
+                                + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
+                                + str(accuracy_rate or 0) + ","
+                                + str(lifesteal_rate or 0) + ","
+                                + str(shield_strength or 0) + ","
+                                + str(tenacity or 0) + ","
+                                + str(resistance_rate or 0) + ","
+                                + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
+                                + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
+                                + str(mana or 0) + ","
+                                + str(mana_regeneration_rate or 0) + ","
+                                + str(damage_to_different_faction_rate or 0) + ","
+                                + str(resistance_to_different_faction_rate or 0) + ","
+                                + str(damage_to_same_faction_rate or 0) + ","
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ","
                             + str(per_health)+","
                             + str(per_physical_attack) +","
                             + str(per_physical_defense) + ","
@@ -3288,25 +3926,43 @@ def create_achievements_database():
     per_mental_attack=10
     per_mental_defense=10
     speed = 2000000
-    critical_damage_rate = 10
-    critical_rate = 10
-    penetration_rate = 10
-    evasion_rate = 10
-    damage_absorption_rate = 10
-    vitality_regeneration_rate = 10
-    accuracy_rate = 10
-    lifesteal_rate = 10
+    critical_damage_rate = 20
+    critical_rate = 20
+    critical_resistance_rate = 20
+    ignore_critical_rate = 20
+    penetration_rate = 20
+    penetration_resistance_rate = 20
+    evasion_rate = 20
+    damage_absorption_rate = 20
+    ignore_damage_absorption_rate = 20
+    absorbed_damage_rate = 20
+    vitality_regeneration_rate = 20
+    vitality_regeneration_resistance_rate = 20
+    accuracy_rate = 20
+    lifesteal_rate = 20
     shield_strength = 2000000
-    tenacity = 10
-    resistance_rate = 10
-    combo_rate = 10
-    reflection_rate = 10
+    tenacity = 20
+    resistance_rate = 20
+    combo_rate = 20
+    ignore_combo_rate = 20
+    combo_damage_rate = 20
+    combo_resistance_rate = 20
+    stun_rate = 20
+    ignore_stun_rate = 20
+    reflection_rate = 20
+    ignore_reflection_rate = 20
+    reflection_damage_rate = 20
+    reflection_resistance_rate = 20
     mana = 100
-    mana_regeneration_rate = 10
-    damage_to_different_faction_rate = 10
-    resistance_to_different_faction_rate = 10
-    damage_to_same_faction_rate = 10
-    resistance_to_same_faction_rate = 10
+    mana_regeneration_rate = 20
+    damage_to_different_faction_rate = 20
+    resistance_to_different_faction_rate = 20
+    damage_to_same_faction_rate = 20
+    resistance_to_same_faction_rate = 20
+    normal_damage_rate = 20
+    normal_resistance_rate = 20
+    skill_damage_rate = 20
+    skill_resistance_rate = 20
     rare="LG"
     path=""
     for root, dirs, files in os.walk(cards_dir):
@@ -3320,15 +3976,20 @@ def create_achievements_database():
                 story=get_story("Achievement")
                 
                 power = calculate_power(
-                        health, physical_attack, physical_defense, magical_attack, magical_defense,
-                        chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                        speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                        damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                        shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
-                        mana, mana_regeneration_rate, 
-                        damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                        damage_to_same_faction_rate, resistance_to_same_faction_rate
-                    )
+                            health, physical_attack, physical_defense, magical_attack, magical_defense,
+                            chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
+                            mana, mana_regeneration_rate, 
+                            damage_to_different_faction_rate, resistance_to_different_faction_rate, 
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
+                        )
                 with open('test.txt', 'a') as file:
                     file.write(
                             "insert into achievements values ("
@@ -3339,36 +4000,54 @@ def create_achievements_database():
                             + str(25) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
-                            + str(physical_attack or 0) + ","
-                            + str(physical_defense or 0) + ","
-                            + str(magical_attack or 0) + ","
-                            + str(magical_defense or 0) + ","
-                            + str(chemical_attack or 0) + ","
-                            + str(chemical_defense or 0) + ","
-                            + str(atomic_attack or 0) + ","
-                            + str(atomic_defense or 0) + ","
-                            + str(mental_attack or 0) + ","
-                            + str(mental_defense or 0) + ","
-                            + str(speed or 0) + ","
-                            + str(critical_damage_rate or 0) + ","
-                            + str(critical_rate or 0) + ","
-                            + str(penetration_rate or 0) + ","
-                            + str(evasion_rate or 0) + ","
-                            + str(damage_absorption_rate or 0) + ","
-                            + str(vitality_regeneration_rate or 0) + ","
-                            + str(accuracy_rate or 0) + ","
-                            + str(lifesteal_rate or 0) + ","
-                            + str(shield_strength or 0) + ","
-                            + str(tenacity or 0) + ","
-                            + str(resistance_rate or 0) + ","
-                            + str(combo_rate or 0) + ","
-                            + str(reflection_rate or 0) + ","
-                            + str(mana or 0) + ","
-                            + str(mana_regeneration_rate or 0) + ","
-                            + str(damage_to_different_faction_rate or 0) + ","
-                            + str(resistance_to_different_faction_rate or 0) + ","
-                            + str(damage_to_same_faction_rate or 0) + ","
-                            + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(physical_attack or 0) + ","
+                                + str(physical_defense or 0) + ","
+                                + str(magical_attack or 0) + ","
+                                + str(magical_defense or 0) + ","
+                                + str(chemical_attack or 0) + ","
+                                + str(chemical_defense or 0) + ","
+                                + str(atomic_attack or 0) + ","
+                                + str(atomic_defense or 0) + ","
+                                + str(mental_attack or 0) + ","
+                                + str(mental_defense or 0) + ","
+                                + str(speed or 0) + ","
+                                + str(critical_damage_rate or 0) + ","
+                                + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
+                                + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
+                                + str(evasion_rate or 0) + ","
+                                + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
+                                + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
+                                + str(accuracy_rate or 0) + ","
+                                + str(lifesteal_rate or 0) + ","
+                                + str(shield_strength or 0) + ","
+                                + str(tenacity or 0) + ","
+                                + str(resistance_rate or 0) + ","
+                                + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
+                                + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
+                                + str(mana or 0) + ","
+                                + str(mana_regeneration_rate or 0) + ","
+                                + str(damage_to_different_faction_rate or 0) + ","
+                                + str(resistance_to_different_faction_rate or 0) + ","
+                                + str(damage_to_same_faction_rate or 0) + ","
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ","
                             + str(per_health)+","
                             + str(per_physical_attack) +","
                             + str(per_physical_defense) + ","
@@ -3412,25 +4091,43 @@ def create_titles_database():
     per_mental_attack=10
     per_mental_defense=10
     speed = 2000000
-    critical_damage_rate = 10
-    critical_rate = 10
-    penetration_rate = 10
-    evasion_rate = 10
-    damage_absorption_rate = 10
-    vitality_regeneration_rate = 10
-    accuracy_rate = 10
-    lifesteal_rate = 10
+    critical_damage_rate = 20
+    critical_rate = 20
+    critical_resistance_rate = 20
+    ignore_critical_rate = 20
+    penetration_rate = 20
+    penetration_resistance_rate = 20
+    evasion_rate = 20
+    damage_absorption_rate = 20
+    ignore_damage_absorption_rate = 20
+    absorbed_damage_rate = 20
+    vitality_regeneration_rate = 20
+    vitality_regeneration_resistance_rate = 20
+    accuracy_rate = 20
+    lifesteal_rate = 20
     shield_strength = 2000000
-    tenacity = 10
-    resistance_rate = 10
-    combo_rate = 10
-    reflection_rate = 10
+    tenacity = 20
+    resistance_rate = 20
+    combo_rate = 20
+    ignore_combo_rate = 20
+    combo_damage_rate = 20
+    combo_resistance_rate = 20
+    stun_rate = 20
+    ignore_stun_rate = 20
+    reflection_rate = 20
+    ignore_reflection_rate = 20
+    reflection_damage_rate = 20
+    reflection_resistance_rate = 20
     mana = 100
-    mana_regeneration_rate = 10
-    damage_to_different_faction_rate = 10
-    resistance_to_different_faction_rate = 10
-    damage_to_same_faction_rate = 10
-    resistance_to_same_faction_rate = 10
+    mana_regeneration_rate = 20
+    damage_to_different_faction_rate = 20
+    resistance_to_different_faction_rate = 20
+    damage_to_same_faction_rate = 20
+    resistance_to_same_faction_rate = 20
+    normal_damage_rate = 20
+    normal_resistance_rate = 20
+    skill_damage_rate = 20
+    skill_resistance_rate = 20
     rare="LG"
     path=""
     for root, dirs, files in os.walk(cards_dir):
@@ -3444,15 +4141,20 @@ def create_titles_database():
                 story=get_story("Title")
 
                 power = calculate_power(
-                        health, physical_attack, physical_defense, magical_attack, magical_defense,
-                        chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                        speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                        damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                        shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
-                        mana, mana_regeneration_rate, 
-                        damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                        damage_to_same_faction_rate, resistance_to_same_faction_rate
-                    )
+                            health, physical_attack, physical_defense, magical_attack, magical_defense,
+                            chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
+                            mana, mana_regeneration_rate, 
+                            damage_to_different_faction_rate, resistance_to_different_faction_rate, 
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
+                        )
                 with open('test.txt', 'a') as file:
                     file.write(
                             "insert into titles values ("
@@ -3463,36 +4165,54 @@ def create_titles_database():
                             + str(25) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
-                            + str(physical_attack or 0) + ","
-                            + str(physical_defense or 0) + ","
-                            + str(magical_attack or 0) + ","
-                            + str(magical_defense or 0) + ","
-                            + str(chemical_attack or 0) + ","
-                            + str(chemical_defense or 0) + ","
-                            + str(atomic_attack or 0) + ","
-                            + str(atomic_defense or 0) + ","
-                            + str(mental_attack or 0) + ","
-                            + str(mental_defense or 0) + ","
-                            + str(speed or 0) + ","
-                            + str(critical_damage_rate or 0) + ","
-                            + str(critical_rate or 0) + ","
-                            + str(penetration_rate or 0) + ","
-                            + str(evasion_rate or 0) + ","
-                            + str(damage_absorption_rate or 0) + ","
-                            + str(vitality_regeneration_rate or 0) + ","
-                            + str(accuracy_rate or 0) + ","
-                            + str(lifesteal_rate or 0) + ","
-                            + str(shield_strength or 0) + ","
-                            + str(tenacity or 0) + ","
-                            + str(resistance_rate or 0) + ","
-                            + str(combo_rate or 0) + ","
-                            + str(reflection_rate or 0) + ","
-                            + str(mana or 0) + ","
-                            + str(mana_regeneration_rate or 0) + ","
-                            + str(damage_to_different_faction_rate or 0) + ","
-                            + str(resistance_to_different_faction_rate or 0) + ","
-                            + str(damage_to_same_faction_rate or 0) + ","
-                            + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(physical_attack or 0) + ","
+                                + str(physical_defense or 0) + ","
+                                + str(magical_attack or 0) + ","
+                                + str(magical_defense or 0) + ","
+                                + str(chemical_attack or 0) + ","
+                                + str(chemical_defense or 0) + ","
+                                + str(atomic_attack or 0) + ","
+                                + str(atomic_defense or 0) + ","
+                                + str(mental_attack or 0) + ","
+                                + str(mental_defense or 0) + ","
+                                + str(speed or 0) + ","
+                                + str(critical_damage_rate or 0) + ","
+                                + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
+                                + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
+                                + str(evasion_rate or 0) + ","
+                                + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
+                                + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
+                                + str(accuracy_rate or 0) + ","
+                                + str(lifesteal_rate or 0) + ","
+                                + str(shield_strength or 0) + ","
+                                + str(tenacity or 0) + ","
+                                + str(resistance_rate or 0) + ","
+                                + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
+                                + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
+                                + str(mana or 0) + ","
+                                + str(mana_regeneration_rate or 0) + ","
+                                + str(damage_to_different_faction_rate or 0) + ","
+                                + str(resistance_to_different_faction_rate or 0) + ","
+                                + str(damage_to_same_faction_rate or 0) + ","
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ","
                             + str(per_health)+","
                             + str(per_physical_attack) +","
                             + str(per_physical_defense) + ","
@@ -3523,25 +4243,43 @@ def create_monster_database():
     mental_attack=5000000*5
     mental_defense=5000000*5
     speed = 5000000*5
-    critical_damage_rate = 50
-    critical_rate = 50
-    penetration_rate = 50
-    evasion_rate = 50
-    damage_absorption_rate = 50
-    vitality_regeneration_rate = 50
-    accuracy_rate = 50
-    lifesteal_rate = 50
+    critical_damage_rate = 10
+    critical_rate = 10
+    critical_resistance_rate = 10
+    ignore_critical_rate = 10
+    penetration_rate = 10
+    penetration_resistance_rate = 10
+    evasion_rate = 10
+    damage_absorption_rate = 10
+    ignore_damage_absorption_rate = 10
+    absorbed_damage_rate = 10
+    vitality_regeneration_rate = 10
+    vitality_regeneration_resistance_rate = 10
+    accuracy_rate = 10
+    lifesteal_rate = 10
     shield_strength = 5000000*5
-    tenacity = 50
-    resistance_rate = 50
-    combo_rate = 50
-    reflection_rate = 50
+    tenacity = 10
+    resistance_rate = 10
+    combo_rate = 10
+    ignore_combo_rate = 10
+    combo_damage_rate = 10
+    combo_resistance_rate = 10
+    stun_rate = 10
+    ignore_stun_rate = 10
+    reflection_rate = 10
+    ignore_reflection_rate = 10
+    reflection_damage_rate = 10
+    reflection_resistance_rate = 10
     mana = 100
-    mana_regeneration_rate = 50
-    damage_to_different_faction_rate = 50
-    resistance_to_different_faction_rate = 50
-    damage_to_same_faction_rate = 50
-    resistance_to_same_faction_rate = 50
+    mana_regeneration_rate = 10
+    damage_to_different_faction_rate = 10
+    resistance_to_different_faction_rate = 10
+    damage_to_same_faction_rate = 10
+    resistance_to_same_faction_rate = 10
+    normal_damage_rate = 10
+    normal_resistance_rate = 10
+    skill_damage_rate = 10
+    skill_resistance_rate = 10
     rare="LG"
     path=""
     for root, dirs, files in os.walk(cards_dir):
@@ -3558,15 +4296,20 @@ def create_monster_database():
                     story = get_story(dir_name)
                     
                     power = calculate_power(
-                        health, physical_attack, physical_defense, magical_attack, magical_defense,
-                        chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                        speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                        damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                        shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
-                        mana, mana_regeneration_rate, 
-                        damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                        damage_to_same_faction_rate, resistance_to_same_faction_rate
-                    )
+                            health, physical_attack, physical_defense, magical_attack, magical_defense,
+                            chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
+                            mana, mana_regeneration_rate, 
+                            damage_to_different_faction_rate, resistance_to_different_faction_rate, 
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
+                        )
                     # print(str(physical_attack))
                     with open('test.txt', 'a') as file:
                         file.write(
@@ -3580,36 +4323,54 @@ def create_monster_database():
                             + str(0) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
-                            + str(physical_attack or 0) + ","
-                            + str(physical_defense or 0) + ","
-                            + str(magical_attack or 0) + ","
-                            + str(magical_defense or 0) + ","
-                            + str(chemical_attack or 0) + ","
-                            + str(chemical_defense or 0) + ","
-                            + str(atomic_attack or 0) + ","
-                            + str(atomic_defense or 0) + ","
-                            + str(mental_attack or 0) + ","
-                            + str(mental_defense or 0) + ","
-                            + str(speed or 0) + ","
-                            + str(critical_damage_rate or 0) + ","
-                            + str(critical_rate or 0) + ","
-                            + str(penetration_rate or 0) + ","
-                            + str(evasion_rate or 0) + ","
-                            + str(damage_absorption_rate or 0) + ","
-                            + str(vitality_regeneration_rate or 0) + ","
-                            + str(accuracy_rate or 0) + ","
-                            + str(lifesteal_rate or 0) + ","
-                            + str(shield_strength or 0) + ","
-                            + str(tenacity or 0) + ","
-                            + str(resistance_rate or 0) + ","
-                            + str(combo_rate or 0) + ","
-                            + str(reflection_rate or 0) + ","
-                            + str(mana or 0) + ","
-                            + str(mana_regeneration_rate or 0) + ","
-                            + str(damage_to_different_faction_rate or 0) + ","
-                            + str(resistance_to_different_faction_rate or 0) + ","
-                            + str(damage_to_same_faction_rate or 0) + ","
-                            + str(resistance_to_same_faction_rate or 0) + ",'"
+                                + str(physical_attack or 0) + ","
+                                + str(physical_defense or 0) + ","
+                                + str(magical_attack or 0) + ","
+                                + str(magical_defense or 0) + ","
+                                + str(chemical_attack or 0) + ","
+                                + str(chemical_defense or 0) + ","
+                                + str(atomic_attack or 0) + ","
+                                + str(atomic_defense or 0) + ","
+                                + str(mental_attack or 0) + ","
+                                + str(mental_defense or 0) + ","
+                                + str(speed or 0) + ","
+                                + str(critical_damage_rate or 0) + ","
+                                + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
+                                + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
+                                + str(evasion_rate or 0) + ","
+                                + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
+                                + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
+                                + str(accuracy_rate or 0) + ","
+                                + str(lifesteal_rate or 0) + ","
+                                + str(shield_strength or 0) + ","
+                                + str(tenacity or 0) + ","
+                                + str(resistance_rate or 0) + ","
+                                + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
+                                + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
+                                + str(mana or 0) + ","
+                                + str(mana_regeneration_rate or 0) + ","
+                                + str(damage_to_different_faction_rate or 0) + ","
+                                + str(resistance_to_different_faction_rate or 0) + ","
+                                + str(damage_to_same_faction_rate or 0) + ","
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ",'"
                             + (story or '') + "');\n"
                         )
                     id=id+1
@@ -3644,23 +4405,41 @@ def create_borders_database():
     speed = 2000000
     critical_damage_rate = 10
     critical_rate = 10
+    critical_resistance_rate = 10
+    ignore_critical_rate = 10
     penetration_rate = 10
+    penetration_resistance_rate = 10
     evasion_rate = 10
     damage_absorption_rate = 10
+    ignore_damage_absorption_rate = 10
+    absorbed_damage_rate = 10
     vitality_regeneration_rate = 10
+    vitality_regeneration_resistance_rate = 10
     accuracy_rate = 10
     lifesteal_rate = 10
     shield_strength = 2000000
     tenacity = 10
     resistance_rate = 10
     combo_rate = 10
+    ignore_combo_rate = 10
+    combo_damage_rate = 10
+    combo_resistance_rate = 10
+    stun_rate = 10
+    ignore_stun_rate = 10
     reflection_rate = 10
+    ignore_reflection_rate = 10
+    reflection_damage_rate = 10
+    reflection_resistance_rate = 10
     mana = 100
     mana_regeneration_rate = 10
     damage_to_different_faction_rate = 10
     resistance_to_different_faction_rate = 10
     damage_to_same_faction_rate = 10
     resistance_to_same_faction_rate = 10
+    normal_damage_rate = 10
+    normal_resistance_rate = 10
+    skill_damage_rate = 10
+    skill_resistance_rate = 10
     rare="LG"
     path=""
     for root, dirs, files in os.walk(cards_dir):
@@ -3674,15 +4453,20 @@ def create_borders_database():
                 story=get_story("Border")
             
                 power = calculate_power(
-                        health, physical_attack, physical_defense, magical_attack, magical_defense,
-                        chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                        speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                        damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                        shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
-                        mana, mana_regeneration_rate, 
-                        damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                        damage_to_same_faction_rate, resistance_to_same_faction_rate
-                    )
+                            health, physical_attack, physical_defense, magical_attack, magical_defense,
+                            chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
+                            mana, mana_regeneration_rate, 
+                            damage_to_different_faction_rate, resistance_to_different_faction_rate, 
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
+                        )
                 with open('test.txt', 'a') as file:
                     file.write(
                             "insert into borders values ("
@@ -3693,36 +4477,54 @@ def create_borders_database():
                             + str(25) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
-                            + str(physical_attack or 0) + ","
-                            + str(physical_defense or 0) + ","
-                            + str(magical_attack or 0) + ","
-                            + str(magical_defense or 0) + ","
-                            + str(chemical_attack or 0) + ","
-                            + str(chemical_defense or 0) + ","
-                            + str(atomic_attack or 0) + ","
-                            + str(atomic_defense or 0) + ","
-                            + str(mental_attack or 0) + ","
-                            + str(mental_defense or 0) + ","
-                            + str(speed or 0) + ","
-                            + str(critical_damage_rate or 0) + ","
-                            + str(critical_rate or 0) + ","
-                            + str(penetration_rate or 0) + ","
-                            + str(evasion_rate or 0) + ","
-                            + str(damage_absorption_rate or 0) + ","
-                            + str(vitality_regeneration_rate or 0) + ","
-                            + str(accuracy_rate or 0) + ","
-                            + str(lifesteal_rate or 0) + ","
-                            + str(shield_strength or 0) + ","
-                            + str(tenacity or 0) + ","
-                            + str(resistance_rate or 0) + ","
-                            + str(combo_rate or 0) + ","
-                            + str(reflection_rate or 0) + ","
-                            + str(mana or 0) + ","
-                            + str(mana_regeneration_rate or 0) + ","
-                            + str(damage_to_different_faction_rate or 0) + ","
-                            + str(resistance_to_different_faction_rate or 0) + ","
-                            + str(damage_to_same_faction_rate or 0) + ","
-                            + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(physical_attack or 0) + ","
+                                + str(physical_defense or 0) + ","
+                                + str(magical_attack or 0) + ","
+                                + str(magical_defense or 0) + ","
+                                + str(chemical_attack or 0) + ","
+                                + str(chemical_defense or 0) + ","
+                                + str(atomic_attack or 0) + ","
+                                + str(atomic_defense or 0) + ","
+                                + str(mental_attack or 0) + ","
+                                + str(mental_defense or 0) + ","
+                                + str(speed or 0) + ","
+                                + str(critical_damage_rate or 0) + ","
+                                + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
+                                + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
+                                + str(evasion_rate or 0) + ","
+                                + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
+                                + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
+                                + str(accuracy_rate or 0) + ","
+                                + str(lifesteal_rate or 0) + ","
+                                + str(shield_strength or 0) + ","
+                                + str(tenacity or 0) + ","
+                                + str(resistance_rate or 0) + ","
+                                + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
+                                + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
+                                + str(mana or 0) + ","
+                                + str(mana_regeneration_rate or 0) + ","
+                                + str(damage_to_different_faction_rate or 0) + ","
+                                + str(resistance_to_different_faction_rate or 0) + ","
+                                + str(damage_to_same_faction_rate or 0) + ","
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ","
                             + str(per_health)+","
                             + str(per_physical_attack) +","
                             + str(per_physical_defense) + ","
@@ -3766,25 +4568,43 @@ def create_avatars_database():
     per_mental_attack=10
     per_mental_defense=10
     speed = 2000000
-    critical_damage_rate = 10
-    critical_rate = 10
-    penetration_rate = 10
-    evasion_rate = 10
-    damage_absorption_rate = 10
-    vitality_regeneration_rate = 10
-    accuracy_rate = 10
-    lifesteal_rate = 10
+    critical_damage_rate = 20
+    critical_rate = 20
+    critical_resistance_rate = 20
+    ignore_critical_rate = 20
+    penetration_rate = 20
+    penetration_resistance_rate = 20
+    evasion_rate = 20
+    damage_absorption_rate = 20
+    ignore_damage_absorption_rate = 20
+    absorbed_damage_rate = 20
+    vitality_regeneration_rate = 20
+    vitality_regeneration_resistance_rate = 20
+    accuracy_rate = 20
+    lifesteal_rate = 20
     shield_strength = 2000000
-    tenacity = 10
-    resistance_rate = 10
-    combo_rate = 10
-    reflection_rate = 10
+    tenacity = 20
+    resistance_rate = 20
+    combo_rate = 20
+    ignore_combo_rate = 20
+    combo_damage_rate = 20
+    combo_resistance_rate = 20
+    stun_rate = 20
+    ignore_stun_rate = 20
+    reflection_rate = 20
+    ignore_reflection_rate = 20
+    reflection_damage_rate = 20
+    reflection_resistance_rate = 20
     mana = 100
-    mana_regeneration_rate = 10
-    damage_to_different_faction_rate = 10
-    resistance_to_different_faction_rate = 10
-    damage_to_same_faction_rate = 10
-    resistance_to_same_faction_rate = 10
+    mana_regeneration_rate = 20
+    damage_to_different_faction_rate = 20
+    resistance_to_different_faction_rate = 20
+    damage_to_same_faction_rate = 20
+    resistance_to_same_faction_rate = 20
+    normal_damage_rate = 20
+    normal_resistance_rate = 20
+    skill_damage_rate = 20
+    skill_resistance_rate = 20
     rare="LG"
     path=""
     for root, dirs, files in os.walk(cards_dir):
@@ -3798,15 +4618,20 @@ def create_avatars_database():
                 story=get_story("Border")
             
                 power = calculate_power(
-                        health, physical_attack, physical_defense, magical_attack, magical_defense,
-                        chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                        speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                        damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                        shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
-                        mana, mana_regeneration_rate, 
-                        damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                        damage_to_same_faction_rate, resistance_to_same_faction_rate
-                    )
+                            health, physical_attack, physical_defense, magical_attack, magical_defense,
+                            chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
+                            mana, mana_regeneration_rate, 
+                            damage_to_different_faction_rate, resistance_to_different_faction_rate, 
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
+                        )
                 with open('test.txt', 'a') as file:
                     file.write(
                             "insert into avatars values ("
@@ -3817,36 +4642,54 @@ def create_avatars_database():
                             + str(25) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
-                            + str(physical_attack or 0) + ","
-                            + str(physical_defense or 0) + ","
-                            + str(magical_attack or 0) + ","
-                            + str(magical_defense or 0) + ","
-                            + str(chemical_attack or 0) + ","
-                            + str(chemical_defense or 0) + ","
-                            + str(atomic_attack or 0) + ","
-                            + str(atomic_defense or 0) + ","
-                            + str(mental_attack or 0) + ","
-                            + str(mental_defense or 0) + ","
-                            + str(speed or 0) + ","
-                            + str(critical_damage_rate or 0) + ","
-                            + str(critical_rate or 0) + ","
-                            + str(penetration_rate or 0) + ","
-                            + str(evasion_rate or 0) + ","
-                            + str(damage_absorption_rate or 0) + ","
-                            + str(vitality_regeneration_rate or 0) + ","
-                            + str(accuracy_rate or 0) + ","
-                            + str(lifesteal_rate or 0) + ","
-                            + str(shield_strength or 0) + ","
-                            + str(tenacity or 0) + ","
-                            + str(resistance_rate or 0) + ","
-                            + str(combo_rate or 0) + ","
-                            + str(reflection_rate or 0) + ","
-                            + str(mana or 0) + ","
-                            + str(mana_regeneration_rate or 0) + ","
-                            + str(damage_to_different_faction_rate or 0) + ","
-                            + str(resistance_to_different_faction_rate or 0) + ","
-                            + str(damage_to_same_faction_rate or 0) + ","
-                            + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(physical_attack or 0) + ","
+                                + str(physical_defense or 0) + ","
+                                + str(magical_attack or 0) + ","
+                                + str(magical_defense or 0) + ","
+                                + str(chemical_attack or 0) + ","
+                                + str(chemical_defense or 0) + ","
+                                + str(atomic_attack or 0) + ","
+                                + str(atomic_defense or 0) + ","
+                                + str(mental_attack or 0) + ","
+                                + str(mental_defense or 0) + ","
+                                + str(speed or 0) + ","
+                                + str(critical_damage_rate or 0) + ","
+                                + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
+                                + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
+                                + str(evasion_rate or 0) + ","
+                                + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
+                                + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
+                                + str(accuracy_rate or 0) + ","
+                                + str(lifesteal_rate or 0) + ","
+                                + str(shield_strength or 0) + ","
+                                + str(tenacity or 0) + ","
+                                + str(resistance_rate or 0) + ","
+                                + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
+                                + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
+                                + str(mana or 0) + ","
+                                + str(mana_regeneration_rate or 0) + ","
+                                + str(damage_to_different_faction_rate or 0) + ","
+                                + str(resistance_to_different_faction_rate or 0) + ","
+                                + str(damage_to_same_faction_rate or 0) + ","
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ","
                             + str(per_health)+","
                             + str(per_physical_attack) +","
                             + str(per_physical_defense) + ","
@@ -3981,23 +4824,41 @@ def create_equipments_database():
     speed = 200000000
     critical_damage_rate = 10
     critical_rate = 10
+    critical_resistance_rate = 10
+    ignore_critical_rate = 10
     penetration_rate = 10
+    penetration_resistance_rate = 10
     evasion_rate = 10
     damage_absorption_rate = 10
+    ignore_damage_absorption_rate = 10
+    absorbed_damage_rate = 10
     vitality_regeneration_rate = 10
+    vitality_regeneration_resistance_rate = 10
     accuracy_rate = 10
     lifesteal_rate = 10
     shield_strength = 200000000
     tenacity = 10
     resistance_rate = 10
     combo_rate = 10
+    ignore_combo_rate = 10
+    combo_damage_rate = 10
+    combo_resistance_rate = 10
+    stun_rate = 10
+    ignore_stun_rate = 10
     reflection_rate = 10
+    ignore_reflection_rate = 10
+    reflection_damage_rate = 10
+    reflection_resistance_rate = 10
     mana = 100
     mana_regeneration_rate = 10
     damage_to_different_faction_rate = 10
     resistance_to_different_faction_rate = 10
     damage_to_same_faction_rate = 10
     resistance_to_same_faction_rate = 10
+    normal_damage_rate = 10
+    normal_resistance_rate = 10
+    skill_damage_rate = 10
+    skill_resistance_rate = 10
     rare="LG"
     price=100000
     price_unit=""
@@ -4062,12 +4923,17 @@ def create_equipments_database():
                             power = calculate_power(
                                 health, physical_attack, physical_defense, magical_attack, magical_defense,
                                 chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                                speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                                damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                                shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
+                                speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                                penetration_rate, penetration_resistance_rate, evasion_rate, 
+                                damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                                vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                                shield_strength, tenacity, resistance_rate, 
+                                combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                                reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
                                 mana, mana_regeneration_rate, 
                                 damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                                damage_to_same_faction_rate, resistance_to_same_faction_rate
+                                damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                                normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
                             )
                             with open('test.txt', 'a') as file:
                                 file.write(
@@ -4081,37 +4947,55 @@ def create_equipments_database():
                                     + set1_folder_name + "',"
                                     + str(0) + ","
                                     + str(power) + ","
-                                    + str(health) + ","
-                                    + str(physical_attack) + ","
-                                    + str(physical_defense) + ","
-                                    + str(magical_attack) + ","
-                                    + str(magical_defense) + ","
-                                    + str(chemical_attack) + ","
-                                    + str(chemical_defense) + ","
-                                    + str(atomic_attack) + ","
-                                    + str(atomic_defense) + ","
-                                    + str(mental_attack) + ","
-                                    + str(mental_defense) + ","
-                                    + str(speed or 0) + ","
-                                    + str(critical_damage_rate or 0) + ","
-                                    + str(critical_rate or 0) + ","
-                                    + str(penetration_rate or 0) + ","
-                                    + str(evasion_rate or 0) + ","
-                                    + str(damage_absorption_rate or 0) + ","
-                                    + str(vitality_regeneration_rate or 0) + ","
-                                    + str(accuracy_rate or 0) + ","
-                                    + str(lifesteal_rate or 0) + ","
-                                    + str(shield_strength or 0) + ","
-                                    + str(tenacity or 0) + ","
-                                    + str(resistance_rate or 0) + ","
-                                    + str(combo_rate or 0) + ","
-                                    + str(reflection_rate or 0) + ","
-                                    + str(mana or 0) + ","
-                                    + str(mana_regeneration_rate or 0) + ","
-                                    + str(damage_to_different_faction_rate or 0) + ","
-                                    + str(resistance_to_different_faction_rate or 0) + ","
-                                    + str(damage_to_same_faction_rate or 0) + ","
-                                    + str(resistance_to_same_faction_rate or 0) + ","
+                                    + str(health or 0) + ","
+                                + str(physical_attack or 0) + ","
+                                + str(physical_defense or 0) + ","
+                                + str(magical_attack or 0) + ","
+                                + str(magical_defense or 0) + ","
+                                + str(chemical_attack or 0) + ","
+                                + str(chemical_defense or 0) + ","
+                                + str(atomic_attack or 0) + ","
+                                + str(atomic_defense or 0) + ","
+                                + str(mental_attack or 0) + ","
+                                + str(mental_defense or 0) + ","
+                                + str(speed or 0) + ","
+                                + str(critical_damage_rate or 0) + ","
+                                + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
+                                + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
+                                + str(evasion_rate or 0) + ","
+                                + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
+                                + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
+                                + str(accuracy_rate or 0) + ","
+                                + str(lifesteal_rate or 0) + ","
+                                + str(shield_strength or 0) + ","
+                                + str(tenacity or 0) + ","
+                                + str(resistance_rate or 0) + ","
+                                + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
+                                + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
+                                + str(mana or 0) + ","
+                                + str(mana_regeneration_rate or 0) + ","
+                                + str(damage_to_different_faction_rate or 0) + ","
+                                + str(resistance_to_different_faction_rate or 0) + ","
+                                + str(damage_to_same_faction_rate or 0) + ","
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ","
                                     + str(list(variables.values())[0]) + ","
                                     + str(list(variables.values())[1]) + ","
                                     + str(list(variables.values())[2]) + ","
@@ -4161,12 +5045,17 @@ def create_equipments_database():
                             power = calculate_power(
                                 health, physical_attack, physical_defense, magical_attack, magical_defense,
                                 chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                                speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                                damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                                shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
+                                speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                                penetration_rate, penetration_resistance_rate, evasion_rate, 
+                                damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                                vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                                shield_strength, tenacity, resistance_rate, 
+                                combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                                reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
                                 mana, mana_regeneration_rate, 
                                 damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                                damage_to_same_faction_rate, resistance_to_same_faction_rate
+                                damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                                normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
                             )
                             with open('test.txt', 'a') as file:
                                 file.write(
@@ -4180,37 +5069,55 @@ def create_equipments_database():
                                     + set1_folder_name + "',"
                                     + str(0) + ","
                                     + str(power) + ","
-                                    + str(health) + ","
-                                    + str(physical_attack) + ","
-                                    + str(physical_defense) + ","
-                                    + str(magical_attack) + ","
-                                    + str(magical_defense) + ","
-                                    + str(chemical_attack) + ","
-                                    + str(chemical_defense) + ","
-                                    + str(atomic_attack) + ","
-                                    + str(atomic_defense) + ","
-                                    + str(mental_attack) + ","
-                                    + str(mental_defense) + ","
-                                    + str(speed or 0) + ","
-                                    + str(critical_damage_rate or 0) + ","
-                                    + str(critical_rate or 0) + ","
-                                    + str(penetration_rate or 0) + ","
-                                    + str(evasion_rate or 0) + ","
-                                    + str(damage_absorption_rate or 0) + ","
-                                    + str(vitality_regeneration_rate or 0) + ","
-                                    + str(accuracy_rate or 0) + ","
-                                    + str(lifesteal_rate or 0) + ","
-                                    + str(shield_strength or 0) + ","
-                                    + str(tenacity or 0) + ","
-                                    + str(resistance_rate or 0) + ","
-                                    + str(combo_rate or 0) + ","
-                                    + str(reflection_rate or 0) + ","
-                                    + str(mana or 0) + ","
-                                    + str(mana_regeneration_rate or 0) + ","
-                                    + str(damage_to_different_faction_rate or 0) + ","
-                                    + str(resistance_to_different_faction_rate or 0) + ","
-                                    + str(damage_to_same_faction_rate or 0) + ","
-                                    + str(resistance_to_same_faction_rate or 0) + ","
+                                    + str(health or 0) + ","
+                                + str(physical_attack or 0) + ","
+                                + str(physical_defense or 0) + ","
+                                + str(magical_attack or 0) + ","
+                                + str(magical_defense or 0) + ","
+                                + str(chemical_attack or 0) + ","
+                                + str(chemical_defense or 0) + ","
+                                + str(atomic_attack or 0) + ","
+                                + str(atomic_defense or 0) + ","
+                                + str(mental_attack or 0) + ","
+                                + str(mental_defense or 0) + ","
+                                + str(speed or 0) + ","
+                                + str(critical_damage_rate or 0) + ","
+                                + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
+                                + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
+                                + str(evasion_rate or 0) + ","
+                                + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
+                                + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
+                                + str(accuracy_rate or 0) + ","
+                                + str(lifesteal_rate or 0) + ","
+                                + str(shield_strength or 0) + ","
+                                + str(tenacity or 0) + ","
+                                + str(resistance_rate or 0) + ","
+                                + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
+                                + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
+                                + str(mana or 0) + ","
+                                + str(mana_regeneration_rate or 0) + ","
+                                + str(damage_to_different_faction_rate or 0) + ","
+                                + str(resistance_to_different_faction_rate or 0) + ","
+                                + str(damage_to_same_faction_rate or 0) + ","
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ","
                                     + str(list(variables.values())[0]) + ","
                                     + str(list(variables.values())[1]) + ","
                                     + str(list(variables.values())[2]) + ","
@@ -4259,12 +5166,17 @@ def create_equipments_database():
                             power = calculate_power(
                                 health, physical_attack, physical_defense, magical_attack, magical_defense,
                                 chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                                speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                                damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                                shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
+                                speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                                penetration_rate, penetration_resistance_rate, evasion_rate, 
+                                damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                                vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                                shield_strength, tenacity, resistance_rate, 
+                                combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                                reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
                                 mana, mana_regeneration_rate, 
                                 damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                                damage_to_same_faction_rate, resistance_to_same_faction_rate
+                                damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                                normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
                             )
                             with open('test.txt', 'a') as file:
                                 file.write(
@@ -4278,37 +5190,55 @@ def create_equipments_database():
                                     + set1_folder_name + "',"
                                     + str(0) + ","
                                     + str(power) + ","
-                                    + str(health) + ","
-                                    + str(physical_attack) + ","
-                                    + str(physical_defense) + ","
-                                    + str(magical_attack) + ","
-                                    + str(magical_defense) + ","
-                                    + str(chemical_attack) + ","
-                                    + str(chemical_defense) + ","
-                                    + str(atomic_attack) + ","
-                                    + str(atomic_defense) + ","
-                                    + str(mental_attack) + ","
-                                    + str(mental_defense) + ","
-                                    + str(speed or 0) + ","
-                                    + str(critical_damage_rate or 0) + ","
-                                    + str(critical_rate or 0) + ","
-                                    + str(penetration_rate or 0) + ","
-                                    + str(evasion_rate or 0) + ","
-                                    + str(damage_absorption_rate or 0) + ","
-                                    + str(vitality_regeneration_rate or 0) + ","
-                                    + str(accuracy_rate or 0) + ","
-                                    + str(lifesteal_rate or 0) + ","
-                                    + str(shield_strength or 0) + ","
-                                    + str(tenacity or 0) + ","
-                                    + str(resistance_rate or 0) + ","
-                                    + str(combo_rate or 0) + ","
-                                    + str(reflection_rate or 0) + ","
-                                    + str(mana or 0) + ","
-                                    + str(mana_regeneration_rate or 0) + ","
-                                    + str(damage_to_different_faction_rate or 0) + ","
-                                    + str(resistance_to_different_faction_rate or 0) + ","
-                                    + str(damage_to_same_faction_rate or 0) + ","
-                                    + str(resistance_to_same_faction_rate or 0) + ","
+                                    + str(health or 0) + ","
+                                + str(physical_attack or 0) + ","
+                                + str(physical_defense or 0) + ","
+                                + str(magical_attack or 0) + ","
+                                + str(magical_defense or 0) + ","
+                                + str(chemical_attack or 0) + ","
+                                + str(chemical_defense or 0) + ","
+                                + str(atomic_attack or 0) + ","
+                                + str(atomic_defense or 0) + ","
+                                + str(mental_attack or 0) + ","
+                                + str(mental_defense or 0) + ","
+                                + str(speed or 0) + ","
+                                + str(critical_damage_rate or 0) + ","
+                                + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
+                                + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
+                                + str(evasion_rate or 0) + ","
+                                + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
+                                + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
+                                + str(accuracy_rate or 0) + ","
+                                + str(lifesteal_rate or 0) + ","
+                                + str(shield_strength or 0) + ","
+                                + str(tenacity or 0) + ","
+                                + str(resistance_rate or 0) + ","
+                                + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
+                                + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
+                                + str(mana or 0) + ","
+                                + str(mana_regeneration_rate or 0) + ","
+                                + str(damage_to_different_faction_rate or 0) + ","
+                                + str(resistance_to_different_faction_rate or 0) + ","
+                                + str(damage_to_same_faction_rate or 0) + ","
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ","
                                     + str(list(variables.values())[0]) + ","
                                     + str(list(variables.values())[1]) + ","
                                     + str(list(variables.values())[2]) + ","
@@ -4442,12 +5372,17 @@ def create_equipments_database():
                             power = calculate_power(
                                 health, physical_attack, physical_defense, magical_attack, magical_defense,
                                 chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                                speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                                damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                                shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
+                                speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                                penetration_rate, penetration_resistance_rate, evasion_rate, 
+                                damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                                vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                                shield_strength, tenacity, resistance_rate, 
+                                combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                                reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
                                 mana, mana_regeneration_rate, 
                                 damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                                damage_to_same_faction_rate, resistance_to_same_faction_rate
+                                damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                                normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
                             )
                             with open('test.txt', 'a') as file:
                                 file.write(
@@ -4461,37 +5396,55 @@ def create_equipments_database():
                                     + set1_folder_name + "',"
                                     + str(0) + ","
                                     + str(power) + ","
-                                    + str(health) + ","
-                                    + str(physical_attack) + ","
-                                    + str(physical_defense) + ","
-                                    + str(magical_attack) + ","
-                                    + str(magical_defense) + ","
-                                    + str(chemical_attack) + ","
-                                    + str(chemical_defense) + ","
-                                    + str(atomic_attack) + ","
-                                    + str(atomic_defense) + ","
-                                    + str(mental_attack) + ","
-                                    + str(mental_defense) + ","
-                                    + str(speed or 0) + ","
-                                    + str(critical_damage_rate or 0) + ","
-                                    + str(critical_rate or 0) + ","
-                                    + str(penetration_rate or 0) + ","
-                                    + str(evasion_rate or 0) + ","
-                                    + str(damage_absorption_rate or 0) + ","
-                                    + str(vitality_regeneration_rate or 0) + ","
-                                    + str(accuracy_rate or 0) + ","
-                                    + str(lifesteal_rate or 0) + ","
-                                    + str(shield_strength or 0) + ","
-                                    + str(tenacity or 0) + ","
-                                    + str(resistance_rate or 0) + ","
-                                    + str(combo_rate or 0) + ","
-                                    + str(reflection_rate or 0) + ","
-                                    + str(mana or 0) + ","
-                                    + str(mana_regeneration_rate or 0) + ","
-                                    + str(damage_to_different_faction_rate or 0) + ","
-                                    + str(resistance_to_different_faction_rate or 0) + ","
-                                    + str(damage_to_same_faction_rate or 0) + ","
-                                    + str(resistance_to_same_faction_rate or 0) + ","
+                                    + str(health or 0) + ","
+                                + str(physical_attack or 0) + ","
+                                + str(physical_defense or 0) + ","
+                                + str(magical_attack or 0) + ","
+                                + str(magical_defense or 0) + ","
+                                + str(chemical_attack or 0) + ","
+                                + str(chemical_defense or 0) + ","
+                                + str(atomic_attack or 0) + ","
+                                + str(atomic_defense or 0) + ","
+                                + str(mental_attack or 0) + ","
+                                + str(mental_defense or 0) + ","
+                                + str(speed or 0) + ","
+                                + str(critical_damage_rate or 0) + ","
+                                + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
+                                + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
+                                + str(evasion_rate or 0) + ","
+                                + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
+                                + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
+                                + str(accuracy_rate or 0) + ","
+                                + str(lifesteal_rate or 0) + ","
+                                + str(shield_strength or 0) + ","
+                                + str(tenacity or 0) + ","
+                                + str(resistance_rate or 0) + ","
+                                + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
+                                + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
+                                + str(mana or 0) + ","
+                                + str(mana_regeneration_rate or 0) + ","
+                                + str(damage_to_different_faction_rate or 0) + ","
+                                + str(resistance_to_different_faction_rate or 0) + ","
+                                + str(damage_to_same_faction_rate or 0) + ","
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ","
                                     + str(list(variables.values())[0]) + ","
                                     + str(list(variables.values())[1]) + ","
                                     + str(list(variables.values())[2]) + ","
@@ -4540,12 +5493,17 @@ def create_equipments_database():
                             power = calculate_power(
                                 health, physical_attack, physical_defense, magical_attack, magical_defense,
                                 chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                                speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                                damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                                shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
+                                speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                                penetration_rate, penetration_resistance_rate, evasion_rate, 
+                                damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                                vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                                shield_strength, tenacity, resistance_rate, 
+                                combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                                reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
                                 mana, mana_regeneration_rate, 
                                 damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                                damage_to_same_faction_rate, resistance_to_same_faction_rate
+                                damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                                normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
                             )
                             with open('test.txt', 'a') as file:
                                 file.write(
@@ -4559,37 +5517,55 @@ def create_equipments_database():
                                     + set1_folder_name + "',"
                                     + str(0) + ","
                                     + str(power) + ","
-                                    + str(health) + ","
-                                    + str(physical_attack) + ","
-                                    + str(physical_defense) + ","
-                                    + str(magical_attack) + ","
-                                    + str(magical_defense) + ","
-                                    + str(chemical_attack) + ","
-                                    + str(chemical_defense) + ","
-                                    + str(atomic_attack) + ","
-                                    + str(atomic_defense) + ","
-                                    + str(mental_attack) + ","
-                                    + str(mental_defense) + ","
-                                    + str(speed or 0) + ","
-                                    + str(critical_damage_rate or 0) + ","
-                                    + str(critical_rate or 0) + ","
-                                    + str(penetration_rate or 0) + ","
-                                    + str(evasion_rate or 0) + ","
-                                    + str(damage_absorption_rate or 0) + ","
-                                    + str(vitality_regeneration_rate or 0) + ","
-                                    + str(accuracy_rate or 0) + ","
-                                    + str(lifesteal_rate or 0) + ","
-                                    + str(shield_strength or 0) + ","
-                                    + str(tenacity or 0) + ","
-                                    + str(resistance_rate or 0) + ","
-                                    + str(combo_rate or 0) + ","
-                                    + str(reflection_rate or 0) + ","
-                                    + str(mana or 0) + ","
-                                    + str(mana_regeneration_rate or 0) + ","
-                                    + str(damage_to_different_faction_rate or 0) + ","
-                                    + str(resistance_to_different_faction_rate or 0) + ","
-                                    + str(damage_to_same_faction_rate or 0) + ","
-                                    + str(resistance_to_same_faction_rate or 0) + ","
+                                    + str(health or 0) + ","
+                                + str(physical_attack or 0) + ","
+                                + str(physical_defense or 0) + ","
+                                + str(magical_attack or 0) + ","
+                                + str(magical_defense or 0) + ","
+                                + str(chemical_attack or 0) + ","
+                                + str(chemical_defense or 0) + ","
+                                + str(atomic_attack or 0) + ","
+                                + str(atomic_defense or 0) + ","
+                                + str(mental_attack or 0) + ","
+                                + str(mental_defense or 0) + ","
+                                + str(speed or 0) + ","
+                                + str(critical_damage_rate or 0) + ","
+                                + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
+                                + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
+                                + str(evasion_rate or 0) + ","
+                                + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
+                                + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
+                                + str(accuracy_rate or 0) + ","
+                                + str(lifesteal_rate or 0) + ","
+                                + str(shield_strength or 0) + ","
+                                + str(tenacity or 0) + ","
+                                + str(resistance_rate or 0) + ","
+                                + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
+                                + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
+                                + str(mana or 0) + ","
+                                + str(mana_regeneration_rate or 0) + ","
+                                + str(damage_to_different_faction_rate or 0) + ","
+                                + str(resistance_to_different_faction_rate or 0) + ","
+                                + str(damage_to_same_faction_rate or 0) + ","
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ","
                                     + str(list(variables.values())[0]) + ","
                                     + str(list(variables.values())[1]) + ","
                                     + str(list(variables.values())[2]) + ","
@@ -4634,25 +5610,43 @@ def create_collaboration_database():
     per_mental_attack=40
     per_mental_defense=40
     speed = 2000000
-    critical_damage_rate = 5
-    critical_rate = 5
-    penetration_rate = 5
-    evasion_rate = 5
-    damage_absorption_rate = 5
-    vitality_regeneration_rate = 5
-    accuracy_rate = 5
-    lifesteal_rate = 5
+    critical_damage_rate = 20
+    critical_rate = 20
+    critical_resistance_rate = 20
+    ignore_critical_rate = 20
+    penetration_rate = 20
+    penetration_resistance_rate = 20
+    evasion_rate = 20
+    damage_absorption_rate = 20
+    ignore_damage_absorption_rate = 20
+    absorbed_damage_rate = 20
+    vitality_regeneration_rate = 20
+    vitality_regeneration_resistance_rate = 20
+    accuracy_rate = 20
+    lifesteal_rate = 20
     shield_strength = 2000000
-    tenacity = 10
-    resistance_rate = 5
-    combo_rate = 5
-    reflection_rate = 5
+    tenacity = 20
+    resistance_rate = 20
+    combo_rate = 20
+    ignore_combo_rate = 20
+    combo_damage_rate = 20
+    combo_resistance_rate = 20
+    stun_rate = 20
+    ignore_stun_rate = 20
+    reflection_rate = 20
+    ignore_reflection_rate = 20
+    reflection_damage_rate = 20
+    reflection_resistance_rate = 20
     mana = 100
-    mana_regeneration_rate = 10
+    mana_regeneration_rate = 20
     damage_to_different_faction_rate = 20
     resistance_to_different_faction_rate = 20
     damage_to_same_faction_rate = 20
     resistance_to_same_faction_rate = 20
+    normal_damage_rate = 20
+    normal_resistance_rate = 20
+    skill_damage_rate = 20
+    skill_resistance_rate = 20
     rare="LG"
     path=""
     for root, dirs, files in os.walk(cards_dir):
@@ -4666,15 +5660,20 @@ def create_collaboration_database():
                 story=get_story("Collaboration")
             
                 power = calculate_power(
-                        health, physical_attack, physical_defense, magical_attack, magical_defense,
-                        chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                        speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                        damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                        shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
-                        mana, mana_regeneration_rate, 
-                        damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                        damage_to_same_faction_rate, resistance_to_same_faction_rate
-                    )
+                            health, physical_attack, physical_defense, magical_attack, magical_defense,
+                            chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
+                            mana, mana_regeneration_rate, 
+                            damage_to_different_faction_rate, resistance_to_different_faction_rate, 
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
+                        )
                 with open('test.txt', 'a') as file:
                     file.write(
                             "insert into collaborations values ("
@@ -4685,36 +5684,54 @@ def create_collaboration_database():
                             + str(25) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
-                            + str(physical_attack or 0) + ","
-                            + str(physical_defense or 0) + ","
-                            + str(magical_attack or 0) + ","
-                            + str(magical_defense or 0) + ","
-                            + str(chemical_attack or 0) + ","
-                            + str(chemical_defense or 0) + ","
-                            + str(atomic_attack or 0) + ","
-                            + str(atomic_defense or 0) + ","
-                            + str(mental_attack or 0) + ","
-                            + str(mental_defense or 0) + ","
-                            + str(speed or 0) + ","
-                            + str(critical_damage_rate or 0) + ","
-                            + str(critical_rate or 0) + ","
-                            + str(penetration_rate or 0) + ","
-                            + str(evasion_rate or 0) + ","
-                            + str(damage_absorption_rate or 0) + ","
-                            + str(vitality_regeneration_rate or 0) + ","
-                            + str(accuracy_rate or 0) + ","
-                            + str(lifesteal_rate or 0) + ","
-                            + str(shield_strength or 0) + ","
-                            + str(tenacity or 0) + ","
-                            + str(resistance_rate or 0) + ","
-                            + str(combo_rate or 0) + ","
-                            + str(reflection_rate or 0) + ","
-                            + str(mana or 0) + ","
-                            + str(mana_regeneration_rate or 0) + ","
-                            + str(damage_to_different_faction_rate or 0) + ","
-                            + str(resistance_to_different_faction_rate or 0) + ","
-                            + str(damage_to_same_faction_rate or 0) + ","
-                            + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(physical_attack or 0) + ","
+                                + str(physical_defense or 0) + ","
+                                + str(magical_attack or 0) + ","
+                                + str(magical_defense or 0) + ","
+                                + str(chemical_attack or 0) + ","
+                                + str(chemical_defense or 0) + ","
+                                + str(atomic_attack or 0) + ","
+                                + str(atomic_defense or 0) + ","
+                                + str(mental_attack or 0) + ","
+                                + str(mental_defense or 0) + ","
+                                + str(speed or 0) + ","
+                                + str(critical_damage_rate or 0) + ","
+                                + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
+                                + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
+                                + str(evasion_rate or 0) + ","
+                                + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
+                                + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
+                                + str(accuracy_rate or 0) + ","
+                                + str(lifesteal_rate or 0) + ","
+                                + str(shield_strength or 0) + ","
+                                + str(tenacity or 0) + ","
+                                + str(resistance_rate or 0) + ","
+                                + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
+                                + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
+                                + str(mana or 0) + ","
+                                + str(mana_regeneration_rate or 0) + ","
+                                + str(damage_to_different_faction_rate or 0) + ","
+                                + str(resistance_to_different_faction_rate or 0) + ","
+                                + str(damage_to_same_faction_rate or 0) + ","
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ","
                             + str(per_health)+","
                             + str(per_physical_attack) +","
                             + str(per_physical_defense) + ","
@@ -4735,37 +5752,55 @@ def create_military_database():
     card_list = []
     id=1
     card_name=""
-    health=1000000
-    physical_attack=100000
-    physical_defense=100000
-    magical_attack=100000
-    magical_defense=100000
-    chemical_attack=100000
-    chemical_defense=100000
-    atomic_attack=100000
-    atomic_defense=100000
-    mental_attack=100000
-    mental_defense=100000
-    speed = 100000
-    critical_damage_rate = 0
-    critical_rate = 0
-    penetration_rate = 0
-    evasion_rate = 0
-    damage_absorption_rate = 0
-    vitality_regeneration_rate = 0
-    accuracy_rate = 0
-    lifesteal_rate = 0
-    shield_strength = 100000
-    tenacity = 0
-    resistance_rate = 0
-    combo_rate = 0
-    reflection_rate = 0
+    health=50000000
+    physical_attack=2000000
+    physical_defense=1000000
+    magical_attack=2000000
+    magical_defense=1000000
+    chemical_attack=2000000
+    chemical_defense=1000000
+    atomic_attack=2000000
+    atomic_defense=1000000
+    mental_attack=2000000
+    mental_defense=1000000
+    speed = 2000000
+    critical_damage_rate = 10
+    critical_rate = 10
+    critical_resistance_rate = 10
+    ignore_critical_rate = 10
+    penetration_rate = 10
+    penetration_resistance_rate = 10
+    evasion_rate = 10
+    damage_absorption_rate = 10
+    ignore_damage_absorption_rate = 10
+    absorbed_damage_rate = 10
+    vitality_regeneration_rate = 10
+    vitality_regeneration_resistance_rate = 10
+    accuracy_rate = 10
+    lifesteal_rate = 10
+    shield_strength = 2000000
+    tenacity = 10
+    resistance_rate = 10
+    combo_rate = 10
+    ignore_combo_rate = 10
+    combo_damage_rate = 10
+    combo_resistance_rate = 10
+    stun_rate = 10
+    ignore_stun_rate = 10
+    reflection_rate = 10
+    ignore_reflection_rate = 10
+    reflection_damage_rate = 10
+    reflection_resistance_rate = 10
     mana = 100
-    mana_regeneration_rate = 0
-    damage_to_different_faction_rate = 0
-    resistance_to_different_faction_rate = 0
-    damage_to_same_faction_rate = 0
-    resistance_to_same_faction_rate = 0
+    mana_regeneration_rate = 10
+    damage_to_different_faction_rate = 10
+    resistance_to_different_faction_rate = 10
+    damage_to_same_faction_rate = 10
+    resistance_to_same_faction_rate = 10
+    normal_damage_rate = 10
+    normal_resistance_rate = 10
+    skill_damage_rate = 10
+    skill_resistance_rate = 10
     rare="SR"
     clan=""
     price=100000
@@ -4803,12 +5838,17 @@ def create_military_database():
                         power = calculate_power(
                             health, physical_attack, physical_defense, magical_attack, magical_defense,
                             chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                            speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                            damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                            shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
                             mana, mana_regeneration_rate, 
                             damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                            damage_to_same_faction_rate, resistance_to_same_faction_rate
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
                         )
 
                         with open('test.txt', 'a') as file:
@@ -4836,23 +5876,41 @@ def create_military_database():
                                 + str(speed or 0) + ","
                                 + str(critical_damage_rate or 0) + ","
                                 + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
                                 + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
                                 + str(evasion_rate or 0) + ","
                                 + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
                                 + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
                                 + str(accuracy_rate or 0) + ","
                                 + str(lifesteal_rate or 0) + ","
                                 + str(shield_strength or 0) + ","
                                 + str(tenacity or 0) + ","
                                 + str(resistance_rate or 0) + ","
                                 + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
                                 + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
                                 + str(mana or 0) + ","
                                 + str(mana_regeneration_rate or 0) + ","
                                 + str(damage_to_different_faction_rate or 0) + ","
                                 + str(resistance_to_different_faction_rate or 0) + ","
                                 + str(damage_to_same_faction_rate or 0) + ","
-                                + str(resistance_to_same_faction_rate or 0) + ",'"
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ",'"
                                 + (story or '') + "');\n"
                             )
 
@@ -4895,12 +5953,17 @@ def create_military_database():
                         power = calculate_power(
                             health, physical_attack, physical_defense, magical_attack, magical_defense,
                             chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                            speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                            damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                            shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
                             mana, mana_regeneration_rate, 
                             damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                            damage_to_same_faction_rate, resistance_to_same_faction_rate
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
                         )
 
                         with open('test.txt', 'a') as file:
@@ -4928,23 +5991,41 @@ def create_military_database():
                                 + str(speed or 0) + ","
                                 + str(critical_damage_rate or 0) + ","
                                 + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
                                 + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
                                 + str(evasion_rate or 0) + ","
                                 + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
                                 + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
                                 + str(accuracy_rate or 0) + ","
                                 + str(lifesteal_rate or 0) + ","
                                 + str(shield_strength or 0) + ","
                                 + str(tenacity or 0) + ","
                                 + str(resistance_rate or 0) + ","
                                 + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
                                 + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
                                 + str(mana or 0) + ","
                                 + str(mana_regeneration_rate or 0) + ","
                                 + str(damage_to_different_faction_rate or 0) + ","
                                 + str(resistance_to_different_faction_rate or 0) + ","
                                 + str(damage_to_same_faction_rate or 0) + ","
-                                + str(resistance_to_same_faction_rate or 0) + ",'"
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ",'"
                                 + (story or '') + "');\n"
                             )
                         id=id+1
@@ -4986,12 +6067,17 @@ def create_military_database():
                         power = calculate_power(
                             health, physical_attack, physical_defense, magical_attack, magical_defense,
                             chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                            speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                            damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                            shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
                             mana, mana_regeneration_rate, 
                             damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                            damage_to_same_faction_rate, resistance_to_same_faction_rate
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
                         )
 
                         with open('test.txt', 'a') as file:
@@ -5019,23 +6105,41 @@ def create_military_database():
                                 + str(speed or 0) + ","
                                 + str(critical_damage_rate or 0) + ","
                                 + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
                                 + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
                                 + str(evasion_rate or 0) + ","
                                 + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
                                 + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
                                 + str(accuracy_rate or 0) + ","
                                 + str(lifesteal_rate or 0) + ","
                                 + str(shield_strength or 0) + ","
                                 + str(tenacity or 0) + ","
                                 + str(resistance_rate or 0) + ","
                                 + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
                                 + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
                                 + str(mana or 0) + ","
                                 + str(mana_regeneration_rate or 0) + ","
                                 + str(damage_to_different_faction_rate or 0) + ","
                                 + str(resistance_to_different_faction_rate or 0) + ","
                                 + str(damage_to_same_faction_rate or 0) + ","
-                                + str(resistance_to_same_faction_rate or 0) + ",'"
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ",'"
                                 + (story or '') + "');\n"
                             )
                         id=id+1
@@ -5077,12 +6181,17 @@ def create_military_database():
                         power = calculate_power(
                             health, physical_attack, physical_defense, magical_attack, magical_defense,
                             chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                            speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                            damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                            shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
                             mana, mana_regeneration_rate, 
                             damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                            damage_to_same_faction_rate, resistance_to_same_faction_rate
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
                         )
 
                         with open('test.txt', 'a') as file:
@@ -5110,23 +6219,41 @@ def create_military_database():
                                 + str(speed or 0) + ","
                                 + str(critical_damage_rate or 0) + ","
                                 + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
                                 + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
                                 + str(evasion_rate or 0) + ","
                                 + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
                                 + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
                                 + str(accuracy_rate or 0) + ","
                                 + str(lifesteal_rate or 0) + ","
                                 + str(shield_strength or 0) + ","
                                 + str(tenacity or 0) + ","
                                 + str(resistance_rate or 0) + ","
                                 + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
                                 + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
                                 + str(mana or 0) + ","
                                 + str(mana_regeneration_rate or 0) + ","
                                 + str(damage_to_different_faction_rate or 0) + ","
                                 + str(resistance_to_different_faction_rate or 0) + ","
                                 + str(damage_to_same_faction_rate or 0) + ","
-                                + str(resistance_to_same_faction_rate or 0) + ",'"
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ",'"
                                 + (story or '') + "');\n"
                             )
 
@@ -5138,36 +6265,54 @@ def create_spell_database():
     id=1
     card_name=""
     health=10000000
-    physical_attack=1000000
+    physical_attack=2000000
     physical_defense=1000000
-    magical_attack=1000000
+    magical_attack=2000000
     magical_defense=1000000
-    chemical_attack=1000000
+    chemical_attack=2000000
     chemical_defense=1000000
-    atomic_attack=1000000
+    atomic_attack=2000000
     atomic_defense=1000000
-    mental_attack=1000000
+    mental_attack=2000000
     mental_defense=1000000
-    speed = 1000000
+    speed = 2000000
     critical_damage_rate = 10
     critical_rate = 10
+    critical_resistance_rate = 10
+    ignore_critical_rate = 10
     penetration_rate = 10
+    penetration_resistance_rate = 10
     evasion_rate = 10
     damage_absorption_rate = 10
+    ignore_damage_absorption_rate = 10
+    absorbed_damage_rate = 10
     vitality_regeneration_rate = 10
+    vitality_regeneration_resistance_rate = 10
     accuracy_rate = 10
     lifesteal_rate = 10
-    shield_strength = 1000000
+    shield_strength = 2000000
     tenacity = 10
     resistance_rate = 10
     combo_rate = 10
+    ignore_combo_rate = 10
+    combo_damage_rate = 10
+    combo_resistance_rate = 10
+    stun_rate = 10
+    ignore_stun_rate = 10
     reflection_rate = 10
+    ignore_reflection_rate = 10
+    reflection_damage_rate = 10
+    reflection_resistance_rate = 10
     mana = 100
     mana_regeneration_rate = 10
-    damage_to_different_faction_rate = 20
-    resistance_to_different_faction_rate = 20
-    damage_to_same_faction_rate = 20
-    resistance_to_same_faction_rate = 20
+    damage_to_different_faction_rate = 10
+    resistance_to_different_faction_rate = 10
+    damage_to_same_faction_rate = 10
+    resistance_to_same_faction_rate = 10
+    normal_damage_rate = 10
+    normal_resistance_rate = 10
+    skill_damage_rate = 10
+    skill_resistance_rate = 10
     rare="SR"
     path=""
     for root, dirs, files in os.walk(cards_dir):
@@ -5191,12 +6336,17 @@ def create_spell_database():
                         power = calculate_power(
                             health, physical_attack, physical_defense, magical_attack, magical_defense,
                             chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                            speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                            damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                            shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
                             mana, mana_regeneration_rate, 
                             damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                            damage_to_same_faction_rate, resistance_to_same_faction_rate
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
                         )
                         with open('test.txt', 'a') as file:
                             file.write(
@@ -5223,23 +6373,41 @@ def create_spell_database():
                                 + str(speed or 0) + ","
                                 + str(critical_damage_rate or 0) + ","
                                 + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
                                 + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
                                 + str(evasion_rate or 0) + ","
                                 + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
                                 + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
                                 + str(accuracy_rate or 0) + ","
                                 + str(lifesteal_rate or 0) + ","
                                 + str(shield_strength or 0) + ","
                                 + str(tenacity or 0) + ","
                                 + str(resistance_rate or 0) + ","
                                 + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
                                 + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
                                 + str(mana or 0) + ","
                                 + str(mana_regeneration_rate or 0) + ","
                                 + str(damage_to_different_faction_rate or 0) + ","
                                 + str(resistance_to_different_faction_rate or 0) + ","
                                 + str(damage_to_same_faction_rate or 0) + ","
-                                + str(resistance_to_same_faction_rate or 0) + ",'"
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ",'"
                                 + (description or '') + "');\n"
                             )
 
@@ -5277,12 +6445,17 @@ def create_spell_database():
                         power = calculate_power(
                             health, physical_attack, physical_defense, magical_attack, magical_defense,
                             chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                            speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                            damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                            shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
                             mana, mana_regeneration_rate, 
                             damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                            damage_to_same_faction_rate, resistance_to_same_faction_rate
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
                         )
                         with open('test.txt', 'a') as file:
                             file.write(
@@ -5309,24 +6482,42 @@ def create_spell_database():
                                 + str(speed or 0) + ","
                                 + str(critical_damage_rate or 0) + ","
                                 + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
                                 + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
                                 + str(evasion_rate or 0) + ","
                                 + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
                                 + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
                                 + str(accuracy_rate or 0) + ","
                                 + str(lifesteal_rate or 0) + ","
                                 + str(shield_strength or 0) + ","
                                 + str(tenacity or 0) + ","
                                 + str(resistance_rate or 0) + ","
                                 + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
                                 + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
                                 + str(mana or 0) + ","
                                 + str(mana_regeneration_rate or 0) + ","
                                 + str(damage_to_different_faction_rate or 0) + ","
                                 + str(resistance_to_different_faction_rate or 0) + ","
                                 + str(damage_to_same_faction_rate or 0) + ","
                                 + str(resistance_to_same_faction_rate or 0) + ","
-                                + (description) + ");\n"
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ",'"
+                                + (description) + "');\n"
                             )
                         id=id+1
 
@@ -5356,25 +6547,43 @@ def create_relics_database():
     per_mental_attack=10
     per_mental_defense=10
     speed = 3500000
-    critical_damage_rate = 10
-    critical_rate = 10
-    penetration_rate = 10
-    evasion_rate = 10
-    damage_absorption_rate = 10
-    vitality_regeneration_rate = 10
-    accuracy_rate = 10
-    lifesteal_rate = 10
+    critical_damage_rate = 20
+    critical_rate = 20
+    critical_resistance_rate = 20
+    ignore_critical_rate = 20
+    penetration_rate = 20
+    penetration_resistance_rate = 20
+    evasion_rate = 20
+    damage_absorption_rate = 20
+    ignore_damage_absorption_rate = 20
+    absorbed_damage_rate = 20
+    vitality_regeneration_rate = 20
+    vitality_regeneration_resistance_rate = 20
+    accuracy_rate = 20
+    lifesteal_rate = 20
     shield_strength = 3500000
-    tenacity = 10
-    resistance_rate = 10
-    combo_rate = 10
-    reflection_rate = 10
+    tenacity = 20
+    resistance_rate = 20
+    combo_rate = 20
+    ignore_combo_rate = 20
+    combo_damage_rate = 20
+    combo_resistance_rate = 20
+    stun_rate = 20
+    ignore_stun_rate = 20
+    reflection_rate = 20
+    ignore_reflection_rate = 20
+    reflection_damage_rate = 20
+    reflection_resistance_rate = 20
     mana = 100
-    mana_regeneration_rate = 10
+    mana_regeneration_rate = 20
     damage_to_different_faction_rate = 20
     resistance_to_different_faction_rate = 20
     damage_to_same_faction_rate = 20
     resistance_to_same_faction_rate = 20
+    normal_damage_rate = 20
+    normal_resistance_rate = 20
+    skill_damage_rate = 20
+    skill_resistance_rate = 20
     rare="LG"
     price=10000000
     price_unit="Ancient_Rune_Crystal_Dark"
@@ -5395,15 +6604,20 @@ def create_relics_database():
                     story=get_story("Relics")
                     
                     power = calculate_power(
-                        health, physical_attack, physical_defense, magical_attack, magical_defense,
-                        chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                        speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                        damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                        shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
-                        mana, mana_regeneration_rate, 
-                        damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                        damage_to_same_faction_rate, resistance_to_same_faction_rate
-                    )
+                            health, physical_attack, physical_defense, magical_attack, magical_defense,
+                            chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
+                            mana, mana_regeneration_rate, 
+                            damage_to_different_faction_rate, resistance_to_different_faction_rate, 
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
+                        )
                     with open('test.txt', 'a') as file:
                         file.write(
                             "insert into relics values ("
@@ -5416,36 +6630,54 @@ def create_relics_database():
                             + str(0) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
-                            + str(physical_attack or 0) + ","
-                            + str(physical_defense or 0) + ","
-                            + str(magical_attack or 0) + ","
-                            + str(magical_defense or 0) + ","
-                            + str(chemical_attack or 0) + ","
-                            + str(chemical_defense or 0) + ","
-                            + str(atomic_attack or 0) + ","
-                            + str(atomic_defense or 0) + ","
-                            + str(mental_attack or 0) + ","
-                            + str(mental_defense or 0) + ","
-                            + str(speed or 0) + ","
-                            + str(critical_damage_rate or 0) + ","
-                            + str(critical_rate or 0) + ","
-                            + str(penetration_rate or 0) + ","
-                            + str(evasion_rate or 0) + ","
-                            + str(damage_absorption_rate or 0) + ","
-                            + str(vitality_regeneration_rate or 0) + ","
-                            + str(accuracy_rate or 0) + ","
-                            + str(lifesteal_rate or 0) + ","
-                            + str(shield_strength or 0) + ","
-                            + str(tenacity or 0) + ","
-                            + str(resistance_rate or 0) + ","
-                            + str(combo_rate or 0) + ","
-                            + str(reflection_rate or 0) + ","
-                            + str(mana or 0) + ","
-                            + str(mana_regeneration_rate or 0) + ","
-                            + str(damage_to_different_faction_rate or 0) + ","
-                            + str(resistance_to_different_faction_rate or 0) + ","
-                            + str(damage_to_same_faction_rate or 0) + ","
-                            + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(physical_attack or 0) + ","
+                                + str(physical_defense or 0) + ","
+                                + str(magical_attack or 0) + ","
+                                + str(magical_defense or 0) + ","
+                                + str(chemical_attack or 0) + ","
+                                + str(chemical_defense or 0) + ","
+                                + str(atomic_attack or 0) + ","
+                                + str(atomic_defense or 0) + ","
+                                + str(mental_attack or 0) + ","
+                                + str(mental_defense or 0) + ","
+                                + str(speed or 0) + ","
+                                + str(critical_damage_rate or 0) + ","
+                                + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
+                                + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
+                                + str(evasion_rate or 0) + ","
+                                + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
+                                + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
+                                + str(accuracy_rate or 0) + ","
+                                + str(lifesteal_rate or 0) + ","
+                                + str(shield_strength or 0) + ","
+                                + str(tenacity or 0) + ","
+                                + str(resistance_rate or 0) + ","
+                                + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
+                                + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
+                                + str(mana or 0) + ","
+                                + str(mana_regeneration_rate or 0) + ","
+                                + str(damage_to_different_faction_rate or 0) + ","
+                                + str(resistance_to_different_faction_rate or 0) + ","
+                                + str(damage_to_same_faction_rate or 0) + ","
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ","
                             + str(per_health or 0) + ","
                             + str(per_physical_attack or 0) + ","
                             + str(per_physical_defense or 0) + ","
@@ -5490,25 +6722,43 @@ def create_magic_formation_circle_database():
     per_mental_attack=10
     per_mental_defense=10
     speed = 3500000
-    critical_damage_rate = 10
-    critical_rate = 10
-    penetration_rate = 10
-    evasion_rate = 10
-    damage_absorption_rate = 10
-    vitality_regeneration_rate = 10
-    accuracy_rate = 10
-    lifesteal_rate = 10
+    critical_damage_rate = 20
+    critical_rate = 20
+    critical_resistance_rate = 20
+    ignore_critical_rate = 20
+    penetration_rate = 20
+    penetration_resistance_rate = 20
+    evasion_rate = 20
+    damage_absorption_rate = 20
+    ignore_damage_absorption_rate = 20
+    absorbed_damage_rate = 20
+    vitality_regeneration_rate = 20
+    vitality_regeneration_resistance_rate = 20
+    accuracy_rate = 20
+    lifesteal_rate = 20
     shield_strength = 3500000
-    tenacity = 10
-    resistance_rate = 10
-    combo_rate = 10
-    reflection_rate = 10
+    tenacity = 20
+    resistance_rate = 20
+    combo_rate = 20
+    ignore_combo_rate = 20
+    combo_damage_rate = 20
+    combo_resistance_rate = 20
+    stun_rate = 20
+    ignore_stun_rate = 20
+    reflection_rate = 20
+    ignore_reflection_rate = 20
+    reflection_damage_rate = 20
+    reflection_resistance_rate = 20
     mana = 100
-    mana_regeneration_rate = 10
+    mana_regeneration_rate = 20
     damage_to_different_faction_rate = 20
     resistance_to_different_faction_rate = 20
     damage_to_same_faction_rate = 20
     resistance_to_same_faction_rate = 20
+    normal_damage_rate = 20
+    normal_resistance_rate = 20
+    skill_damage_rate = 20
+    skill_resistance_rate = 20
     rare="LG"
     price=10000000
     price_unit="Ancient_Rune_Crystal_Dark"
@@ -5529,15 +6779,20 @@ def create_magic_formation_circle_database():
                     story=get_story("Magic_Formation_Circle")
                     
                     power = calculate_power(
-                        health, physical_attack, physical_defense, magical_attack, magical_defense,
-                        chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                        speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                        damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                        shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
-                        mana, mana_regeneration_rate, 
-                        damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                        damage_to_same_faction_rate, resistance_to_same_faction_rate
-                    )
+                            health, physical_attack, physical_defense, magical_attack, magical_defense,
+                            chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
+                            mana, mana_regeneration_rate, 
+                            damage_to_different_faction_rate, resistance_to_different_faction_rate, 
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
+                        )
                     with open('test.txt', 'a') as file:
                         file.write(
                             "insert into magic_formation_circle values ("
@@ -5550,36 +6805,54 @@ def create_magic_formation_circle_database():
                             + str(0) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
-                            + str(physical_attack or 0) + ","
-                            + str(physical_defense or 0) + ","
-                            + str(magical_attack or 0) + ","
-                            + str(magical_defense or 0) + ","
-                            + str(chemical_attack or 0) + ","
-                            + str(chemical_defense or 0) + ","
-                            + str(atomic_attack or 0) + ","
-                            + str(atomic_defense or 0) + ","
-                            + str(mental_attack or 0) + ","
-                            + str(mental_defense or 0) + ","
-                            + str(speed or 0) + ","
-                            + str(critical_damage_rate or 0) + ","
-                            + str(critical_rate or 0) + ","
-                            + str(penetration_rate or 0) + ","
-                            + str(evasion_rate or 0) + ","
-                            + str(damage_absorption_rate or 0) + ","
-                            + str(vitality_regeneration_rate or 0) + ","
-                            + str(accuracy_rate or 0) + ","
-                            + str(lifesteal_rate or 0) + ","
-                            + str(shield_strength or 0) + ","
-                            + str(tenacity or 0) + ","
-                            + str(resistance_rate or 0) + ","
-                            + str(combo_rate or 0) + ","
-                            + str(reflection_rate or 0) + ","
-                            + str(mana or 0) + ","
-                            + str(mana_regeneration_rate or 0) + ","
-                            + str(damage_to_different_faction_rate or 0) + ","
-                            + str(resistance_to_different_faction_rate or 0) + ","
-                            + str(damage_to_same_faction_rate or 0) + ","
-                            + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(physical_attack or 0) + ","
+                                + str(physical_defense or 0) + ","
+                                + str(magical_attack or 0) + ","
+                                + str(magical_defense or 0) + ","
+                                + str(chemical_attack or 0) + ","
+                                + str(chemical_defense or 0) + ","
+                                + str(atomic_attack or 0) + ","
+                                + str(atomic_defense or 0) + ","
+                                + str(mental_attack or 0) + ","
+                                + str(mental_defense or 0) + ","
+                                + str(speed or 0) + ","
+                                + str(critical_damage_rate or 0) + ","
+                                + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
+                                + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
+                                + str(evasion_rate or 0) + ","
+                                + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
+                                + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
+                                + str(accuracy_rate or 0) + ","
+                                + str(lifesteal_rate or 0) + ","
+                                + str(shield_strength or 0) + ","
+                                + str(tenacity or 0) + ","
+                                + str(resistance_rate or 0) + ","
+                                + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
+                                + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
+                                + str(mana or 0) + ","
+                                + str(mana_regeneration_rate or 0) + ","
+                                + str(damage_to_different_faction_rate or 0) + ","
+                                + str(resistance_to_different_faction_rate or 0) + ","
+                                + str(damage_to_same_faction_rate or 0) + ","
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ","
                             + str(per_health or 0) + ","
                             + str(per_physical_attack or 0) + ","
                             + str(per_physical_defense or 0) + ","
@@ -5624,25 +6897,43 @@ def create_talisman_database():
     per_mental_attack=10
     per_mental_defense=10
     speed = 3500000
-    critical_damage_rate = 10
-    critical_rate = 10
-    penetration_rate = 10
-    evasion_rate = 10
-    damage_absorption_rate = 10
-    vitality_regeneration_rate = 10
-    accuracy_rate = 10
-    lifesteal_rate = 10
+    critical_damage_rate = 20
+    critical_rate = 20
+    critical_resistance_rate = 20
+    ignore_critical_rate = 20
+    penetration_rate = 20
+    penetration_resistance_rate = 20
+    evasion_rate = 20
+    damage_absorption_rate = 20
+    ignore_damage_absorption_rate = 20
+    absorbed_damage_rate = 20
+    vitality_regeneration_rate = 20
+    vitality_regeneration_resistance_rate = 20
+    accuracy_rate = 20
+    lifesteal_rate = 20
     shield_strength = 3500000
-    tenacity = 10
-    resistance_rate = 10
-    combo_rate = 10
-    reflection_rate = 10
+    tenacity = 20
+    resistance_rate = 20
+    combo_rate = 20
+    ignore_combo_rate = 20
+    combo_damage_rate = 20
+    combo_resistance_rate = 20
+    stun_rate = 20
+    ignore_stun_rate = 20
+    reflection_rate = 20
+    ignore_reflection_rate = 20
+    reflection_damage_rate = 20
+    reflection_resistance_rate = 20
     mana = 100
-    mana_regeneration_rate = 10
+    mana_regeneration_rate = 20
     damage_to_different_faction_rate = 20
     resistance_to_different_faction_rate = 20
     damage_to_same_faction_rate = 20
     resistance_to_same_faction_rate = 20
+    normal_damage_rate = 20
+    normal_resistance_rate = 20
+    skill_damage_rate = 20
+    skill_resistance_rate = 20
     rare="LG"
     price=10000000
     price_unit="Ancient_Rune_Crystal_Dark"
@@ -5663,15 +6954,20 @@ def create_talisman_database():
                     story=get_story("Talisman")
                     
                     power = calculate_power(
-                        health, physical_attack, physical_defense, magical_attack, magical_defense,
-                        chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                        speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                        damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                        shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
-                        mana, mana_regeneration_rate, 
-                        damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                        damage_to_same_faction_rate, resistance_to_same_faction_rate
-                    )
+                            health, physical_attack, physical_defense, magical_attack, magical_defense,
+                            chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
+                            mana, mana_regeneration_rate, 
+                            damage_to_different_faction_rate, resistance_to_different_faction_rate, 
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
+                        )
                     with open('test.txt', 'a') as file:
                         file.write(
                             "insert into talisman values ("
@@ -5684,36 +6980,54 @@ def create_talisman_database():
                             + str(0) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
-                            + str(physical_attack or 0) + ","
-                            + str(physical_defense or 0) + ","
-                            + str(magical_attack or 0) + ","
-                            + str(magical_defense or 0) + ","
-                            + str(chemical_attack or 0) + ","
-                            + str(chemical_defense or 0) + ","
-                            + str(atomic_attack or 0) + ","
-                            + str(atomic_defense or 0) + ","
-                            + str(mental_attack or 0) + ","
-                            + str(mental_defense or 0) + ","
-                            + str(speed or 0) + ","
-                            + str(critical_damage_rate or 0) + ","
-                            + str(critical_rate or 0) + ","
-                            + str(penetration_rate or 0) + ","
-                            + str(evasion_rate or 0) + ","
-                            + str(damage_absorption_rate or 0) + ","
-                            + str(vitality_regeneration_rate or 0) + ","
-                            + str(accuracy_rate or 0) + ","
-                            + str(lifesteal_rate or 0) + ","
-                            + str(shield_strength or 0) + ","
-                            + str(tenacity or 0) + ","
-                            + str(resistance_rate or 0) + ","
-                            + str(combo_rate or 0) + ","
-                            + str(reflection_rate or 0) + ","
-                            + str(mana or 0) + ","
-                            + str(mana_regeneration_rate or 0) + ","
-                            + str(damage_to_different_faction_rate or 0) + ","
-                            + str(resistance_to_different_faction_rate or 0) + ","
-                            + str(damage_to_same_faction_rate or 0) + ","
-                            + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(physical_attack or 0) + ","
+                                + str(physical_defense or 0) + ","
+                                + str(magical_attack or 0) + ","
+                                + str(magical_defense or 0) + ","
+                                + str(chemical_attack or 0) + ","
+                                + str(chemical_defense or 0) + ","
+                                + str(atomic_attack or 0) + ","
+                                + str(atomic_defense or 0) + ","
+                                + str(mental_attack or 0) + ","
+                                + str(mental_defense or 0) + ","
+                                + str(speed or 0) + ","
+                                + str(critical_damage_rate or 0) + ","
+                                + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
+                                + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
+                                + str(evasion_rate or 0) + ","
+                                + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
+                                + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
+                                + str(accuracy_rate or 0) + ","
+                                + str(lifesteal_rate or 0) + ","
+                                + str(shield_strength or 0) + ","
+                                + str(tenacity or 0) + ","
+                                + str(resistance_rate or 0) + ","
+                                + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
+                                + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
+                                + str(mana or 0) + ","
+                                + str(mana_regeneration_rate or 0) + ","
+                                + str(damage_to_different_faction_rate or 0) + ","
+                                + str(resistance_to_different_faction_rate or 0) + ","
+                                + str(damage_to_same_faction_rate or 0) + ","
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ","
                             + str(per_health or 0) + ","
                             + str(per_physical_attack or 0) + ","
                             + str(per_physical_defense or 0) + ","
@@ -5758,25 +7072,43 @@ def create_puppet_database():
     per_mental_attack=10
     per_mental_defense=10
     speed = 3500000
-    critical_damage_rate = 10
-    critical_rate = 10
-    penetration_rate = 10
-    evasion_rate = 10
-    damage_absorption_rate = 10
-    vitality_regeneration_rate = 10
-    accuracy_rate = 10
-    lifesteal_rate = 10
+    critical_damage_rate = 20
+    critical_rate = 20
+    critical_resistance_rate = 20
+    ignore_critical_rate = 20
+    penetration_rate = 20
+    penetration_resistance_rate = 20
+    evasion_rate = 20
+    damage_absorption_rate = 20
+    ignore_damage_absorption_rate = 20
+    absorbed_damage_rate = 20
+    vitality_regeneration_rate = 20
+    vitality_regeneration_resistance_rate = 20
+    accuracy_rate = 20
+    lifesteal_rate = 20
     shield_strength = 3500000
-    tenacity = 10
-    resistance_rate = 10
-    combo_rate = 10
-    reflection_rate = 10
+    tenacity = 20
+    resistance_rate = 20
+    combo_rate = 20
+    ignore_combo_rate = 20
+    combo_damage_rate = 20
+    combo_resistance_rate = 20
+    stun_rate = 20
+    ignore_stun_rate = 20
+    reflection_rate = 20
+    ignore_reflection_rate = 20
+    reflection_damage_rate = 20
+    reflection_resistance_rate = 20
     mana = 100
-    mana_regeneration_rate = 10
+    mana_regeneration_rate = 20
     damage_to_different_faction_rate = 20
     resistance_to_different_faction_rate = 20
     damage_to_same_faction_rate = 20
     resistance_to_same_faction_rate = 20
+    normal_damage_rate = 20
+    normal_resistance_rate = 20
+    skill_damage_rate = 20
+    skill_resistance_rate = 20
     rare="LG"
     price=10000000
     price_unit="Ancient_Rune_Crystal_Dark"
@@ -5797,15 +7129,20 @@ def create_puppet_database():
                     story=get_story("Puppet")
                     
                     power = calculate_power(
-                        health, physical_attack, physical_defense, magical_attack, magical_defense,
-                        chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                        speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                        damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                        shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
-                        mana, mana_regeneration_rate, 
-                        damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                        damage_to_same_faction_rate, resistance_to_same_faction_rate
-                    )
+                            health, physical_attack, physical_defense, magical_attack, magical_defense,
+                            chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
+                            mana, mana_regeneration_rate, 
+                            damage_to_different_faction_rate, resistance_to_different_faction_rate, 
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
+                        )
                     with open('test.txt', 'a') as file:
                         file.write(
                             "insert into puppet values ("
@@ -5818,36 +7155,54 @@ def create_puppet_database():
                             + str(0) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
-                            + str(physical_attack or 0) + ","
-                            + str(physical_defense or 0) + ","
-                            + str(magical_attack or 0) + ","
-                            + str(magical_defense or 0) + ","
-                            + str(chemical_attack or 0) + ","
-                            + str(chemical_defense or 0) + ","
-                            + str(atomic_attack or 0) + ","
-                            + str(atomic_defense or 0) + ","
-                            + str(mental_attack or 0) + ","
-                            + str(mental_defense or 0) + ","
-                            + str(speed or 0) + ","
-                            + str(critical_damage_rate or 0) + ","
-                            + str(critical_rate or 0) + ","
-                            + str(penetration_rate or 0) + ","
-                            + str(evasion_rate or 0) + ","
-                            + str(damage_absorption_rate or 0) + ","
-                            + str(vitality_regeneration_rate or 0) + ","
-                            + str(accuracy_rate or 0) + ","
-                            + str(lifesteal_rate or 0) + ","
-                            + str(shield_strength or 0) + ","
-                            + str(tenacity or 0) + ","
-                            + str(resistance_rate or 0) + ","
-                            + str(combo_rate or 0) + ","
-                            + str(reflection_rate or 0) + ","
-                            + str(mana or 0) + ","
-                            + str(mana_regeneration_rate or 0) + ","
-                            + str(damage_to_different_faction_rate or 0) + ","
-                            + str(resistance_to_different_faction_rate or 0) + ","
-                            + str(damage_to_same_faction_rate or 0) + ","
-                            + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(physical_attack or 0) + ","
+                                + str(physical_defense or 0) + ","
+                                + str(magical_attack or 0) + ","
+                                + str(magical_defense or 0) + ","
+                                + str(chemical_attack or 0) + ","
+                                + str(chemical_defense or 0) + ","
+                                + str(atomic_attack or 0) + ","
+                                + str(atomic_defense or 0) + ","
+                                + str(mental_attack or 0) + ","
+                                + str(mental_defense or 0) + ","
+                                + str(speed or 0) + ","
+                                + str(critical_damage_rate or 0) + ","
+                                + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
+                                + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
+                                + str(evasion_rate or 0) + ","
+                                + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
+                                + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
+                                + str(accuracy_rate or 0) + ","
+                                + str(lifesteal_rate or 0) + ","
+                                + str(shield_strength or 0) + ","
+                                + str(tenacity or 0) + ","
+                                + str(resistance_rate or 0) + ","
+                                + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
+                                + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
+                                + str(mana or 0) + ","
+                                + str(mana_regeneration_rate or 0) + ","
+                                + str(damage_to_different_faction_rate or 0) + ","
+                                + str(resistance_to_different_faction_rate or 0) + ","
+                                + str(damage_to_same_faction_rate or 0) + ","
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ","
                             + str(per_health or 0) + ","
                             + str(per_physical_attack or 0) + ","
                             + str(per_physical_defense or 0) + ","
@@ -5892,25 +7247,43 @@ def create_alchemy_database():
     per_mental_attack=10
     per_mental_defense=10
     speed = 3500000
-    critical_damage_rate = 10
-    critical_rate = 10
-    penetration_rate = 10
-    evasion_rate = 10
-    damage_absorption_rate = 10
-    vitality_regeneration_rate = 10
-    accuracy_rate = 10
-    lifesteal_rate = 10
+    critical_damage_rate = 20
+    critical_rate = 20
+    critical_resistance_rate = 20
+    ignore_critical_rate = 20
+    penetration_rate = 20
+    penetration_resistance_rate = 20
+    evasion_rate = 20
+    damage_absorption_rate = 20
+    ignore_damage_absorption_rate = 20
+    absorbed_damage_rate = 20
+    vitality_regeneration_rate = 20
+    vitality_regeneration_resistance_rate = 20
+    accuracy_rate = 20
+    lifesteal_rate = 20
     shield_strength = 3500000
-    tenacity = 10
-    resistance_rate = 10
-    combo_rate = 10
-    reflection_rate = 10
+    tenacity = 20
+    resistance_rate = 20
+    combo_rate = 20
+    ignore_combo_rate = 20
+    combo_damage_rate = 20
+    combo_resistance_rate = 20
+    stun_rate = 20
+    ignore_stun_rate = 20
+    reflection_rate = 20
+    ignore_reflection_rate = 20
+    reflection_damage_rate = 20
+    reflection_resistance_rate = 20
     mana = 100
-    mana_regeneration_rate = 10
+    mana_regeneration_rate = 20
     damage_to_different_faction_rate = 20
     resistance_to_different_faction_rate = 20
     damage_to_same_faction_rate = 20
     resistance_to_same_faction_rate = 20
+    normal_damage_rate = 20
+    normal_resistance_rate = 20
+    skill_damage_rate = 20
+    skill_resistance_rate = 20
     rare="LG"
     price=10000000
     price_unit="Ancient_Rune_Crystal_Dark"
@@ -5931,15 +7304,20 @@ def create_alchemy_database():
                     story=get_story("Alchemy")
                     
                     power = calculate_power(
-                        health, physical_attack, physical_defense, magical_attack, magical_defense,
-                        chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                        speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                        damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                        shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
-                        mana, mana_regeneration_rate, 
-                        damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                        damage_to_same_faction_rate, resistance_to_same_faction_rate
-                    )
+                            health, physical_attack, physical_defense, magical_attack, magical_defense,
+                            chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
+                            mana, mana_regeneration_rate, 
+                            damage_to_different_faction_rate, resistance_to_different_faction_rate, 
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
+                        )
                     with open('test.txt', 'a') as file:
                         file.write(
                             "insert into alchemy values ("
@@ -5952,36 +7330,54 @@ def create_alchemy_database():
                             + str(0) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
-                            + str(physical_attack or 0) + ","
-                            + str(physical_defense or 0) + ","
-                            + str(magical_attack or 0) + ","
-                            + str(magical_defense or 0) + ","
-                            + str(chemical_attack or 0) + ","
-                            + str(chemical_defense or 0) + ","
-                            + str(atomic_attack or 0) + ","
-                            + str(atomic_defense or 0) + ","
-                            + str(mental_attack or 0) + ","
-                            + str(mental_defense or 0) + ","
-                            + str(speed or 0) + ","
-                            + str(critical_damage_rate or 0) + ","
-                            + str(critical_rate or 0) + ","
-                            + str(penetration_rate or 0) + ","
-                            + str(evasion_rate or 0) + ","
-                            + str(damage_absorption_rate or 0) + ","
-                            + str(vitality_regeneration_rate or 0) + ","
-                            + str(accuracy_rate or 0) + ","
-                            + str(lifesteal_rate or 0) + ","
-                            + str(shield_strength or 0) + ","
-                            + str(tenacity or 0) + ","
-                            + str(resistance_rate or 0) + ","
-                            + str(combo_rate or 0) + ","
-                            + str(reflection_rate or 0) + ","
-                            + str(mana or 0) + ","
-                            + str(mana_regeneration_rate or 0) + ","
-                            + str(damage_to_different_faction_rate or 0) + ","
-                            + str(resistance_to_different_faction_rate or 0) + ","
-                            + str(damage_to_same_faction_rate or 0) + ","
-                            + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(physical_attack or 0) + ","
+                                + str(physical_defense or 0) + ","
+                                + str(magical_attack or 0) + ","
+                                + str(magical_defense or 0) + ","
+                                + str(chemical_attack or 0) + ","
+                                + str(chemical_defense or 0) + ","
+                                + str(atomic_attack or 0) + ","
+                                + str(atomic_defense or 0) + ","
+                                + str(mental_attack or 0) + ","
+                                + str(mental_defense or 0) + ","
+                                + str(speed or 0) + ","
+                                + str(critical_damage_rate or 0) + ","
+                                + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
+                                + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
+                                + str(evasion_rate or 0) + ","
+                                + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
+                                + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
+                                + str(accuracy_rate or 0) + ","
+                                + str(lifesteal_rate or 0) + ","
+                                + str(shield_strength or 0) + ","
+                                + str(tenacity or 0) + ","
+                                + str(resistance_rate or 0) + ","
+                                + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
+                                + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
+                                + str(mana or 0) + ","
+                                + str(mana_regeneration_rate or 0) + ","
+                                + str(damage_to_different_faction_rate or 0) + ","
+                                + str(resistance_to_different_faction_rate or 0) + ","
+                                + str(damage_to_same_faction_rate or 0) + ","
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ","
                             + str(per_health or 0) + ","
                             + str(per_physical_attack or 0) + ","
                             + str(per_physical_defense or 0) + ","
@@ -6026,25 +7422,43 @@ def create_forge_database():
     per_mental_attack=10
     per_mental_defense=10
     speed = 3500000
-    critical_damage_rate = 10
-    critical_rate = 10
-    penetration_rate = 10
-    evasion_rate = 10
-    damage_absorption_rate = 10
-    vitality_regeneration_rate = 10
-    accuracy_rate = 10
-    lifesteal_rate = 10
+    critical_damage_rate = 20
+    critical_rate = 20
+    critical_resistance_rate = 20
+    ignore_critical_rate = 20
+    penetration_rate = 20
+    penetration_resistance_rate = 20
+    evasion_rate = 20
+    damage_absorption_rate = 20
+    ignore_damage_absorption_rate = 20
+    absorbed_damage_rate = 20
+    vitality_regeneration_rate = 20
+    vitality_regeneration_resistance_rate = 20
+    accuracy_rate = 20
+    lifesteal_rate = 20
     shield_strength = 3500000
-    tenacity = 10
-    resistance_rate = 10
-    combo_rate = 10
-    reflection_rate = 10
+    tenacity = 20
+    resistance_rate = 20
+    combo_rate = 20
+    ignore_combo_rate = 20
+    combo_damage_rate = 20
+    combo_resistance_rate = 20
+    stun_rate = 20
+    ignore_stun_rate = 20
+    reflection_rate = 20
+    ignore_reflection_rate = 20
+    reflection_damage_rate = 20
+    reflection_resistance_rate = 20
     mana = 100
-    mana_regeneration_rate = 10
+    mana_regeneration_rate = 20
     damage_to_different_faction_rate = 20
     resistance_to_different_faction_rate = 20
     damage_to_same_faction_rate = 20
     resistance_to_same_faction_rate = 20
+    normal_damage_rate = 20
+    normal_resistance_rate = 20
+    skill_damage_rate = 20
+    skill_resistance_rate = 20
     rare="LG"
     price=10000000
     price_unit="Ancient_Rune_Crystal_Dark"
@@ -6065,15 +7479,20 @@ def create_forge_database():
                     story=get_story("Forge")
                     
                     power = calculate_power(
-                        health, physical_attack, physical_defense, magical_attack, magical_defense,
-                        chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                        speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                        damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                        shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
-                        mana, mana_regeneration_rate, 
-                        damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                        damage_to_same_faction_rate, resistance_to_same_faction_rate
-                    )
+                            health, physical_attack, physical_defense, magical_attack, magical_defense,
+                            chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
+                            mana, mana_regeneration_rate, 
+                            damage_to_different_faction_rate, resistance_to_different_faction_rate, 
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
+                        )
                     with open('test.txt', 'a') as file:
                         file.write(
                             "insert into forge values ("
@@ -6086,36 +7505,54 @@ def create_forge_database():
                             + str(0) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
-                            + str(physical_attack or 0) + ","
-                            + str(physical_defense or 0) + ","
-                            + str(magical_attack or 0) + ","
-                            + str(magical_defense or 0) + ","
-                            + str(chemical_attack or 0) + ","
-                            + str(chemical_defense or 0) + ","
-                            + str(atomic_attack or 0) + ","
-                            + str(atomic_defense or 0) + ","
-                            + str(mental_attack or 0) + ","
-                            + str(mental_defense or 0) + ","
-                            + str(speed or 0) + ","
-                            + str(critical_damage_rate or 0) + ","
-                            + str(critical_rate or 0) + ","
-                            + str(penetration_rate or 0) + ","
-                            + str(evasion_rate or 0) + ","
-                            + str(damage_absorption_rate or 0) + ","
-                            + str(vitality_regeneration_rate or 0) + ","
-                            + str(accuracy_rate or 0) + ","
-                            + str(lifesteal_rate or 0) + ","
-                            + str(shield_strength or 0) + ","
-                            + str(tenacity or 0) + ","
-                            + str(resistance_rate or 0) + ","
-                            + str(combo_rate or 0) + ","
-                            + str(reflection_rate or 0) + ","
-                            + str(mana or 0) + ","
-                            + str(mana_regeneration_rate or 0) + ","
-                            + str(damage_to_different_faction_rate or 0) + ","
-                            + str(resistance_to_different_faction_rate or 0) + ","
-                            + str(damage_to_same_faction_rate or 0) + ","
-                            + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(physical_attack or 0) + ","
+                                + str(physical_defense or 0) + ","
+                                + str(magical_attack or 0) + ","
+                                + str(magical_defense or 0) + ","
+                                + str(chemical_attack or 0) + ","
+                                + str(chemical_defense or 0) + ","
+                                + str(atomic_attack or 0) + ","
+                                + str(atomic_defense or 0) + ","
+                                + str(mental_attack or 0) + ","
+                                + str(mental_defense or 0) + ","
+                                + str(speed or 0) + ","
+                                + str(critical_damage_rate or 0) + ","
+                                + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
+                                + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
+                                + str(evasion_rate or 0) + ","
+                                + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
+                                + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
+                                + str(accuracy_rate or 0) + ","
+                                + str(lifesteal_rate or 0) + ","
+                                + str(shield_strength or 0) + ","
+                                + str(tenacity or 0) + ","
+                                + str(resistance_rate or 0) + ","
+                                + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
+                                + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
+                                + str(mana or 0) + ","
+                                + str(mana_regeneration_rate or 0) + ","
+                                + str(damage_to_different_faction_rate or 0) + ","
+                                + str(resistance_to_different_faction_rate or 0) + ","
+                                + str(damage_to_same_faction_rate or 0) + ","
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ","
                             + str(per_health or 0) + ","
                             + str(per_physical_attack or 0) + ","
                             + str(per_physical_defense or 0) + ","
@@ -6160,25 +7597,43 @@ def create_card_life_database():
     per_mental_attack=10
     per_mental_defense=10
     speed = 3500000
-    critical_damage_rate = 10
-    critical_rate = 10
-    penetration_rate = 10
-    evasion_rate = 10
-    damage_absorption_rate = 10
-    vitality_regeneration_rate = 10
-    accuracy_rate = 10
-    lifesteal_rate = 10
+    critical_damage_rate = 20
+    critical_rate = 20
+    critical_resistance_rate = 20
+    ignore_critical_rate = 20
+    penetration_rate = 20
+    penetration_resistance_rate = 20
+    evasion_rate = 20
+    damage_absorption_rate = 20
+    ignore_damage_absorption_rate = 20
+    absorbed_damage_rate = 20
+    vitality_regeneration_rate = 20
+    vitality_regeneration_resistance_rate = 20
+    accuracy_rate = 20
+    lifesteal_rate = 20
     shield_strength = 3500000
-    tenacity = 10
-    resistance_rate = 10
-    combo_rate = 10
-    reflection_rate = 10
+    tenacity = 20
+    resistance_rate = 20
+    combo_rate = 20
+    ignore_combo_rate = 20
+    combo_damage_rate = 20
+    combo_resistance_rate = 20
+    stun_rate = 20
+    ignore_stun_rate = 20
+    reflection_rate = 20
+    ignore_reflection_rate = 20
+    reflection_damage_rate = 20
+    reflection_resistance_rate = 20
     mana = 100
-    mana_regeneration_rate = 10
+    mana_regeneration_rate = 20
     damage_to_different_faction_rate = 20
     resistance_to_different_faction_rate = 20
     damage_to_same_faction_rate = 20
     resistance_to_same_faction_rate = 20
+    normal_damage_rate = 20
+    normal_resistance_rate = 20
+    skill_damage_rate = 20
+    skill_resistance_rate = 20
     rare="LG"
     price=10000000
     price_unit="Ancient_Rune_Crystal_Dark"
@@ -6200,15 +7655,20 @@ def create_card_life_database():
                     story = ""
                     
                     power = calculate_power(
-                        health, physical_attack, physical_defense, magical_attack, magical_defense,
-                        chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
-                        speed, critical_rate, critical_damage_rate, penetration_rate, evasion_rate, 
-                        damage_absorption_rate, vitality_regeneration_rate, accuracy_rate, lifesteal_rate, 
-                        shield_strength, tenacity, resistance_rate, combo_rate, reflection_rate,
-                        mana, mana_regeneration_rate, 
-                        damage_to_different_faction_rate, resistance_to_different_faction_rate, 
-                        damage_to_same_faction_rate, resistance_to_same_faction_rate
-                    )
+                            health, physical_attack, physical_defense, magical_attack, magical_defense,
+                            chemical_attack, chemical_defense, atomic_attack, atomic_defense, mental_attack, mental_defense,
+                            speed, critical_rate, critical_damage_rate, critical_resistance_rate, ignore_critical_rate, 
+                            penetration_rate, penetration_resistance_rate, evasion_rate, 
+                            damage_absorption_rate, ignore_damage_absorption_rate, absorbed_damage_rate, 
+                            vitality_regeneration_rate, vitality_regeneration_resistance_rate, accuracy_rate, lifesteal_rate, 
+                            shield_strength, tenacity, resistance_rate, 
+                            combo_rate, ignore_combo_rate, combo_damage_rate, combo_resistance_rate, stun_rate, ignore_stun_rate,
+                            reflection_rate, ignore_reflection_rate, reflection_damage_rate, reflection_resistance_rate,
+                            mana, mana_regeneration_rate, 
+                            damage_to_different_faction_rate, resistance_to_different_faction_rate, 
+                            damage_to_same_faction_rate, resistance_to_same_faction_rate, 
+                            normal_damage_rate, normal_resistance_rate, skill_damage_rate, skill_resistance_rate
+                        )
                     with open('test.txt', 'a') as file:
                         file.write(
                             "insert into card_life values ("
@@ -6221,36 +7681,54 @@ def create_card_life_database():
                             + str(0) + ","
                             + str(power or 0) + ","
                             + str(health or 0) + ","
-                            + str(physical_attack or 0) + ","
-                            + str(physical_defense or 0) + ","
-                            + str(magical_attack or 0) + ","
-                            + str(magical_defense or 0) + ","
-                            + str(chemical_attack or 0) + ","
-                            + str(chemical_defense or 0) + ","
-                            + str(atomic_attack or 0) + ","
-                            + str(atomic_defense or 0) + ","
-                            + str(mental_attack or 0) + ","
-                            + str(mental_defense or 0) + ","
-                            + str(speed or 0) + ","
-                            + str(critical_damage_rate or 0) + ","
-                            + str(critical_rate or 0) + ","
-                            + str(penetration_rate or 0) + ","
-                            + str(evasion_rate or 0) + ","
-                            + str(damage_absorption_rate or 0) + ","
-                            + str(vitality_regeneration_rate or 0) + ","
-                            + str(accuracy_rate or 0) + ","
-                            + str(lifesteal_rate or 0) + ","
-                            + str(shield_strength or 0) + ","
-                            + str(tenacity or 0) + ","
-                            + str(resistance_rate or 0) + ","
-                            + str(combo_rate or 0) + ","
-                            + str(reflection_rate or 0) + ","
-                            + str(mana or 0) + ","
-                            + str(mana_regeneration_rate or 0) + ","
-                            + str(damage_to_different_faction_rate or 0) + ","
-                            + str(resistance_to_different_faction_rate or 0) + ","
-                            + str(damage_to_same_faction_rate or 0) + ","
-                            + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(physical_attack or 0) + ","
+                                + str(physical_defense or 0) + ","
+                                + str(magical_attack or 0) + ","
+                                + str(magical_defense or 0) + ","
+                                + str(chemical_attack or 0) + ","
+                                + str(chemical_defense or 0) + ","
+                                + str(atomic_attack or 0) + ","
+                                + str(atomic_defense or 0) + ","
+                                + str(mental_attack or 0) + ","
+                                + str(mental_defense or 0) + ","
+                                + str(speed or 0) + ","
+                                + str(critical_damage_rate or 0) + ","
+                                + str(critical_rate or 0) + ","
+                                + str(critical_resistance_rate or 0) + ","
+                                + str(ignore_critical_rate or 0) + ","
+                                + str(penetration_rate or 0) + ","
+                                + str(penetration_resistance_rate or 0) + ","
+                                + str(evasion_rate or 0) + ","
+                                + str(damage_absorption_rate or 0) + ","
+                                + str(ignore_damage_absorption_rate  or 0) + ","
+                                + str(absorbed_damage_rate  or 0) + ","
+                                + str(vitality_regeneration_rate or 0) + ","
+                                + str(vitality_regeneration_resistance_rate or 0) + ","
+                                + str(accuracy_rate or 0) + ","
+                                + str(lifesteal_rate or 0) + ","
+                                + str(shield_strength or 0) + ","
+                                + str(tenacity or 0) + ","
+                                + str(resistance_rate or 0) + ","
+                                + str(combo_rate or 0) + ","
+                                + str(ignore_combo_rate or 0) + ","
+                                + str(combo_damage_rate or 0) + ","
+                                + str(combo_resistance_rate or 0) + ","
+                                + str(stun_rate or 0) + ","
+                                + str(ignore_stun_rate or 0) + ","
+                                + str(reflection_rate or 0) + ","
+                                + str(ignore_reflection_rate or 0) + ","
+                                + str(reflection_damage_rate or 0) + ","
+                                + str(reflection_resistance_rate or 0) + ","
+                                + str(mana or 0) + ","
+                                + str(mana_regeneration_rate or 0) + ","
+                                + str(damage_to_different_faction_rate or 0) + ","
+                                + str(resistance_to_different_faction_rate or 0) + ","
+                                + str(damage_to_same_faction_rate or 0) + ","
+                                + str(resistance_to_same_faction_rate or 0) + ","
+                                + str(normal_damage_rate or 0) + ","
+                                + str(normal_resistance_rate or 0) + ","
+                                + str(skill_damage_rate or 0) + ","
+                                + str(skill_resistance_rate or 0) + ","
                             + str(per_health or 0) + ","
                             + str(per_physical_attack or 0) + ","
                             + str(per_physical_defense or 0) + ","
@@ -6266,2872 +7744,6 @@ def create_card_life_database():
                         )
 
                     id=id+1
-#Generate Trading
-
-def create_cards_trade():
-    cards_dir="Card_Hero"
-    id=1
-    
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=""
-        if current_dir not in ["LG", "UR", "SSR", "SR"]:
-            current_name=current_dir
-            # print(current_name)
-        for dir_name in dirs:
-            if "SR" in dir_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    if file_name.endswith(".jpg") or file_name.endswith("png"):
-                        name, extension=os.path.splitext(file_name)
-                        path=os.path.join(current_dir,file_name)
-                        path=path.replace("\\","/")
-                        name=name.replace("_"," ")
-                        
-                        with open('test.txt', 'a') as file:
-                            file.write("insert into card_hero_trade values (" + str(id) + "," + str(1) + "," + str(200) + ");\n")
-
-                        id=id+1
-            if "SSR" in dir_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    if file_name.endswith(".jpg") or file_name.endswith("png"):
-                        name, extension=os.path.splitext(file_name)
-                        
-                        with open('test.txt', 'a') as file:
-                            file.write("insert into card_hero_trade values (" + str(id) + "," + str(5) + "," + str(500) + ");\n")
-                        id=id+1
-            if "UR" in dir_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    if file_name.endswith(".jpg") or file_name.endswith("png"):
-                        name,extension=os.path.splitext(file_name)
-                        
-                        with open('test.txt', 'a') as file:
-                            file.write("insert into card_hero_trade values (" + str(id) + "," + str(9) + "," + str(1000) + ");\n")
-                        id=id+1
-            if "LG" in dir_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    if file_name.endswith(".jpg") or file_name.endswith("png"):
-                        name, extension=os.path.splitext(file_name)
-                        
-                        with open('test.txt', 'a') as file:
-                            file.write("insert into card_hero_trade values (" + str(id) + "," + str(13) + "," + str(2000) + ");\n")
-                        id=id+1
-
-def create_book_trade():
-    cards_dir="Book"
-    id=1
-    
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=current_dir
-        for dir_name in dirs:
-            current_dir =os.path.join(root,dir_name)
-            for file_name in os.listdir(current_dir):
-                if file_name.endswith(".jpg") or file_name.endswith("png"):
-                    name, extension=os.path.splitext(file_name)
-                    path=os.path.join(current_dir,file_name)
-                    path=path.replace("\\","/")
-                    name=name.replace("_"," ")
-                
-                    with open('test.txt', 'a') as file:
-                        file.write("insert into book_trade values (" + str(id) + "," + str(14) + "," + str(2000) + ");\n")
-                    id=id+1
-
-def create_captain_trade():
-    cards_dir="Card_Captain"
-    card_list = []
-    id=1
-    
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=current_dir
-        for dir_name in dirs:
-            current_dir =os.path.join(root,dir_name)
-            for file_name in os.listdir(current_dir):
-                if file_name.endswith(".jpg") or file_name.endswith("png"):
-                    name, extension=os.path.splitext(file_name)
-                    path=os.path.join(current_dir,file_name)
-                    path=path.replace("\\","/")
-                    name=name.replace("_"," ")
-                    
-                    with open('test.txt', 'a') as file:
-                        file.write("insert into card_captain_trade values (" + str(id) + "," + str(15) + "," + str(2000) + ");\n")
-                    id=id+1
-
-def create_colonel_trade():
-    cards_dir="Card_Colonel"
-    card_list = []
-    id=1
-    
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=current_dir
-        for dir_name in dirs:
-            current_dir =os.path.join(root,dir_name)
-            for file_name in os.listdir(current_dir):
-                if file_name.endswith(".jpg") or file_name.endswith("png"):
-                    name, extension=os.path.splitext(file_name)
-                    path=os.path.join(current_dir,file_name)
-                    path=path.replace("\\","/")
-                    name=name.replace("_"," ")
-                    
-                    with open('test.txt', 'a') as file:
-                        file.write("insert into card_colonel_trade values (" + str(id) + "," + str(12) + "," + str(2000) + ");\n")
-                    id=id+1
-
-def create_general_trade():
-    cards_dir="Card_General"
-    card_list = []
-    id=1
-    
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=current_dir
-        for dir_name in dirs:
-            current_dir =os.path.join(root,dir_name)
-            for file_name in os.listdir(current_dir):
-                if file_name.endswith(".jpg") or file_name.endswith("png"):
-                    name, extension=os.path.splitext(file_name)
-                    path=os.path.join(current_dir,file_name)
-                    path=path.replace("\\","/")
-                    name=name.replace("_"," ")
-                    
-                    with open('test.txt', 'a') as file:
-                        file.write("insert into card_general_trade values (" + str(id) + "," + str(16) + "," + str(2000) + ");\n")
-                    id=id+1
-
-def create_admiral_trade():
-    cards_dir="Card_Admiral"
-    card_list = []
-    id=1
-    
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=current_dir
-        for dir_name in dirs:
-            current_dir =os.path.join(root,dir_name)
-            for file_name in os.listdir(current_dir):
-                if file_name.endswith(".jpg") or file_name.endswith("png"):
-                    name, extension=os.path.splitext(file_name)
-                    path=os.path.join(current_dir,file_name)
-                    path=path.replace("\\","/")
-                    name=name.replace("_"," ")
-                    
-                    with open('test.txt', 'a') as file:
-                        file.write("insert into card_admiral_trade values (" + str(id) + "," + str(17) + "," + str(2000) + ");\n")
-                    id=id+1
-
-def create_skills_trade():
-    cards_dir="Skill"
-    card_list = []
-    id=1
-    
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=current_dir
-        for dir_name in dirs:
-            current_dir =os.path.join(root,dir_name)
-            for file_name in os.listdir(current_dir):
-                if file_name.endswith(".jpg") or file_name.endswith("png"):
-                    name, extension=os.path.splitext(file_name)
-                    path=os.path.join(current_dir,file_name)
-                    path=path.replace("\\","/")
-                    name=name.replace("_"," ")
-                    
-                    with open('test.txt', 'a') as file:
-                        file.write("insert into skill_trade values (" + str(id) + "," + str(45) + "," + str(2000) + ");\n")
-                    id=id+1
-
-def create_collaboration_equipments_trade():
-    cards_dir="CollborationEquipment"
-    card_list = []
-    id=1
-    
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=""
-        if current_dir not in ["MR","LG", "UR", "SSR", "SR"]:
-            current_name=current_dir
-            # print(current_name)
-        for dir_name in dirs:
-            if "SR" in dir_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    if file_name.endswith(".jpg") or file_name.endswith("png"):
-                        name, extension=os.path.splitext(file_name)
-                        path=os.path.join(current_dir,file_name)
-                        path=path.replace("\\","/")
-                        name=name.replace("_"," ")
-                        
-                        with open('test.txt', 'a') as file:
-                            file.write("insert into collaboration_equipment_trade values (" + str(id) + "," + str(2) + "," + str(200) + ");\n")
-
-                        id=id+1
-            if "SSR" in dir_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    if file_name.endswith(".jpg") or file_name.endswith("png"):
-                        name, extension=os.path.splitext(file_name)
-                        
-                        with open('test.txt', 'a') as file:
-                            file.write("insert into collaboration_equipment_trade values (" + str(id) + "," + str(6) + "," + str(500) + ");\n")
-                        id=id+1
-            if "UR" in dir_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    if file_name.endswith(".jpg") or file_name.endswith("png"):
-                        name,extension=os.path.splitext(file_name)
-                        with open('test.txt', 'a') as file:
-                            file.write("insert into collaboration_equipment_trade values (" + str(id) + "," + str(10) + "," + str(1000) + ");\n")
-                        id=id+1
-            if "LG" in dir_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    if file_name.endswith(".jpg") or file_name.endswith("png"):
-                        name, extension=os.path.splitext(file_name)
-                        with open('test.txt', 'a') as file:
-                            file.write("insert into collaboration_equipment_trade values (" + str(id) + "," + str(14) + "," + str(2000) + ");\n")
-                        id=id+1
-            if "MR" in dir_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    if file_name.endswith(".jpg") or file_name.endswith("png"):
-                        name, extension=os.path.splitext(file_name)
-                        with open('test.txt', 'a') as file:
-                            file.write("insert into collaboration_equipment_trade values (" + str(id) + "," + str(61) + "," + str(5000) + ");\n")
-                        id=id+1
-
-def create_pets_trade():
-    cards_dir="Pet"
-    card_list = []
-    id=1
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=current_dir
-        for dir_name in dirs:
-            current_dir =os.path.join(root,dir_name)
-            for file_name in os.listdir(current_dir):
-                if file_name.endswith(".jpg") or file_name.endswith("png"):
-                    name, extension=os.path.splitext(file_name)
-                    path=os.path.join(current_dir,file_name)
-                    path=path.replace("\\","/")
-                    name=name.replace("_"," ")
-                    
-                    with open('test.txt', 'a') as file:
-                        file.write("insert into pet_trade values (" + str(id) + "," + str(16) + "," + str(5000) + ");\n")
-
-                    id=id+1
-
-def create_symbols_trade():
-    cards_dir="Symbol"
-    card_list = []
-    id=1
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=current_dir
-        for dir_name in dirs:
-            current_dir =os.path.join(root,dir_name)
-            dir_name = os.path.basename(current_dir)
-            for file_name in os.listdir(current_dir):
-                if file_name.endswith(".jpg") or file_name.endswith("png"):
-                    name, extension=os.path.splitext(file_name)
-            
-                    path=os.path.join(current_dir,file_name)
-                    path=path.replace("\\","/")
-                    name=name.replace("_"," ")
-                    
-                    with open('test.txt', 'a') as file:
-                        file.write("insert into symbol_trade values (" + str(id) + "," + str(18) + "," + str(2000) + ");\n")
-
-                    id=id+1
-
-def create_medals_trade():
-    cards_dir="Medal"
-    card_list = []
-    id=1
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        for file_name in os.listdir(current_dir):
-            if file_name.endswith(".jpg") or file_name.endswith("png"):
-                name, extension=os.path.splitext(file_name)
-                path=os.path.join(current_dir,file_name)
-                path=path.replace("\\","/")
-                name=name.replace("_"," ")
-                
-                with open('test.txt', 'a') as file:
-                    file.write("insert into medal_trade values (" + str(id) + "," + str(19) + "," + str(2000) + ");\n")
-
-                id=id+1
-
-def create_achievements_trade():
-    cards_dir="Achievement"
-    card_list = []
-    id=1
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        for file_name in os.listdir(current_dir):
-            if file_name.endswith(".jpg") or file_name.endswith("png"):
-                name, extension=os.path.splitext(file_name)
-                path=os.path.join(current_dir,file_name)
-                path=path.replace("\\","/")
-                name=name.replace("_"," ")
-                
-                with open('test.txt', 'a') as file:
-                    file.write("insert into achievement_trade values (" + str(id) + "," + str(20) + "," + str(2000) + ");\n")
-                id=id+1
-
-def create_titles_trade():
-    cards_dir="Title"
-    card_list = []
-    id=1
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        for file_name in os.listdir(current_dir):
-            if file_name.endswith(".jpg") or file_name.endswith("png"):
-                name, extension=os.path.splitext(file_name)
-                path=os.path.join(current_dir,file_name)
-                path=path.replace("\\","/")
-                name=name.replace("_"," ")
-
-                with open('test.txt', 'a') as file:
-                    file.write("insert into title_trade values (" + str(id) + "," + str(25) + "," + str(2000) + ");\n")
-                id=id+1
-
-def create_borders_trade():
-    cards_dir="Border"
-    card_list = []
-    id=1
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        for file_name in os.listdir(current_dir):
-            if file_name.endswith(".jpg") or file_name.endswith("png"):
-                name, extension=os.path.splitext(file_name)
-                path=os.path.join(current_dir,file_name)
-                path=path.replace("\\","/")
-                name=name.replace("_"," ")
-            
-                with open('test.txt', 'a') as file:
-                    file.write("insert into border_trade values (" + str(id) + "," + str(41) + "," + str(2000) + ");\n")
-                id=id+1
-
-def create_avatars_trade():
-    cards_dir="Avatar"
-    card_list = []
-    id=1
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        for file_name in os.listdir(current_dir):
-            if file_name.endswith(".jpg") or file_name.endswith("png"):
-                name, extension=os.path.splitext(file_name)
-                path=os.path.join(current_dir,file_name)
-                path=path.replace("\\","/")
-                name=name.replace("_"," ")
-            
-                with open('test.txt', 'a') as file:
-                    file.write("insert into avatar_trade values (" + str(id) + "," + str(41) + "," + str(2000) + ");\n")
-                id=id+1
-
-def create_items_trade():
-    cards_dir="Item"
-    card_list = []
-    id=1
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=current_dir
-        for dir_name in dirs:
-            current_dir =os.path.join(root,dir_name)
-            for file_name in os.listdir(current_dir):
-                if file_name.endswith(".jpg") or file_name.endswith("png"):
-                    name, extension=os.path.splitext(file_name)
-                    path=os.path.join(current_dir,file_name)
-                    path=path.replace("\\","/")
-                    name=name.replace("_"," ")
-                    with open('test.txt', 'a') as file:
-                        file.write("insert into item_trade values (" + str(id) + "," + str(43) + "," + str(10) + ");\n")
-                    id=id+1
-
-def create_equipments_trade():
-    cards_dir="Equipment"
-    card_list = []
-    id=1
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir = os.path.basename(root)
-        current_name=""
-        current_name = os.path.basename(os.path.dirname(root))
-        for dir_name in dirs:
-            current_dir = os.path.join(root, dir_name)
-            for file_name in os.listdir(current_dir):
-                    if file_name.endswith(".jpg") or file_name.endswith(".png"):
-                        name, extension = os.path.splitext(file_name)
-                        set1_folder_name = os.path.basename(os.path.dirname(current_dir))
-                        name=name.replace("_"," ")
-                        if "SR" in dir_name:
-                            with open('test.txt', 'a') as file:
-                                file.write("insert into equipment_trade values (" + str(id) + "," + str(3) + "," + str(200) + ");\n")
-                            id += 1
-                        elif "SSR" in dir_name:
-                            with open('test.txt', 'a') as file:
-                                file.write("insert into equipment_trade values (" + str(id) + "," + str(7) + "," + str(500) + ");\n")
-                            id += 1
-                        elif "UR" in dir_name:
-                            with open('test.txt', 'a') as file:
-                                file.write("insert into equipment_trade values (" + str(id) + "," + str(11) + "," + str(1000) + ");\n")
-                            id += 1
-                        elif "LG" in dir_name:
-                            with open('test.txt', 'a') as file:
-                                file.write("insert into equipment_trade values (" + str(id) + "," + str(15) + "," + str(2000) + ");\n")
-                            id += 1
-                        elif "MR" in dir_name:
-                            with open('test.txt', 'a') as file:
-                                file.write("insert into equipment_trade values (" + str(id) + "," + str(69) + "," + str(5000) + ");\n")
-                            id += 1
-
-def create_collaboration_trade():
-    cards_dir="Collaboration"
-    card_list = []
-    id=1
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        for file_name in os.listdir(current_dir):
-            if file_name.endswith(".jpg") or file_name.endswith("png"):
-                name, extension=os.path.splitext(file_name)
-                path=os.path.join(current_dir,file_name)
-                path=path.replace("\\","/")
-                name=name.replace("_"," ")
-            
-                with open('test.txt', 'a') as file:
-                    file.write("insert into collaboration_trade values (" + str(id) + "," + str(46) + "," + str(5000) + ");\n")
-                id=id+1     
-
-def create_monster_trade():
-    cards_dir="Card_Monster"
-    card_list = []
-    id=1
-    
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=current_dir
-        for dir_name in dirs:
-            current_dir =os.path.join(root,dir_name)
-            for file_name in os.listdir(current_dir):
-                if file_name.endswith(".jpg") or file_name.endswith("png"):
-                    name, extension=os.path.splitext(file_name)
-                    path=os.path.join(current_dir,file_name)
-                    path=path.replace("\\","/")
-                    name=name.replace("_"," ")
-                    
-                    with open('test.txt', 'a') as file:
-                        file.write("insert into card_monster_trade values (" + str(id) + "," + str(47) + "," + str(2000) + ");\n")
-                    id=id+1
-
-def create_military_trade():
-    cards_dir="Card_Military"
-    id=1
-    path=""
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=""
-        if current_dir not in ["LG", "UR", "SSR", "SR"]:
-            current_name=current_dir
-            # print(current_name)
-        for dir_name in dirs:
-            if "SR" in dir_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    if file_name.endswith(".jpg") or file_name.endswith("png"):
-                        name, extension=os.path.splitext(file_name)
-                        path=os.path.join(current_dir,file_name)
-                        path=path.replace("\\","/")
-                        name=name.replace("_"," ")
-                        with open('test.txt', 'a') as file:
-                            file.write("insert into card_military_trade values (" + str(id) + "," + str(4) + "," + str(50000) + ");\n")
-                        id=id+1
-            if "SSR" in dir_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    if file_name.endswith(".jpg") or file_name.endswith("png"):
-                        name, extension=os.path.splitext(file_name)
-                        path=os.path.join(current_dir,file_name)
-                        path=path.replace("\\","/")
-                        name=name.replace("_"," ")
-                        with open('test.txt', 'a') as file:
-                            file.write("insert into card_military_trade values (" + str(id) + "," + str(8) + "," + str(500000) + ");\n")
-                        id=id+1
-            if "UR" in dir_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    if file_name.endswith(".jpg") or file_name.endswith("png"):
-                        name, extension=os.path.splitext(file_name)
-                        path=os.path.join(current_dir,file_name)
-                        path=path.replace("\\","/")
-                        name=name.replace("_"," ")
-                        with open('test.txt', 'a') as file:
-                            file.write("insert into card_military_trade values (" + str(id) + "," + str(12) + "," + str(5000000) + ");\n")
-                        id=id+1
-            if "LG" in dir_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    if file_name.endswith(".jpg") or file_name.endswith("png"):
-                        name, extension=os.path.splitext(file_name)
-                        path=os.path.join(current_dir,file_name)
-                        path=path.replace("\\","/")
-                        name=name.replace("_"," ")
-                        with open('test.txt', 'a') as file:
-                            file.write("insert into card_military_trade values (" + str(id) + "," + str(16) + "," + str(50000000) + ");\n")
-                        id=id+1
-
-def create_spell_trade():
-    cards_dir="Card_Spell"
-    id=1
-    path=""
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=""
-        if current_dir not in ["LG", "UR", "SSR", "SR"]:
-            current_name=current_dir
-            # print(current_name)
-        for dir_name in dirs:
-            if "SR" in dir_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    if file_name.endswith(".jpg") or file_name.endswith("png"):
-                        name, extension=os.path.splitext(file_name)
-                        path=os.path.join(current_dir,file_name)
-                        path=path.replace("\\","/")
-                        name=name.replace("_"," ")
-                        with open('test.txt', 'a') as file:
-                            file.write("insert into card_spell_trade values (" + str(id) + "," + str(48) + "," + str(50000) + ");\n")
-                        id=id+1
-            if "SSR" in dir_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    if file_name.endswith(".jpg") or file_name.endswith("png"):
-                        name, extension=os.path.splitext(file_name)
-                        path=os.path.join(current_dir,file_name)
-                        path=path.replace("\\","/")
-                        name=name.replace("_"," ")
-                        with open('test.txt', 'a') as file:
-                            file.write("insert into card_spell_trade values (" + str(id) + "," + str(48) + "," + str(500000) + ");\n")
-                        id=id+1
-            if "UR" in dir_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    if file_name.endswith(".jpg") or file_name.endswith("png"):
-                        name, extension=os.path.splitext(file_name)
-                        path=os.path.join(current_dir,file_name)
-                        path=path.replace("\\","/")
-                        name=name.replace("_"," ")
-                        with open('test.txt', 'a') as file:
-                            file.write("insert into card_spell_trade values (" + str(id) + "," + str(48) + "," + str(5000000) + ");\n")
-                        id=id+1
-            if "LG" in dir_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    if file_name.endswith(".jpg") or file_name.endswith("png"):
-                        name, extension=os.path.splitext(file_name)
-                        path=os.path.join(current_dir,file_name)
-                        path=path.replace("\\","/")
-                        name=name.replace("_"," ")
-                        with open('test.txt', 'a') as file:
-                            file.write("insert into card_spell_trade values (" + str(id) + "," + str(48) + "," + str(50000000) + ");\n")
-                        id=id+1
-
-def create_relics_trade():
-    cards_dir="Relics"
-    card_list = []
-    id=1
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=current_dir
-        for dir_name in dirs:
-            current_dir =os.path.join(root,dir_name)
-            dir_name = os.path.basename(current_dir)
-            for file_name in os.listdir(current_dir):
-                if file_name.endswith(".jpg") or file_name.endswith("png"):
-                    name, extension=os.path.splitext(file_name)
-            
-                    path=os.path.join(current_dir,file_name)
-                    path=path.replace("\\","/")
-                    name=name.replace("_"," ")
-                    
-                    with open('test.txt', 'a') as file:
-                        file.write("insert into relic_trade values (" + str(id) + "," + str(18) + "," + str(2000) + ");\n")
-
-                    id=id+1
-
-def create_magic_formation_circle_trade():
-    cards_dir="MagicFormationCircle"
-    card_list = []
-    id=1
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=current_dir
-        for dir_name in dirs:
-            current_dir =os.path.join(root,dir_name)
-            dir_name = os.path.basename(current_dir)
-            for file_name in os.listdir(current_dir):
-                if file_name.endswith(".jpg") or file_name.endswith("png"):
-                    name, extension=os.path.splitext(file_name)
-            
-                    path=os.path.join(current_dir,file_name)
-                    path=path.replace("\\","/")
-                    name=name.replace("_"," ")
-                    
-                    with open('test.txt', 'a') as file:
-                        file.write("insert into magic_formation_circle_trade values (" + str(id) + "," + str(18) + "," + str(2000) + ");\n")
-
-                    id=id+1
-
-def create_talisman_trade():
-    cards_dir="Talisman"
-    card_list = []
-    id=1
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=current_dir
-        for dir_name in dirs:
-            current_dir =os.path.join(root,dir_name)
-            dir_name = os.path.basename(current_dir)
-            for file_name in os.listdir(current_dir):
-                if file_name.endswith(".jpg") or file_name.endswith("png"):
-                    name, extension=os.path.splitext(file_name)
-            
-                    path=os.path.join(current_dir,file_name)
-                    path=path.replace("\\","/")
-                    name=name.replace("_"," ")
-                    
-                    with open('test.txt', 'a') as file:
-                        file.write("insert into talisman_trade values (" + str(id) + "," + str(18) + "," + str(2000) + ");\n")
-
-                    id=id+1
-                
-def create_puppet_trade():
-    cards_dir="Puppet"
-    card_list = []
-    id=1
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=current_dir
-        for dir_name in dirs:
-            current_dir =os.path.join(root,dir_name)
-            dir_name = os.path.basename(current_dir)
-            for file_name in os.listdir(current_dir):
-                if file_name.endswith(".jpg") or file_name.endswith("png"):
-                    name, extension=os.path.splitext(file_name)
-            
-                    path=os.path.join(current_dir,file_name)
-                    path=path.replace("\\","/")
-                    name=name.replace("_"," ")
-                    
-                    with open('test.txt', 'a') as file:
-                        file.write("insert into puppet_trade values (" + str(id) + "," + str(18) + "," + str(2000) + ");\n")
-
-                    id=id+1
-
-def create_alchemy_trade():
-    cards_dir="Alchemy"
-    card_list = []
-    id=1
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=current_dir
-        for dir_name in dirs:
-            current_dir =os.path.join(root,dir_name)
-            dir_name = os.path.basename(current_dir)
-            for file_name in os.listdir(current_dir):
-                if file_name.endswith(".jpg") or file_name.endswith("png"):
-                    name, extension=os.path.splitext(file_name)
-            
-                    path=os.path.join(current_dir,file_name)
-                    path=path.replace("\\","/")
-                    name=name.replace("_"," ")
-                    
-                    with open('test.txt', 'a') as file:
-                        file.write("insert into alchemy_trade values (" + str(id) + "," + str(18) + "," + str(2000) + ");\n")
-
-                    id=id+1
-
-def create_forge_trade():
-    cards_dir="Forge"
-    card_list = []
-    id=1
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=current_dir
-        for dir_name in dirs:
-            current_dir =os.path.join(root,dir_name)
-            dir_name = os.path.basename(current_dir)
-            for file_name in os.listdir(current_dir):
-                if file_name.endswith(".jpg") or file_name.endswith("png"):
-                    name, extension=os.path.splitext(file_name)
-            
-                    path=os.path.join(current_dir,file_name)
-                    path=path.replace("\\","/")
-                    name=name.replace("_"," ")
-                    
-                    with open('test.txt', 'a') as file:
-                        file.write("insert into forge_trade values (" + str(id) + "," + str(18) + "," + str(2000) + ");\n")
-
-                    id=id+1
-
-def create_card_life_trade():
-    cards_dir="Card_Life"
-    card_list = []
-    id=1
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=current_dir
-        for dir_name in dirs:
-            current_dir =os.path.join(root,dir_name)
-            dir_name = os.path.basename(current_dir)
-            for file_name in os.listdir(current_dir):
-                if file_name.endswith(".jpg") or file_name.endswith("png"):
-                    name, extension=os.path.splitext(file_name)
-            
-                    path=os.path.join(current_dir,file_name)
-                    path=path.replace("\\","/")
-                    name=name.replace("_"," ")
-                    
-                    with open('test.txt', 'a') as file:
-                        file.write("insert into card_life_trade values (" + str(id) + "," + str(18) + "," + str(2000) + ");\n")
-
-                    id=id+1
-#Generate chest
-
-def create_chest_equipment():
-    cards_dir="Equipment"
-    card_list = []
-    id=1
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir = os.path.basename(root)
-        current_name=""
-        current_name = os.path.basename(os.path.dirname(root))
-        for dir_name in dirs:
-            current_dir = os.path.join(root, dir_name)
-            for file_name in os.listdir(current_dir):
-                    if file_name.endswith(".jpg") or file_name.endswith(".png"):
-                        name, extension = os.path.splitext(file_name)
-                        set1_folder_name = os.path.basename(os.path.dirname(current_dir))
-                        name=name.replace("_"," ")
-                        if "Amnitus_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(1) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(2) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(3) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(334) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(374) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Angelis_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(4) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(5) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(6) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(335) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(375) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Bellion_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(7) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(8) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(9) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(336) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(376) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Benzamin_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(10) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(11) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(12) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(337) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(377) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Celestial_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(13) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(14) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(15) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(338) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(378) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Ceverus_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(16) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(17) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(18) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(339) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(379) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Delius_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(19) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(20) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(21) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(340) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(380) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Domitius_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(22) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(23) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(24) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(341) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(381) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Etherium_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(25) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(26) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(27) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(342) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(382) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Everlyn_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(28) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(29) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(30) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(343) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(383) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "EvilFruit_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(31) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(32) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(33) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(344) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(384) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Extra_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(34) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(35) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(36) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(345) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(385) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Faltus_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(37) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(38) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(39) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(346) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(386) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Fealan_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(40) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(41) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(42) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(347) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(387) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Gamma_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(43) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(44) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(45) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(348) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(388) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Gem_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(46) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(47) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(48) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(349) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(389) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Hagoro_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(49) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(50) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(51) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(350) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(390) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Hakalite_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(52) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(53) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(54) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(351) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(391) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Heatherus_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(55) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(56) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(57) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(352) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(392) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Ignis_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(58) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(59) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(60) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(353) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(393) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Ivitus_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(61) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(62) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(63) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(354) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(394) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Karis_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(64) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(65) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(66) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(355) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(395) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Karmus_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(67) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(68) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(69) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(356) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(396) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Lotus_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(70) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(71) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(72) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(357) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(397) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Luminius_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(73) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(74) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(75) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(358) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(398) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Macus_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(76) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(77) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(78) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(359) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(399) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Morganis_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(79) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(80) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(81) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(360) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(400) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Nimigazin_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(82) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(83) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(84) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(361) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(401) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Omonitus_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(85) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(86) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(87) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(362) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(402) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Pet_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(88) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(89) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(90) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(363) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(403) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Qiyantus_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(91) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(92) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(93) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(364) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(404) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Rainbow_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(94) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(95) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(96) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(365) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(405) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Redvenger_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(97) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(98) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(99) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(366) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(406) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Retanic_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(100) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(101) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(102) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(367) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(407) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Souls_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(103) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(104) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(105) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(368) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(408) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Support_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(106) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(107) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(108) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(369) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(409) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Syncroharon_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(109) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(110) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(111) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(370) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(410) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Uni_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(112) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(113) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(114) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(371) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(411) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Zodiac_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(115) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(116) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(117) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(372) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(412) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        elif "Zpower_Equipment" in current_name:
-                            with open('chest.txt', 'a') as file:
-                                file.write("insert into chest_equipment values (" + str(118) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(119) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(120) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(373) + "," + str(id) + "," + str(1) + ");\n")
-                                file.write("insert into chest_equipment values (" + str(413) + "," + str(id) + "," + str(1) + ");\n")
-                            id += 1
-                        
-def create_chest_card():
-    cards_dir="Card_Hero"
-    card_list = []
-    id=1
-    card_name=""
-    path=""
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=""
-        if current_dir not in ["LG", "UR", "SSR", "SR"]:
-            current_name=current_dir
-            # print(current_name)
-        for dir_name in dirs:
-            if "SR" in dir_name:
-                if "Adamas" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(283) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(284) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Avian" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(285) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(286) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Barbarian" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(287) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(288) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Cylloran" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(289) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(290) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Dreizen" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(291) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(292) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Etrigon" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(293) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(294) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Firimir" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(295) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(296) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Gennesis" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(297) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(298) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Hecarus" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(299) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(300) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Illonima" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(301) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(302) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Jaguar" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(303) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(304) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Kryptonian" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(305) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(306) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Lamania" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(307) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(308) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Marverick" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(309) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(310) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Nemesis" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(311) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(312) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Onyx" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(313) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(314) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Palladian" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(315) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(316) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Quasar" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(317) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(318) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Riverven" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(319) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(320) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Starroian" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(321) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(322) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Terac" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(323) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(324) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Urius" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(325) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(326) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Vril" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(327) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(328) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Wyvern" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(329) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(330) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Xanthera" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(331) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Yornath" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(332) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Zerath" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(333) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1             
-            if "SSR" in dir_name:
-                if "Adamas" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(283) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(284) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Avian" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(285) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(286) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Barbarian" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(287) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(288) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Cylloran" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(289) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(290) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Dreizen" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(291) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(292) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Etrigon" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(293) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(294) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Firimir" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(295) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(296) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Gennesis" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(297) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(298) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Hecarus" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(299) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(300) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Illonima" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(301) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(302) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Jaguar" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(303) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(304) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Kryptonian" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(305) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(306) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Lamania" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(307) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(308) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Marverick" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(309) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(310) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Nemesis" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(311) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(312) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Onyx" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(313) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(314) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Palladian" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(315) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(316) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Quasar" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(317) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(318) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Riverven" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(319) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(320) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Starroian" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(321) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(322) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Terac" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(323) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(324) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Urius" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(325) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(326) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Vril" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(327) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(328) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Wyvern" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(329) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(330) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Xanthera" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(331) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Yornath" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(332) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Zerath" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(333) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1             
-            if "UR" in dir_name:
-                if "Adamas" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(283) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(284) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Avian" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(285) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(286) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Barbarian" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(287) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(288) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Cylloran" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(289) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(290) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Dreizen" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(291) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(292) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Etrigon" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(293) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(294) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Firimir" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(295) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(296) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Gennesis" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(297) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(298) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Hecarus" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(299) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(300) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Illonima" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(301) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(302) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Jaguar" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(303) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(304) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Kryptonian" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(305) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(306) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Lamania" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(307) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(308) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Marverick" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(309) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(310) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Nemesis" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(311) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(312) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Onyx" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(313) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(314) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Palladian" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(315) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(316) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Quasar" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(317) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(318) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Riverven" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(319) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(320) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Starroian" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(321) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(322) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Terac" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(323) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(324) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Urius" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(325) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(326) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Vril" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(327) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(328) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Wyvern" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(329) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(330) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Xanthera" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(331) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Yornath" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(332) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Zerath" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(333) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1             
-            if "LG" in dir_name:
-                if "Adamas" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(283) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(284) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Avian" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(285) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(286) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Barbarian" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(287) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(288) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Cylloran" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(289) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(290) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Dreizen" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(291) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(292) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Etrigon" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(293) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(294) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Firimir" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(295) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(296) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Gennesis" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(297) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(298) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Hecarus" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(299) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(300) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Illonima" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(301) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(302) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Jaguar" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(303) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(304) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Kryptonian" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(305) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(306) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Lamania" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(307) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(308) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Marverick" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(309) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(310) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Nemesis" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(311) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(312) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Onyx" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(313) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(314) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Palladian" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(315) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(316) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Quasar" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(317) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(318) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Riverven" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(319) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(320) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Starroian" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(321) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(322) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Terac" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(323) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(324) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Urius" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(325) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(326) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Vril" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(327) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(328) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Wyvern" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(329) + "," + str(id) + "," + str(1) + ");\n")
-                            file.write("insert into chest_card_hero values (" + str(330) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Xanthera" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(331) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Yornath" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(332) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-                elif "Zerath" in current_name:
-                    current_dir =os.path.join(root,dir_name)
-                    for file_name in os.listdir(current_dir):
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_hero values (" + str(333) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1             
-
-def create_chest_book():
-    cards_dir="Book"
-    card_list = []
-    id=1
-    card_name=""
-    path=""
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=current_dir
-        
-        # print(current_name)
-        for dir_name in dirs:
-            # print(current_name)  
-            current_name = os.path.join(root, dir_name)          
-            if "ArtKnight_Book" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_book values (" + str(121) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_book values (" + str(122) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_book values (" + str(123) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "ETC_Book" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_book values (" + str(124) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_book values (" + str(125) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_book values (" + str(126) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Gemini_Book" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_book values (" + str(127) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_book values (" + str(128) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_book values (" + str(129) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Genshin_Book" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_book values (" + str(130) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_book values (" + str(131) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_book values (" + str(132) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Iterious_Book" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_book values (" + str(133) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_book values (" + str(134) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_book values (" + str(135) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Manhatan_Book" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_book values (" + str(136) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_book values (" + str(137) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_book values (" + str(138) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Monster_Book" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_book values (" + str(139) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_book values (" + str(140) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_book values (" + str(141) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "NA_Book" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_book values (" + str(142) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_book values (" + str(143) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_book values (" + str(144) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "OP_Book" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_book values (" + str(145) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_book values (" + str(146) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_book values (" + str(147) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Othellonia_Book" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_book values (" + str(148) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_book values (" + str(149) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_book values (" + str(150) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "SAO_book" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_book values (" + str(151) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_book values (" + str(152) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_book values (" + str(153) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Tanhagan_Book" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_book values (" + str(154) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_book values (" + str(155) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_book values (" + str(156) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Tensei_shitara_Slime_Datta_Ken_Book" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_book values (" + str(157) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_book values (" + str(158) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_book values (" + str(159) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Touhou_Book" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_book values (" + str(160) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_book values (" + str(161) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_book values (" + str(162) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Xenoraphine_Book" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_book values (" + str(163) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_book values (" + str(164) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_book values (" + str(165) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-
-def create_chest_captain():
-    cards_dir="Card_Captain"
-    card_list = []
-    id=1
-    card_name=""
-    path=""
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=current_dir
-        
-        # print(current_name)
-        for dir_name in dirs:
-            # print(current_name)  
-            current_name = os.path.join(root, dir_name)          
-            current_dir =os.path.join(root,dir_name)
-            for file_name in os.listdir(current_dir):
-                with open('chest.txt', 'a') as file:
-                    file.write("insert into chest_card_captain values (" + str(166) + "," + str(id) + "," + str(1) + ");\n")
-                    file.write("insert into chest_card_captain values (" + str(167) + "," + str(id) + "," + str(1) + ");\n")
-                    file.write("insert into chest_card_captain values (" + str(168) + "," + str(id) + "," + str(1) + ");\n")
-                    file.write("insert into chest_card_captain values (" + str(169) + "," + str(id) + "," + str(1) + ");\n")
-                id=id+1
-
-def create_chest_colonel():
-    cards_dir="Card_Colonel"
-    card_list = []
-    id=1
-    card_name=""
-    path=""
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=current_dir
-        
-        # print(current_name)
-        for dir_name in dirs:
-            # print(current_name)  
-            current_name = os.path.join(root, dir_name)          
-            current_dir =os.path.join(root,dir_name)
-            for file_name in os.listdir(current_dir):
-                with open('chest.txt', 'a') as file:
-                    file.write("insert into chest_card_colonel values (" + str(170) + "," + str(id) + "," + str(1) + ");\n")
-                    file.write("insert into chest_card_colonel values (" + str(171) + "," + str(id) + "," + str(1) + ");\n")
-                    file.write("insert into chest_card_colonel values (" + str(172) + "," + str(id) + "," + str(1) + ");\n")
-                    file.write("insert into chest_card_colonel values (" + str(173) + "," + str(id) + "," + str(1) + ");\n")
-                id=id+1
-
-def create_chest_general():
-    cards_dir="Card_General"
-    card_list = []
-    id=1
-    card_name=""
-    path=""
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=current_dir
-        
-        # print(current_name)
-        for dir_name in dirs:
-            # print(current_name)  
-            current_name = os.path.join(root, dir_name)          
-            current_dir =os.path.join(root,dir_name)
-            for file_name in os.listdir(current_dir):
-                with open('chest.txt', 'a') as file:
-                    file.write("insert into chest_card_general values (" + str(174) + "," + str(id) + "," + str(1) + ");\n")
-                    file.write("insert into chest_card_general values (" + str(175) + "," + str(id) + "," + str(1) + ");\n")
-                    file.write("insert into chest_card_general values (" + str(176) + "," + str(id) + "," + str(1) + ");\n")
-                    file.write("insert into chest_card_general values (" + str(177) + "," + str(id) + "," + str(1) + ");\n")
-                id=id+1
-
-def create_chest_admiral():
-    cards_dir="Card_Admiral"
-    card_list = []
-    id=1
-    card_name=""
-    path=""
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=current_dir
-        
-        # print(current_name)
-        for dir_name in dirs:
-            # print(current_name)  
-            current_name = os.path.join(root, dir_name)          
-            current_dir =os.path.join(root,dir_name)
-            for file_name in os.listdir(current_dir):
-                with open('chest.txt', 'a') as file:
-                    file.write("insert into chest_card_admiral values (" + str(178) + "," + str(id) + "," + str(1) + ");\n")
-                    file.write("insert into chest_card_admiral values (" + str(179) + "," + str(id) + "," + str(1) + ");\n")
-                    file.write("insert into chest_card_admiral values (" + str(180) + "," + str(id) + "," + str(1) + ");\n")
-                    file.write("insert into chest_card_admiral values (" + str(181) + "," + str(id) + "," + str(1) + ");\n")
-                id=id+1
-
-def create_chest_border():
-    cards_dir="Border"
-    card_list = []
-    id=1
-    card_name=""
-    path=""
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        for file_name in os.listdir(current_dir):
-            if file_name.endswith(".jpg") or file_name.endswith("png"):
-                name, extension=os.path.splitext(file_name)
-                path=os.path.join(current_dir,file_name)
-                path=path.replace("\\","/")
-                name=name.replace("_"," ")
-            
-                with open('chest.txt', 'a') as file:
-                    file.write("insert into chest_border values (" + str(182) + "," + str(id) + "," + str(1) + ");\n")
-                id=id+1
-
-def create_chest_avatar():
-    cards_dir="Avatar"
-    card_list = []
-    id=1
-    card_name=""
-    path=""
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        for file_name in os.listdir(current_dir):
-            if file_name.endswith(".jpg") or file_name.endswith("png"):
-                name, extension=os.path.splitext(file_name)
-                path=os.path.join(current_dir,file_name)
-                path=path.replace("\\","/")
-                name=name.replace("_"," ")
-            
-                with open('chest.txt', 'a') as file:
-                    file.write("insert into chest_avatar values (" + str(232) + "," + str(id) + "," + str(1) + ");\n")
-                id=id+1
-
-def create_chest_collaboration():
-    cards_dir="Collaboration"
-    card_list = []
-    id=1
-    card_name=""
-    path=""
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        for file_name in os.listdir(current_dir):
-            if file_name.endswith(".jpg") or file_name.endswith("png"):
-                name, extension=os.path.splitext(file_name)
-                path=os.path.join(current_dir,file_name)
-                path=path.replace("\\","/")
-                name=name.replace("_"," ")
-            
-                with open('chest.txt', 'a') as file:
-                    file.write("insert into chest_collaboration values (" + str(183) + "," + str(id) + "," + str(1) + ");\n")
-                id=id+1
-
-def create_chest_currency():
-    cards_dir="Currency"
-    card_list = []
-    id=1
-    card_name=""
-    path=""
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        for file_name in os.listdir(current_dir):
-            if file_name.endswith(".jpg") or file_name.endswith("png"):
-                name, extension=os.path.splitext(file_name)
-                path=os.path.join(current_dir,file_name)
-                path=path.replace("\\","/")
-                name=name.replace("_"," ")
-            
-                with open('chest.txt', 'a') as file:
-                    file.write("insert into chest_currency values (" + str(184) + "," + str(id) + "," + str(1) + ");\n")
-                    file.write("insert into chest_currency values (" + str(185) + "," + str(id) + "," + str(1) + ");\n")
-                    file.write("insert into chest_currency values (" + str(186) + "," + str(id) + "," + str(1) + ");\n")
-                id=id+1
-
-def create_chest_medal():
-    cards_dir="Medal"
-    card_list = []
-    id=1
-    card_name=""
-    path=""
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        for file_name in os.listdir(current_dir):
-            if file_name.endswith(".jpg") or file_name.endswith("png"):
-                name, extension=os.path.splitext(file_name)
-                path=os.path.join(current_dir,file_name)
-                path=path.replace("\\","/")
-                name=name.replace("_"," ")
-            
-                with open('chest.txt', 'a') as file:
-                    file.write("insert into chest_medal values (" + str(187) + "," + str(id) + "," + str(1) + ");\n")
-                    file.write("insert into chest_medal values (" + str(188) + "," + str(id) + "," + str(1) + ");\n")
-                    file.write("insert into chest_medal values (" + str(189) + "," + str(id) + "," + str(1) + ");\n")
-                id=id+1
-
-def create_chest_monster():
-    cards_dir="Card_Monster"
-    card_list = []
-    id=1
-    card_name=""
-    path=""
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=current_dir
-        
-        # print(current_name)
-        for dir_name in dirs:
-            # print(current_name)  
-            current_name = os.path.join(root, dir_name)          
-            current_dir =os.path.join(root,dir_name)
-            for file_name in os.listdir(current_dir):
-                with open('chest.txt', 'a') as file:
-                    file.write("insert into chest_card_monster values (" + str(190) + "," + str(id) + "," + str(1) + ");\n")
-                    file.write("insert into chest_card_monster values (" + str(191) + "," + str(id) + "," + str(1) + ");\n")
-                    file.write("insert into chest_card_monster values (" + str(192) + "," + str(id) + "," + str(1) + ");\n")
-                id=id+1
-
-def create_chest_pet():
-    cards_dir="Pet"
-    card_list = []
-    id=1
-    card_name=""
-    path=""
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=current_dir
-        
-        # print(current_name)
-        for dir_name in dirs:
-            # print(current_name)  
-            current_name = os.path.join(root, dir_name)          
-            if "Legendary_Dragon" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_pet values (" + str(193) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_pet values (" + str(194) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_pet values (" + str(195) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Mysthic_Monster" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_pet values (" + str(196) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_pet values (" + str(197) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_pet values (" + str(198) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Naruto_Bijuu" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_pet values (" + str(199) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_pet values (" + str(200) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_pet values (" + str(201) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Naruto_Susanoo" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_pet values (" + str(202) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_pet values (" + str(203) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_pet values (" + str(204) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "One_Piece_Ship" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_pet values (" + str(205) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_pet values (" + str(206) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_pet values (" + str(207) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Prime_Monster" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_pet values (" + str(208) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_pet values (" + str(209) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_pet values (" + str(210) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Ultimate_Monster" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_pet values (" + str(211) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_pet values (" + str(212) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_pet values (" + str(213) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Xeras_Monster" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_pet values (" + str(214) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_pet values (" + str(215) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_pet values (" + str(216) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-
-def create_chest_symbol():
-    cards_dir="Symbol"
-    card_list = []
-    id=1
-    card_name=""
-    path=""
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=current_dir
-        for dir_name in dirs:
-            # print(current_name)  
-            current_name = os.path.join(root, dir_name)          
-            if "Legendary_Symbol" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_symbol values (" + str(217) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_symbol values (" + str(218) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_symbol values (" + str(219) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Miracle_Symbol" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_symbol values (" + str(220) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_symbol values (" + str(221) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_symbol values (" + str(222) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Mythic_Symbol" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_symbol values (" + str(223) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_symbol values (" + str(224) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_symbol values (" + str(225) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Prime_Symbol" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_symbol values (" + str(226) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_symbol values (" + str(227) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_symbol values (" + str(228) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "World_Symbol" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_symbol values (" + str(229) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_symbol values (" + str(230) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_symbol values (" + str(231) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            
-def create_chest_title():
-    cards_dir="Title"
-    card_list = []
-    id=1
-    card_name=""
-    path=""
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        for file_name in os.listdir(current_dir):
-            if file_name.endswith(".jpg") or file_name.endswith("png"):
-                name, extension=os.path.splitext(file_name)
-                path=os.path.join(current_dir,file_name)
-                path=path.replace("\\","/")
-                name=name.replace("_"," ")
-            
-                with open('chest.txt', 'a') as file:
-                    file.write("insert into chest_title values (" + str(233) + "," + str(id) + "," + str(1) + ");\n")
-                id=id+1
-
-def create_chest_collaboration_equipment():
-    cards_dir="CollborationEquipment"
-    card_list = []
-    id=1
-    card_name=""
-    path=""
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=current_dir
-        for dir_name in dirs:
-            # print(current_name)  
-            current_name = os.path.join(root, dir_name)          
-            if "Berus_Character" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_collaboration_equipment values (" + str(235) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_collaboration_equipment values (" + str(236) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_collaboration_equipment values (" + str(237) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Chibi_Character" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_collaboration_equipment values (" + str(238) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_collaboration_equipment values (" + str(239) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_collaboration_equipment values (" + str(240) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "DragonBall_Character" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_collaboration_equipment values (" + str(241) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_collaboration_equipment values (" + str(242) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_collaboration_equipment values (" + str(243) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Drasma_Character" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_collaboration_equipment values (" + str(244) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_collaboration_equipment values (" + str(245) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_collaboration_equipment values (" + str(246) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "ETC_Character" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_collaboration_equipment values (" + str(247) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_collaboration_equipment values (" + str(248) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_collaboration_equipment values (" + str(249) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Hirai_Character" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_collaboration_equipment values (" + str(250) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_collaboration_equipment values (" + str(251) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_collaboration_equipment values (" + str(252) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Ikarus_Character" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_collaboration_equipment values (" + str(253) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_collaboration_equipment values (" + str(254) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_collaboration_equipment values (" + str(255) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Kaisen_Character" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_collaboration_equipment values (" + str(256) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_collaboration_equipment values (" + str(257) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_collaboration_equipment values (" + str(258) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Light_Character" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_collaboration_equipment values (" + str(259) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_collaboration_equipment values (" + str(260) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_collaboration_equipment values (" + str(261) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Naruto_Character" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_collaboration_equipment values (" + str(262) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_collaboration_equipment values (" + str(263) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_collaboration_equipment values (" + str(264) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Neko_Character" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_collaboration_equipment values (" + str(265) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_collaboration_equipment values (" + str(266) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_collaboration_equipment values (" + str(267) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "OnePiece_Character" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_collaboration_equipment values (" + str(268) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_collaboration_equipment values (" + str(269) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_collaboration_equipment values (" + str(270) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Rainbow_Character" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_collaboration_equipment values (" + str(271) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_collaboration_equipment values (" + str(272) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_collaboration_equipment values (" + str(273) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Spirit_Character" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_collaboration_equipment values (" + str(274) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_collaboration_equipment values (" + str(275) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_collaboration_equipment values (" + str(276) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Void_Character" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_collaboration_equipment values (" + str(277) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_collaboration_equipment values (" + str(278) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_collaboration_equipment values (" + str(279) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Xeras_Character" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_collaboration_equipment values (" + str(280) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_collaboration_equipment values (" + str(281) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_collaboration_equipment values (" + str(282) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-
-def create_chest_military():
-    cards_dir="Card_Military"
-    id=1
-    path=""
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=""
-        if current_dir not in ["LG", "UR", "SSR", "SR"]:
-            current_name=current_dir
-            # print(current_name)
-        for dir_name in dirs:
-            if "SR" in dir_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    if file_name.endswith(".jpg") or file_name.endswith("png"):
-                        name, extension=os.path.splitext(file_name)
-                        path=os.path.join(current_dir,file_name)
-                        path=path.replace("\\","/")
-                        name=name.replace("_"," ")
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_military values (" + str(401) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-            if "SSR" in dir_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    if file_name.endswith(".jpg") or file_name.endswith("png"):
-                        name, extension=os.path.splitext(file_name)
-                        path=os.path.join(current_dir,file_name)
-                        path=path.replace("\\","/")
-                        name=name.replace("_"," ")
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_military values (" + str(401) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-            if "UR" in dir_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    if file_name.endswith(".jpg") or file_name.endswith("png"):
-                        name, extension=os.path.splitext(file_name)
-                        path=os.path.join(current_dir,file_name)
-                        path=path.replace("\\","/")
-                        name=name.replace("_"," ")
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_military values (" + str(401) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-            if "LG" in dir_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    if file_name.endswith(".jpg") or file_name.endswith("png"):
-                        name, extension=os.path.splitext(file_name)
-                        path=os.path.join(current_dir,file_name)
-                        path=path.replace("\\","/")
-                        name=name.replace("_"," ")
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_military values (" + str(401) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-
-def create_chest_spell():
-    cards_dir="Card_Spell"
-    id=1
-    path=""
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=""
-        if current_dir not in ["LG", "UR", "SSR", "SR"]:
-            current_name=current_dir
-            # print(current_name)
-        for dir_name in dirs:
-            if "SR" in dir_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    if file_name.endswith(".jpg") or file_name.endswith("png"):
-                        name, extension=os.path.splitext(file_name)
-                        path=os.path.join(current_dir,file_name)
-                        path=path.replace("\\","/")
-                        name=name.replace("_"," ")
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_spell values (" + str(383) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-            if "SSR" in dir_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    if file_name.endswith(".jpg") or file_name.endswith("png"):
-                        name, extension=os.path.splitext(file_name)
-                        path=os.path.join(current_dir,file_name)
-                        path=path.replace("\\","/")
-                        name=name.replace("_"," ")
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_spell values (" + str(383) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-            if "UR" in dir_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    if file_name.endswith(".jpg") or file_name.endswith("png"):
-                        name, extension=os.path.splitext(file_name)
-                        path=os.path.join(current_dir,file_name)
-                        path=path.replace("\\","/")
-                        name=name.replace("_"," ")
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_spell values (" + str(383) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-            if "LG" in dir_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    if file_name.endswith(".jpg") or file_name.endswith("png"):
-                        name, extension=os.path.splitext(file_name)
-                        path=os.path.join(current_dir,file_name)
-                        path=path.replace("\\","/")
-                        name=name.replace("_"," ")
-                        with open('chest.txt', 'a') as file:
-                            file.write("insert into chest_card_spell values (" + str(383) + "," + str(id) + "," + str(1) + ");\n")
-                        id=id+1
-
-def create_chest_relics():
-    cards_dir="Relics"
-    card_list = []
-    id=1
-    card_name=""
-    path=""
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=current_dir
-        for dir_name in dirs:
-            # print(current_name)  
-            current_name = os.path.join(root, dir_name)          
-            if "Arm" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_relic values (" + str(217) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_relic values (" + str(218) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_relic values (" + str(219) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Blood" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_relic values (" + str(220) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_relic values (" + str(221) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_relic values (" + str(222) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Bone" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_relic values (" + str(223) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_relic values (" + str(224) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_relic values (" + str(225) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Brain" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_relic values (" + str(226) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_relic values (" + str(227) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_relic values (" + str(228) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Eyes" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_relic values (" + str(229) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_relic values (" + str(230) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_relic values (" + str(231) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Heart" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_relic values (" + str(217) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_relic values (" + str(218) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_relic values (" + str(219) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Leg" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_relic values (" + str(220) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_relic values (" + str(221) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_relic values (" + str(222) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Lung" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_relic values (" + str(223) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_relic values (" + str(224) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_relic values (" + str(225) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Nail" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_relic values (" + str(226) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_relic values (" + str(227) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_relic values (" + str(228) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Spirits" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_relic values (" + str(229) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_relic values (" + str(230) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_relic values (" + str(231) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Stomach" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_relic values (" + str(217) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_relic values (" + str(218) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_relic values (" + str(219) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Torso" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_relic values (" + str(220) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_relic values (" + str(221) + "," + str(id) + "," + str(1) + ");\n")
-                        file.write("insert into chest_relic values (" + str(222) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-
-def create_chest_magic_formation_circle():
-    cards_dir="MagicFormationCircle"
-    card_list = []
-    id=1
-    card_name=""
-    path=""
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=current_dir
-        for dir_name in dirs:
-            # print(current_name)  
-            current_name = os.path.join(root, dir_name)          
-            if "Attack" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_magic_formation_circle values (" + str(217) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Defence" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_magic_formation_circle values (" + str(218) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Support" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_magic_formation_circle values (" + str(219) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-
-def create_chest_talisman():
-    cards_dir="Talisman"
-    card_list = []
-    id=1
-    card_name=""
-    path=""
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=current_dir
-        for dir_name in dirs:
-            # print(current_name)  
-            current_name = os.path.join(root, dir_name)          
-            if "Attack" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_talisman values (" + str(220) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Defence" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_talisman values (" + str(221) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Support" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_talisman values (" + str(222) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-
-def create_chest_puppet():
-    cards_dir="Puppet"
-    card_list = []
-    id=1
-    card_name=""
-    path=""
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=current_dir
-        for dir_name in dirs:
-            # print(current_name)  
-            current_name = os.path.join(root, dir_name)          
-            if "Attack" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_puppet values (" + str(223) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Defence" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_puppet values (" + str(224) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Support" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_puppet values (" + str(225) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-
-def create_chest_alchemy():
-    cards_dir="Alchemy"
-    card_list = []
-    id=1
-    card_name=""
-    path=""
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=current_dir
-        for dir_name in dirs:
-            # print(current_name)  
-            current_name = os.path.join(root, dir_name)          
-            if "Attack" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_alchemy values (" + str(226) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Defence" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_alchemy values (" + str(227) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Support" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_alchemy values (" + str(228) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-
-def create_chest_forge():
-    cards_dir="Forge"
-    card_list = []
-    id=1
-    card_name=""
-    path=""
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=current_dir
-        for dir_name in dirs:
-            # print(current_name)  
-            current_name = os.path.join(root, dir_name)          
-            if "Attack" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_forge values (" + str(229) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Defence" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_forge values (" + str(230) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-            elif "Support" in current_name:
-                current_dir =os.path.join(root,dir_name)
-                for file_name in os.listdir(current_dir):
-                    with open('chest.txt', 'a') as file:
-                        file.write("insert into chest_forge values (" + str(231) + "," + str(id) + "," + str(1) + ");\n")
-                    id=id+1
-
-def create_chest_card_life():
-    cards_dir="Forge"
-    card_list = []
-    id=1
-    card_name=""
-    path=""
-    for root, dirs, files in os.walk(cards_dir):
-        current_dir=os.path.basename(root)
-        current_name=current_dir
-        for dir_name in dirs:
-            # print(current_name)  
-            current_name = os.path.join(root, dir_name)          
-            current_dir =os.path.join(root,dir_name)
-            for file_name in os.listdir(current_dir):
-                with open('chest.txt', 'a') as file:
-                    file.write("insert into chest_card_life values (" + str(234) + "," + str(id) + "," + str(1) + ");\n")
-                id=id+1
                 
 #Generate synery
 def create_cards_synery():
@@ -10204,60 +8816,5 @@ create_alchemy_database()
 create_forge_database()
 create_card_life_database()
 
-#Chest book error
 
-create_cards_trade()
-create_book_trade()
-create_captain_trade()
-create_colonel_trade()
-create_general_trade()
-create_admiral_trade()
-create_skills_trade()
-create_collaboration_equipments_trade()
-create_pets_trade()
-create_symbols_trade()
-create_medals_trade()
-create_achievements_trade()
-create_titles_trade()
-create_borders_trade()
-create_avatars_trade()
-create_items_trade()
-create_equipments_trade()
-create_collaboration_trade()
-create_monster_trade()
-create_military_trade()
-create_spell_trade()
-create_relics_trade()
-create_magic_formation_circle_trade()
-create_talisman_trade()
-create_puppet_trade()
-create_alchemy_trade()
-create_forge_trade()
-create_card_life_trade()
 
-create_chest_equipment()
-create_chest_card()
-create_chest_captain()
-create_chest_colonel()
-create_chest_general()
-create_chest_admiral()
-create_chest_border()
-create_chest_avatar()
-create_chest_collaboration()
-create_chest_currency()
-create_chest_medal()
-create_chest_monster()
-create_chest_pet()
-create_chest_symbol()
-create_chest_title()
-create_chest_collaboration_equipment()
-create_chest_military()
-create_chest_spell()
-create_chest_relics()
-create_chest_magic_formation_circle()
-create_chest_talisman()
-create_chest_puppet()
-create_chest_alchemy()
-create_chest_forge()
-create_chest_card_life()
-create_chest_book()
