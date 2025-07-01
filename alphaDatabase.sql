@@ -6438,20 +6438,18 @@ create table user_currency(
 );
 
 create table mail(
-	id varchar(255) NOT NULL,
+	id varchar(255) PRIMARY KEY,
     receiver_id varchar(255) NOT NULL,
     sender_id varchar(255) NOT NULL,
     subject VARCHAR(100) NOT NULL, 
     body TEXT, 
-    item_id varchar(255) NOT NULL,
+    type varchar(255),
+    object_id varchar(255) NOT NULL,
     is_read BOOLEAN DEFAULT FALSE, 
-    type varchar(100),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    
-    PRIMARY KEY (id, receiver_id),      
+        
     FOREIGN KEY (receiver_id) REFERENCES users(id),
-    FOREIGN KEY (sender_id) REFERENCES users(id),
-    FOREIGN KEY (item_id) REFERENCES items(id)
+    FOREIGN KEY (sender_id) REFERENCES users(id)
 );
 
 create table teams(
@@ -8862,35 +8860,8 @@ CREATE TABLE user_master_board(
 CREATE TABLE daily_checkin(
 	id varchar(255) PRIMARY KEY,
     day DATE,
-    achievement_id varchar(255),
-    avatar_id varchar(255),
-    border_id varchar(255),
-    book_id varchar(255),
-    card_hero_id varchar(255),
-    card_captain_id varchar(255),
-    card_colonel_id varchar(255),
-    card_general_id varchar(255),
-    card_admiral_id varchar(255),
-    card_monster_id varchar(255),
-    card_military_id varchar(255),
-    card_spell_id varchar(255),
-    card_life_id varchar(255),
-    pet_id varchar(255),
-    collaboration_id varchar(255),
-    collaboration_equipment_id varchar(255),
-    equipment_id varchar(255),
-    magic_formation_circle_id varchar(255),
-    medal_id varchar(255),
-    alchemy_id varchar(255),
-    forge_id varchar(255),
-    puppet_id varchar(255),
-    talisman_id varchar(255),
-    relic_id varchar(255),
-    skill_id varchar(255),
-    symbol_id varchar(255),
-    title_id varchar(255),
-    item_id varchar(255),
-    currency_id varchar(255),
+    type varchar(255),
+    object_id varchar(255),
     quantity int
 );
 
@@ -8899,7 +8870,9 @@ CREATE TABLE user_daily_checkin(
     daily_checkin_id varchar(255),
     status bool,
     
-    PRIMARY KEY (user_id, daily_checkin_id)
+    PRIMARY KEY (user_id, daily_checkin_id),
+    FOREIGN KEY (daily_checkin_id) REFERENCES daily_checkin(id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 CREATE TABLE effects (
